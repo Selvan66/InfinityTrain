@@ -1,0 +1,6 @@
+[requires]
+    ogg/1.3.5
+    sfml/2.5.1
+
+[generators]
+    cmake
