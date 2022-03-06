@@ -2,10 +2,11 @@
 
 #include <memory>
 
-#include "States/StateStack.h"
+
 #include "States/StatesID.h"
 #include "App/Context.h"
 
+class StateStack;
 class State
 {
     public:
@@ -13,8 +14,8 @@ class State
     public:
         State(StateStack& stack, Context& context);
         virtual void draw() = 0;
-        virtual void update(sf::Time dt) = 0;
-        virtual void handleEvent(const sf::Event& event) = 0;
+        virtual bool update(sf::Time dt) = 0;
+        virtual bool handleEvent(const sf::Event& event) = 0;
     protected:
         void requestStackPush(States::ID stateID);
         void requestStackPop();
@@ -23,4 +24,4 @@ class State
     private:
         StateStack& mStack;
         Context& mContext;
-}
+};

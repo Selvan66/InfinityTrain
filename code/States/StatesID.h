@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Staets
+namespace States
 {
     enum ID
     {
