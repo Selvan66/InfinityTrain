@@ -1,6 +1,6 @@
+/** @file State.cpp */
 #include "States/State.h"
 #include "States/StateStack.h"
-
 
 State::State(StateStack& stack, Context& context)
 : mStack(stack)

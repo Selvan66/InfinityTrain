@@ -21,3 +21,15 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CONAN_INCLUDE_DIRS})
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${ASSETS_DIR}/ $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+
+# Doxygen
+option(BUILD_DOC "Build documentation" ON)
+find_package(Doxygen REQUIRED dot)
+if (DOXYGEN_FOUND)
+    doxygen_add_docs(
+        doxygen
+        ${CODE_DIR}
+        COMMENT "Generate docs")
+else(DOXYGEN_FOUND)
+    message("Doxygen not found, need to be installed to generate the doxygen")
+endif(DOXYGEN_FOUND)

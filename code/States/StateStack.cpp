@@ -1,3 +1,4 @@
+/** @file StateStack.cpp */
 #include <cassert>
 
 #include "States/StateStack.h"

@@ -1,7 +1,7 @@
+/** @file State.h */
 #pragma once
 
 #include <memory>
-
 
 #include "States/StatesID.h"
 #include "App/Context.h"

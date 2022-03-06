@@ -1,3 +1,4 @@
+/** @file StateStack.h */
 #pragma once
 
 #include <list>
@@ -7,8 +8,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-#include "App/Context.h"
-#include "States/StatesID.h"
 #include "States/State.h"
 
 class StateStack : private sf::NonCopyable

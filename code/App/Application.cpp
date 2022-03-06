@@ -1,5 +1,5 @@
+/** @file Application.cpp */
 #include "App/Application.h"
-
 
 Application::Application()
 : mContext(sf::VideoMode(1024, 768))
@@ -57,5 +57,4 @@ void Application::render()
 
 void Application::registerStates()
 {
-	
 }

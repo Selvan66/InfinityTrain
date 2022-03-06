@@ -1,6 +1,6 @@
+/** @file Application.h */
 #pragma once
 
-#include "App/Context.h"
 #include "States/StateStack.h" 
 
 class Application

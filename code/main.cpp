@@ -1,3 +1,4 @@
+/** @file main.cpp */
 #include <iostream>
 #include <exception>
 

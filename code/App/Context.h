@@ -1,3 +1,4 @@
+/** @file Context.h */
 #pragma once
 
 #include <SFML/Graphics.hpp>
