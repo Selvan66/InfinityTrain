@@ -1,5 +1,6 @@
 /** @file Application.cpp */
 #include "App/Application.h"
+#include "States/TitleState.h"
 
 Application::Application()
 : mContext(sf::VideoMode(1024, 768))
@@ -8,8 +9,11 @@ Application::Application()
 	mContext.window.setKeyRepeatEnabled(false);
    	mContext.window.setVerticalSyncEnabled(true);
 
+	mContext.fonts.load(FontsID::PixelFont, "fonts/PixelFont.ttf");
+	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
+
    	registerStates();
-   
+	mStateStack.pushState(StatesID::TitleState);
 }
 
 void Application::run()
@@ -26,7 +30,7 @@ void Application::run()
 			processInput();
 			update(TimePerFrame);
 			if (mStateStack.isEmpty())
-			    mContext.window.close();
+				mContext.window.close();
 		}
 		render();
 	}
@@ -57,4 +61,5 @@ void Application::render()
 
 void Application::registerStates()
 {
+	mStateStack.registerState<TitleState>(StatesID::TitleState);
 }

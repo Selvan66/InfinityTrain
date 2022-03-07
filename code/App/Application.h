@@ -5,15 +5,15 @@
 
 class Application
 {
-    public:
-        Application();
-        void run();
-    private:
-        void processInput();
-        void update(sf::Time dt);
-        void render();
-        void registerStates();
-    private:
-        Context mContext;
-        StateStack mStateStack;
+	public:
+		Application();
+		void run();
+	private:
+		void processInput();
+		void update(sf::Time dt);
+		void render();
+		void registerStates();
+	private:
+		Context mContext;
+		StateStack mStateStack;
 };

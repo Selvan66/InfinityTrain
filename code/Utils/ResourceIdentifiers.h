@@ -7,14 +7,14 @@
 
 enum class TexturesID
 {
-    TitleScreen
+	TitleScreen
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;
 
 enum class FontsID
 {
-    PixelFont
+	PixelFont
 };
 
 typedef ResourceHolder<sf::Font, FontsID> FontHolder;

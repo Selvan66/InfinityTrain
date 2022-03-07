@@ -6,16 +6,16 @@
 
 int main()
 {
-    try
-    {
-        Application app;
-        app.run();
-    }
-    catch(std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-        return -1;
-    }
+	try
+	{
+		Application app;
+		app.run();
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return -1;
+	}
 
-    return 0;
+	return 0;
 }

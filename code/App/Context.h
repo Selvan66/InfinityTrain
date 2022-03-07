@@ -5,13 +5,13 @@
 
 struct Context
 {
-    Context(sf::VideoMode mode)
-    : window(mode, "Infinity Train")
-    , textures()
-    , fonts()
-    {}
+	Context(sf::VideoMode mode)
+	: window(mode, "Infinity Train")
+	, textures()
+	, fonts()
+	{}
 
-    sf::RenderWindow window;
-    TextureHolder textures;
-    FontHolder fonts;
+	sf::RenderWindow window;
+	TextureHolder textures;
+	FontHolder fonts;
 };

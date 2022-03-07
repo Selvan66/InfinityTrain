@@ -1,11 +1,9 @@
 /** @file StatesID.h */
 #pragma once
 
-namespace States
+enum class StatesID
 {
-    enum ID
-    {
-        None,
-        Game
-    };
-}
+	None,
+	TitleState,
+	Game
+};
