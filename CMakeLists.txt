@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CODE_DIR ${CMAKE_SOURCE_DIR}/code)
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/assets)
 set(CONAN_DIR ${CMAKE_SOURCE_DIR}/conan)
+set(DOCS_DIR ${CMAKE_SOURCE_DIR}/docs)
 
 include(${CONAN_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
@@ -26,9 +27,13 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 option(BUILD_DOC "Build documentation" ON)
 find_package(Doxygen REQUIRED dot)
 if (DOXYGEN_FOUND)
+    set(README ${CMAKE_SOURCE_DIR}/README.md)
+    set(DOXYGEN_OUTPUT_DIRECTORY ${DOCS_DIR})
+    set(DOXYGEN_USE_MDFILE_AS_MAINPAGE ${README})
+    
     doxygen_add_docs(
         doxygen
-        ${CODE_DIR}
+        ${CODE_DIR} ${README}
         COMMENT "Generate docs")
 else(DOXYGEN_FOUND)
     message("Doxygen not found, need to be installed to generate the doxygen")
