@@ -2,11 +2,7 @@
 #pragma once
 
 #include <list>
-#include <unordered_map>
 #include <functional>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 
 #include "States/State.h"
 

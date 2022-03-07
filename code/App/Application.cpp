@@ -5,8 +5,8 @@ Application::Application()
 : mContext(sf::VideoMode(1024, 768))
 , mStateStack(mContext)
 {
-	mContext.mWindow.setKeyRepeatEnabled(false);
-   	mContext.mWindow.setVerticalSyncEnabled(true);
+	mContext.window.setKeyRepeatEnabled(false);
+   	mContext.window.setVerticalSyncEnabled(true);
 
    	registerStates();
    
@@ -18,7 +18,7 @@ void Application::run()
 	const sf::Time TimePerFrame = sf::seconds(1.f/60.f);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
-	while (mContext.mWindow.isOpen()) {
+	while (mContext.window.isOpen()) {
 		sf::Time dt = clock.restart();
 		timeSinceLastUpdate += dt;
 		while (timeSinceLastUpdate > TimePerFrame) {
@@ -26,7 +26,7 @@ void Application::run()
 			processInput();
 			update(TimePerFrame);
 			if (mStateStack.isEmpty())
-			    mContext.mWindow.close();
+			    mContext.window.close();
 		}
 		render();
 	}
@@ -35,10 +35,10 @@ void Application::run()
 void Application::processInput()
 {
 	sf::Event event;
-	while (mContext.mWindow.pollEvent(event)) {
+	while (mContext.window.pollEvent(event)) {
 		mStateStack.handleEvent(event);
 		if (event.type == sf::Event::Closed)
-			mContext.mWindow.close();
+			mContext.window.close();
 	}
 }
 
@@ -49,10 +49,10 @@ void Application::update(sf::Time dt)
 
 void Application::render()
 {
-	mContext.mWindow.clear();
+	mContext.window.clear();
 	mStateStack.draw();
-	mContext.mWindow.setView(mContext.mWindow.getDefaultView());
-	mContext.mWindow.display();
+	mContext.window.setView(mContext.window.getDefaultView());
+	mContext.window.display();
 }
 
 void Application::registerStates()

@@ -1,13 +1,17 @@
 /** @file Context.h */
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "Utils/ResourceIdentifiers.h"
 
 struct Context
 {
     Context(sf::VideoMode mode)
-    : mWindow(mode, "Infinity Train", sf::Style::Close)
+    : window(mode, "Infinity Train")
+    , textures()
+    , fonts()
     {}
 
-    sf::RenderWindow mWindow;
+    sf::RenderWindow window;
+    TextureHolder textures;
+    FontHolder fonts;
 };
