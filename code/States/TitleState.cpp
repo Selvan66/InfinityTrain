@@ -10,6 +10,7 @@ TitleState::TitleState(StateStack& stack, Context& context)
 , mStartTransparency(255)
 , mFadingStart(true)
 , mTextEffectTime(sf::Time::Zero)
+, mLabel("TESTTESTEASTTTTTTTTTTTTTTTT\nTEEEEEEEEEEEEEEEEEETTTTTTTTTT\nTEST", context.fonts)
 {
 	const sf::Vector2f& window_size = context.window.getView().getSize();
 
@@ -35,6 +36,7 @@ void TitleState::draw()
 	auto& window = State::getContext().window;
 	window.draw(mBackgroundSprite);
 	window.draw(mTitle);
+	window.draw(mLabel);
 	auto& color = mStart.getFillColor();
 	mStart.setFillColor(sf::Color(color.r, color.g, color.g, mStartTransparency));
 	window.draw(mStart);
@@ -62,6 +64,9 @@ bool TitleState::update(sf::Time dt)
 			}
 		}
 	}
+
+	sf::Vector2f mouse_pos = sf::Vector2f(sf::Mouse::getPosition(State::getContext().window));
+	mLabel.checkPopup(mTitle.getGlobalBounds(), mouse_pos);
 
 	return true;
 }

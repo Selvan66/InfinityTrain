@@ -3,6 +3,8 @@
 
 #include "States/State.h"
 
+#include "Gui/PopupLabel.h"
+
 class TitleState : public State
 {
 	public:
@@ -17,4 +19,6 @@ class TitleState : public State
 		uint8_t mStartTransparency;
 		bool mFadingStart;
 		sf::Time mTextEffectTime;
+
+		GUI::PopupLabel mLabel;
 };

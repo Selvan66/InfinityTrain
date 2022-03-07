@@ -8,8 +8,7 @@ StateStack::StateStack(Context& context)
 , mPendingList()
 , mContext(context)
 , mFactories()
-{
-}
+{ }
 
 void StateStack::update(sf::Time dt)
 {
@@ -93,5 +92,4 @@ void StateStack::applyPendingChanges()
 StateStack::PendingChange::PendingChange(Action action, StatesID stateID)
 : action(action)
 , stateID(stateID)
-{
-}
+{ }

@@ -5,8 +5,7 @@
 State::State(StateStack& stack, Context& context)
 : mStack(stack)
 , mContext(context)
-{   
-}
+{ }
 
 void State::requestStackPush(StatesID stateID)
 {
