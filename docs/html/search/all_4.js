@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['state_0',['State',['../class_state.html',1,'']]],
-  ['state_2ecpp_1',['State.cpp',['../_state_8cpp.html',1,'']]],
-  ['state_2eh_2',['State.h',['../_state_8h.html',1,'']]],
-  ['statesid_2eh_3',['StatesID.h',['../_states_i_d_8h.html',1,'']]],
-  ['statestack_4',['StateStack',['../class_state_stack.html',1,'']]],
-  ['statestack_2ecpp_5',['StateStack.cpp',['../_state_stack_8cpp.html',1,'']]],
-  ['statestack_2eh_6',['StateStack.h',['../_state_stack_8h.html',1,'']]]
+  ['resourceholder_0',['ResourceHolder',['../class_resource_holder.html',1,'']]],
+  ['resourceholder_2eh_1',['ResourceHolder.h',['../_resource_holder_8h.html',1,'']]],
+  ['resourceholder_3c_20sf_3a_3afont_2c_20fontsid_20_3e_2',['ResourceHolder&lt; sf::Font, FontsID &gt;',['../class_resource_holder.html',1,'']]],
+  ['resourceholder_3c_20sf_3a_3atexture_2c_20texturesid_20_3e_3',['ResourceHolder&lt; sf::Texture, TexturesID &gt;',['../class_resource_holder.html',1,'']]],
+  ['resourceidentifiers_2eh_4',['ResourceIdentifiers.h',['../_resource_identifiers_8h.html',1,'']]]
 ];

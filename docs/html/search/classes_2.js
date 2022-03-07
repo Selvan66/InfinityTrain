@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['state_0',['State',['../class_state.html',1,'']]],
-  ['statestack_1',['StateStack',['../class_state_stack.html',1,'']]]
+  ['resourceholder_0',['ResourceHolder',['../class_resource_holder.html',1,'']]],
+  ['resourceholder_3c_20sf_3a_3afont_2c_20fontsid_20_3e_1',['ResourceHolder&lt; sf::Font, FontsID &gt;',['../class_resource_holder.html',1,'']]],
+  ['resourceholder_3c_20sf_3a_3atexture_2c_20texturesid_20_3e_2',['ResourceHolder&lt; sf::Texture, TexturesID &gt;',['../class_resource_holder.html',1,'']]]
 ];
