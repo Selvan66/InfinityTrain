@@ -1,6 +1,6 @@
 /** @file Application.cpp */
 #include "App/Application.h"
-#include "States/TitleState.h"
+#include "States/MenuState.h"
 
 Application::Application()
 : mContext(sf::VideoMode(1024, 768))
@@ -13,7 +13,7 @@ Application::Application()
 	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
 
    	registerStates();
-	mStateStack.pushState(StatesID::TitleState);
+	mStateStack.pushState(StatesID::MenuState);
 }
 
 void Application::run()
@@ -61,5 +61,5 @@ void Application::render()
 
 void Application::registerStates()
 {
-	mStateStack.registerState<TitleState>(StatesID::TitleState);
+	mStateStack.registerState<MenuState>(StatesID::MenuState);
 }

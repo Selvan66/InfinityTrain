@@ -4,6 +4,6 @@
 enum class StatesID
 {
 	None,
-	TitleState,
+	MenuState,
 	Game
 };

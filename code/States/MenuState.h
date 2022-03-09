@@ -1,24 +1,22 @@
-/** @file TitleState.h */
+/** @file MenuState.h */
 #pragma once
 
 #include "States/State.h"
-
 #include "Gui/PopupLabel.h"
+#include "Gui/Button.h"
 
-class TitleState : public State
+class MenuState : public State
 {
 	public:
-		TitleState(StateStack& stack, Context& context);
+		MenuState(StateStack& stack, Context& context);
 		virtual void draw();
 		virtual bool update(sf::Time dt);
 		virtual bool handleEvent(const sf::Event& event);
 	private:
+		void createButtons();
+	private:
 		sf::Sprite mBackgroundSprite;
 		sf::Text mTitle;
-		sf::Text mStart;
-		uint8_t mStartTransparency;
-		bool mFadingStart;
-		sf::Time mTextEffectTime;
 
-		GUI::PopupLabel mLabel;
+		std::list<GUI::Button> mButtons;
 };
