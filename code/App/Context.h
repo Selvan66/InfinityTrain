@@ -2,8 +2,9 @@
 #pragma once
 
 #include "Utils/ResourceIdentifiers.h"
+#include "Effects/SoundPlayer.h"
 
-struct Context
+struct Context : public sf::NonCopyable
 {
 	Context(sf::VideoMode mode)
 	: window(mode, "Infinity Train")
@@ -15,5 +16,5 @@ struct Context
 	sf::RenderWindow window;
 	TextureHolder textures;
 	FontHolder fonts;
-	SoundBufferHolder sounds;
+	SoundPlayer sounds;
 };

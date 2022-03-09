@@ -1,25 +1,27 @@
 /** @file PopupLabel.h */
 #pragma once
 
-#include "Utils/ResourceIdentifiers.h"
+#include "App/Context.h"
 
 namespace GUI
 {
 
-class PopupLabel : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
+class PopupLabel : public sf::Drawable, public sf::NonCopyable
 {
     public:
-        typedef std::shared_ptr<PopupLabel> Ptr;
-    public:
-        PopupLabel(const std::string& text, const FontHolder& fonts);
-        void checkPopup(const sf::FloatRect& objectBounds, const sf::Vector2f& mousePos);
+        PopupLabel(Context& context, const sf::FloatRect& objectRect = sf::FloatRect(0.f, 0.f, 0.f, 0.f));
+        void setText(const std::string& text);
+        void setObjectRect(const sf::FloatRect& objectRect);
+        void handleEvent(const sf::Event& event);
     private:
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        void setBackgoundRect();
         void setLabelPos(const sf::Vector2f& pos);
     private:
         sf::RectangleShape mBackground;
         bool mShow;
         sf::Text mText;
+        sf::FloatRect mObjectRect;
 };
 
 }

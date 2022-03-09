@@ -7,33 +7,40 @@
 namespace GUI
 {
 
-PopupLabel::PopupLabel(const std::string& text, const FontHolder& fonts)
+PopupLabel::PopupLabel(Context& context, const sf::FloatRect& objectRect)
 : mBackground()
 , mShow(false)
-, mText(text, fonts.get(FontsID::PixelFont), 10)
+, mText("", context.fonts.get(FontsID::PixelFont), 10)
+, mObjectRect(objectRect)
+{ }
+
+void PopupLabel::setText(const std::string& text)
 {
-    auto textBounds = mText.getLocalBounds();
-
-    mBackground.setSize(sf::Vector2f(textBounds.width + 20, textBounds.height + 20));
-    mBackground.setOutlineThickness(0.5);
-    mBackground.setOutlineColor(sf::Color(168, 137, 50));
-    mBackground.setFillColor(sf::Color(60, 60, 60));
-    auto bounds = mBackground.getLocalBounds();
-    mBackground.setOrigin(bounds.left + bounds.width, bounds.top + bounds.height);
-
+    mText.setString(text);
+    setBackgoundRect();
     Utility::centerOrigin(mText);
 }
 
-void PopupLabel::checkPopup(const sf::FloatRect& objectBounds, const sf::Vector2f& mousePos)
+void PopupLabel::setObjectRect(const sf::FloatRect& objectRect)
 {
-    if (objectBounds.contains(mousePos))
+    mObjectRect = objectRect;
+}
+
+void PopupLabel::handleEvent(const sf::Event& event)
+{
+    if (event.type == sf::Event::MouseMoved)
     {
-        mShow = true;
-        setLabelPos(mousePos);
-    }
-    else
-    {
-        mShow = false;
+        const auto& mouse = event.mouseMove;
+        sf::Vector2f mousePos = sf::Vector2f((float)mouse.x, (float)mouse.y); 
+        if (mObjectRect.contains(mousePos))
+        {
+            mShow = true;
+            setLabelPos(mousePos);
+        }
+        else
+        {
+            mShow = false;
+        }
     }
 }
 
@@ -41,8 +48,8 @@ void PopupLabel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     if (mShow == true)
     {
-        target.draw(mBackground);
-        target.draw(mText);
+        target.draw(mBackground, states);
+        target.draw(mText, states);
     }
 }
 
@@ -51,6 +58,18 @@ void PopupLabel::setLabelPos(const sf::Vector2f& pos)
     mBackground.setPosition(pos);
     auto& bound = mBackground.getGlobalBounds();
     mText.setPosition(sf::Vector2f(bound.left + bound.width / 2.f, bound.top + bound.height / 2.f));
+}
+
+void PopupLabel::setBackgoundRect()
+{
+    auto textBounds = mText.getLocalBounds();
+
+    mBackground.setSize(sf::Vector2f(textBounds.width + 20, textBounds.height + 20));
+    mBackground.setOutlineThickness(0.5);
+    mBackground.setOutlineColor(sf::Color(168, 137, 50));
+    mBackground.setFillColor(sf::Color(60, 60, 60));
+    auto bounds = mBackground.getLocalBounds();
+    mBackground.setOrigin(bounds.left + bounds.width, bounds.top + bounds.height); 
 }
 
 }
