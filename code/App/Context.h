@@ -9,9 +9,11 @@ struct Context
 	: window(mode, "Infinity Train")
 	, textures()
 	, fonts()
+	, sounds()
 	{}
 
 	sf::RenderWindow window;
 	TextureHolder textures;
 	FontHolder fonts;
+	SoundBufferHolder sounds;
 };

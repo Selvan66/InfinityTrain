@@ -2,6 +2,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Utils/ResourceHolder.h"
 
@@ -18,3 +19,11 @@ enum class FontsID
 };
 
 typedef ResourceHolder<sf::Font, FontsID> FontHolder;
+
+enum class SoundsID
+{
+	ButtonHover,
+	ButtonClick
+};
+
+typedef ResourceHolder<sf::SoundBuffer, SoundsID> SoundBufferHolder;
