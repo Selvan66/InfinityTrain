@@ -3,7 +3,7 @@
 #include "States/MenuState.h"
 
 Application::Application()
-: mContext(sf::VideoMode(1024, 768))
+: mContext()
 , mStateStack(mContext)
 {
 	mContext.window.setKeyRepeatEnabled(false);
