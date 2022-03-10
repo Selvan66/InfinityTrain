@@ -22,6 +22,7 @@ class PopupLabel : public sf::Drawable, public sf::NonCopyable
         bool mShow;
         sf::Text mText;
         sf::FloatRect mObjectRect;
+        Context& mContext;
 };
 
 }

@@ -7,14 +7,14 @@ namespace GUI
 {
 
 Button::Button(Context& context)
-: mCallback()
-, mText("", context.fonts.get(FontsID::PixelFont))
+: sf::Text("", context.fonts.get(FontsID::PixelFont), 60)
+, mCallback()
 , mIsSelected(false)
 , mIsPressed(false)
-, mSounds(context.sounds)
+, mContext(context)
 {
-    mText.setOutlineThickness(1.f);
-    mText.setOutlineColor(sf::Color(0, 0, 0));
+    sf::Text::setOutlineThickness(2.f);
+    sf::Text::setOutlineColor(sf::Color(0, 0, 0));
     changeTexture(Normal);
 }
 
@@ -25,8 +25,8 @@ void Button::setCallback(Callback callback)
 
 void Button::setText(const std::string& text)
 {
-    mText.setString(text);
-    Utility::centerOrigin(mText);
+    sf::Text::setString(text);
+    Utility::centerOrigin(*this);
 }
 
 void Button::handleEvent(const sf::Event& event)
@@ -34,12 +34,12 @@ void Button::handleEvent(const sf::Event& event)
     if (event.type == sf::Event::MouseMoved)
     {
         const auto& mouse = event.mouseMove;
-        sf::Vector2f mousePos = sf::Vector2f((float)mouse.x, (float)mouse.y); 
-        if (mText.getGlobalBounds().contains(mousePos))
+        sf::Vector2f mousePos = mContext.window.mapPixelToCoords(sf::Vector2i(mouse.x, mouse.y)); 
+        if (sf::Text::getGlobalBounds().contains(mousePos))
         {
             if (mIsSelected == false)
             {
-                mSounds.play(SoundsID::ButtonHover);
+                mContext.sounds.play(SoundsID::ButtonHover);
             }
             mIsSelected = true;
         }
@@ -53,7 +53,7 @@ void Button::handleEvent(const sf::Event& event)
         if (mIsSelected)
         {
             mIsPressed = true;
-            mSounds.play(SoundsID::ButtonClick);
+            mContext.sounds.play(SoundsID::ButtonClick);
         }
     }
     else if (event.type == sf::Event::MouseButtonReleased)
@@ -83,16 +83,6 @@ void Button::update(sf::Time)
     }
 }
 
-void Button::setPosition(const sf::Vector2f& position)
-{
-    mText.setPosition(position);
-}
-
-void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    target.draw(mText, states);
-}
-
 void Button::changeTexture(Type buttonType)
 {
     sf::Color color;
@@ -108,7 +98,7 @@ void Button::changeTexture(Type buttonType)
             color = sf::Color(255, 0, 0);
             break;
     }
-    mText.setFillColor(color);
+    sf::Text::setFillColor(color);
 }
 
 }

@@ -16,8 +16,8 @@ MenuState::MenuState(StateStack& stack, Context& context)
 	
 	mTitle.setFont(context.fonts.get(FontsID::PixelFont));
 	mTitle.setString("INFINITY TRAIN");
-	mTitle.setCharacterSize(64);
-	mTitle.setOutlineThickness(1);
+	mTitle.setCharacterSize(120);
+	mTitle.setOutlineThickness(2.f);
 	mTitle.setOutlineColor(sf::Color(0, 0, 0));
 	Utility::centerOrigin(mTitle);
 	mTitle.setPosition(sf::Vector2f(window_size.x / 2.f, window_size.y / 5.f));
@@ -58,7 +58,7 @@ void MenuState::createButtons()
 {
 	auto& context = State::getContext();
 	const sf::Vector2f& window_size = context.window.getView().getSize();
-	const float buttonHeight = 35.f;
+	const float buttonHeight = 65.f;
 	mButtons.emplace_back(context);
 	auto& playButton = mButtons.back();
 	playButton.setText("PLAY");

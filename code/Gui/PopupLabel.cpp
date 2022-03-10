@@ -12,6 +12,7 @@ PopupLabel::PopupLabel(Context& context, const sf::FloatRect& objectRect)
 , mShow(false)
 , mText("", context.fonts.get(FontsID::PixelFont), 10)
 , mObjectRect(objectRect)
+, mContext(context)
 { }
 
 void PopupLabel::setText(const std::string& text)
@@ -31,7 +32,7 @@ void PopupLabel::handleEvent(const sf::Event& event)
     if (event.type == sf::Event::MouseMoved)
     {
         const auto& mouse = event.mouseMove;
-        sf::Vector2f mousePos = sf::Vector2f((float)mouse.x, (float)mouse.y); 
+        sf::Vector2f mousePos = mContext.window.mapPixelToCoords(sf::Vector2i(mouse.x, mouse.y)); 
         if (mObjectRect.contains(mousePos))
         {
             mShow = true;
