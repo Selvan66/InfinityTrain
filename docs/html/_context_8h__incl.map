@@ -1,11 +1,16 @@
 <map id="code/App/Context.h" name="code/App/Context.h">
-<area shape="rect" id="node1" title=" " alt="" coords="100,5,237,32"/>
-<area shape="rect" id="node2" href="$_resource_identifiers_8h.html" title=" " alt="" coords="82,80,255,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="14,155,153,181"/>
-<area shape="rect" id="node4" href="$_resource_holder_8h.html" title=" " alt="" coords="177,155,331,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,229,116,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="140,229,195,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="219,229,289,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="313,229,392,256"/>
-<area shape="rect" id="node9" title=" " alt="" coords="416,229,481,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="276,5,413,32"/>
+<area shape="rect" id="node2" href="$_resource_identifiers_8h.html" title=" " alt="" coords="135,155,309,181"/>
+<area shape="rect" id="node11" href="$_sound_player_8h.html" title=" " alt="" coords="269,80,420,107"/>
+<area shape="rect" id="node13" href="$_settings_8h.html" title=" " alt="" coords="481,80,589,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="149,229,287,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,229,124,256"/>
+<area shape="rect" id="node5" href="$_resource_holder_8h.html" title=" " alt="" coords="311,229,466,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="103,304,213,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="524,304,579,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="238,304,307,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="332,304,411,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="435,304,500,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="333,155,372,181"/>
+<area shape="rect" id="node14" title=" " alt="" coords="573,155,703,181"/>
 </map>

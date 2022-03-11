@@ -1,5 +1,8 @@
 <map id="Context" name="Context">
-<area shape="rect" id="node1" title=" " alt="" coords="133,109,200,136"/>
-<area shape="rect" id="node2" href="$class_resource_holder.html" title=" " alt="" coords="5,5,160,47"/>
-<area shape="rect" id="node3" href="$class_resource_holder.html" title=" " alt="" coords="184,5,320,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="427,89,493,116"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,123,32"/>
+<area shape="rect" id="node5" href="$class_sound_player.html" title=" " alt="" coords="201,31,297,57"/>
+<area shape="rect" id="node3" href="$class_resource_holder.html" title=" " alt="" coords="181,82,317,123"/>
+<area shape="rect" id="node4" href="$class_settings.html" title=" " alt="" coords="214,148,285,175"/>
+<area shape="rect" id="node6" href="$class_resource_holder.html" title=" " alt="" coords="172,199,327,241"/>
 </map>

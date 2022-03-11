@@ -1,12 +1,12 @@
 <map id="code/States/StatesID.h" name="code/States/StatesID.h">
-<area shape="rect" id="node1" title=" " alt="" coords="273,5,431,32"/>
-<area shape="rect" id="node2" href="$_state_8h.html" title=" " alt="" coords="283,80,421,107"/>
-<area shape="rect" id="node3" href="$_state_8cpp.html" title=" " alt="" coords="5,229,157,256"/>
-<area shape="rect" id="node4" href="$_state_stack_8h.html" title=" " alt="" coords="266,155,438,181"/>
-<area shape="rect" id="node9" href="$_title_state_8h.html" title=" " alt="" coords="556,155,719,181"/>
-<area shape="rect" id="node5" href="$_application_8cpp.html" title=" " alt="" coords="501,304,672,331"/>
-<area shape="rect" id="node6" href="$_application_8h.html" title=" " alt="" coords="182,229,338,256"/>
-<area shape="rect" id="node8" href="$_state_stack_8cpp.html" title=" " alt="" coords="363,229,549,256"/>
-<area shape="rect" id="node7" href="$main_8cpp.html" title=" " alt="" coords="207,304,313,331"/>
-<area shape="rect" id="node10" href="$_title_state_8cpp.html" title=" " alt="" coords="675,229,851,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="228,5,385,32"/>
+<area shape="rect" id="node2" href="$_state_8h.html" title=" " alt="" coords="237,80,376,107"/>
+<area shape="rect" id="node3" href="$_menu_state_8h.html" title=" " alt="" coords="29,155,200,181"/>
+<area shape="rect" id="node6" href="$_state_8cpp.html" title=" " alt="" coords="231,229,383,256"/>
+<area shape="rect" id="node7" href="$_state_stack_8h.html" title=" " alt="" coords="371,155,543,181"/>
+<area shape="rect" id="node4" href="$_application_8cpp.html" title=" " alt="" coords="69,304,240,331"/>
+<area shape="rect" id="node5" href="$_menu_state_8cpp.html" title=" " alt="" coords="23,229,207,256"/>
+<area shape="rect" id="node8" href="$_application_8h.html" title=" " alt="" coords="407,229,563,256"/>
+<area shape="rect" id="node10" href="$_state_stack_8cpp.html" title=" " alt="" coords="588,229,775,256"/>
+<area shape="rect" id="node9" href="$main_8cpp.html" title=" " alt="" coords="432,304,539,331"/>
 </map>
