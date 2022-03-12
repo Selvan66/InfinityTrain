@@ -49,7 +49,7 @@ void Settings::load()
         mSettings["Control"]["Shot"] = "Mleft";
         mSettings["Control"]["Special"] = "Space";
 
-        mSettings["Audio"]["Music Volume"] = 100.f;
-        mSettings["Audio"]["Sounds Volume"] = 100.f;
+        mSettings["Audio"]["Music Volume"] = 100.0f;
+        mSettings["Audio"]["Sounds Volume"] = 100.0f;
     }
 }

@@ -25,6 +25,6 @@ void Context::applySettings()
         window.setSize(sf::Vector2u(window_size.first, window_size.second));
     }
     
-    float sound_volume = settings.get<float>("Audio", "Sound Volume");
+    float sound_volume = settings.get<float>("Audio", "Sounds Volume");
     sounds.setVolume(sound_volume);
 }

@@ -1,6 +1,7 @@
 /** @file Application.cpp */
 #include "App/Application.h"
 #include "States/MenuState.h"
+#include "States/MenuOptionsState.h"
 
 Application::Application()
 : mContext()
@@ -62,4 +63,5 @@ void Application::render()
 void Application::registerStates()
 {
 	mStateStack.registerState<MenuState>(StatesID::MenuState);
+	mStateStack.registerState<MenuOptionsState>(StatesID::MenuOptionsState);
 }

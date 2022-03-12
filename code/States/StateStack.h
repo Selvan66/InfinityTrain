@@ -1,7 +1,6 @@
 /** @file StateStack.h */
 #pragma once
 
-#include <list>
 #include <functional>
 
 #include "States/State.h"
