@@ -29,6 +29,7 @@ void SoundPlayer::play(SoundsID sound, sf::Vector2f position)
     playSound.setPosition(position.x, -position.y, 0.0);
     playSound.setAttenuation(Attenuation);
     playSound.setMinDistance(MinDistance3D);
+    playSound.setVolume(mVolume);
 
     playSound.play();
 }
@@ -41,6 +42,11 @@ void SoundPlayer::removeStoppedSounds()
 void SoundPlayer::setListenerPosition(sf::Vector2f position)
 {
     sf::Listener::setPosition(position.x, -position.y, ListenerZ);
+}
+
+void SoundPlayer::setVolume(float volume)
+{
+    mVolume = volume;
 }
 
 void SoundPlayer::loadSounds()

@@ -39,7 +39,7 @@ void Settings::load()
     }
     else
     {
-        mSettings["Graphics"]["Window Size"] = std::pair<int, int>(1024, 768);
+        mSettings["Graphics"]["Window Size"] = std::pair<int, int>(1366, 768);
         mSettings["Graphics"]["Fullscreen"] = false;
 
         mSettings["Control"]["Up"] = "W";
@@ -49,7 +49,7 @@ void Settings::load()
         mSettings["Control"]["Shot"] = "Mleft";
         mSettings["Control"]["Special"] = "Space";
 
-        mSettings["Audio"]["Music Volume"] = 100;
-        mSettings["Audio"]["Sounds Volume"] = 100;
+        mSettings["Audio"]["Music Volume"] = 100.f;
+        mSettings["Audio"]["Sounds Volume"] = 100.f;
     }
 }
