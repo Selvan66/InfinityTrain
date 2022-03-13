@@ -17,7 +17,7 @@ void Context::applySettings()
     bool fullscreen = settings.get<bool>("Graphics", "Fullscreen");
     if (fullscreen)
     {
-        window.create(sf::VideoMode(1920, 1080), "Infinity Train", sf::Style::Fullscreen);
+        window.create(sf::VideoMode(window_size.first, window_size.second), "Infinity Train", sf::Style::Fullscreen);
     }
     else
     {

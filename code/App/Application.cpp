@@ -2,6 +2,7 @@
 #include "App/Application.h"
 #include "States/MenuState.h"
 #include "States/MenuOptionsState.h"
+#include "States/SettingState.h"
 
 Application::Application()
 : mContext()
@@ -64,4 +65,5 @@ void Application::registerStates()
 {
 	mStateStack.registerState<MenuState>(StatesID::MenuState);
 	mStateStack.registerState<MenuOptionsState>(StatesID::MenuOptionsState);
+	mStateStack.registerState<SettingState>(StatesID::SettingState);
 }

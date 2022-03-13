@@ -2,7 +2,7 @@
 #include "States/MenuOptionsState.h"
 #include "Utils/Utility.h"
 
-#include <iostream>
+#include <iostream>	// to delete
 
 MenuOptionsState::MenuOptionsState(StateStack& stack, Context& context)
 : State(stack, context)
@@ -59,7 +59,11 @@ void MenuOptionsState::createButtons()
 	mButtons.emplace_back(context);
 	auto& settingsButton = mButtons.back();
 	settingsButton.setText("SETTINGS");
-	settingsButton.setCallback([](){std::cout << "SETTINGS" << std::endl;});
+	settingsButton.setCallback([this]()
+	{
+		this->requestStackPop();
+		this->requestStackPush(StatesID::SettingState);
+	});
 	settingsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 2)));
 
 	mButtons.emplace_back(context);
