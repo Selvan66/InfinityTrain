@@ -1,5 +1,5 @@
 cd conan
-conan install -s build_type=Debug conanfile.txt
+conan install -s build_type=Debug -s compiler.version=16 conanfile.txt
 cd ..
 mkdir build
 cd build

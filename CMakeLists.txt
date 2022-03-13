@@ -8,6 +8,7 @@ set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/assets)
 set(CONAN_DIR ${CMAKE_SOURCE_DIR}/conan)
 set(DOCS_DIR ${CMAKE_SOURCE_DIR}/docs)
 
+set(CONAN_DISABLE_CHECK_COMPILER TRUE)
 include(${CONAN_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
