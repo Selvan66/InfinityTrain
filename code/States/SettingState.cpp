@@ -5,7 +5,7 @@
 
 SettingState::SettingState(StateStack& stack, Context& context)
 : State(stack, context)
-, mButtons()
+, mTextButtons()
 {
     createButtons();
 }
@@ -13,7 +13,7 @@ SettingState::SettingState(StateStack& stack, Context& context)
 void SettingState::draw()
 {
     auto& window = State::getContext().window;
-    for (auto& button : mButtons)
+    for (auto& button : mTextButtons)
 	{
 		window.draw(button);
 	}
@@ -21,7 +21,7 @@ void SettingState::draw()
 
 bool SettingState::update(sf::Time dt)
 {
-    for (auto& button : mButtons)
+    for (auto& button : mTextButtons)
 	{
 		button.update(dt);
 	}
@@ -30,7 +30,7 @@ bool SettingState::update(sf::Time dt)
 
 bool SettingState::handleEvent(const sf::Event& event)
 {
-    for (auto& button : mButtons)
+    for (auto& button : mTextButtons)
 	{
 		button.handleEvent(event);
 	}
@@ -42,27 +42,27 @@ void SettingState::createButtons()
     auto& context = State::getContext();
 	const sf::Vector2f& window_size = context.window.getView().getSize();
 	const float buttonHeight = 65.f;
-	mButtons.emplace_back(context);
-	auto& playButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& playButton = mTextButtons.back();
 	playButton.setText("GRAPHICS");
 	playButton.setCallback([](){std::cout << "GRAPHICS" << std::endl;});
 	playButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2));
 	
-	mButtons.emplace_back(context);
-	auto& achievementsButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& achievementsButton = mTextButtons.back();
 	achievementsButton.setText("CONTROL");
 	achievementsButton.setCallback([](){std::cout << "CONTROL" << std::endl;});
 	achievementsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + buttonHeight));
 
 
-	mButtons.emplace_back(context);
-	auto& settingsButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& settingsButton = mTextButtons.back();
 	settingsButton.setText("AUDIO");
 	settingsButton.setCallback([this](){std::cout << "AUDIO" << std::endl;});
 	settingsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 2)));
 
-	mButtons.emplace_back(context);
-	auto& aboutButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& aboutButton = mTextButtons.back();
 	aboutButton.setText("BACK");
 	aboutButton.setCallback([this]()
     {

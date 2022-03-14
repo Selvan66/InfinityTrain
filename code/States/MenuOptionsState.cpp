@@ -6,7 +6,7 @@
 
 MenuOptionsState::MenuOptionsState(StateStack& stack, Context& context)
 : State(stack, context)
-, mButtons()
+, mTextButtons()
 {
     createButtons();
 }
@@ -14,7 +14,7 @@ MenuOptionsState::MenuOptionsState(StateStack& stack, Context& context)
 void MenuOptionsState::draw()
 {
     auto& window = State::getContext().window;
-    for (auto& button : mButtons)
+    for (auto& button : mTextButtons)
 	{
 		window.draw(button);
 	}
@@ -22,7 +22,7 @@ void MenuOptionsState::draw()
 
 bool MenuOptionsState::update(sf::Time dt)
 {
-    for (auto& button : mButtons)
+    for (auto& button : mTextButtons)
 	{
 		button.update(dt);
 	}
@@ -31,7 +31,7 @@ bool MenuOptionsState::update(sf::Time dt)
 
 bool MenuOptionsState::handleEvent(const sf::Event& event)
 {
-    for (auto& button : mButtons)
+    for (auto& button : mTextButtons)
 	{
 		button.handleEvent(event);
 	}
@@ -43,21 +43,21 @@ void MenuOptionsState::createButtons()
 	auto& context = State::getContext();
 	const sf::Vector2f& window_size = context.window.getView().getSize();
 	const float buttonHeight = 65.f;
-	mButtons.emplace_back(context);
-	auto& playButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& playButton = mTextButtons.back();
 	playButton.setText("PLAY");
 	playButton.setCallback([](){std::cout << "PLAY" << std::endl;});
 	playButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2));
 	
-	mButtons.emplace_back(context);
-	auto& achievementsButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& achievementsButton = mTextButtons.back();
 	achievementsButton.setText("ACHIEVEMENTS");
 	achievementsButton.setCallback([](){std::cout << "ACHIEVEMENTS" << std::endl;});
 	achievementsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + buttonHeight));
 
 
-	mButtons.emplace_back(context);
-	auto& settingsButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& settingsButton = mTextButtons.back();
 	settingsButton.setText("SETTINGS");
 	settingsButton.setCallback([this]()
 	{
@@ -66,14 +66,14 @@ void MenuOptionsState::createButtons()
 	});
 	settingsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 2)));
 
-	mButtons.emplace_back(context);
-	auto& aboutButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& aboutButton = mTextButtons.back();
 	aboutButton.setText("ABOUT");
 	aboutButton.setCallback([](){std::cout << "ABOUT" << std::endl;});
 	aboutButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 3)));
 
-	mButtons.emplace_back(context);
-	auto& quitButton = mButtons.back();
+	mTextButtons.emplace_back(context);
+	auto& quitButton = mTextButtons.back();
 	quitButton.setText("QUIT");
 	quitButton.setCallback([this](){this->requestStackClear();});
 	quitButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 4)));

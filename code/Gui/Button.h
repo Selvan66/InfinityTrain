@@ -4,11 +4,7 @@
 #include <functional>
 
 #include "App/Context.h"
-
-namespace GUI
-{
-
-class Button : public sf::Text
+class Button : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
 {
     public:
         typedef std::function<void()> Callback;
@@ -17,22 +13,19 @@ class Button : public sf::Text
         {
             Normal,
             Selected,
-            Pressed,
-            ButtonCount
+            Pressed
         };
     public:
         Button(Context& context);
         void setCallback(Callback callback);
-        void setText(const std::string& text); 
         void handleEvent(const sf::Event& event);
         void update(sf::Time);
     private:
-        void changeTexture(Type buttonType);
+        virtual sf::FloatRect getGlobalBounds() const = 0;
+        virtual void changeTexture(Type buttonType);
     private:
         Callback mCallback;
         bool mIsSelected;
         bool mIsPressed;
         Context& mContext;
 };
-
-}
