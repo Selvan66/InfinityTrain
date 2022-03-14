@@ -13,6 +13,8 @@ class Application
 		void update(sf::Time dt);
 		void render();
 		void registerStates();
+		void loadMenuTexture();
+		void loadFonts();
 	private:
 		Context mContext;
 		StateStack mStateStack;

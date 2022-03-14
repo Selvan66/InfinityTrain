@@ -9,19 +9,17 @@ namespace GUI
 class TextureButton : public Button
 {
     public:
-        TextureButton(Context& context, const sf::Texture& texture);
-        void setRectNormal(const sf::IntRect& rect)
-        void setRectSelected(const sf::IntRect& rect);
-        void setRectPressed(const sf::IntRect& rect);
+        TextureButton(Context& context, const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed);
     private:
         virtual sf::FloatRect getGlobalBounds() const;
         virtual void changeTexture(Button::Type buttonType);
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     private:
         const sf::Texture& mTexture;
-        sf::Sprite mButtonSprite;
-        sf::Sprite mSelectedButtonSprite;
-        sf::Sprite mPressedButtonSprite;
+        sf::IntRect mNormalRect;
+        sf::IntRect mSelectedRect;
+        sf::IntRect mPressedRect;
+        sf::Sprite mButton;
 };
 
 }

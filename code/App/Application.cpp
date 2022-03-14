@@ -11,8 +11,8 @@ Application::Application()
 	mContext.window.setKeyRepeatEnabled(false);
    	mContext.window.setVerticalSyncEnabled(true);
 
-	mContext.fonts.load(FontsID::PixelFont, "fonts/PixelFont.ttf");
-	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
+	loadMenuTexture();
+	loadFonts();
 
    	registerStates();
 	mStateStack.pushState(StatesID::MenuState);
@@ -66,4 +66,15 @@ void Application::registerStates()
 	mStateStack.registerState<MenuState>(StatesID::MenuState);
 	mStateStack.registerState<MenuOptionsState>(StatesID::MenuOptionsState);
 	mStateStack.registerState<SettingState>(StatesID::SettingState);
+}
+
+void Application::loadMenuTexture()
+{
+	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
+	mContext.textures.load(TexturesID::ArrowButtons, "image/ArrowButtons.png");
+}
+
+void Application::loadFonts()
+{
+	mContext.fonts.load(FontsID::PixelFont, "fonts/PixelFont.ttf");
 }

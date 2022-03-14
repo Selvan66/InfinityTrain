@@ -8,7 +8,8 @@
 
 enum class TexturesID
 {
-	TitleScreen
+	TitleScreen,
+	ArrowButtons
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;
