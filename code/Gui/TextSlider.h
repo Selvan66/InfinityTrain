@@ -16,6 +16,7 @@ class TextSlider : public sf::Drawable, public sf::Transformable, public sf::Non
         void handleEvent(const sf::Event& event);
         void update(sf::Time dt);
         std::string getCurrentText() const;
+        void setCurrentText(const std::string& text);
         void setPosition(float x, float y);
     private:
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;

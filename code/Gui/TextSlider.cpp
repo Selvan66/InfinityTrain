@@ -59,6 +59,21 @@ std::string TextSlider::getCurrentText() const
     return mTextArray[mTextIndex].getString();
 }
 
+void TextSlider::setCurrentText(const std::string& text)
+{
+    assert(mTextIndex == -1);
+    for (int i = 0; i < mTextArray.size(); ++i)
+    {
+        if (mTextArray[i].getString() == text)
+        {
+            mTextIndex = i;
+            return;
+        }
+    }
+    // No found text in mTextArray
+    assert(true);
+}
+
 // Apply after addText()
 void TextSlider::setPosition(float x, float y)
 {
