@@ -72,6 +72,7 @@ void Application::loadMenuTexture()
 {
 	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
 	mContext.textures.load(TexturesID::ArrowButtons, "image/ArrowButtons.png");
+	mContext.textures.load(TexturesID::Checkbox, "image/true.png");
 }
 
 void Application::loadFonts()
