@@ -39,7 +39,7 @@ void Settings::load()
     }
     else
     {
-        mSettings["Graphics"]["Window Size"] = std::pair<int, int>(1366, 768);
+        mSettings["Graphics"]["Resolution"] = std::pair<int, int>(1366, 768);
         mSettings["Graphics"]["Fullscreen"] = false;
 
         mSettings["Control"]["Up"] = "W";
