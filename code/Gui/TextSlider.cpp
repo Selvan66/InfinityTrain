@@ -55,13 +55,13 @@ void TextSlider::update(sf::Time dt)
 
 std::string TextSlider::getCurrentText() const
 {
-    assert(mTextIndex == -1);
+    assert(mTextIndex != -1);
     return mTextArray[mTextIndex].getString();
 }
 
 void TextSlider::setCurrentText(const std::string& text)
 {
-    assert(mTextIndex == -1);
+    assert(mTextIndex != -1);
     for (int i = 0; i < mTextArray.size(); ++i)
     {
         if (mTextArray[i].getString() == text)

@@ -18,7 +18,12 @@ Checkbox::Checkbox(Context& context)
 
     Utility::centerOrigin(mBox);
     mBox.setOutlineColor(sf::Color(0, 0, 0));
-    mBox.setOutlineThickness(10);
+    mBox.setOutlineThickness(8);
+}
+
+void Checkbox::setSelection(bool isSelect)
+{
+    mIsSelected = isSelect;
 }
 
 bool Checkbox::isSelected() const
