@@ -3,6 +3,7 @@
 #include "States/MenuState.h"
 #include "States/MenuOptionsState.h"
 #include "States/SettingState.h"
+#include "States/GraphicsSettingState.h"
 
 Application::Application()
 : mContext()
@@ -66,6 +67,7 @@ void Application::registerStates()
 	mStateStack.registerState<MenuState>(StatesID::MenuState);
 	mStateStack.registerState<MenuOptionsState>(StatesID::MenuOptionsState);
 	mStateStack.registerState<SettingState>(StatesID::SettingState);
+	mStateStack.registerState<GraphicsSettingState>(StatesID::GraphicsSettingState);
 }
 
 void Application::loadMenuTexture()

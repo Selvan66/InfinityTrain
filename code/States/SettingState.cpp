@@ -45,7 +45,11 @@ void SettingState::createButtons()
 	mTextButtons.emplace_back(context);
 	auto& playButton = mTextButtons.back();
 	playButton.setText("GRAPHICS");
-	playButton.setCallback([](){std::cout << "GRAPHICS" << std::endl;});
+	playButton.setCallback([this]()
+	{
+		this->requestStackPop();
+        this->requestStackPush(StatesID::GraphicsSettingState);
+	});
 	playButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2));
 	
 	mTextButtons.emplace_back(context);

@@ -6,5 +6,6 @@ enum class StatesID
 	None,
 	MenuState,
 	MenuOptionsState,
-	SettingState
+	SettingState,
+	GraphicsSettingState
 };
