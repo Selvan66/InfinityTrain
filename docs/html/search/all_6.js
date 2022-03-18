@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['resourceholder_16',['ResourceHolder',['../class_resource_holder.html',1,'']]],
-  ['resourceholder_2eh_17',['ResourceHolder.h',['../_resource_holder_8h.html',1,'']]],
-  ['resourceholder_3c_20sf_3a_3afont_2c_20fontsid_20_3e_18',['ResourceHolder&lt; sf::Font, FontsID &gt;',['../class_resource_holder.html',1,'']]],
-  ['resourceholder_3c_20sf_3a_3asoundbuffer_2c_20soundsid_20_3e_19',['ResourceHolder&lt; sf::SoundBuffer, SoundsID &gt;',['../class_resource_holder.html',1,'']]],
-  ['resourceholder_3c_20sf_3a_3atexture_2c_20texturesid_20_3e_20',['ResourceHolder&lt; sf::Texture, TexturesID &gt;',['../class_resource_holder.html',1,'']]],
-  ['resourceidentifiers_2eh_21',['ResourceIdentifiers.h',['../_resource_identifiers_8h.html',1,'']]]
+  ['popuplabel_0',['PopupLabel',['../class_g_u_i_1_1_popup_label.html',1,'GUI']]],
+  ['popuplabel_2ecpp_1',['PopupLabel.cpp',['../_popup_label_8cpp.html',1,'']]],
+  ['popuplabel_2eh_2',['PopupLabel.h',['../_popup_label_8h.html',1,'']]]
 ];

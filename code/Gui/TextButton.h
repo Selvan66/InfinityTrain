@@ -1,4 +1,4 @@
-/** @file Button.h */
+/** @file TextButton.h */
 #pragma once
 
 #include "Gui/Button.h"

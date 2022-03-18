@@ -5,7 +5,7 @@
 
 #include "States/State.h"
 
-class StateStack : private sf::NonCopyable
+class StateStack : public sf::NonCopyable
 {
 	public:
 		enum Action

@@ -4,7 +4,6 @@
 #include "States/State.h"
 #include "Gui/TextSlider.h"
 #include "Gui/TextButton.h"
-#include "App/Settings.h"
 
 class AudioSettingState : public State
 {

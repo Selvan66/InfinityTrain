@@ -5,7 +5,6 @@
 #include "Gui/TextSlider.h"
 #include "Gui/Checkbox.h"
 #include "Gui/TextButton.h"
-#include "App/Settings.h"
 
 class GraphicsSettingState : public State
 {

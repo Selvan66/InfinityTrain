@@ -1,7 +1,4 @@
 <map id="code/Gui/PopupLabel.h" name="code/Gui/PopupLabel.h">
-<area shape="rect" id="node1" title=" " alt="" coords="109,5,267,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="12,5,169,32"/>
 <area shape="rect" id="node2" href="$_popup_label_8cpp.html" title=" " alt="" coords="5,80,176,107"/>
-<area shape="rect" id="node3" href="$_menu_state_8h.html" title=" " alt="" coords="200,80,371,107"/>
-<area shape="rect" id="node4" href="$_application_8cpp.html" title=" " alt="" coords="99,155,269,181"/>
-<area shape="rect" id="node5" href="$_menu_state_8cpp.html" title=" " alt="" coords="293,155,477,181"/>
 </map>
