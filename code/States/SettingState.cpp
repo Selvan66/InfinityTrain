@@ -62,7 +62,11 @@ void SettingState::createButtons()
 	mTextButtons.emplace_back(context);
 	auto& settingsButton = mTextButtons.back();
 	settingsButton.setText("AUDIO");
-	settingsButton.setCallback([this](){std::cout << "AUDIO" << std::endl;});
+	settingsButton.setCallback([this]()
+	{
+		this->requestStackPop();
+        this->requestStackPush(StatesID::AudioSettingState);
+	});
 	settingsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 2)));
 
 	mTextButtons.emplace_back(context);
