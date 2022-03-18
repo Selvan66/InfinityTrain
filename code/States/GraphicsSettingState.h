@@ -25,7 +25,5 @@ class GraphicsSettingState : public State
         bool mSaveFullscreen;
         GUI::Checkbox mFullscreenCheckbox;
 
-        std::list<GUI::TextButton> mOptionButtons;
-
-        
+        std::list<GUI::TextButton> mOptionButtons; 
 };

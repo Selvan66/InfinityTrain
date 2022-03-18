@@ -48,6 +48,7 @@ void Settings::load()
         mSettings["Control"]["Right"] = "D";
         mSettings["Control"]["Shot"] = "Mleft";
         mSettings["Control"]["Special"] = "Space";
+        mSettings["Control"]["Interact"] = "E";
 
         mSettings["Audio"]["Music Volume"] = 100.0f;
         mSettings["Audio"]["Sounds Volume"] = 100.0f;

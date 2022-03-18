@@ -46,6 +46,12 @@ bool GraphicsSettingState::update(sf::Time dt)
 	{
 		button.update(dt);
 	}
+
+    if (mFullscreenCheckbox.isSelected())
+    {
+        mResolutionSlider.setCurrentText("1920x1080");
+    }
+
     return true;
 }
 
@@ -78,8 +84,6 @@ void GraphicsSettingState::createGUI()
 	mFullscreen.setOutlineColor(sf::Color(0, 0, 0));
     mFullscreen.setPosition(sf::Vector2f((windowsize.x / 2.f) - textwidth, (windowsize.y / 2.f) + textheight));
     mFullscreenCheckbox.setPosition((windowsize.x / 2.f) + textwidth,(windowsize.y / 2.f) + textheight);
-
-    Utility::centerOrigin(mFullscreen);
 
     mOptionButtons.emplace_back(context);
     auto& backButton = mOptionButtons.back();
