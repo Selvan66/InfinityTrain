@@ -7,7 +7,9 @@
 struct Context : public sf::NonCopyable
 {
 	Context();
-	void applySettings();
+	void applyGraphicSettings();
+	void applyAudioSettings();
+	void applyContolSettings();
 
 	sf::RenderWindow window;
 	TextureHolder textures;

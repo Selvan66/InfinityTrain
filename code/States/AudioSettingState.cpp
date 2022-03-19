@@ -90,7 +90,7 @@ void AudioSettingState::createGUI()
     {
         context.settings.set(mSaveMusic, "Audio", "Music Volume");
         context.settings.set(mSaveSound, "Audio", "Sounds Volume");
-        context.applySettings();
+        context.applyAudioSettings();
         this->requestStackPop();
         this->requestStackPush(StatesID::SettingState);
     });
@@ -105,7 +105,7 @@ void AudioSettingState::createGUI()
         float applySound = std::stof(mSoundSlider.getCurrentText());
         context.settings.set(applyMusic, "Audio", "Music Volume");
         context.settings.set(applySound, "Audio", "Sounds Volume");
-        context.applySettings();
+        context.applyAudioSettings();
     });
     applyButton.setPosition(sf::Vector2f(windowsize.x  * 4.f/8.f, windowsize.y * 4.f / 5.f));
 
@@ -118,7 +118,7 @@ void AudioSettingState::createGUI()
         mSaveSound =std::stof(mSoundSlider.getCurrentText());
         context.settings.set(mSaveMusic, "Audio", "Music Volume");
         context.settings.set(mSaveSound, "Audio", "Sounds Volume");
-        context.applySettings();
+        context.applyAudioSettings();
     });
     saveButton.setPosition(sf::Vector2f(windowsize.x  * 6.f/8.f, windowsize.y * 4.f / 5.f));
 }

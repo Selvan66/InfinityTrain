@@ -92,7 +92,7 @@ void GraphicsSettingState::createGUI()
     {
         context.settings.set<std::pair<int, int>>(mSaveResolution, "Graphics", "Resolution");
         context.settings.set<bool>(mSaveFullscreen, "Graphics", "Fullscreen");
-        context.applySettings();
+        context.applyGraphicSettings();
         this->requestStackPop();
         this->requestStackPush(StatesID::SettingState);
     });
@@ -108,7 +108,7 @@ void GraphicsSettingState::createGUI()
         std::string height = applyResolution.substr(applyResolution.find('x') + 1, applyResolution.size());
         context.settings.set<std::pair<int, int>>(std::pair<int, int>(std::stoi(width), std::stoi(height)), "Graphics", "Resolution");
         context.settings.set<bool>(mFullscreenCheckbox.isSelected(), "Graphics", "Fullscreen");
-        context.applySettings();
+        context.applyGraphicSettings();
     });
     applyButton.setPosition(sf::Vector2f(windowsize.x  * 4.f/8.f, windowsize.y * 4.f / 5.f));
 
@@ -124,7 +124,7 @@ void GraphicsSettingState::createGUI()
         mSaveFullscreen = mFullscreenCheckbox.isSelected();
         context.settings.set<std::pair<int, int>>(mSaveResolution, "Graphics", "Resolution");
         context.settings.set<bool>(mSaveFullscreen, "Graphics", "Fullscreen");
-        context.applySettings();
+        context.applyGraphicSettings();
     });
     saveButton.setPosition(sf::Vector2f(windowsize.x  * 6.f/8.f, windowsize.y * 4.f / 5.f));
 }

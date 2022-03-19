@@ -8,10 +8,12 @@ Context::Context()
 , sounds()
 , settings()
 {
-    applySettings();
+    applyGraphicSettings();
+    applyContolSettings();
+    applyAudioSettings();
 }
 
-void Context::applySettings()
+void Context::applyGraphicSettings()
 {
     std::pair<int, int> window_size = settings.get<std::pair<int, int>>("Graphics", "Resolution");
     bool fullscreen = settings.get<bool>("Graphics", "Fullscreen");
@@ -23,8 +25,16 @@ void Context::applySettings()
     {
         window.create(sf::VideoMode(1920, 1080), "Infinity Train", sf::Style::Close);
         window.setSize(sf::Vector2u(window_size.first, window_size.second));
-    }
-    
+    }    
+}
+
+void Context::applyAudioSettings()
+{
     float sound_volume = settings.get<float>("Audio", "Sounds Volume");
     sounds.setVolume(sound_volume);
+}
+
+void Context::applyContolSettings()
+{
+    
 }
