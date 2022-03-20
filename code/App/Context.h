@@ -3,6 +3,7 @@
 
 #include "Effects/SoundPlayer.h"
 #include "App/Settings.h"
+#include "App/Player.h"
 
 struct Context : public sf::NonCopyable
 {
@@ -15,5 +16,6 @@ struct Context : public sf::NonCopyable
 	TextureHolder textures;
 	FontHolder fonts;
 	SoundPlayer sounds;
+	Player player;
 	Settings settings;
 };
