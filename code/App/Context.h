@@ -3,6 +3,7 @@
 
 #include "Effects/SoundPlayer.h"
 #include "App/Settings.h"
+#include "App/Statistics.h"
 #include "App/Player.h"
 
 struct Context : public sf::NonCopyable
@@ -18,4 +19,5 @@ struct Context : public sf::NonCopyable
 	SoundPlayer sounds;
 	Player player;
 	Settings settings;
+	Statistics statistics;
 };

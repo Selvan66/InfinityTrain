@@ -7,6 +7,7 @@ Context::Context()
 , fonts()
 , sounds()
 , settings()
+, statistics()
 {
     applyGraphicSettings();
     applyContolSettings();

@@ -26,7 +26,7 @@ void Settings::save()
     }
     else
     {
-        std::cerr << "Cannot save" << std::endl;
+        std::cerr << "Cannot save settings" << std::endl;
     }
 }
 

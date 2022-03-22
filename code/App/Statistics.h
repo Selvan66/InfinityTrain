@@ -14,13 +14,15 @@ class Statistics
             StartedGames,
             Deads,
             FinishedGames,
+            TimePlay,
             StatisticsCount
         };
     public:
         Statistics();
-        void increase(StatsID id);
-        data get(StatsID id);
-        void save();
+        ~Statistics();
+        void increase(StatsID id, data value = 1);
+        data get(StatsID id) const;
+        void save() const;
         void load();
     private:
         std::array<data, StatisticsCount> mStatistics;
