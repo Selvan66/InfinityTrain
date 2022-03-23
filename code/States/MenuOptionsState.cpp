@@ -52,7 +52,11 @@ void MenuOptionsState::createButtons()
 	mTextButtons.emplace_back(context);
 	auto& achievementsButton = mTextButtons.back();
 	achievementsButton.setText("STATISTICS");
-	achievementsButton.setCallback([](){std::cout << "STATISTICS" << std::endl;});
+	achievementsButton.setCallback([this]()
+	{
+		this->requestStackPop();
+		this->requestStackPush(StatesID::StatisticsState);
+	});
 	achievementsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + buttonHeight));
 
 

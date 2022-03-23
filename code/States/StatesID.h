@@ -8,5 +8,6 @@ enum class StatesID
 	MenuOptionsState,
 	SettingState,
 	GraphicsSettingState,
-	AudioSettingState
+	AudioSettingState,
+	StatisticsState
 };

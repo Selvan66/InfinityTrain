@@ -5,6 +5,7 @@
 #include "States/SettingState.h"
 #include "States/GraphicsSettingState.h"
 #include "States/AudioSettingState.h"
+#include "States/StatisticsState.h"
 
 Application::Application()
 : mContext()
@@ -70,6 +71,7 @@ void Application::registerStates()
 	mStateStack.registerState<SettingState>(StatesID::SettingState);
 	mStateStack.registerState<GraphicsSettingState>(StatesID::GraphicsSettingState);
 	mStateStack.registerState<AudioSettingState>(StatesID::AudioSettingState);
+	mStateStack.registerState<StatisticsState>(StatesID::StatisticsState);
 }
 
 void Application::loadMenuTexture()

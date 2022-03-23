@@ -10,11 +10,10 @@ class Statistics
 
         enum StatsID
         {
-            KilledEnemy,
+            KilledEnemies,
             StartedGames,
-            Deads,
             FinishedGames,
-            TimePlay,
+            TimePlay,   // Save in miliseconds
             StatisticsCount
         };
     public:
