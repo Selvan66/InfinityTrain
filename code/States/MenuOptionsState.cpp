@@ -46,7 +46,11 @@ void MenuOptionsState::createButtons()
 	mTextButtons.emplace_back(context);
 	auto& playButton = mTextButtons.back();
 	playButton.setText("PLAY");
-	playButton.setCallback([](){std::cout << "PLAY" << std::endl;});
+	playButton.setCallback([this]()
+	{
+		this->requestStackClear();
+		this->requestStackPush(StatesID::GameState);
+	});
 	playButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2));
 	
 	mTextButtons.emplace_back(context);
