@@ -6,6 +6,8 @@
 #include "States/GraphicsSettingState.h"
 #include "States/AudioSettingState.h"
 #include "States/StatisticsState.h"
+#include "States/GameState.h"
+#include "States/PauseState.h"
 
 Application::Application()
 : mContext()
@@ -72,6 +74,8 @@ void Application::registerStates()
 	mStateStack.registerState<GraphicsSettingState>(StatesID::GraphicsSettingState);
 	mStateStack.registerState<AudioSettingState>(StatesID::AudioSettingState);
 	mStateStack.registerState<StatisticsState>(StatesID::StatisticsState);
+	mStateStack.registerState<GameState>(StatesID::GameState);
+	mStateStack.registerState<PauseState>(StatesID::PauseState);
 }
 
 void Application::loadMenuTexture()
