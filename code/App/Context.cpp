@@ -6,6 +6,7 @@ Context::Context()
 , textures()
 , fonts()
 , sounds()
+, musics()
 , settings()
 , statistics()
 {
@@ -33,6 +34,8 @@ void Context::applyAudioSettings()
 {
     float sound_volume = settings.get<float>("Audio", "Sounds Volume");
     sounds.setVolume(sound_volume);
+    float music_volume = settings.get<float>("Audio", "Music Volume");
+    musics.setVolume(music_volume);
 }
 
 void Context::applyContolSettings()

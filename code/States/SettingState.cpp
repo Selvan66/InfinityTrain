@@ -75,7 +75,7 @@ void SettingState::createButtons()
 	aboutButton.setCallback([this]()
     {
         this->requestStackPop();
-        this->requestStackPush(StatesID::MenuState);
+        this->requestStackPush(StatesID::MenuOptionsState);
     });
 	aboutButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 3)));
 }

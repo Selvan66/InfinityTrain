@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Effects/SoundPlayer.h"
+#include "Effects/MusicPlayer.h"
 #include "App/Settings.h"
 #include "App/Statistics.h"
 #include "App/Player.h"
@@ -17,6 +18,7 @@ struct Context : public sf::NonCopyable
 	TextureHolder textures;
 	FontHolder fonts;
 	SoundPlayer sounds;
+	MusicPlayer musics;
 	Player player;
 	Settings settings;
 	Statistics statistics;

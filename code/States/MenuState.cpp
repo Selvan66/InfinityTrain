@@ -19,6 +19,8 @@ MenuState::MenuState(StateStack& stack, Context& context)
 	Utility::centerOrigin(mTitle);
 	mTitle.setPosition(sf::Vector2f(window_size.x / 2.f, window_size.y / 5.f));
 
+	context.musics.play(MusicPlayer::Menu);
+
 	requestStackPush(StatesID::MenuOptionsState);
 }
 

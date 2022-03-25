@@ -7,6 +7,7 @@ PauseState::PauseState(StateStack& stack, Context& context)
 , mButtons()
 {
     createGUI();
+    context.musics.setPaused(true);
 }
 
 void PauseState::draw()
@@ -48,6 +49,7 @@ void PauseState::createGUI()
 	backButton.setCallback([this]()
 	{
 		this->requestStackPop();
+        State::getContext().musics.setPaused(false);
 	});
 	backButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2));
 
