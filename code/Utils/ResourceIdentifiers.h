@@ -11,6 +11,7 @@ enum class TexturesID
 	TitleScreen,
 	ArrowButtons,
 	Checkbox,
+	Icon,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

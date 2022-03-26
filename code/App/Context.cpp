@@ -10,6 +10,8 @@ Context::Context()
 , settings()
 , statistics()
 {
+    textures.load(TexturesID::Icon, "image/icon.png");
+
     applyGraphicSettings();
     applyContolSettings();
     applyAudioSettings();
@@ -28,6 +30,8 @@ void Context::applyGraphicSettings()
         window.create(sf::VideoMode(1920, 1080), "Infinity Train", sf::Style::Close);
         window.setSize(sf::Vector2u(window_size.first, window_size.second));
     }    
+    auto icon = textures.get(TexturesID::Icon).copyToImage();
+	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 void Context::applyAudioSettings()
