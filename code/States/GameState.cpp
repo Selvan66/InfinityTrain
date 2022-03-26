@@ -18,7 +18,9 @@ bool GameState::update(sf::Time dt)
 bool GameState::handleEvent(const sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    {
         requestStackPush(StatesID::PauseState);
+    }
         
     return true;
 }
