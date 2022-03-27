@@ -10,6 +10,11 @@ PauseState::PauseState(StateStack& stack, Context& context)
     context.musics.setPaused(true);
 }
 
+PauseState::~PauseState()
+{
+    State::getContext().musics.setPaused(false);
+}
+
 void PauseState::draw()
 {
     auto& window = State::getContext().window;
@@ -33,7 +38,6 @@ bool PauseState::handleEvent(const sf::Event& event)
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
     {
         requestStackPop();
-        State::getContext().musics.setPaused(false);
     }
     for (auto& button : mButtons)
     {
@@ -54,7 +58,6 @@ void PauseState::createGUI()
 	backButton.setCallback([this]()
 	{
 		this->requestStackPop();
-        State::getContext().musics.setPaused(false);
 	});
 	backButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2));
 

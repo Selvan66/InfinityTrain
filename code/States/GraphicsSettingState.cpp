@@ -25,6 +25,13 @@ GraphicsSettingState::GraphicsSettingState(StateStack& stack, Context& context)
     createGUI();
 }
 
+GraphicsSettingState::~GraphicsSettingState()
+{
+    auto& context = State::getContext();
+    context.settings.set<std::pair<int, int>>(mSaveResolution, "Graphics", "Resolution");
+    context.settings.set<bool>(mSaveFullscreen, "Graphics", "Fullscreen");
+}
+
 void GraphicsSettingState::draw()
 {
     auto& window = State::getContext().window;
@@ -90,8 +97,6 @@ void GraphicsSettingState::createGUI()
     backButton.setText("BACK");
     backButton.setCallback([&]()
     {
-        context.settings.set<std::pair<int, int>>(mSaveResolution, "Graphics", "Resolution");
-        context.settings.set<bool>(mSaveFullscreen, "Graphics", "Fullscreen");
         context.applyGraphicSettings();
         this->requestStackPop();
         this->requestStackPush(StatesID::SettingState);

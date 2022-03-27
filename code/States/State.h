@@ -11,6 +11,7 @@ class State
 		typedef std::unique_ptr<State> Ptr;
 	public:
 		State(StateStack& stack, Context& context);
+		virtual ~State();
 		virtual void draw() = 0;
 		virtual bool update(sf::Time dt) = 0;
 		virtual bool handleEvent(const sf::Event& event) = 0;

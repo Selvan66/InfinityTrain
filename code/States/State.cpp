@@ -7,6 +7,9 @@ State::State(StateStack& stack, Context& context)
 , mContext(context)
 { }
 
+State::~State()
+{ }
+
 void State::requestStackPush(StatesID stateID)
 {
 	mStack.pushState(stateID);
