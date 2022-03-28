@@ -1,16 +1,22 @@
 <map id="code/App/Context.h" name="code/App/Context.h">
-<area shape="rect" id="node1" title=" " alt="" coords="301,5,439,32"/>
-<area shape="rect" id="node2" href="$_sound_player_8h.html" title=" " alt="" coords="219,80,369,107"/>
-<area shape="rect" id="node13" href="$_settings_8h.html" title=" " alt="" coords="468,80,576,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="144,155,183,181"/>
-<area shape="rect" id="node4" href="$_resource_identifiers_8h.html" title=" " alt="" coords="207,155,381,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="149,229,287,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,229,124,256"/>
-<area shape="rect" id="node7" href="$_resource_holder_8h.html" title=" " alt="" coords="311,229,466,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="96,304,207,331"/>
-<area shape="rect" id="node9" title=" " alt="" coords="517,304,572,331"/>
-<area shape="rect" id="node10" title=" " alt="" coords="231,304,301,331"/>
-<area shape="rect" id="node11" title=" " alt="" coords="325,304,404,331"/>
-<area shape="rect" id="node12" title=" " alt="" coords="428,304,493,331"/>
-<area shape="rect" id="node14" title=" " alt="" coords="559,155,690,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="546,5,683,32"/>
+<area shape="rect" id="node2" href="$_sound_player_8h.html" title=" " alt="" coords="225,80,375,107"/>
+<area shape="rect" id="node13" href="$_music_player_8h.html" title=" " alt="" coords="540,80,689,107"/>
+<area shape="rect" id="node16" href="$_settings_8h.html" title=" " alt="" coords="853,80,961,107"/>
+<area shape="rect" id="node18" href="$_statistics_8h.html" title=" " alt="" coords="713,80,828,107"/>
+<area shape="rect" id="node19" href="$_player_8h.html" title=" " alt="" coords="399,80,497,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="293,155,331,181"/>
+<area shape="rect" id="node4" href="$_resource_identifiers_8h.html" title=" " alt="" coords="95,155,268,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="292,229,431,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="503,229,622,256"/>
+<area shape="rect" id="node7" href="$_resource_holder_8h.html" title=" " alt="" coords="109,229,264,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="291,304,402,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="681,304,735,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,304,75,331"/>
+<area shape="rect" id="node11" title=" " alt="" coords="99,304,178,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="202,304,267,331"/>
+<area shape="rect" id="node14" title=" " alt="" coords="745,155,796,181"/>
+<area shape="rect" id="node15" title=" " alt="" coords="489,155,620,181"/>
+<area shape="rect" id="node17" title=" " alt="" coords="871,155,1001,181"/>
+<area shape="rect" id="node20" title=" " alt="" coords="407,155,465,181"/>
 </map>

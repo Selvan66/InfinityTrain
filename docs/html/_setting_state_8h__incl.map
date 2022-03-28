@@ -1,22 +1,28 @@
 <map id="code/States/SettingState.h" name="code/States/SettingState.h">
-<area shape="rect" id="node1" title=" " alt="" coords="409,5,587,32"/>
-<area shape="rect" id="node2" href="$_state_8h.html" title=" " alt="" coords="377,80,483,107"/>
-<area shape="rect" id="node18" href="$_text_button_8h.html" title=" " alt="" coords="507,80,627,107"/>
-<area shape="rect" id="node3" href="$_states_i_d_8h.html" title=" " alt="" coords="370,155,495,181"/>
-<area shape="rect" id="node4" href="$_context_8h.html" title=" " alt="" coords="340,229,445,256"/>
-<area shape="rect" id="node5" href="$_sound_player_8h.html" title=" " alt="" coords="241,304,392,331"/>
-<area shape="rect" id="node16" href="$_settings_8h.html" title=" " alt="" coords="481,304,589,331"/>
-<area shape="rect" id="node6" title=" " alt="" coords="167,379,205,405"/>
-<area shape="rect" id="node7" href="$_resource_identifiers_8h.html" title=" " alt="" coords="230,379,403,405"/>
-<area shape="rect" id="node8" title=" " alt="" coords="149,453,287,480"/>
-<area shape="rect" id="node9" title=" " alt="" coords="5,453,124,480"/>
-<area shape="rect" id="node10" href="$_resource_holder_8h.html" title=" " alt="" coords="311,453,466,480"/>
-<area shape="rect" id="node11" title=" " alt="" coords="103,528,213,555"/>
-<area shape="rect" id="node12" title=" " alt="" coords="524,528,579,555"/>
-<area shape="rect" id="node13" title=" " alt="" coords="238,528,307,555"/>
-<area shape="rect" id="node14" title=" " alt="" coords="332,528,411,555"/>
-<area shape="rect" id="node15" title=" " alt="" coords="435,528,500,555"/>
-<area shape="rect" id="node17" title=" " alt="" coords="573,379,703,405"/>
-<area shape="rect" id="node19" href="$_button_8h.html" title=" " alt="" coords="520,155,615,181"/>
-<area shape="rect" id="node20" title=" " alt="" coords="529,229,606,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="631,5,809,32"/>
+<area shape="rect" id="node2" href="$_state_8h.html" title=" " alt="" coords="599,80,705,107"/>
+<area shape="rect" id="node24" href="$_text_button_8h.html" title=" " alt="" coords="729,80,849,107"/>
+<area shape="rect" id="node3" href="$_states_i_d_8h.html" title=" " alt="" coords="592,155,717,181"/>
+<area shape="rect" id="node4" href="$_context_8h.html" title=" " alt="" coords="562,229,667,256"/>
+<area shape="rect" id="node5" href="$_sound_player_8h.html" title=" " alt="" coords="225,304,375,331"/>
+<area shape="rect" id="node16" href="$_music_player_8h.html" title=" " alt="" coords="540,304,689,331"/>
+<area shape="rect" id="node19" href="$_settings_8h.html" title=" " alt="" coords="853,304,961,331"/>
+<area shape="rect" id="node21" href="$_statistics_8h.html" title=" " alt="" coords="713,304,828,331"/>
+<area shape="rect" id="node22" href="$_player_8h.html" title=" " alt="" coords="399,304,497,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="293,379,331,405"/>
+<area shape="rect" id="node7" href="$_resource_identifiers_8h.html" title=" " alt="" coords="95,379,268,405"/>
+<area shape="rect" id="node8" title=" " alt="" coords="292,453,431,480"/>
+<area shape="rect" id="node9" title=" " alt="" coords="503,453,622,480"/>
+<area shape="rect" id="node10" href="$_resource_holder_8h.html" title=" " alt="" coords="109,453,264,480"/>
+<area shape="rect" id="node11" title=" " alt="" coords="291,528,402,555"/>
+<area shape="rect" id="node12" title=" " alt="" coords="681,528,735,555"/>
+<area shape="rect" id="node13" title=" " alt="" coords="5,528,75,555"/>
+<area shape="rect" id="node14" title=" " alt="" coords="99,528,178,555"/>
+<area shape="rect" id="node15" title=" " alt="" coords="202,528,267,555"/>
+<area shape="rect" id="node17" title=" " alt="" coords="745,379,796,405"/>
+<area shape="rect" id="node18" title=" " alt="" coords="489,379,620,405"/>
+<area shape="rect" id="node20" title=" " alt="" coords="871,379,1001,405"/>
+<area shape="rect" id="node23" title=" " alt="" coords="407,379,465,405"/>
+<area shape="rect" id="node25" href="$_button_8h.html" title=" " alt="" coords="742,155,837,181"/>
+<area shape="rect" id="node26" title=" " alt="" coords="751,229,828,256"/>
 </map>
