@@ -15,7 +15,13 @@ class Application
 		void registerStates();
 		void loadMenuTexture();
 		void loadFonts();
+
+		void updateStatistics(sf::Time dt); //< Only for debug
 	private:
 		Context mContext;
 		StateStack mStateStack;
+
+		sf::Text mStatisticsText;	//< Only for debug
+		sf::Time mStatisticsUpdateTime;	//< Only for debug
+		std::size_t mStatisticsNumFrames;	//< Only for debug
 };

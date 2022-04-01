@@ -12,12 +12,19 @@
 Application::Application()
 : mContext()
 , mStateStack(mContext)
+, mStatisticsText() //< Only for debug
+, mStatisticsUpdateTime() //< Only for debug
+, mStatisticsNumFrames(0) //< Only for debug
 {
 	mContext.window.setKeyRepeatEnabled(false);
    	mContext.window.setVerticalSyncEnabled(true);
 
 	loadMenuTexture();
 	loadFonts();
+
+	mStatisticsText.setFont(mContext.fonts.get(FontsID::PixelFont)); //< Only for debug
+	mStatisticsText.setPosition(20.f, 20.f); //< Only for debug
+	mStatisticsText.setCharacterSize(30u);  //< Only for debug
 
    	registerStates();
 	mStateStack.pushState(StatesID::MenuState);
@@ -39,6 +46,8 @@ void Application::run()
 			if (mStateStack.isEmpty())
 				mContext.window.close();
 		}
+
+		updateStatistics(dt); //< Only for debug
 		render();
 	}
 }
@@ -63,6 +72,7 @@ void Application::render()
 	mContext.window.clear();
 	mStateStack.draw();
 	mContext.window.setView(mContext.window.getDefaultView());
+	mContext.window.draw(mStatisticsText); //< Only for debug
 	mContext.window.display();
 }
 
@@ -88,4 +98,18 @@ void Application::loadMenuTexture()
 void Application::loadFonts()
 {
 	mContext.fonts.load(FontsID::PixelFont, "fonts/PixelFont.ttf");
+}
+
+void Application::updateStatistics(sf::Time dt)
+{
+	mStatisticsUpdateTime += dt;
+	++mStatisticsNumFrames;
+
+	if (mStatisticsUpdateTime >= sf::seconds(1.f))
+	{
+		mStatisticsText.setString("FPS: " + std::to_string(mStatisticsNumFrames));
+
+		mStatisticsUpdateTime -= sf::seconds(1.0f);
+		mStatisticsNumFrames = 0;
+	}
 }
