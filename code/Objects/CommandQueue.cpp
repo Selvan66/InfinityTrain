@@ -1,7 +1,6 @@
 /** @file CommandQueue.cpp */
 #include "Objects/CommandQueue.h"
 
-
 void CommandQueue::push(const Command& command)
 {
     mQueue.push(command);

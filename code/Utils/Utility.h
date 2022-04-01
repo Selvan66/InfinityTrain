@@ -3,8 +3,6 @@
 
 #include <cmath>
 
-#include <SFML/Graphics.hpp>
-
 #include "App/Player.h"
 
 namespace Utility

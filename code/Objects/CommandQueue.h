@@ -13,4 +13,4 @@ class CommandQueue
         bool isEmpty() const;
     private:
         std::queue<Command> mQueue;
-}
+};
