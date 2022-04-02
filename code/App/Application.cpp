@@ -16,9 +16,6 @@ Application::Application()
 , mStatisticsUpdateTime() //< Only for debug
 , mStatisticsNumFrames(0) //< Only for debug
 {
-	mContext.window.setKeyRepeatEnabled(false);
-   	mContext.window.setVerticalSyncEnabled(true);
-
 	loadMenuTexture();
 	loadFonts();
 

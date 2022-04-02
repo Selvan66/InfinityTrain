@@ -1,6 +1,12 @@
 /** @file Category.h */
+#pragma once
 
-enum class Category
+namespace Category
+{
+
+enum Type
 {
     None = 0
 };
+
+}

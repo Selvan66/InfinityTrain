@@ -30,8 +30,10 @@ void Context::applyGraphicSettings()
         window.create(sf::VideoMode(1920, 1080), "Infinity Train", sf::Style::Close);
         window.setSize(sf::Vector2u(window_size.first, window_size.second));
     }    
+    window.setKeyRepeatEnabled(false);
+   	window.setVerticalSyncEnabled(true);
     auto icon = textures.get(TexturesID::Icon).copyToImage();
-	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());	
 }
 
 void Context::applyAudioSettings()

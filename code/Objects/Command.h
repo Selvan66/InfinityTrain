@@ -2,7 +2,6 @@
 #pragma once
 
 #include <functional>
-#include <cassert>
 
 #include <SFML/System.hpp>
 
@@ -14,13 +13,8 @@ struct Command
 {
     Command();
     std::function<void(SceneNode&, sf::Time)> action;
-    Category category;
+    unsigned int category;
 };
-
-Command::Command()
-: action(),
-category(Category::None)
-{ }
 
 template <typename Object, typename Function>
 std::function<void(SceneNode&, sf::Time)> derivedAction(Function fn)
