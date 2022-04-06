@@ -6,6 +6,7 @@
 #include "States/GraphicsSettingState.h"
 #include "States/AudioSettingState.h"
 #include "States/StatisticsState.h"
+#include "States/LoadingState.h"
 #include "States/GameState.h"
 #include "States/PauseState.h"
 
@@ -83,6 +84,7 @@ void Application::registerStates()
 	mStateStack.registerState<StatisticsState>(StatesID::StatisticsState);
 	mStateStack.registerState<GameState>(StatesID::GameState);
 	mStateStack.registerState<PauseState>(StatesID::PauseState);
+	mStateStack.registerState<LoadingState>(StatesID::LoadingState);
 }
 
 void Application::loadMenuTexture()
@@ -90,6 +92,7 @@ void Application::loadMenuTexture()
 	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
 	mContext.textures.load(TexturesID::ArrowButtons, "image/ArrowButtons.png");
 	mContext.textures.load(TexturesID::Checkbox, "image/true.png");
+	mContext.textures.load(TexturesID::Loading, "image/loading.png");
 }
 
 void Application::loadFonts()

@@ -10,6 +10,7 @@ enum class StatesID
 	GraphicsSettingState,
 	AudioSettingState,
 	StatisticsState,
+	LoadingState,
 	GameState,
 	PauseState
 };

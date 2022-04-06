@@ -49,7 +49,7 @@ void MenuOptionsState::createButtons()
 	playButton.setCallback([this]()
 	{
 		this->requestStackClear();
-		this->requestStackPush(StatesID::GameState);
+		this->requestStackPush(StatesID::LoadingState);
 	});
 	playButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2));
 	
