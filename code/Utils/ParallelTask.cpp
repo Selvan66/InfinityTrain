@@ -5,7 +5,7 @@
 
 ParallelTask::ParallelTask(std::function<bool()> func)
 { 
-    mFuture = std::async(std::launch::async, func);
+    mFuture = std::async(std::launch::async, func); //< Carefully it's not mutex lock
 }
 
 ParallelTask::~ParallelTask()
