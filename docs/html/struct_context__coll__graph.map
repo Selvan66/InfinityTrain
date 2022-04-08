@@ -1,11 +1,11 @@
 <map id="Context" name="Context">
-<area shape="rect" id="node1" title=" " alt="" coords="432,165,499,191"/>
+<area shape="rect" id="node1" title=" " alt="" coords="432,169,499,195"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,26,123,53"/>
-<area shape="rect" id="node5" href="$class_music_player.html" title=" " alt="" coords="202,26,297,53"/>
-<area shape="rect" id="node6" href="$class_sound_player.html" title=" " alt="" coords="201,77,297,103"/>
-<area shape="rect" id="node3" href="$class_resource_holder.html" title=" " alt="" coords="181,128,317,169"/>
-<area shape="rect" id="node4" href="$class_settings.html" title=" " alt="" coords="214,194,285,221"/>
-<area shape="rect" id="node7" href="$class_player.html" title=" " alt="" coords="220,245,279,271"/>
-<area shape="rect" id="node8" href="$class_statistics.html" title=" " alt="" coords="211,295,288,322"/>
-<area shape="rect" id="node9" href="$class_resource_holder.html" title=" " alt="" coords="172,347,327,388"/>
+<area shape="rect" id="node5" href="$class_sound_player.html" title=" " alt="" coords="201,26,297,53"/>
+<area shape="rect" id="node6" href="$class_music_player.html" title=" " alt="" coords="202,77,297,103"/>
+<area shape="rect" id="node3" href="$class_resource_holder.html" title=" " alt="" coords="172,128,327,169"/>
+<area shape="rect" id="node4" href="$class_resource_holder.html" title=" " alt="" coords="181,193,317,235"/>
+<area shape="rect" id="node7" href="$class_player.html" title=" " alt="" coords="220,259,279,286"/>
+<area shape="rect" id="node8" href="$class_settings.html" title=" " alt="" coords="214,310,285,337"/>
+<area shape="rect" id="node9" href="$class_statistics.html" title=" " alt="" coords="211,361,288,387"/>
 </map>

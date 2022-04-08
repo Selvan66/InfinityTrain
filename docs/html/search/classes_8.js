@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['textbutton_104',['TextButton',['../class_g_u_i_1_1_text_button.html',1,'GUI']]],
-  ['textslider_105',['TextSlider',['../class_g_u_i_1_1_text_slider.html',1,'GUI']]],
-  ['texturebutton_106',['TextureButton',['../class_g_u_i_1_1_texture_button.html',1,'GUI']]]
+  ['resourceholder_0',['ResourceHolder',['../class_resource_holder.html',1,'']]],
+  ['resourceholder_3c_20sf_3a_3afont_2c_20fontsid_20_3e_1',['ResourceHolder&lt; sf::Font, FontsID &gt;',['../class_resource_holder.html',1,'']]],
+  ['resourceholder_3c_20sf_3a_3asoundbuffer_2c_20soundsid_20_3e_2',['ResourceHolder&lt; sf::SoundBuffer, SoundsID &gt;',['../class_resource_holder.html',1,'']]],
+  ['resourceholder_3c_20sf_3a_3atexture_2c_20texturesid_20_3e_3',['ResourceHolder&lt; sf::Texture, TexturesID &gt;',['../class_resource_holder.html',1,'']]]
 ];
