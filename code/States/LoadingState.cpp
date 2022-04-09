@@ -40,5 +40,5 @@ bool LoadingState::handleEvent(const sf::Event& event)
 void LoadingState::loadGameTexture()
 {
     auto& context = State::getContext();
-    context.textures.load(TexturesID::Cat, "image/cat.png");
+    context.textures.load(TexturesID::DefaultLevel, "image/defaultLevel.png");
 }

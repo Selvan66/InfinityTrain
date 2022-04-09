@@ -13,7 +13,7 @@ enum class TexturesID
 	Checkbox,
 	Icon,
 	Loading,
-	Cat
+	DefaultLevel,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

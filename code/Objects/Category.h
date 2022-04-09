@@ -6,7 +6,9 @@ namespace Category
 
 enum Type
 {
-    None = 0
+    None = 0,
+    Player = 1 << 0,
+    Battlefield = 1 << 1,
 };
 
 }
