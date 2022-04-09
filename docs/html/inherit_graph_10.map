@@ -13,9 +13,9 @@
 <area shape="rect" id="node11" href="$class_player_node.html" title=" " alt="" coords="524,56,613,83"/>
 <area shape="rect" id="node13" title=" " alt="" coords="7,259,125,285"/>
 <area shape="rect" id="node14" href="$struct_context.html" title=" " alt="" coords="201,259,268,285"/>
-<area shape="rect" id="node15" href="$class_music_player.html" title=" " alt="" coords="187,309,282,336"/>
-<area shape="rect" id="node16" href="$class_sound_player.html" title=" " alt="" coords="187,360,283,387"/>
-<area shape="rect" id="node17" href="$class_state_stack.html" title=" " alt="" coords="191,411,278,437"/>
-<area shape="rect" id="node18" href="$class_world.html" title=" " alt="" coords="207,461,263,488"/>
+<area shape="rect" id="node15" href="$class_level.html" title=" " alt="" coords="209,309,260,336"/>
+<area shape="rect" id="node16" href="$class_music_player.html" title=" " alt="" coords="187,360,282,387"/>
+<area shape="rect" id="node17" href="$class_sound_player.html" title=" " alt="" coords="187,411,283,437"/>
+<area shape="rect" id="node18" href="$class_state_stack.html" title=" " alt="" coords="191,461,278,488"/>
 <area shape="rect" id="node19" title=" " alt="" coords="5,56,127,83"/>
 </map>
