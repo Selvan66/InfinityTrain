@@ -28,13 +28,6 @@ AudioSettingState::AudioSettingState(StateStack& stack, Context& context)
     createGUI();
 }
 
-AudioSettingState::~AudioSettingState()
-{
-    auto& context = State::getContext();
-    context.settings.set(mSaveMusic, "Audio", "Music Volume");
-    context.settings.set(mSaveSound, "Audio", "Sounds Volume");
-}
-
 void AudioSettingState::draw()
 {
     auto& window = State::getContext().window;
@@ -95,6 +88,9 @@ void AudioSettingState::createGUI()
     backButton.setText("BACK");
     backButton.setCallback([&]()
     {
+        auto& context = State::getContext();
+        context.settings.set(mSaveMusic, "Audio", "Music Volume");
+        context.settings.set(mSaveSound, "Audio", "Sounds Volume");
         context.applyAudioSettings();
         context.musics.replay();
         this->requestStackPop();
