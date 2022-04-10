@@ -2,15 +2,12 @@
 #include "Objects/Levels/Level.h"
 #include "Objects/Nodes/SpriteNode.h"
 
-Level::Level(Context& context, unsigned int levelNum)
+Level::Level(Context& context)
 : mContext(context)
-, mLevelNum(levelNum)
-, mLevelNumText(std::to_string(levelNum), context.fonts.get(FontsID::PixelFont), 400)
 , mLevelBounds(460.f, 80.f, 1000.f, 1000.f)
 , mSceneLayer()
 {
     buildScene();
-    mLevelNumText.setFillColor(sf::Color::Black);
 }
 
 sf::FloatRect Level::getLevelBounds() const
@@ -27,17 +24,11 @@ void Level::draw()
 {
     auto& window = mContext.window;
     window.draw(mSceneGraph);
-    window.draw(mLevelNumText);
 }
 
 Context& Level::getContext() const
 {
     return mContext;
-}
-
-unsigned int Level::getLevelNum() const
-{
-    return mLevelNum;
 }
 
 void Level::buildScene()

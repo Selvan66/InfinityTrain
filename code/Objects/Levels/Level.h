@@ -10,14 +10,12 @@
 class Level : public sf::NonCopyable
 {
     public:
-        explicit Level(Context& context, unsigned int levelNum);
+        explicit Level(Context& context);
         sf::FloatRect getLevelBounds() const;
         void update(sf::Time dt, CommandQueue& commands);
         void draw();
     protected:
         Context& getContext() const;
-        unsigned int getLevelNum() const;
-
         virtual void buildScene();
     private:
         enum Layer
@@ -28,8 +26,6 @@ class Level : public sf::NonCopyable
         };
     private:
         Context& mContext;
-        unsigned int mLevelNum;
-        sf::Text mLevelNumText;
         sf::FloatRect mLevelBounds;
         SceneNode mSceneGraph;
         std::array<SceneNode*, LayerCount> mSceneLayer;
