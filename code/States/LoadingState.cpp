@@ -1,9 +1,11 @@
 /** @file LoadingState.cpp */
 #include "States/LoadingState.h"
 
+bool LoadingState::loaded = false;
+
 LoadingState::LoadingState(StateStack& stack, Context& context)
 : State(stack, context)
-, mTextureLoading([this](){this->loadGameTexture(); return true;})
+, mTextureLoading(loaded ? std::function<bool()>([](){return true;}) : std::function<bool()>([this](){this->loadGameTexture(); return true;}))
 , mLoading(context.textures.get(TexturesID::Loading))
 {
     mLoading.setDuration(sf::seconds(1));
@@ -25,6 +27,7 @@ bool LoadingState::update(sf::Time dt)
 
     if (mTextureLoading.isFinished())
     {
+        loaded = true;
         requestStackPop();
         requestStackPush(StatesID::GameState);
     }

@@ -17,4 +17,5 @@ class LoadingState : public State
     private:
         ParallelTask mTextureLoading;
         Animation mLoading;
+        static bool loaded;
 };
