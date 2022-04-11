@@ -4,6 +4,10 @@
 #include <functional>
 
 #include "App/Context.h"
+
+namespace GUI
+{
+
 class Button : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
 {
     public:
@@ -29,3 +33,5 @@ class Button : public sf::Drawable, public sf::Transformable, public sf::NonCopy
         bool mIsPressed;
         Context& mContext;
 };
+
+}

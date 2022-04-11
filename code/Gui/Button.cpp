@@ -1,6 +1,9 @@
 /** @file Button.cpp */
 #include "Gui/Button.h"
 
+namespace GUI
+{
+
 Button::Button(Context& context)
 : mCallback()
 , mIsSelected(false)
@@ -71,3 +74,5 @@ void Button::update(sf::Time)
 
 void Button::changeTexture(Type buttonType)
 { }
+
+}
