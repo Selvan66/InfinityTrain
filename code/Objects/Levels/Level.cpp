@@ -2,10 +2,13 @@
 #include "Objects/Levels/Level.h"
 #include "Objects/Nodes/SpriteNode.h"
 
-Level::Level(Context& context)
+Level::Level(Context& context, Player& player)
 : mContext(context)
+, mPlayer(player)
+, mCommands()
 , mLevelBounds(460.f, 80.f, 1000.f, 1000.f)
 , mSceneLayer()
+, mFinished(false)
 {
     buildScene();
 }
@@ -15,9 +18,13 @@ sf::FloatRect Level::getLevelBounds() const
     return mLevelBounds;
 }
 
-void Level::update(sf::Time dt, CommandQueue& commands)
+void Level::update(sf::Time dt)
 {
-    mSceneGraph.update(dt, commands);
+    while (!mCommands.isEmpty())
+    {
+        mSceneGraph.onCommand(mCommands.pop(), dt);
+    }
+    mSceneGraph.update(dt, mCommands);
 }
 
 void Level::draw()
@@ -26,9 +33,19 @@ void Level::draw()
     window.draw(mSceneGraph);
 }
 
+bool Level::isFinished() const
+{
+    return mFinished;
+}
+
 Context& Level::getContext() const
 {
     return mContext;
+}
+
+CommandQueue& Level::getCommandQueue()
+{
+    return mCommands;
 }
 
 void Level::buildScene()

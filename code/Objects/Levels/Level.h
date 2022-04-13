@@ -10,13 +10,19 @@
 class Level : public sf::NonCopyable
 {
     public:
-        explicit Level(Context& context);
+        typedef std::unique_ptr<Level> Ptr;
+    public:
+        explicit Level(Context& context, Player& player);
         sf::FloatRect getLevelBounds() const;
-        void update(sf::Time dt, CommandQueue& commands);
+        void update(sf::Time dt);
         void draw();
+        bool isFinished() const;
     protected:
         Context& getContext() const;
+        CommandQueue& getCommandQueue();
         virtual void buildScene();
+    private:
+        void handleCollision();
     private:
         enum Layer
         {
@@ -26,7 +32,10 @@ class Level : public sf::NonCopyable
         };
     private:
         Context& mContext;
+        Player& mPlayer;
+        CommandQueue mCommands;
         sf::FloatRect mLevelBounds;
         SceneNode mSceneGraph;
         std::array<SceneNode*, LayerCount> mSceneLayer;
+        bool mFinished;
 };  
