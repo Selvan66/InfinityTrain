@@ -5,6 +5,7 @@ GameState::GameState(StateStack& stack, Context& context)
 : State(stack, context)
 {
     context.musics.play(MusicPlayer::Game);
+    context.statistics.increase(Statistics::StartedGames);
 }
 
 void GameState::draw()
@@ -12,6 +13,8 @@ void GameState::draw()
 
 bool GameState::update(sf::Time dt)
 {
+    auto& context = State::getContext();
+    context.statistics.increase(Statistics::TimePlay, dt.asMilliseconds());
     return true;  
 }
 
