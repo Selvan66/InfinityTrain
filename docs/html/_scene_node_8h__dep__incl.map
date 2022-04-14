@@ -1,14 +1,12 @@
 <map id="code/Objects/Nodes/SceneNode.h" name="code/Objects/Nodes/SceneNode.h">
-<area shape="rect" id="node1" title=" " alt="" coords="432,5,572,47"/>
-<area shape="rect" id="node2" href="$_level_8h.html" title=" " alt="" coords="351,95,490,136"/>
-<area shape="rect" id="node7" href="$_entity_8h.html" title=" " alt="" coords="169,95,309,136"/>
-<area shape="rect" id="node10" href="$_scene_node_8cpp.html" title=" " alt="" coords="515,95,655,136"/>
-<area shape="rect" id="node11" href="$_sprite_node_8h.html" title=" " alt="" coords="679,95,819,136"/>
-<area shape="rect" id="node3" href="$_level_8cpp.html" title=" " alt="" coords="531,184,670,225"/>
-<area shape="rect" id="node4" href="$_game_state_8h.html" title=" " alt="" coords="334,191,507,218"/>
-<area shape="rect" id="node5" href="$_application_8cpp.html" title=" " alt="" coords="234,273,405,300"/>
-<area shape="rect" id="node6" href="$_game_state_8cpp.html" title=" " alt="" coords="429,273,615,300"/>
-<area shape="rect" id="node8" href="$_entity_8cpp.html" title=" " alt="" coords="5,184,145,225"/>
-<area shape="rect" id="node9" href="$_player_node_8h.html" title=" " alt="" coords="169,184,309,225"/>
-<area shape="rect" id="node12" href="$_sprite_node_8cpp.html" title=" " alt="" coords="695,184,835,225"/>
+<area shape="rect" id="node1" title=" " alt="" coords="251,5,391,47"/>
+<area shape="rect" id="node2" href="$_level_8h.html" title=" " alt="" coords="170,95,309,136"/>
+<area shape="rect" id="node6" href="$_entity_8h.html" title=" " alt="" coords="5,95,145,136"/>
+<area shape="rect" id="node8" href="$_scene_node_8cpp.html" title=" " alt="" coords="333,95,473,136"/>
+<area shape="rect" id="node9" href="$_sprite_node_8h.html" title=" " alt="" coords="497,95,637,136"/>
+<area shape="rect" id="node3" href="$_level_8cpp.html" title=" " alt="" coords="334,184,473,225"/>
+<area shape="rect" id="node4" href="$_map_8h.html" title=" " alt="" coords="170,191,309,218"/>
+<area shape="rect" id="node5" href="$_map_8cpp.html" title=" " alt="" coords="163,273,316,300"/>
+<area shape="rect" id="node7" href="$_entity_8cpp.html" title=" " alt="" coords="5,184,145,225"/>
+<area shape="rect" id="node10" href="$_sprite_node_8cpp.html" title=" " alt="" coords="497,184,637,225"/>
 </map>

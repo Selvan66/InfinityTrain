@@ -1,3 +1,12 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_statistics.html" title=" " alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node1" href="$class_state.html" title=" " alt="" coords="5,208,59,235"/>
+<area shape="rect" id="node2" href="$class_audio_setting_state.html" title=" " alt="" coords="117,5,243,32"/>
+<area shape="rect" id="node3" href="$class_game_state.html" title=" " alt="" coords="136,56,224,83"/>
+<area shape="rect" id="node4" href="$class_graphics_setting_state.html" title=" " alt="" coords="107,107,253,133"/>
+<area shape="rect" id="node5" href="$class_loading_state.html" title=" " alt="" coords="131,157,229,184"/>
+<area shape="rect" id="node6" href="$class_menu_options_state.html" title=" " alt="" coords="115,208,245,235"/>
+<area shape="rect" id="node7" href="$class_menu_state.html" title=" " alt="" coords="137,259,223,285"/>
+<area shape="rect" id="node8" href="$class_pause_state.html" title=" " alt="" coords="135,309,225,336"/>
+<area shape="rect" id="node9" href="$class_setting_state.html" title=" " alt="" coords="133,360,227,387"/>
+<area shape="rect" id="node10" href="$class_statistics_state.html" title=" " alt="" coords="126,411,234,437"/>
 </map>
