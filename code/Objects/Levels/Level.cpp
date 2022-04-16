@@ -1,15 +1,13 @@
 /** @file Level.cpp */
 #include "Objects/Levels/Level.h"
-#include "Objects/Nodes/SpriteNode.h"
 
-Level::Level(Context& context, Player& player)
+Level::Level(Context& context)
 : mContext(context)
-, mPlayer(player)
 , mCommands()
 , mLevelBounds(460.f, 80.f, 1000.f, 1000.f)
 , mSceneLayer()
 , mFinished(false)
-{
+{ 
     buildScene();
 }
 
@@ -48,6 +46,11 @@ CommandQueue& Level::getCommandQueue()
     return mCommands;
 }
 
+SceneNode* Level::getLayer(Layer layer) const
+{
+    return mSceneLayer[layer];
+}
+
 void Level::buildScene()
 {
     for (int i = 0; i < LayerCount; ++i)
@@ -59,10 +62,4 @@ void Level::buildScene()
 
         mSceneGraph.attachChild(std::move(layer));
     }
-
-    //Background
-    const sf::Texture& texture = mContext.textures.get(TexturesID::DefaultLevel);
-    std::unique_ptr<SpriteNode> background(new SpriteNode(texture));
-    background->setPosition(420.f, 0.f);
-    mSceneLayer[Background]->attachChild(std::move(background));
 }

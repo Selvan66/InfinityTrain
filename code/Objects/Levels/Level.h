@@ -12,27 +12,27 @@ class Level : public sf::NonCopyable
     public:
         typedef std::unique_ptr<Level> Ptr;
     public:
-        explicit Level(Context& context, Player& player);
+        explicit Level(Context& context);
         sf::FloatRect getLevelBounds() const;
         void update(sf::Time dt);
         void draw();
         bool isFinished() const;
     protected:
-        Context& getContext() const;
-        CommandQueue& getCommandQueue();
-        virtual void buildScene();
-    private:
-        void handleCollision();
-    private:
         enum Layer
         {
             Background,
             Battlefield,
             LayerCount
         };
+    protected:
+        Context& getContext() const;
+        CommandQueue& getCommandQueue();
+        SceneNode* getLayer(Layer layer) const;
+    private:
+        void handleCollision();
+        void buildScene();
     private:
         Context& mContext;
-        Player& mPlayer;
         CommandQueue mCommands;
         sf::FloatRect mLevelBounds;
         SceneNode mSceneGraph;
