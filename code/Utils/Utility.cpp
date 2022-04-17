@@ -22,7 +22,7 @@ void centerOrigin(sf::Shape& shape)
     shape.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f)); 
 }
 
-std::string toString(Player::output key)
+std::string toString(Player::Output key)
 {
     sf::Keyboard::Key* keyboard = std::get_if<sf::Keyboard::Key>(&key);
     sf::Mouse::Button* mouse = std::get_if<sf::Mouse::Button>(&key);
@@ -141,9 +141,9 @@ std::string toString(Player::output key)
     return "";
 }
 
-Player::output toKey(std::string key)
+Player::Output toKey(std::string key)
 {
-    #define STRINGTOKEYBOARDIF(KEY) if (#KEY == key) return Player::output(sf::Keyboard::KEY);
+    #define STRINGTOKEYBOARDIF(KEY) if (#KEY == key) return Player::Output(sf::Keyboard::KEY);
 
     STRINGTOKEYBOARDIF(Unknown)
     STRINGTOKEYBOARDIF(A)
@@ -248,13 +248,13 @@ Player::output toKey(std::string key)
     STRINGTOKEYBOARDIF(F15)
     STRINGTOKEYBOARDIF(Pause)
 
-    if (key == "MLeft") return Player::output(sf::Mouse::Left);
-    if (key == "MRight") return Player::output(sf::Mouse::Right);
-    if (key == "Middle") return Player::output(sf::Mouse::Middle);
-    if (key == "MXButton1") return Player::output(sf::Mouse::XButton1);
-    if (key == "MXButton2") return Player::output(sf::Mouse::XButton2);
+    if (key == "MLeft") return Player::Output(sf::Mouse::Left);
+    if (key == "MRight") return Player::Output(sf::Mouse::Right);
+    if (key == "Middle") return Player::Output(sf::Mouse::Middle);
+    if (key == "MXButton1") return Player::Output(sf::Mouse::XButton1);
+    if (key == "MXButton2") return Player::Output(sf::Mouse::XButton2);
 
-    return Player::output();
+    return Player::Output();
 }
 
 }
