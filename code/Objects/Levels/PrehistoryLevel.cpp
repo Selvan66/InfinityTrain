@@ -14,7 +14,7 @@ void PrehistoryLevel::buildScene()
     auto& context = Level::getContext();
 
     //Background
-    const sf::Texture& texture = mContext.textures.get(TexturesID::PrehistoryLevel);
+    const sf::Texture& texture = context.textures.get(TexturesID::PrehistoryLevel);
     std::unique_ptr<SpriteNode> background(new SpriteNode(texture));
     background->setPosition(420.f, 0.f);
     backgroundLayer->attachChild(std::move(background));

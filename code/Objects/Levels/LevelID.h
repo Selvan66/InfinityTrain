@@ -1,8 +1,11 @@
 /** @file LevelID.h */
 #pragma once
 
-enum class LevelID
+namespace LevelID
 {
-    Prehistory,
-    LevelCount
-};
+    enum ID
+    {
+        Prehistory,
+        LevelCount
+    };
+}
