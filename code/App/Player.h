@@ -26,15 +26,18 @@ class Player
         };
     
     public:
-        Player();
+        Player(Context& context);
+        void loadPlayerInput();
         void handleEvent(const sf::Event& event, CommandQueue& commands);
         void handleRealtimeInput(CommandQueue& commands);
-        void assignKey(Action action, sf::Keyboard::Key key);
-        sf::Keyboard::Key getAssignKey(Action action) const;
+        void assignKey(Action action, Output key);
+        Output getAssignKey(Action action) const;
     private:
         void initializeActions();
+        static bool isOutputPressed(Output key);
         static bool isRealtimeAction(Action action);
     private:
+        Context& mContext;
         std::unordered_map<Output, Action> mKeyBinding;
         std::unordered_map<Action, Command> mActionBinding;  
 };

@@ -46,7 +46,7 @@ void Settings::load()
         mSettings["Control"]["Down"] = "S";
         mSettings["Control"]["Left"] = "A";
         mSettings["Control"]["Right"] = "D";
-        mSettings["Control"]["Shot"] = "Mleft";
+        mSettings["Control"]["Fire"] = "Mleft";
         mSettings["Control"]["Special"] = "Space";
         mSettings["Control"]["Interact"] = "E";
 

@@ -7,6 +7,7 @@ Context::Context()
 , fonts()
 , sounds()
 , musics()
+, player(*this)
 , settings()
 , statistics()
 {
@@ -46,5 +47,5 @@ void Context::applyAudioSettings()
 
 void Context::applyContolSettings()
 {
-    
+    player.loadPlayerInput();
 }
