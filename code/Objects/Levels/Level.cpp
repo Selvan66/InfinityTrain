@@ -19,9 +19,8 @@ sf::FloatRect Level::getLevelBounds() const
 void Level::update(sf::Time dt)
 {
     while (!mCommands.isEmpty())
-    {
         mSceneGraph.onCommand(mCommands.pop(), dt);
-    }
+
     mSceneGraph.update(dt, mCommands);
 }
 

@@ -19,30 +19,26 @@ void PauseState::draw()
 {
     auto& window = State::getContext().window;
     for (auto& button : mButtons)
-	{
 		window.draw(button);
-	}
+	
 }
 
 bool PauseState::update(sf::Time dt)
 {
     for (auto& button : mButtons)
-    {
         button.update(dt);
-    }
+    
     return false;
 }
 
 bool PauseState::handleEvent(const sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-    {
         requestStackPop();
-    }
+        
     for (auto& button : mButtons)
-    {
         button.handleEvent(event);
-    }
+
     return false;
 }
 

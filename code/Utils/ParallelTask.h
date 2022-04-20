@@ -11,6 +11,5 @@ class ParallelTask
         ~ParallelTask();
         bool isFinished() const;
     private:
-        std::mutex mMutex;
         std::future<bool> mFuture;
 };

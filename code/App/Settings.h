@@ -25,9 +25,7 @@ template<typename T>
 T Settings::get(const std::string& id, const std::string& id2) const
 {
     if (id2 != "")
-    {
         return mSettings.at(id).at(id2);
-    }
     return mSettings.at(id);
 }
 

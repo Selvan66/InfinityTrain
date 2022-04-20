@@ -13,32 +13,24 @@ StateStack::StateStack(Context& context)
 void StateStack::update(sf::Time dt)
 {
 	for (auto it = mStack.rbegin(); it != mStack.rend(); ++it)
-	{
 		if (!(*it)->update(dt))
-		{
 			break;
-		}
-	}
+
 	applyPendingChanges();
 }
 
 void StateStack::draw()
 {
 	for (auto& state : mStack)
-	{
 		state->draw();
-	}
 }
 
 void StateStack::handleEvent(const sf::Event& event)
 {
 	for (auto it = mStack.rbegin(); it != mStack.rend(); ++it)
-	{
 		if (!(*it)->handleEvent(event))
-		{
 			break;
-		}
-	}
+			
 	applyPendingChanges();
 }
 

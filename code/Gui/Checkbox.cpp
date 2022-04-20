@@ -36,9 +36,7 @@ void Checkbox::draw(sf::RenderTarget &target, sf::RenderStates states) const
     states.transform *= sf::Transformable::getTransform();
     target.draw(mBox, states);
     if (mIsSelected)
-    {
         target.draw(mCheck, states);
-    }
 }
 
 sf::FloatRect Checkbox::getGlobalBounds() const

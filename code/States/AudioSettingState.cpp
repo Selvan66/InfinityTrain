@@ -14,15 +14,11 @@ AudioSettingState::AudioSettingState(StateStack& stack, Context& context)
 , mOptionButtons()
 {
     for (int i = 0; i <= 100; i += 5)
-    {
         mMusicSlider.addText(std::to_string(i));
-    }
     mMusicSlider.setCurrentText(std::to_string((int)mSaveMusic));
 
     for (int i = 0; i <= 100; i += 5)
-    {
         mSoundSlider.addText(std::to_string(i));
-    }
     mSoundSlider.setCurrentText(std::to_string((int)mSaveSound));
 
     createGUI();
@@ -36,9 +32,7 @@ void AudioSettingState::draw()
     window.draw(mSounds);
     window.draw(mSoundSlider);
     for (auto& button : mOptionButtons)
-	{
 		window.draw(button);
-	}
 }
 
 bool AudioSettingState::update(sf::Time dt)
@@ -46,9 +40,7 @@ bool AudioSettingState::update(sf::Time dt)
     mMusicSlider.update(dt);
     mSoundSlider.update(dt);
     for (auto& button : mOptionButtons)
-	{
 		button.update(dt);
-	}
     return true;
 }
 
@@ -57,9 +49,7 @@ bool AudioSettingState::handleEvent(const sf::Event& event)
     mMusicSlider.handleEvent(event);
     mSoundSlider.handleEvent(event);
     for (auto& button : mOptionButtons)
-	{
 		button.handleEvent(event);
-	}
     return true;
 }
 

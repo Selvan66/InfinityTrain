@@ -40,9 +40,7 @@ sf::Transform SceneNode::getWorldTransform() const
     sf::Transform transform = sf::Transform::Identity;
 
     for (const SceneNode* node = this; node != nullptr; node = node->mParent)
-    {
         transform = node->getTransform() * transform;
-    }
 
     return transform;
 }
@@ -55,26 +53,19 @@ sf::Vector2f SceneNode::getWorldPosition() const
 void SceneNode::onCommand(const Command& command, sf::Time dt)
 {
     if (command.category & getCategory())
-    {
         command.action(*this, dt);
-    }
+
     for (auto& child : mChildren)
-    {
         child->onCommand(command, dt);
-    }
 }
 
 void SceneNode::checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPair)
 {
     if (this != &node && collision(*this, node) && !isDestroyed() && !node.isDestroyed())
-    {
         collisionPair.insert(std::minmax(this, &node));
-    }
 
     for (auto& child : mChildren)
-    {
         child->checkNodeCollision(node, collisionPair);
-    }
 }
 
 void SceneNode::checkSceneCollision(SceneNode& sceneGraph, std::set<Pair>& collisionPair)
@@ -82,9 +73,7 @@ void SceneNode::checkSceneCollision(SceneNode& sceneGraph, std::set<Pair>& colli
     checkNodeCollision(sceneGraph, collisionPair);
 
     for (auto& child : sceneGraph.mChildren)
-    {
         checkSceneCollision(*child, collisionPair);
-    }
 }
 
 void SceneNode::removeObjects()
@@ -117,17 +106,13 @@ bool SceneNode::isDestroyed() const
 void SceneNode::updateChildren(sf::Time dt, CommandQueue& commands)
 {
     for (auto& child : mChildren)
-    {
         child->update(dt, commands);
-    }
 }
 
 void SceneNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for (auto& child : mChildren)
-    {
         child->draw(target, states);
-    }
 }
 
 void SceneNode::drawBoundingRect(sf::RenderTarget& target, sf::RenderStates states) const
@@ -157,7 +142,5 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void SceneNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for (auto& child : mChildren)
-    {
         child->draw(target, states);
-    }
 }

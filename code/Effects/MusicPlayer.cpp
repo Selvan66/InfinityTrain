@@ -34,13 +34,9 @@ void MusicPlayer::stop()
 void MusicPlayer::setPaused(bool paused)
 {
     if (paused) 
-    {
         mMusic.pause();
-    } 
     else 
-    {
         mMusic.play();
-    }
 }
 
 void MusicPlayer::setVolume(float volume)

@@ -33,9 +33,7 @@ void GraphicsSettingState::draw()
     window.draw(mFullscreen);
     window.draw(mFullscreenCheckbox);
     for (auto& button : mOptionButtons)
-	{
 		window.draw(button);
-	}
 }
 
 bool GraphicsSettingState::update(sf::Time dt)
@@ -43,14 +41,10 @@ bool GraphicsSettingState::update(sf::Time dt)
     mResolutionSlider.update(dt);
     mFullscreenCheckbox.update(dt);
     for (auto& button : mOptionButtons)
-	{
 		button.update(dt);
-	}
 
     if (mFullscreenCheckbox.isSelected())
-    {
         mResolutionSlider.setCurrentText("1920x1080");
-    }
 
     return true;
 }
@@ -60,9 +54,8 @@ bool GraphicsSettingState::handleEvent(const sf::Event& event)
     mResolutionSlider.handleEvent(event);
     mFullscreenCheckbox.handleEvent(event);
     for (auto& button : mOptionButtons)
-	{
 		button.handleEvent(event);
-	}
+	
     return true;
 }
 

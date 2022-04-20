@@ -12,7 +12,7 @@ Player::Player(Context& context)
 void Player::loadPlayerInput()
 {
     mKeyBinding.clear();
-    
+
     mKeyBinding[Utility::toKey(mContext.settings.get<std::string>("Control", "Up"))] = MoveUp;
     mKeyBinding[Utility::toKey(mContext.settings.get<std::string>("Control", "Down"))] = MoveDown;
     mKeyBinding[Utility::toKey(mContext.settings.get<std::string>("Control", "Left"))] = MoveLeft;
@@ -28,21 +28,15 @@ void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
     {
         auto found = mKeyBinding.find(event.key.code);
         if (found != mKeyBinding.end() && !isRealtimeAction(found->second))
-        {
             commands.push(mActionBinding[found->second])
-        }
     }
 }
 
 void Player::handleRealtimeInput(CommandQueue& commands)
 {
     for (auto& pair : mKeyBinding)
-    {
         if (isRealtimeAction(pair.second) && isOutputPressed(pair.first))
-        {
             commands.push(mActionBinding[pair.second]);
-        }
-    }
 }
 
 void Player::assignKey(Action action, Player::Output key)
@@ -50,13 +44,9 @@ void Player::assignKey(Action action, Player::Output key)
     for (auto itr = mKeyBinding.begin(); itr != mKeyBinding.end();)
     {
         if (itr->second == action)
-        {
             mKeyBinding.erase(itr++);
-        }
         else
-        {
             ++itr;
-        }
     }
 
     mKeyBinding[key] = action;
@@ -65,12 +55,9 @@ void Player::assignKey(Action action, Player::Output key)
 Player::Output Player::getAssignKey(Action action) const
 {
     for (auto& pair : mKeyBinding)
-    {
         if (pair.second == action)
-        {
-            return pair.first;
-        }
-    }
+              return pair.first;
+
     return Player::Output(sf::Keyboard::Unknown);
 }
 
@@ -86,9 +73,7 @@ void Player::initializeActions()
     mActionBinding[Special].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) {  });  //TODO Fill
 
     for (auto& pair : mActionBinding)
-    {
         pair.second.category = Category::Player;
-    }
 }
 
 bool Player::isOutputPressed(Player::Output key)
@@ -97,13 +82,9 @@ bool Player::isOutputPressed(Player::Output key)
     sf::Mouse::Button* mouse = std::get_if<sf::Mouse::Button>(&key);
 
     if (keyboard != nullptr)
-    {
         return sf::Keyboard::isKeyPressed(*keyboard);
-    }
     if (mouse != nullptr)
-    {
         return sf::Mouse::isButtonPressed(*mouse);
-    }
 
     return false;
 }

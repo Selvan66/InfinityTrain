@@ -27,9 +27,7 @@ void Button::handleEvent(const sf::Event& event)
         if (getGlobalBounds().contains(mousePos))
         {
             if (mIsSelected == false)
-            {
                 mContext.sounds.play(SoundsID::ButtonHover);
-            }
             mIsSelected = true;
         }
         else
@@ -48,9 +46,7 @@ void Button::handleEvent(const sf::Event& event)
     else if (event.type == sf::Event::MouseButtonReleased)
     {
         if (mIsPressed && mIsSelected)
-        {
             mCallback();
-        }
 
         mIsPressed = false;
     }
@@ -58,18 +54,12 @@ void Button::handleEvent(const sf::Event& event)
 
 void Button::update(sf::Time)
 {
-     if (mIsSelected)
-    {
+    if (mIsSelected)
         changeTexture(Selected);
-    }
     if (mIsPressed)
-    {
         changeTexture(Pressed);
-    }
     if (!mIsPressed && !mIsSelected)
-    {
         changeTexture(Normal);
-    }
 }
 
 void Button::changeTexture(Type buttonType)

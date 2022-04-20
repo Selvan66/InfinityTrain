@@ -34,10 +34,12 @@ void Application::run()
 	const sf::Time TimePerFrame = sf::seconds(1.f/60.f);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
-	while (mContext.window.isOpen()) {
+	while (mContext.window.isOpen()) 
+	{
 		sf::Time dt = clock.restart();
 		timeSinceLastUpdate += dt;
-		while (timeSinceLastUpdate > TimePerFrame) {
+		while (timeSinceLastUpdate > TimePerFrame) 
+		{
 			timeSinceLastUpdate -= TimePerFrame;
 			processInput();
 			update(TimePerFrame);
@@ -53,7 +55,8 @@ void Application::run()
 void Application::processInput()
 {
 	sf::Event event;
-	while (mContext.window.pollEvent(event)) {
+	while (mContext.window.pollEvent(event)) 
+	{
 		mStateStack.handleEvent(event);
 		if (event.type == sf::Event::Closed)
 			mContext.window.close();

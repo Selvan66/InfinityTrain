@@ -15,26 +15,22 @@ void MenuOptionsState::draw()
 {
     auto& window = State::getContext().window;
     for (auto& button : mTextButtons)
-	{
 		window.draw(button);
-	}
 }
 
 bool MenuOptionsState::update(sf::Time dt)
 {
     for (auto& button : mTextButtons)
-	{
 		button.update(dt);
-	}
+	
 	return true;
 }
 
 bool MenuOptionsState::handleEvent(const sf::Event& event)
 {
     for (auto& button : mTextButtons)
-	{
 		button.handleEvent(event);
-	}
+	
 	return true;
 }
 

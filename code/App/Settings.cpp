@@ -21,13 +21,9 @@ void Settings::save()
 {
     std::ofstream o("settings.json");
     if (o.is_open())
-    {
         o << mSettings; 
-    }
     else
-    {
         std::cerr << "Cannot save settings" << std::endl;
-    }
 }
 
 void Settings::load()

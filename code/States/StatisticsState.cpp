@@ -17,9 +17,7 @@ void StatisticsState::draw()
     auto& window = State::getContext().window;
     window.draw(mBackButton);
     for (auto& text : mTexts)
-	{
 		window.draw(text);
-	}
 }
 
 bool StatisticsState::update(sf::Time dt)

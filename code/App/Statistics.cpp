@@ -33,13 +33,9 @@ void Statistics::save() const
     nlohmann::json json;
     json["Statistic"] = mStatistics;
     if (o.is_open())
-    {
         o << json; 
-    }
     else
-    {
         std::cerr << "Cannot save statistic" << std::endl;
-    }
 }
 
 void Statistics::load()
@@ -50,8 +46,6 @@ void Statistics::load()
     {
         i >> json;
         if (json.contains("Statistic"))
-        {
             mStatistics = json.at("Statistic").get<std::array<data, StatisticsCount>>();
-        }
     }
 }

@@ -17,7 +17,6 @@ TextButton::TextButton(Context& context)
 void TextButton::setText(const std::string& text)
 {
     mText.setString(text);
-    
     Utility::centerOrigin(mText);
 }
 
