@@ -16,4 +16,5 @@ class PauseState : public State
         void createGUI();
     private:
         std::list<GUI::TextButton> mButtons;
+        sf::RectangleShape mBackgroundShape;
 };

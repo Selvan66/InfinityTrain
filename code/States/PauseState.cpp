@@ -5,7 +5,10 @@
 PauseState::PauseState(StateStack& stack, Context& context)
 : State(stack, context)
 , mButtons()
+, mBackgroundShape()
 {
+    mBackgroundShape.setFillColor(sf::Color(0, 0, 0, 150));
+    mBackgroundShape.setSize(context.window.getView().getSize());
     createGUI();
     context.musics.setPaused(true);
 }
@@ -18,6 +21,7 @@ PauseState::~PauseState()
 void PauseState::draw()
 {
     auto& window = State::getContext().window;
+    window.draw(mBackgroundShape);
     for (auto& button : mButtons)
 		window.draw(button);
 	
