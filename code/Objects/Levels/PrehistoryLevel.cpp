@@ -18,5 +18,4 @@ void PrehistoryLevel::buildScene()
     std::unique_ptr<SpriteNode> background(new SpriteNode(texture));
     background->setPosition(420.f, 0.f);
     backgroundLayer->attachChild(std::move(background));
-
 }

@@ -4,7 +4,7 @@
 #include <array>
 
 #include "Objects/CommandQueue.h"
-#include "Objects/Nodes/SceneNode.h"
+#include "Objects/Nodes/PlayerNode.h"
 #include "App/Context.h"
 
 class Level : public sf::NonCopyable
@@ -14,6 +14,7 @@ class Level : public sf::NonCopyable
     public:
         explicit Level(Context& context);
         sf::FloatRect getLevelBounds() const;
+        CommandQueue& getCommandQueue();
         void update(sf::Time dt);
         void draw();
         bool isFinished() const;
@@ -26,7 +27,6 @@ class Level : public sf::NonCopyable
         };
     protected:
         Context& getContext() const;
-        CommandQueue& getCommandQueue();
         SceneNode* getLayer(Layer layer) const;
     private:
         void handleCollision();
@@ -37,5 +37,6 @@ class Level : public sf::NonCopyable
         sf::FloatRect mLevelBounds;
         SceneNode mSceneGraph;
         std::array<SceneNode*, LayerCount> mSceneLayer;
+        PlayerNode* mPlayer;
         bool mFinished;
 };  

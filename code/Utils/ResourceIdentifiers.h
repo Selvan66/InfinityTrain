@@ -14,7 +14,8 @@ enum class TexturesID
 	Icon,
 	Loading,
 	DefaultLevel,
-	PrehistoryLevel
+	PrehistoryLevel,
+	Player
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

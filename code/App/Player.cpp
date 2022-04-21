@@ -1,5 +1,6 @@
 /** @file Player.cpp */
 #include "App/Player.h"
+#include "App/Context.h"
 #include "Utils/Utility.h"
 #include "Objects/Nodes/PlayerNode.h"
 
@@ -28,7 +29,7 @@ void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
     {
         auto found = mKeyBinding.find(event.key.code);
         if (found != mKeyBinding.end() && !isRealtimeAction(found->second))
-            commands.push(mActionBinding[found->second])
+            commands.push(mActionBinding[found->second]);
     }
 }
 
@@ -64,13 +65,13 @@ Player::Output Player::getAssignKey(Action action) const
 
 void Player::initializeActions()
 {
-    mActionBinding[MoveLeft].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(-200.f, 0.f); });
-    mActionBinding[MoveRight].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(200.f, 0.f); });
-    mActionBinding[MoveUp].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(0.f, -200.f); });
-    mActionBinding[MoveDown].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(0.f, 200.f); });
-    mActionBinding[Fire].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { });      //TODO Fill
-    mActionBinding[Interact].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) {  }); //TODO Fill
-    mActionBinding[Special].action = derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) {  });  //TODO Fill
+    mActionBinding[MoveLeft].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(-200.f, 0.f); });
+    mActionBinding[MoveRight].action =  derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(200.f, 0.f); });
+    mActionBinding[MoveUp].action =     derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(0.f, -200.f); });
+    mActionBinding[MoveDown].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(0.f, 200.f); });
+    mActionBinding[Fire].action =       derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.fire(); });  
+    mActionBinding[Interact].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.interact(); }); 
+    mActionBinding[Special].action =    derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.special(); });  
 
     for (auto& pair : mActionBinding)
         pair.second.category = Category::Player;

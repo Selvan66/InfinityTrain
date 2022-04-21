@@ -8,6 +8,8 @@
 
 #include "Objects/CommandQueue.h"
 
+struct Context;
+
 class Player
 {
     public:

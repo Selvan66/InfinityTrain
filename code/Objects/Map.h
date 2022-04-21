@@ -11,6 +11,7 @@ class Map
 {
     public:
         Map(Context& context);
+        CommandQueue& getCommandQueue();
         void update(sf::Time dt);
         void draw();
     private:

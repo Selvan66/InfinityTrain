@@ -11,6 +11,11 @@ Map::Map(Context& context)
     createLevel();
 }
 
+CommandQueue& Map::getCommandQueue()
+{
+    return mLevel->getCommandQueue();
+}
+
 void Map::update(sf::Time dt)
 {
     mLevel->update(dt);

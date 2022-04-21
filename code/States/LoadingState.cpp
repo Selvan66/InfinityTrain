@@ -45,4 +45,5 @@ void LoadingState::loadGameTexture()
     auto& context = State::getContext();
     context.textures.load(TexturesID::DefaultLevel, "image/defaultLevel.png");
     context.textures.load(TexturesID::PrehistoryLevel, "image/prehistoryLevel.png");
+    context.textures.load(TexturesID::Player, "image/player1.png");
 }
