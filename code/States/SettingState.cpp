@@ -1,8 +1,6 @@
 /** @file SettingState.cpp */
 #include "States/SettingState.h"
 
-#include <iostream> // to delete
-
 SettingState::SettingState(StateStack& stack, Context& context)
 : State(stack, context)
 , mTextButtons()
@@ -51,7 +49,11 @@ void SettingState::createButtons()
 	mTextButtons.emplace_back(context);
 	auto& achievementsButton = mTextButtons.back();
 	achievementsButton.setText("CONTROL");
-	achievementsButton.setCallback([](){std::cout << "CONTROL" << std::endl;});
+	achievementsButton.setCallback([this]()
+	{
+		this->requestStackPop();
+        this->requestStackPush(StatesID::ControlSettingState);
+	});
 	achievementsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + buttonHeight));
 
 

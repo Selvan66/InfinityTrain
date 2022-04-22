@@ -5,6 +5,7 @@
 #include "States/SettingState.h"
 #include "States/GraphicsSettingState.h"
 #include "States/AudioSettingState.h"
+#include "States/ControlSettingState.h"
 #include "States/StatisticsState.h"
 #include "States/LoadingState.h"
 #include "States/GameState.h"
@@ -84,6 +85,7 @@ void Application::registerStates()
 	mStateStack.registerState<SettingState>(StatesID::SettingState);
 	mStateStack.registerState<GraphicsSettingState>(StatesID::GraphicsSettingState);
 	mStateStack.registerState<AudioSettingState>(StatesID::AudioSettingState);
+	mStateStack.registerState<ControlSettingState>(StatesID::ControlSettingState);
 	mStateStack.registerState<StatisticsState>(StatesID::StatisticsState);
 	mStateStack.registerState<GameState>(StatesID::GameState);
 	mStateStack.registerState<PauseState>(StatesID::PauseState);
