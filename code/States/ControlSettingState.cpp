@@ -60,11 +60,11 @@ bool ControlSettingState::handleEvent(const sf::Event& event)
                 return true;
             }
 
-            changeAction(Utility::toString(event.key.code));
+            changeActionBinding(Utility::toString(event.key.code));
         }
         else if (event.type == sf::Event::MouseButtonPressed)
         {
-            changeAction(Utility::toString(event.mouseButton.button));
+            changeActionBinding(Utility::toString(event.mouseButton.button));
         }
     }
     else 
@@ -177,7 +177,7 @@ void ControlSettingState::updateTextOnButton()
     mControlButton[Player::Special].setText("Special: " + mActionBinding["Special"]);
 }
 
-void ControlSettingState::changeAction(std::string key)
+void ControlSettingState::changeActionBinding(std::string key)
 {
     auto& found = std::find_if(mActionBinding.begin(), mActionBinding.end(), 
                 [&](auto& pair){ return pair.second == key; });

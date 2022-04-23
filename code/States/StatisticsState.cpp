@@ -104,10 +104,10 @@ void StatisticsState::createGUI()
     finishedgamesvar.setPosition(sf::Vector2f(windowSize.x * 4.f / 6.f, windowSize.y / 3.f + (3 * textheight)));
 
     mBackButton.setText("BACK");
+    mBackButton.setPosition(sf::Vector2f(windowSize.x / 2.f, windowSize.y / 2.f + (4 * textheight)));
     mBackButton.setCallback([&]() 
     {
         this->requestStackPop();
         this->requestStackPush(StatesID::MenuOptionsState);
     });
-    mBackButton.setPosition(sf::Vector2f(windowSize.x / 2.f, windowSize.y / 2.f + (4 * textheight)));
 }

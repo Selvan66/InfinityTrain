@@ -32,8 +32,6 @@ class Player
         void loadPlayerInput();
         void handleEvent(const sf::Event& event, CommandQueue& commands);
         void handleRealtimeInput(CommandQueue& commands);
-        void assignKey(Action action, Output key);
-        Output getAssignKey(Action action) const;
     private:
         void initializeActions();
         static bool isOutputPressed(Output key);

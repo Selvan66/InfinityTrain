@@ -250,7 +250,7 @@ Player::Output toKey(std::string key)
 
     if (key == "MLeft") return Player::Output(sf::Mouse::Left);
     if (key == "MRight") return Player::Output(sf::Mouse::Right);
-    if (key == "Middle") return Player::Output(sf::Mouse::Middle);
+    if (key == "MMiddle") return Player::Output(sf::Mouse::Middle);
     if (key == "MXButton1") return Player::Output(sf::Mouse::XButton1);
     if (key == "MXButton2") return Player::Output(sf::Mouse::XButton2);
 

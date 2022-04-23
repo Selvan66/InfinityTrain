@@ -16,7 +16,7 @@ class ControlSettingState : public State
     private:
         void createGUI();
         void updateTextOnButton();
-        void changeAction(std::string key);
+        void changeActionBinding(std::string key);
     private:
         std::array<GUI::TextButton, Player::ActionCount> mControlButton;
         std::unordered_map<std::string, std::string> mActionBinding;

@@ -7,8 +7,6 @@ PauseState::PauseState(StateStack& stack, Context& context)
 , mButtons()
 , mBackgroundShape()
 {
-    mBackgroundShape.setFillColor(sf::Color(0, 0, 0, 150));
-    mBackgroundShape.setSize(context.window.getView().getSize());
     createGUI();
     context.musics.setPaused(true);
 }
@@ -52,22 +50,25 @@ void PauseState::createGUI()
     const sf::Vector2f& windowSize = context.window.getView().getSize();
     const float buttonHeight = 65.f;
     
+    mBackgroundShape.setFillColor(sf::Color(0, 0, 0, 150));
+    mBackgroundShape.setSize(context.window.getView().getSize());
+
     mButtons.emplace_back(context);
 	auto& backButton = mButtons.back();
 	backButton.setText("BACK");
+	backButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2));
 	backButton.setCallback([this]()
 	{
 		this->requestStackPop();
 	});
-	backButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2));
 
     mButtons.emplace_back(context);
 	auto& quitButton = mButtons.back();
 	quitButton.setText("QUIT");
+	quitButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2 + buttonHeight));
 	quitButton.setCallback([this]()
 	{
 		this->requestStackClear();
         this->requestStackPush(StatesID::MenuState);
 	});
-	quitButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2 + buttonHeight));
 }

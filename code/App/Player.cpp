@@ -40,29 +40,6 @@ void Player::handleRealtimeInput(CommandQueue& commands)
             commands.push(mActionBinding[pair.second]);
 }
 
-void Player::assignKey(Action action, Player::Output key)
-{
-    for (auto itr = mKeyBinding.begin(); itr != mKeyBinding.end();)
-    {
-        if (itr->second == action)
-            mKeyBinding.erase(itr++);
-        else
-            ++itr;
-    }
-
-    mKeyBinding[key] = action;
-}
-
-Player::Output Player::getAssignKey(Action action) const
-{
-    for (auto& pair : mKeyBinding)
-        if (pair.second == action)
-              return pair.first;
-
-    return Player::Output(sf::Keyboard::Unknown);
-}
-
-
 void Player::initializeActions()
 {
     mActionBinding[MoveLeft].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(-200.f, 0.f); });

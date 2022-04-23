@@ -12,16 +12,6 @@ GraphicsSettingState::GraphicsSettingState(StateStack& stack, Context& context)
 , mFullscreenCheckbox(context)
 , mOptionButtons()
 {
-    mResolutionSlider.addText("800x600");
-    mResolutionSlider.addText("1024x576");
-    mResolutionSlider.addText("1366x768");
-    mResolutionSlider.addText("1600x900");
-    mResolutionSlider.addText("1920x1080");
-    std::string currentResolution = std::to_string(mSaveResolution.first) + "x" + std::to_string(mSaveResolution.second);
-    mResolutionSlider.setCurrentText(currentResolution);
-
-    mFullscreenCheckbox.setSelection(mSaveFullscreen);
-
     createGUI();
 }
 
@@ -64,6 +54,16 @@ void GraphicsSettingState::createGUI()
     auto& context = State::getContext();
     const sf::Vector2f& windowsize = context.window.getView().getSize();
 
+    mResolutionSlider.addText("800x600");
+    mResolutionSlider.addText("1024x576");
+    mResolutionSlider.addText("1366x768");
+    mResolutionSlider.addText("1600x900");
+    mResolutionSlider.addText("1920x1080");
+    std::string currentResolution = std::to_string(mSaveResolution.first) + "x" + std::to_string(mSaveResolution.second);
+    mResolutionSlider.setCurrentText(currentResolution);
+
+    mFullscreenCheckbox.setSelection(mSaveFullscreen);
+
     Utility::centerOrigin(mResolution);
     mResolution.setOutlineThickness(2.f);
 	mResolution.setOutlineColor(sf::Color(0, 0, 0));
@@ -81,6 +81,7 @@ void GraphicsSettingState::createGUI()
     mOptionButtons.emplace_back(context);
     auto& backButton = mOptionButtons.back();
     backButton.setText("BACK");
+    backButton.setPosition(sf::Vector2f(windowsize.x  * 2.f/8.f, windowsize.y * 4.f / 5.f));
     backButton.setCallback([&]()
     {
         context.settings.set<std::pair<int, int>>(mSaveResolution, "Graphics", "Resolution");
@@ -89,11 +90,11 @@ void GraphicsSettingState::createGUI()
         this->requestStackPop();
         this->requestStackPush(StatesID::SettingState);
     });
-    backButton.setPosition(sf::Vector2f(windowsize.x  * 2.f/8.f, windowsize.y * 4.f / 5.f));
 
     mOptionButtons.emplace_back(context);
     auto& applyButton = mOptionButtons.back();
     applyButton.setText("APPLY");
+    applyButton.setPosition(sf::Vector2f(windowsize.x  * 4.f/8.f, windowsize.y * 4.f / 5.f));
     applyButton.setCallback([&]()
     {
         std::string applyResolution = mResolutionSlider.getCurrentText();
@@ -103,11 +104,11 @@ void GraphicsSettingState::createGUI()
         context.settings.set<bool>(mFullscreenCheckbox.isSelected(), "Graphics", "Fullscreen");
         context.applyGraphicSettings();
     });
-    applyButton.setPosition(sf::Vector2f(windowsize.x  * 4.f/8.f, windowsize.y * 4.f / 5.f));
 
     mOptionButtons.emplace_back(context);
     auto& saveButton = mOptionButtons.back();
     saveButton.setText("APPLY & SAVE");
+    saveButton.setPosition(sf::Vector2f(windowsize.x  * 6.f/8.f, windowsize.y * 4.f / 5.f));
     saveButton.setCallback([&]()
     {
         std::string applyResolution = mResolutionSlider.getCurrentText();
@@ -119,5 +120,4 @@ void GraphicsSettingState::createGUI()
         context.settings.set<bool>(mSaveFullscreen, "Graphics", "Fullscreen");
         context.applyGraphicSettings();
     });
-    saveButton.setPosition(sf::Vector2f(windowsize.x  * 6.f/8.f, windowsize.y * 4.f / 5.f));
 }
