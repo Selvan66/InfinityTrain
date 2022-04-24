@@ -1,4 +1,16 @@
 <map id="code/Objects/Nodes/Entity.h" name="code/Objects/Nodes/Entity.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,145,47"/>
-<area shape="rect" id="node2" href="$_entity_8cpp.html" title=" " alt="" coords="5,95,145,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="89,5,229,47"/>
+<area shape="rect" id="node2" href="$_entity_8cpp.html" title=" " alt="" coords="8,95,148,136"/>
+<area shape="rect" id="node3" href="$_player_node_8h.html" title=" " alt="" coords="172,95,312,136"/>
+<area shape="rect" id="node4" href="$_player_8cpp.html" title=" " alt="" coords="5,191,148,218"/>
+<area shape="rect" id="node5" href="$_level_8h.html" title=" " alt="" coords="173,184,311,225"/>
+<area shape="rect" id="node14" href="$_player_node_8cpp.html" title=" " alt="" coords="336,184,476,225"/>
+<area shape="rect" id="node6" href="$_level_8cpp.html" title=" " alt="" coords="10,273,149,315"/>
+<area shape="rect" id="node7" href="$_prehistory_level_8h.html" title=" " alt="" coords="173,273,311,315"/>
+<area shape="rect" id="node10" href="$_map_8h.html" title=" " alt="" coords="335,281,474,307"/>
+<area shape="rect" id="node8" href="$_prehistory_level_8cpp.html" title=" " alt="" coords="83,363,222,404"/>
+<area shape="rect" id="node9" href="$_map_8cpp.html" title=" " alt="" coords="247,370,400,397"/>
+<area shape="rect" id="node11" href="$_game_state_8h.html" title=" " alt="" coords="425,370,598,397"/>
+<area shape="rect" id="node12" href="$_application_8cpp.html" title=" " alt="" coords="325,452,495,479"/>
+<area shape="rect" id="node13" href="$_game_state_8cpp.html" title=" " alt="" coords="519,452,706,479"/>
 </map>
