@@ -14,6 +14,8 @@ PlayerNode::PlayerNode(Context& context)
 , mIsSpecial(false)
 , mSprite(context.textures.get(TexturesID::Player))
 {
+    Utility::centerOrigin(mSprite);
+    
     mFireCommand.category = Category::Battlefield;
     mFireCommand.action = [](SceneNode&, sf::Time) {std::cout << "Fire" << std::endl;};
 
