@@ -1,6 +1,5 @@
 /** @file Utility.cpp */
 #include "Utils/Utility.h"
-
 namespace Utility
 {
 
@@ -20,6 +19,16 @@ void centerOrigin(sf::Shape& shape)
 {
     sf::FloatRect bounds = shape.getLocalBounds();
     shape.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f)); 
+}
+
+float length(sf::Vector2f vector)
+{
+    return std::sqrt(vector.x * vector.x + vector.y * vector.y);
+}
+
+float distance(const SceneNode& lhs, const SceneNode& rhs)
+{
+    return length(lhs.getWorldPosition() - rhs.getWorldPosition());
 }
 
 std::string toString(Player::Output key)

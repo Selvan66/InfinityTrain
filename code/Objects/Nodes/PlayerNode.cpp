@@ -1,5 +1,6 @@
 /** @file PlayerNode.cpp */
 #include "Objects/Nodes/PlayerNode.h"
+#include "Objects/Nodes/TestInteract.h"
 
 #include <iostream> //To delete
 
@@ -19,9 +20,12 @@ PlayerNode::PlayerNode(Context& context)
     mFireCommand.category = Category::Battlefield;
     mFireCommand.action = [](SceneNode&, sf::Time) {std::cout << "Fire" << std::endl;};
 
-    mInteractCommand.category = Category::Battlefield;
-    mInteractCommand.action = [](SceneNode&, sf::Time) {std::cout << "Interact" << std::endl;};
-
+    mInteractCommand.category = Category::Interactable;
+    mInteractCommand.action = derivedAction<Interactable>([] (Interactable& interactable, sf::Time) {
+        if (interactable.IsInteract())
+            interactable.interact();
+    });
+    
     mSpecialCommand.category = Category::Battlefield;
     mSpecialCommand.action = [](SceneNode&, sf::Time) {std::cout << "Special" << std::endl;};
 }
