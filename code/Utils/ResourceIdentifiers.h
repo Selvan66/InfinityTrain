@@ -15,7 +15,8 @@ enum class TexturesID
 	Loading,
 	DefaultLevel,
 	PrehistoryLevel,
-	Player
+	Player,
+	Money
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;
