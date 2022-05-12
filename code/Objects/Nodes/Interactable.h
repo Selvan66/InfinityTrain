@@ -7,14 +7,19 @@ class Interactable : public SceneNode
 {
     public:
         Interactable(Context& context);
-        void setDistance(float distance);
         bool IsInteract() const;
+        void setDistance(float distance);
+        void setText(const std::string& text);
+        void setTextPos(const sf::Vector2f& pos);
 
         virtual void interact() = 0;
-    private:
-        virtual void updateCurrent(sf::Time dt, CommandQueue& commands);
+        virtual unsigned int getCategory() const override;
+    protected:
+        virtual void updateCurrent(sf::Time, CommandQueue& commands);
     private:
         float mDistance;
         bool mIsInteractable;
         Command mCommand;
+        std::string mText;
+        TextNode* mTextNode;
 };
