@@ -6,7 +6,7 @@
 class PrehistoryLevel : public Level
 {
     public:
-        PrehistoryLevel(Context& context);
+        PrehistoryLevel(Context& context, PlayerInfo& playerInfo);
     private:
         void buildScene();
 };

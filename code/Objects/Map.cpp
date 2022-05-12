@@ -5,7 +5,8 @@
 Map::Map(Context& context)
 : mContext(context)
 , mLevel(nullptr)
-, mNumLevel(1)
+, mNumLevel(0)
+, mPlayerInfo({100, 0})
 {
     registerLevels();
     createLevel();

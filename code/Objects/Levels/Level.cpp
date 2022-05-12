@@ -1,8 +1,10 @@
 /** @file Level.cpp */
 #include "Objects/Levels/Level.h"
+#include "Objects/Nodes/MoneyNode.h"
 
-Level::Level(Context& context)
+Level::Level(Context& context, PlayerInfo& playerInfo)
 : mContext(context)
+, mPlayerInfo(playerInfo)
 , mCommands()
 , mLevelBounds(460.f, 80.f, 1000.f, 1000.f)
 , mSceneLayer()
@@ -23,6 +25,7 @@ void Level::update(sf::Time dt)
     while (!mCommands.isEmpty())
         mSceneGraph.onCommand(mCommands.pop(), dt);
 
+    mSceneGraph.removeObjects();
     mSceneGraph.update(dt, mCommands);
 }
 
@@ -64,8 +67,12 @@ void Level::buildScene()
         mSceneGraph.attachChild(std::move(layer));
     }
 
-    std::unique_ptr<PlayerNode> player(new PlayerNode(Level::getContext()));
+    std::unique_ptr<PlayerNode> player(new PlayerNode(Level::getContext(), mPlayerInfo));
     player->setPosition(900, 500);
     mPlayer = player.get();
-    mSceneLayer[Battlefield]->attachChild(std::move(player));
+    mSceneLayer[Battlefield]->attachChild(std::move(player)); 
+
+    std::unique_ptr<MoneyNode> test(new MoneyNode(mContext, 5));
+    test->setPosition({600, 500});
+    mSceneLayer[Floor]->attachChild(std::move(test));
 }

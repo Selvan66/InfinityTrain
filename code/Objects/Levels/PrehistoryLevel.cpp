@@ -2,8 +2,8 @@
 #include "Objects/Levels/PrehistoryLevel.h"
 #include "Objects/Nodes/SpriteNode.h"
 
-PrehistoryLevel::PrehistoryLevel(Context& context)
-: Level(context)
+PrehistoryLevel::PrehistoryLevel(Context& context, PlayerInfo& playerInfo)
+: Level(context, playerInfo)
 {
     buildScene();
 }

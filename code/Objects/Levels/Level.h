@@ -5,6 +5,7 @@
 
 #include "Objects/CommandQueue.h"
 #include "Objects/Nodes/PlayerNode.h"
+#include "Objects/PlayerInfo.h"
 #include "App/Context.h"
 
 class Level : public sf::NonCopyable
@@ -12,7 +13,7 @@ class Level : public sf::NonCopyable
     public:
         typedef std::unique_ptr<Level> Ptr;
     public:
-        explicit Level(Context& context);
+        explicit Level(Context& context, PlayerInfo& playerInfo);
         sf::FloatRect getLevelBounds() const;
         CommandQueue& getCommandQueue();
         void update(sf::Time dt);
@@ -22,6 +23,7 @@ class Level : public sf::NonCopyable
         enum Layer
         {
             Background,
+            Floor,
             Battlefield,
             LayerCount
         };
@@ -33,6 +35,7 @@ class Level : public sf::NonCopyable
         void buildScene();
     private:
         Context& mContext;
+        PlayerInfo& mPlayerInfo;
         CommandQueue mCommands;
         sf::FloatRect mLevelBounds;
         SceneNode mSceneGraph;
