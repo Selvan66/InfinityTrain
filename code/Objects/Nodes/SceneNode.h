@@ -37,8 +37,9 @@ class SceneNode : public sf::Transformable, public sf::Drawable, public sf::NonC
         void drawBoundingRect(sf::RenderTarget& target, sf::RenderStates states) const; //<Only for debug
 
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands);
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+    
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         std::vector<Ptr> mChildren;
         SceneNode* mParent;

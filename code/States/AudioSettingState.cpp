@@ -52,11 +52,11 @@ void AudioSettingState::createGUI()
 
     for (int i = 0; i <= 100; i += 5)
         mMusicSlider.addText(std::to_string(i));
-    mMusicSlider.setCurrentText(std::to_string((int)mSaveMusic));
+    mMusicSlider.setCurrentText(std::to_string(static_cast<int>(mSaveMusic)));
 
     for (int i = 0; i <= 100; i += 5)
         mSoundSlider.addText(std::to_string(i));
-    mSoundSlider.setCurrentText(std::to_string((int)mSaveSound));
+    mSoundSlider.setCurrentText(std::to_string(static_cast<int>(mSaveSound)));
 
     Utility::centerOrigin(mMusic);
     mMusic.setOutlineThickness(2.f);

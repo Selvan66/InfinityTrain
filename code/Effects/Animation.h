@@ -25,7 +25,7 @@ class Animation : public sf::Drawable, public sf::Transformable
         sf::FloatRect getGlobalBounds() const;
         void update(sf::Time dt);
     private:
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::Sprite mSprite;
         sf::Vector2i mFrameSize;

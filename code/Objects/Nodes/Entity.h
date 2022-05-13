@@ -18,9 +18,9 @@ class Entity : public SceneNode
         void destroy();
 
         virtual void remove();
-        virtual bool isDestroyed() const;
+        virtual bool isDestroyed() const override;
     protected:
-        virtual void updateCurrent(sf::Time dt, CommandQueue&);
+        virtual void updateCurrent(sf::Time dt, CommandQueue&) override;
     private:
         sf::Vector2f mVelocity;
         int mHitpoints;

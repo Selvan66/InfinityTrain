@@ -19,7 +19,7 @@ class TextSlider : public sf::Drawable, public sf::Transformable, public sf::Non
         void setCurrentText(const std::string& text);
         void setPosition(float x, float y);
     private:
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
         void setNextText();
         void setPrevText();
     private:

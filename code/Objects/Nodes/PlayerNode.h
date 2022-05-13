@@ -15,13 +15,13 @@ class PlayerNode : public Entity
         void increaseMoney(unsigned int value);
         void increaseLive(int value);
 
-        virtual unsigned int getCategory() const;
-        virtual sf::FloatRect getBoundingRect() const;
+        virtual unsigned int getCategory() const override;
+        virtual sf::FloatRect getBoundingRect() const override;
     private:
         void adaptVelocity();
 
-        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const; 
-        virtual void updateCurrent(sf::Time dt, CommandQueue& commands);
+        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
+        virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
         Context& mContext;
         PlayerInfo& mPlayerInfo;

@@ -13,8 +13,8 @@ class Checkbox : public Button
         void setSelection(bool isSelect);
         bool isSelected() const;
     private:
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-        virtual sf::FloatRect getGlobalBounds() const;
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+        virtual sf::FloatRect getGlobalBounds() const override;
     private:
         sf::Sprite mCheck;
         sf::RectangleShape mBox;

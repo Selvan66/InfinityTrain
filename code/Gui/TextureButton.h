@@ -11,9 +11,9 @@ class TextureButton : public Button
     public:
         TextureButton(Context& context, const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed);
     private:
-        virtual sf::FloatRect getGlobalBounds() const;
-        virtual void changeTexture(Button::Type buttonType);
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        virtual sf::FloatRect getGlobalBounds() const override;
+        virtual void changeTexture(Button::Type buttonType) override;
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         const sf::Texture& mTexture;
         sf::IntRect mNormalRect;

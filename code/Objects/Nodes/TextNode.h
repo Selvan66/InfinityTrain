@@ -10,7 +10,7 @@ class TextNode : public SceneNode
         TextNode(Context& context);
         void setString(const std::string& text);
     private:
-        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::Text mText;
 };
