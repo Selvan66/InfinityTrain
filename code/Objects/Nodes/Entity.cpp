@@ -40,7 +40,7 @@ int Entity::getHitpoints() const
 void Entity::heal(int points)
 {
     assert(points > 0);
-    mHitpoints += points;
+    mHitpoints = std::min(mHitpoints + points, 100);
 }
 
 void Entity::damage(int points)

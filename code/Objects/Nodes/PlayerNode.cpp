@@ -53,7 +53,7 @@ void PlayerNode::increaseMoney(unsigned int value)
 
 void PlayerNode::increaseLive(int value)
 {
-    mPlayerInfo.lives += value;
+    mPlayerInfo.lives = std::min(mPlayerInfo.lives + value, 100u);
     Entity::heal(value);
 }
 
