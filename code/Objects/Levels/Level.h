@@ -32,6 +32,7 @@ class Level : public sf::NonCopyable
         SceneNode* getLayer(Layer layer) const;
     private:
         void handleCollision();
+        void adaptNodesPosition(SceneNode* node);
         void buildScene();
     private:
         Context& mContext;
