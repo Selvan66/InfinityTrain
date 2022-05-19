@@ -7,6 +7,7 @@
 #include "Objects/Levels/LevelID.h"
 #include "Objects/Levels/Level.h"
 #include "Objects/PlayerInfo.h"
+#include "Gui/PlayerInfoGUI.h"
 
 class Map
 {
@@ -26,6 +27,7 @@ class Map
         unsigned int mNumLevel;
         std::array<std::function<Level::Ptr()>, LevelID::LevelCount> mFactories;
         PlayerInfo mPlayerInfo;
+        PlayerInfoGUI mPlayerInfoGui;
 };
 
 template<typename T>
