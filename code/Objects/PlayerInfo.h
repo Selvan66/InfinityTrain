@@ -1,3 +1,4 @@
+/** @file PlayerInfo.h */
 #pragma once
 
 struct PlayerInfo
