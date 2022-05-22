@@ -1,6 +1,4 @@
 /** @file StatisticsState.cpp */
-#include <sstream>
-
 #include "States/StatisticsState.h"
 #include "Utils/Utility.h"
 
@@ -47,15 +45,9 @@ void StatisticsState::createGUI()
 	timeplay.setOutlineColor(sf::Color(0, 0, 0));
     timeplay.setPosition(sf::Vector2f(windowSize.x * 2.f / 6.f, windowSize.y / 3.f));
 
-    auto number = context.statistics.get(Statistics::TimePlay) / 1000;
-    std::stringstream parser;
-    if((number/100)+(number%100)/60<10) parser << "0";  
-    parser << (number/100)+(number%100)/60              
-        << ':';                                   
-    if((number%100)%60<10) parser << "0";          
-    parser << (number%100)%60;                          
+    auto number = context.statistics.get(Statistics::TimePlay) / 1000;                         
 
-    std::string time = parser.str();
+    std::string time = Utility::timeToString(number);
 
     mTexts.emplace_back(time, context.fonts.get(FontsID::PixelFont), 60);
     auto& timeplayvar = mTexts.back();

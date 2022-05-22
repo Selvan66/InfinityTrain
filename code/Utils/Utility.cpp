@@ -1,4 +1,6 @@
 /** @file Utility.cpp */
+#include <sstream>
+
 #include "Utils/Utility.h"
 namespace Utility
 {
@@ -29,6 +31,18 @@ float length(sf::Vector2f vector)
 float distance(const SceneNode& lhs, const SceneNode& rhs)
 {
     return length(lhs.getWorldPosition() - rhs.getWorldPosition());
+}
+
+std::string timeToString(unsigned long long time)
+{
+    std::stringstream parser;
+    if((time/100)+(time%100)/60<10) parser << "0";  
+    parser << (time/100)+(time%100)/60              
+        << ':';                                   
+    if((time%100)%60<10) parser << "0";          
+    parser << (time%100)%60;  
+
+    return parser.str();
 }
 
 std::string toString(Player::Output key)

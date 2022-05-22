@@ -14,6 +14,7 @@ void centerOrigin(sf::Text& text);
 void centerOrigin(sf::Shape& shape);
 float length(sf::Vector2f vector);
 float distance(const SceneNode& lhs, const SceneNode& rhs);
+std::string timeToString(unsigned long long time);
 
 std::string toString(Player::Output key);
 Player::Output toKey(std::string key);
