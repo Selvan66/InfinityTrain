@@ -17,7 +17,6 @@ void GameState::draw()
 bool GameState::update(sf::Time dt)
 {
     auto& context = State::getContext();
-    context.statistics.increase(Statistics::TimePlay, dt.asMilliseconds());
 
     mMap.update(dt);
 

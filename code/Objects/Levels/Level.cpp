@@ -22,6 +22,9 @@ sf::FloatRect Level::getLevelBounds() const
 
 void Level::update(sf::Time dt)
 {
+    mContext.statistics.increase(Statistics::TimePlay, dt.asMilliseconds());
+
+
     mPlayer->setVelocity(0, 0);
     while (!mCommands.isEmpty())
         mSceneGraph.onCommand(mCommands.pop(), dt);
