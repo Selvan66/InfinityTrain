@@ -1,5 +1,5 @@
 /** @file PlayerInfoGUI.cpp */
-#include "Gui/PlayerInfoGUI.h"
+#include "Gui/Player/PlayerInfoGUI.h"
 
 PlayerInfoGUI::PlayerInfoGUI(Context& context, PlayerInfo& info)
 : mPlayerInfo(info)
