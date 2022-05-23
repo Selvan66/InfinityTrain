@@ -7,7 +7,7 @@
 #include "Objects/Levels/LevelID.h"
 #include "Objects/Levels/Level.h"
 #include "Objects/PlayerInfo.h"
-#include "Gui/PlayerInfoGUI.h"
+#include "Gui/Player/PlayerInfoGUI.h"
 
 class Map
 {
@@ -26,6 +26,8 @@ class Map
         Level::Ptr mLevel;
         unsigned int mNumLevel;
         std::array<std::function<Level::Ptr()>, LevelID::LevelCount> mFactories;
+        unsigned long long mStartTime;
+        sf::Text mTimerText;
         PlayerInfo mPlayerInfo;
         PlayerInfoGUI mPlayerInfoGui;
 };
