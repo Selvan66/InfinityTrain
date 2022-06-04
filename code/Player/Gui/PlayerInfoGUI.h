@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Objects/PlayerInfo.h"
+#include "Player/PlayerInfo.h"
 #include "App/Context.h"
 
 class PlayerInfoGUI : public sf::Drawable, public sf::Transformable, public sf::NonCopyable

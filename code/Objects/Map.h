@@ -6,8 +6,8 @@
 #include "App/Context.h"
 #include "Objects/Levels/LevelID.h"
 #include "Objects/Levels/Level.h"
-#include "Objects/PlayerInfo.h"
-#include "Gui/Player/PlayerInfoGUI.h"
+#include "Player/PlayerInfo.h"
+#include "Player/Gui/PlayerInfoGUI.h"
 
 class Map
 {

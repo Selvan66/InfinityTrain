@@ -2,7 +2,7 @@
 #pragma once
 
 #include "Objects/Nodes/Entity.h"
-#include "Objects/PlayerInfo.h"
+#include "Player/PlayerInfo.h"
 #include "App/Context.h"
 
 class PlayerNode : public Entity

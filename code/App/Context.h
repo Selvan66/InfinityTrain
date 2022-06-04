@@ -5,7 +5,7 @@
 #include "Effects/MusicPlayer.h"
 #include "App/Settings.h"
 #include "App/Statistics.h"
-#include "App/Player.h"
+#include "Player/Player.h"
 
 struct Context : public sf::NonCopyable
 {

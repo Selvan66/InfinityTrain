@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-#include "App/Player.h"
+#include "Player/Player.h"
 #include "Objects/Nodes/SceneNode.h"
 
 namespace Utility
