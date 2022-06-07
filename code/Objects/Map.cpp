@@ -8,7 +8,7 @@ Map::Map(Context& context)
 , mNumLevel(0)
 , mStartTime(context.statistics.get(Statistics::TimePlay))
 , mTimerText("", context.fonts.get(FontsID::PixelFont), 50u)
-, mPlayerInfo({90, 0})
+, mPlayerInfo({90, 0, Backpack()})
 , mPlayerInfoGui(context, mPlayerInfo)
 {
     registerLevels();
@@ -23,13 +23,11 @@ Map::Map(Context& context)
     mPlayerInfoGui.setPosition({5, 900});
 }
 
-CommandQueue& Map::getCommandQueue()
-{
-    return mLevel->getCommandQueue();
-}
-
 void Map::update(sf::Time dt)
 {
+    auto& commands = mLevel->getCommandQueue();
+    mContext.player.handleRealtimeInput(commands);
+
     mTimerText.setString("Time: " + Utility::timeToString((mContext.statistics.get(Statistics::TimePlay) - mStartTime)/1000));
     mLevel->update(dt);
     mPlayerInfoGui.update(dt);
@@ -38,6 +36,12 @@ void Map::update(sf::Time dt)
         mNumLevel++;
         createLevel();
     }
+}
+
+void Map::handleEvent(const sf::Event& event)
+{
+    auto& commands = mLevel->getCommandQueue();
+    mContext.player.handleEvent(event, commands);
 }
 
 void Map::draw()

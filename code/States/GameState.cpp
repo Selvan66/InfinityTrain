@@ -16,22 +16,15 @@ void GameState::draw()
 
 bool GameState::update(sf::Time dt)
 {
-    auto& context = State::getContext();
-
     mMap.update(dt);
-
-    auto& commands = mMap.getCommandQueue();
-    context.player.handleRealtimeInput(commands);
-
     return true;  
 }
 
 bool GameState::handleEvent(const sf::Event& event)
 {
-    auto& context = State::getContext();
-    auto& commands = mMap.getCommandQueue();
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) || event.type == sf::Event::LostFocus)
         requestStackPush(StatesID::PauseState);
-    context.player.handleEvent(event, commands);
+ 
+    mMap.handleEvent(event);
     return true;
 }

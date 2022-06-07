@@ -13,8 +13,8 @@ class Map
 {
     public:
         Map(Context& context);
-        CommandQueue& getCommandQueue();
         void update(sf::Time dt);
+        void handleEvent(const sf::Event& event);
         void draw();
     private:
         template <typename T>
