@@ -24,8 +24,9 @@ void Level::update(sf::Time dt)
 {
     mContext.statistics.increase(Statistics::TimePlay, dt.asMilliseconds());
 
-
     mPlayer->setVelocity(0, 0);
+    mPlayerInfo.backpack.drop(mPlayer->getPosition(), *mSceneLayer[Floor]);
+
     while (!mCommands.isEmpty())
         mSceneGraph.onCommand(mCommands.pop(), dt);
 
@@ -79,7 +80,20 @@ void Level::buildScene()
 {
     for (int i = 0; i < LayerCount; ++i)
     {
-        Category::Type category = (i == Battlefield) ? Category::Battlefield : Category::None;
+        Category::Type category = Category::None;
+
+        switch (static_cast<Layer>(i))
+        {
+            case Battlefield:
+                category = Category::Battlefield;
+                break;
+            case Floor:
+                category = Category::Floor;
+                break;
+            default:
+                category = Category::None;
+                break;
+        }
 
         SceneNode::Ptr layer(new SceneNode(category));
         mSceneLayer[i] = layer.get();
@@ -94,7 +108,7 @@ void Level::buildScene()
 
     std::unique_ptr<HeartNode> test(new HeartNode(mContext, 20));
     test->setPosition({600, 500});
-    mSceneLayer[Floor]->attachChild(std::move(test));
+    mPlayerInfo.backpack.addItemToBackpack(std::move(test));
 
     std::unique_ptr<MoneyNode> test2(new MoneyNode(mContext, 5));
     test2->setPosition({1000, 300});
