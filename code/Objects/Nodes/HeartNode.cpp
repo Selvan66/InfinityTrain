@@ -7,12 +7,11 @@ HeartNode::HeartNode(Context& context, int value)
 , mValue(value)
 {
     Interactable::setDistance(50.f);
-    Interactable::setText(std::to_string(value) + "HP");
-
     Command command;
     command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>([value](PlayerNode& player, sf::Time) {
-        player.increaseLive(value);
+    command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
+        player.increaseLive(mValue);
+        this->destroy();
     });
 
     Pickup::setCommand(command);

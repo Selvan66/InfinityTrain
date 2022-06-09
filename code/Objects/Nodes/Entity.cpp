@@ -1,6 +1,11 @@
 /** @file Entity.cpp */
 #include "Objects/Nodes/Entity.h"
 
+Entity::Entity()
+: mVelocity()
+, mHitpoints(1)
+{ }
+
 Entity::Entity(int hitpoints)
 : mVelocity()
 , mHitpoints(hitpoints)

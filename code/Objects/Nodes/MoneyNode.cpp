@@ -7,12 +7,12 @@ MoneyNode::MoneyNode(Context& context, unsigned int value)
 , mValue(value)
 {
     Interactable::setDistance(50.f);
-    Interactable::setText(std::to_string(value) + "$");
 
     Command command;
     command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>([value](PlayerNode& player, sf::Time) {
-        player.increaseMoney(value);
+    command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
+        player.increaseMoney(mValue);
+        this->destroy();
     });
 
     Pickup::setCommand(command);

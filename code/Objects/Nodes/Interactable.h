@@ -2,15 +2,14 @@
 #pragma once
 
 #include "Objects/Nodes/TextNode.h"
+#include "Objects/Nodes/Entity.h"
 
-class Interactable : public SceneNode
+class Interactable : public Entity
 {
     public:
-        Interactable(Context& context);
+        Interactable();
         bool IsInteract() const;
         void setDistance(float distance);
-        void setText(const std::string& text);
-        void setTextPos(const sf::Vector2f& pos);
 
         virtual void interact() = 0;
         virtual unsigned int getCategory() const override;
@@ -20,6 +19,4 @@ class Interactable : public SceneNode
         float mDistance;
         bool mIsInteractable;
         Command mCommand;
-        std::string mText;
-        TextNode* mTextNode;
 };

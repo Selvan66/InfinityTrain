@@ -11,13 +11,11 @@ class Pickup : public Interactable
 
         virtual sf::FloatRect getBoundingRect() const override;
         virtual void interact() override;
-        virtual bool isDestroyed() const override;
-    private:
+    protected:
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
         sf::Sprite mSprite;
         bool mPickedUp;
-        bool mIsDestroyed;
         Command mCommand;
 };
