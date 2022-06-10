@@ -36,12 +36,12 @@ float distance(const SceneNode& lhs, const SceneNode& rhs)
 std::string timeToString(unsigned long long time)
 {
     std::stringstream parser;
-    if((time/100)+(time%100)/60<10) parser << "0";  
-    parser << (time/100)+(time%100)/60              
-        << ':';                                   
-    if((time%100)%60<10) parser << "0";          
-    parser << (time%100)%60;  
-
+    if(((time / 100) + (time % 100) / 60) < 10) 
+        parser << "0";  
+    parser << ((time / 100) + (time % 100 ) / 60) << ':';                                   
+    if(((time % 100) % 60) < 10) 
+        parser << "0";          
+    parser << (time % 100) % 60;  
     return parser.str();
 }
 
@@ -155,11 +155,11 @@ std::string toString(Player::Output key)
     KEYBOARDTOSTRINGIF(F15)
     KEYBOARDTOSTRINGIF(Pause)
 
-    if (mouse && (*mouse == sf::Mouse::Left)) return "MLeft";
-    if (mouse && (*mouse == sf::Mouse::Right)) return "MRight";
-    if (mouse && (*mouse == sf::Mouse::Middle)) return "MMiddle";
-    if (mouse && (*mouse == sf::Mouse::XButton1)) return "MXButton1";
-    if (mouse && (*mouse == sf::Mouse::XButton2)) return "MXButton2";
+    if ((mouse != nullptr) && (*mouse == sf::Mouse::Left)) return "MLeft";
+    if ((mouse != nullptr) && (*mouse == sf::Mouse::Right)) return "MRight";
+    if ((mouse != nullptr) && (*mouse == sf::Mouse::Middle)) return "MMiddle";
+    if ((mouse != nullptr) && (*mouse == sf::Mouse::XButton1)) return "MXButton1";
+    if ((mouse != nullptr) && (*mouse == sf::Mouse::XButton2)) return "MXButton2";
 
     return "";
 }

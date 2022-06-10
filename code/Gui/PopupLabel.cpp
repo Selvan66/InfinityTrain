@@ -47,7 +47,7 @@ void PopupLabel::handleEvent(const sf::Event& event)
 
 void PopupLabel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (mShow == true)
+    if (mShow)
     {
         target.draw(mBackground, states);
         target.draw(mText, states);

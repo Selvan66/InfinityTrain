@@ -26,7 +26,7 @@ void Button::handleEvent(const sf::Event& event)
         sf::Vector2f mousePos = mContext.window.mapPixelToCoords(sf::Vector2i(mouse.x, mouse.y)); 
         if (getGlobalBounds().contains(mousePos))
         {
-            if (mIsSelected == false)
+            if (!mIsSelected)
                 mContext.sounds.play(SoundsID::ButtonHover);
             mIsSelected = true;
         }
