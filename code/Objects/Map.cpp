@@ -8,8 +8,7 @@ Map::Map(Context& context)
 , mNumLevel(0)
 , mStartTime(context.statistics.get(Statistics::TimePlay))
 , mTimerText("", context.fonts.get(FontsID::PixelFont), 50u)
-, mPlayerInfo({90, 0, Backpack()})
-, mPlayerInfoGui(context, mPlayerInfo)
+, mPlayerInfo()
 {
     registerLevels();
     createLevel();
@@ -18,9 +17,6 @@ Map::Map(Context& context)
     mTimerText.setOutlineColor(sf::Color::Black);
     mTimerText.setOutlineThickness(2.f);
     mTimerText.setPosition({10, 40});
-
-    mPlayerInfoGui.setCharacterSize(50u);
-    mPlayerInfoGui.setPosition({5, 900});
 }
 
 void Map::update(sf::Time dt)
@@ -30,7 +26,6 @@ void Map::update(sf::Time dt)
 
     mTimerText.setString("Time: " + Utility::timeToString((mContext.statistics.get(Statistics::TimePlay) - mStartTime)/1000));
     mLevel->update(dt);
-    mPlayerInfoGui.update(dt);
     if (mLevel->isFinished())
     {
         mNumLevel++;
@@ -47,7 +42,6 @@ void Map::handleEvent(const sf::Event& event)
 void Map::draw()
 {
     mLevel->draw();
-    mContext.window.draw(mPlayerInfoGui);
     mContext.window.draw(mTimerText);
 }
 

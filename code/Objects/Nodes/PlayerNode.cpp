@@ -5,7 +5,7 @@
 #include <iostream> //To delete
 
 PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
-: Entity(playerInfo.lives)
+: Entity(1)
 , mContext(context)
 , mPlayerInfo(playerInfo)
 , mFireCommand()
@@ -46,15 +46,14 @@ void PlayerNode::special()
     mIsSpecial = true;
 }
 
-void PlayerNode::increaseMoney(unsigned int value)
+void PlayerNode::increaseMoney(int value)
 {
-    mPlayerInfo.money += value;
+    mPlayerInfo.stats.updateStat(Stats::Money, value);
 }
 
 void PlayerNode::increaseLive(int value)
 {
-    mPlayerInfo.lives = std::min(mPlayerInfo.lives + value, 100u);
-    Entity::heal(value);
+    mPlayerInfo.stats.updateStat(Stats::Lives, value);
 }
 
 unsigned int PlayerNode::getCategory() const

@@ -12,7 +12,7 @@ class PlayerNode : public Entity
         void fire();
         void interact();
         void special();
-        void increaseMoney(unsigned int value);
+        void increaseMoney(int value);
         void increaseLive(int value);
 
         virtual unsigned int getCategory() const override;

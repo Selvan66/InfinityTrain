@@ -7,7 +7,6 @@
 #include "Objects/Levels/LevelID.h"
 #include "Objects/Levels/Level.h"
 #include "Player/PlayerInfo.h"
-#include "Player/Gui/PlayerInfoGUI.h"
 
 class Map
 {
@@ -29,7 +28,6 @@ class Map
         unsigned long long mStartTime;
         sf::Text mTimerText;
         PlayerInfo mPlayerInfo;
-        PlayerInfoGUI mPlayerInfoGui;
 };
 
 template<typename T>
