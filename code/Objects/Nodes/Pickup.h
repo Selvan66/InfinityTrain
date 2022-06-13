@@ -11,8 +11,8 @@ class Pickup : public Interactable
 
         virtual sf::FloatRect getBoundingRect() const override;
         virtual void interact() override;
-    protected:
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
+    protected:
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
         sf::Sprite mSprite;

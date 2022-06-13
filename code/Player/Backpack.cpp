@@ -49,3 +49,8 @@ size_t Backpack::getFirstFreeIndex() const
             return i;
     return -1;
 }
+
+void Backpack::draw(sf::RenderTarget &target, sf::RenderStates states) const 
+{
+    // ...
+}

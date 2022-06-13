@@ -6,7 +6,7 @@
 
 #include "Objects/Nodes/Pickup.h"
 
-class Backpack
+class Backpack : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
 {
     public:
         Backpack();
@@ -16,6 +16,8 @@ class Backpack
         void drop(sf::Vector2f pos, SceneNode& node);
     private:
         size_t getFirstFreeIndex() const;
+        
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         static constexpr size_t mSize = 20;
         std::array<std::unique_ptr<Pickup>, mSize> mBackpack;
