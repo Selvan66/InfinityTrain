@@ -2,9 +2,6 @@
 #include "Gui/TextButton.h"
 #include "Utils/Utility.h"
 
-namespace GUI
-{
-
 TextButton::TextButton(Context& context)
 : Button(context)
 , mText("", context.fonts.get(FontsID::PixelFont), 60)
@@ -47,6 +44,4 @@ void TextButton::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     states.transform *= sf::Transformable::getTransform();
     target.draw(mText, states);
-}
-
 }

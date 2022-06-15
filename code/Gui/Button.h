@@ -3,12 +3,9 @@
 
 #include <functional>
 
+#include "Gui/Component.h"
 #include "App/Context.h"
-
-namespace GUI
-{
-
-class Button : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
+class Button : public Component
 {
     public:
         typedef std::function<void()> Callback;
@@ -22,8 +19,9 @@ class Button : public sf::Drawable, public sf::Transformable, public sf::NonCopy
     public:
         Button(Context& context);
         void setCallback(Callback callback);
-        void handleEvent(const sf::Event& event);
-        void update(sf::Time);
+        
+        virtual void handleEvent(const sf::Event& event) override;
+        virtual void update() override;
     private:
         virtual sf::FloatRect getGlobalBounds() const = 0;
         virtual void changeTexture(Type buttonType);
@@ -33,5 +31,3 @@ class Button : public sf::Drawable, public sf::Transformable, public sf::NonCopy
         bool mIsPressed;
         Context& mContext;
 };
-
-}

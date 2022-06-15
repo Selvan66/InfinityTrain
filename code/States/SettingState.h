@@ -14,5 +14,5 @@ class SettingState : public State
 	private:
 		void createButtons();
 	private:
-		std::list<GUI::TextButton> mTextButtons;
+		std::list<TextButton> mTextButtons;
 };

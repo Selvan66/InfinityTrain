@@ -15,10 +15,10 @@ void SettingState::draw()
 		window.draw(button);
 }
 
-bool SettingState::update(sf::Time dt)
+bool SettingState::update(sf::Time )
 {
     for (auto& button : mTextButtons)
-		button.update(dt);
+		button.update();
 	
     return true;
 }

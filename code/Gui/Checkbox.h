@@ -2,10 +2,6 @@
 #pragma once
 
 #include "Gui/Button.h"
-
-namespace GUI
-{
-
 class Checkbox : public Button
 {
     public:
@@ -20,5 +16,3 @@ class Checkbox : public Button
         sf::RectangleShape mBox;
         bool mIsSelected;
 };
-
-}

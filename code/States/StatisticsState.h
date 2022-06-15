@@ -15,5 +15,5 @@ class StatisticsState : public State
         void createGUI();
     private:
         std::list<sf::Text> mTexts;
-        GUI::TextButton mBackButton;
+        TextButton mBackButton;
 };

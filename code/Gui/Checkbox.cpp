@@ -2,9 +2,6 @@
 #include "Gui/Checkbox.h"
 #include "Utils/Utility.h"
 
-namespace GUI
-{
-
 Checkbox::Checkbox(Context& context)
 : Button(context)
 , mCheck(context.textures.get(TexturesID::Checkbox))
@@ -42,6 +39,4 @@ void Checkbox::draw(sf::RenderTarget &target, sf::RenderStates states) const
 sf::FloatRect Checkbox::getGlobalBounds() const
 {
     return sf::Transformable::getTransform().transformRect(mBox.getGlobalBounds());
-}
-
 }

@@ -4,9 +4,6 @@
 #include "Gui/PopupLabel.h"
 #include "Utils/Utility.h"
 
-namespace GUI
-{
-
 PopupLabel::PopupLabel(Context& context, const sf::FloatRect& objectRect)
 : mBackground()
 , mShow(false)
@@ -45,15 +42,6 @@ void PopupLabel::handleEvent(const sf::Event& event)
     }
 }
 
-void PopupLabel::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    if (mShow)
-    {
-        target.draw(mBackground, states);
-        target.draw(mText, states);
-    }
-}
-
 void PopupLabel::setLabelPos(const sf::Vector2f& pos)
 {
     mBackground.setPosition(pos);
@@ -73,4 +61,11 @@ void PopupLabel::setBackgoundRect()
     mBackground.setOrigin(bounds.left + bounds.width, bounds.top + bounds.height); 
 }
 
+void PopupLabel::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    if (mShow)
+    {
+        target.draw(mBackground, states);
+        target.draw(mText, states);
+    }
 }

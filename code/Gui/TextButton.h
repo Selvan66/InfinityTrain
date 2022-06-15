@@ -3,9 +3,6 @@
 
 #include "Gui/Button.h"
 
-namespace GUI
-{
-
 class TextButton : public Button
 {
     public:
@@ -18,5 +15,3 @@ class TextButton : public Button
     private:
         sf::Text mText;    
 };
-
-}

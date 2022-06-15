@@ -18,9 +18,9 @@ void StatisticsState::draw()
 		window.draw(text);
 }
 
-bool StatisticsState::update(sf::Time dt)
+bool StatisticsState::update(sf::Time)
 {
-    mBackButton.update(dt);
+    mBackButton.update();
     return true;
 }
 

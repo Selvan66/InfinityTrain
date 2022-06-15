@@ -18,10 +18,10 @@ void MenuOptionsState::draw()
 		window.draw(button);
 }
 
-bool MenuOptionsState::update(sf::Time dt)
+bool MenuOptionsState::update(sf::Time)
 {
     for (auto& button : mTextButtons)
-		button.update(dt);
+		button.update();
 	
 	return true;
 }

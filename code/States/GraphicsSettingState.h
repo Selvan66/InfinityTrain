@@ -18,11 +18,11 @@ class GraphicsSettingState : public State
     private:
         sf::Text mResolution;
         std::pair<int, int> mSaveResolution;
-        GUI::TextSlider mResolutionSlider;
+        TextSlider mResolutionSlider;
 
         sf::Text mFullscreen;
         bool mSaveFullscreen;
-        GUI::Checkbox mFullscreenCheckbox;
+        Checkbox mFullscreenCheckbox;
 
-        std::list<GUI::TextButton> mOptionButtons; 
+        std::list<TextButton> mOptionButtons; 
 };

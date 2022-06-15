@@ -25,10 +25,10 @@ void PauseState::draw()
 	
 }
 
-bool PauseState::update(sf::Time dt)
+bool PauseState::update(sf::Time)
 {
     for (auto& button : mButtons)
-        button.update(dt);
+        button.update();
     
     return false;
 }

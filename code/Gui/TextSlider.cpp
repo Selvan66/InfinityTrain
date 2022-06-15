@@ -2,9 +2,6 @@
 #include "Gui/TextSlider.h"
 #include "Utils/Utility.h"
 
-namespace GUI
-{
-
 TextSlider::TextSlider(Context& context)
 : mContext(context)
 , mLeft(context, 
@@ -41,18 +38,6 @@ void TextSlider::addText(const std::string& text)
     mTextIndex = 0;
 }
 
-void TextSlider::handleEvent(const sf::Event& event)
-{
-    mLeft.handleEvent(event);
-    mRight.handleEvent(event);
-}
-
-void TextSlider::update(sf::Time dt)
-{
-    mLeft.update(dt);
-    mRight.update(dt);   
-}
-
 std::string TextSlider::getCurrentText() const
 {
     assert(mTextIndex != -1);
@@ -84,15 +69,16 @@ void TextSlider::setPosition(float x, float y)
     sf::Transformable::setPosition(x, y);
 }
 
-void TextSlider::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void TextSlider::handleEvent(const sf::Event& event)
 {
-    states.transform *= sf::Transformable::getTransform();
-    if (mTextIndex != -1)
-    {
-        target.draw(mLeft);
-        target.draw(mRight);
-        target.draw(mTextArray[mTextIndex], states);
-    }
+    mLeft.handleEvent(event);
+    mRight.handleEvent(event);
+}
+
+void TextSlider::update()
+{
+    mLeft.update();
+    mRight.update();   
 }
 
 void TextSlider::setNextText()
@@ -107,4 +93,13 @@ void TextSlider::setPrevText()
         --mTextIndex;
 }
 
+void TextSlider::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+    states.transform *= sf::Transformable::getTransform();
+    if (mTextIndex != -1)
+    {
+        target.draw(mLeft);
+        target.draw(mRight);
+        target.draw(mTextArray[mTextIndex], states);
+    }
 }

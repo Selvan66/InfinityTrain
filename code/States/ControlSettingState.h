@@ -18,12 +18,12 @@ class ControlSettingState : public State
         void updateTextOnButton();
         void changeActionBinding(std::string key);
     private:
-        std::array<GUI::TextButton, Player::ActionCount> mControlButton;
+        std::array<TextButton, Player::ActionCount> mControlButton;
         std::unordered_map<std::string, std::string> mActionBinding;
         std::string mActionToChange;
         bool mChange;
         sf::RectangleShape mChangeBackground;
         sf::Text mChangeText;
 
-        std::list<GUI::TextButton> mOptionButton;
+        std::list<TextButton> mOptionButton;
 };

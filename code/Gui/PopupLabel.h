@@ -3,9 +3,6 @@
 
 #include "App/Context.h"
 
-namespace GUI
-{
-
 class PopupLabel : public sf::Drawable, public sf::NonCopyable
 {
     public:
@@ -14,9 +11,10 @@ class PopupLabel : public sf::Drawable, public sf::NonCopyable
         void setObjectRect(const sf::FloatRect& objectRect);
         void handleEvent(const sf::Event& event);
     private:
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         void setBackgoundRect();
         void setLabelPos(const sf::Vector2f& pos);
+        
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::RectangleShape mBackground;
         bool mShow;
@@ -24,5 +22,3 @@ class PopupLabel : public sf::Drawable, public sf::NonCopyable
         sf::FloatRect mObjectRect;
         Context& mContext;
 };
-
-}

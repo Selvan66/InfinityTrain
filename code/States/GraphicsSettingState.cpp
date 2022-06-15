@@ -26,12 +26,12 @@ void GraphicsSettingState::draw()
 		window.draw(button);
 }
 
-bool GraphicsSettingState::update(sf::Time dt)
+bool GraphicsSettingState::update(sf::Time)
 {
-    mResolutionSlider.update(dt);
-    mFullscreenCheckbox.update(dt);
+    mResolutionSlider.update();
+    mFullscreenCheckbox.update();
     for (auto& button : mOptionButtons)
-		button.update(dt);
+		button.update();
 
     if (mFullscreenCheckbox.isSelected())
         mResolutionSlider.setCurrentText("1920x1080");

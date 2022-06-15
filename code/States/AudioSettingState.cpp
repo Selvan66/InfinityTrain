@@ -27,12 +27,12 @@ void AudioSettingState::draw()
 		window.draw(button);
 }
 
-bool AudioSettingState::update(sf::Time dt)
+bool AudioSettingState::update(sf::Time)
 {
-    mMusicSlider.update(dt);
-    mSoundSlider.update(dt);
+    mMusicSlider.update();
+    mSoundSlider.update();
     for (auto& button : mOptionButtons)
-		button.update(dt);
+		button.update();
     return true;
 }
 

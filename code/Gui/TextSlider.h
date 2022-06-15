@@ -5,23 +5,22 @@
 
 #include "Gui/TextureButton.h"
 
-namespace GUI
-{
-
-class TextSlider : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
+class TextSlider : public Component
 {
     public:
         TextSlider(Context& context);
         void addText(const std::string& text);
-        void handleEvent(const sf::Event& event);
-        void update(sf::Time dt);
         std::string getCurrentText() const;
         void setCurrentText(const std::string& text);
         void setPosition(float x, float y);
+
+        virtual void handleEvent(const sf::Event& event) override;
+        virtual void update() override;
     private:
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
         void setNextText();
         void setPrevText();
+
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         Context& mContext;
         TextureButton mLeft;
@@ -30,5 +29,3 @@ class TextSlider : public sf::Drawable, public sf::Transformable, public sf::Non
         int mTextIndex;
         float mMaxTextWidth;
 };
-
-}

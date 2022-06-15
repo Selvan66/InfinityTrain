@@ -17,11 +17,11 @@ class AudioSettingState : public State
     private:
         sf::Text mMusic;
         float mSaveMusic;
-        GUI::TextSlider mMusicSlider;
+        TextSlider mMusicSlider;
 
         sf::Text mSounds;
         float mSaveSound;
-        GUI::TextSlider mSoundSlider;
+        TextSlider mSoundSlider;
 
-        std::list<GUI::TextButton> mOptionButtons; 
+        std::list<TextButton> mOptionButtons; 
 };

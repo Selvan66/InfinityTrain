@@ -3,9 +3,6 @@
 
 #include "Gui/Button.h"
 
-namespace GUI
-{
-
 class TextureButton : public Button
 {
     public:
@@ -21,5 +18,3 @@ class TextureButton : public Button
         sf::IntRect mPressedRect;
         sf::Sprite mButton;
 };
-
-}

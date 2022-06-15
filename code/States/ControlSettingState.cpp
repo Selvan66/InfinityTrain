@@ -33,15 +33,15 @@ void ControlSettingState::draw()
     }
 }
 
-bool ControlSettingState::update(sf::Time dt)
+bool ControlSettingState::update(sf::Time)
 {
     if (!mChange) 
     {
         for (auto& button : mControlButton)
-            button.update(dt);
+            button.update();
 
         for (auto& button : mOptionButton)
-            button.update(dt);
+            button.update();
     }
 
     return true;
