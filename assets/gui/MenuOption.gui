@@ -1,10 +1,9 @@
-TextButton {
-    id "PlayButton",
-    pos {${WINDOW_WIDTH} / 2, ${WINDOW_HEIGHT} / 2},
-    text "PLAY"
-};
+[TextButton]
+id PlayButton
+pos {WINDOW_WIDTH/2,WINDOW_HEIGHT/2}
+text PLAY
 
-TextButton {
-    id "StatisticButton",
-    pos {${WINDOW_WIDTH} / 2, ${WINDOW_HEIGHT} / 2 + ${BUTTON_HEIGHT}}
-};
+[TextButton]
+id StatisticButton
+pos {WINDOW_WIDTH/2,WINDOW_HEIGHT/2+BUTTON_HEIGHT}
+text STATISTIC
