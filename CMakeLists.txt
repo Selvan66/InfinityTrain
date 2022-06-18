@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.1)
 project(InfinityTrain)
 
+# Compiler
+if (MSVC)
+    add_compile_options(/bigobj)
+else ()
+    add_compile_options(-Wa, -mbig-obj)
+endif()
+
 # Cmake
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
