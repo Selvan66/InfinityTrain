@@ -2,6 +2,7 @@
     ogg/1.3.5
     sfml/2.5.1
     nlohmann_json/3.10.5
+    exprtk/0.0.1
 
 [generators]
     cmake
