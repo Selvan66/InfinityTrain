@@ -1,40 +1,46 @@
 /** @file ParserGui.cpp */
 #include <fstream>
+#include <regex>
+#include <sstream>
 
 #include "Utils/ParserGui.h"
+#include "App/Context.h"
 #include "Gui/TextButton.h"
 
-ParserGui::ParserGui(Context& context)
-: mContext(context)
-, mFile()
+ParserGui::ParserGui()
+: mFile()
 , mConstants()
 { }
 
 bool ParserGui::loadFromFile(const std::string& filename)
 {
     std::fstream file(filename, std::ios_base::in);
+    std::stringstream ss;
     if (!file.is_open())
         return false;
     
-    mFile << file.rdbuf();
-    
-    file.clear();
+    mFile.clear();
+    ss << file.rdbuf();
+    mFile = ss.str();
+
+    file.close();
     return true;
 }
 
-void ParserGui::addConst(const std::string& name, double value)
+void ParserGui::addConst(const std::string& name, float value)
 {
-    mConstants[name] = value;
+    mConstants.add_constant(name, value);
 }
 
-ParserGui::GuiParsePtr ParserGui::parse()
+ParserGui::GuiParsePtr ParserGui::parse(Context& context)
 {
+    std::stringstream ss(mFile);
     GuiParsePtr ret(new GuiParseType);
     ComponentPtr component(nullptr);
     std::string word(""), id(""), value("");
-    while (!mFile.eof())
+    while (!ss.eof())
     {  
-        mFile >> word;
+        ss >> word;
         if (isComponent(word))
         {  
             if (component.get() != nullptr)
@@ -45,11 +51,11 @@ ParserGui::GuiParsePtr ParserGui::parse()
                 id = "";
             }
 
-            component = getComponent(word);
+            component = getComponent(word, context);
         }
         else
         {
-            mFile >> value;
+            ss >> value;
             if (isId(word))
                 id = value;
             else
@@ -67,6 +73,25 @@ ParserGui::GuiParsePtr ParserGui::parse()
     return move(ret);
 }
 
+bool ParserGui::isVector(const std::string& word) const
+{
+    if ((word[0] == '{') && (word.back() != '}'))
+        return true;
+    return false;
+}
+
+std::vector<std::string> ParserGui::splitVector(const std::string& word) const
+{
+    std::vector<std::string> ret;
+    std::stringstream ss(word.substr(1, word.size() - 2));
+    std::string item;
+
+    while (std::getline(ss, item, ','))
+        ret.push_back(item);
+
+    return ret;
+}
+
 bool ParserGui::isComponent(const std::string& word) const
 {
     if ((word[0] == '[') && (word.back() == ']'))
@@ -74,12 +99,12 @@ bool ParserGui::isComponent(const std::string& word) const
     return false;
 }
 
-ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word) const
+ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word, Context& context) const
 {
     if (word == "[TextButton]")
-        return std::move(std::unique_ptr<TextButton>(new TextButton(mContext)));
-    else
-        assert(true);   //TODO
+        return std::move(std::unique_ptr<TextButton>(new TextButton(context)));
+    
+    assert(true);   //TODO
 }
 
 bool ParserGui::isId(const std::string& word) const
@@ -89,12 +114,29 @@ bool ParserGui::isId(const std::string& word) const
     return false;
 }
 
-sf::Vector2f ParserGui::parsePosition(const std::string& value) const
+sf::Vector2f ParserGui::parsePosition(const std::string& value)
 {
-    return {500, 500};  //TODO
+    if (!isVector(value))
+        assert(true);    //TODO
+    
+    auto equtaions = splitVector(value);
+
+    float ret[2];
+    exprtk::expression<float> expr;
+    expr.register_symbol_table(mConstants);
+    exprtk::parser<float> parser;
+
+    for (int i = 0; i < equtaions.size(); ++i)
+    {
+        if (!parser.compile(equtaions[i], expr))
+            assert(true);   //TODO
+        ret[i] = expr.value();
+    }
+
+    return sf::Vector2f(ret[0], ret[1]);
 }
 
-void ParserGui::setProperties(ComponentPtr& component, const std::string& propertie, const std::string& value) const
+void ParserGui::setProperties(ComponentPtr& component, const std::string& propertie, const std::string& value)
 {
     if (propertie == "pos")
     {
