@@ -5,6 +5,7 @@
 #include <SFML/Audio.hpp>
 
 #include "Utils/ResourceHolder.h"
+#include "Utils/ParserGui.h"
 
 enum class TexturesID
 {
@@ -36,3 +37,10 @@ enum class SoundsID
 };
 
 typedef ResourceHolder<sf::SoundBuffer, SoundsID> SoundBufferHolder;
+
+enum class GuiFileID
+{
+	MenuOptions
+};
+
+typedef ResourceHolder<ParserGui, GuiFileID> GuiFileHolder;

@@ -3,6 +3,7 @@
 
 #include "States/State.h"
 #include "Gui/TextButton.h"
+#include "Utils/ParserGui.h"
 
 class MenuOptionsState : public State
 {
@@ -12,7 +13,7 @@ class MenuOptionsState : public State
 		virtual bool update(sf::Time dt) override;
 		virtual bool handleEvent(const sf::Event& event) override;
 	private:
-		void createButtons();
+		void createGUI();
 	private:
-		std::list<TextButton> mTextButtons;
+		ParserGui::GuiParsePtr mGui;
 };

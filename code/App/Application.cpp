@@ -20,6 +20,7 @@ Application::Application()
 {
 	loadMenuTexture();
 	loadFonts();
+	loadGuiFile();
 
 	mStatisticsText.setFont(mContext.fonts.get(FontsID::PixelFont)); //< Only for debug
 	mStatisticsText.setPosition(20.f, 20.f); //< Only for debug
@@ -103,6 +104,11 @@ void Application::loadMenuTexture()
 void Application::loadFonts()
 {
 	mContext.fonts.load(FontsID::PixelFont, "fonts/PixelFont.ttf");
+}
+
+void Application::loadGuiFile()
+{
+	mContext.gui.load(GuiFileID::MenuOptions, "gui/MenuOption.gui");
 }
 
 void Application::updateStatistics(sf::Time dt)

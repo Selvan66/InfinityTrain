@@ -17,6 +17,7 @@ struct Context : public sf::NonCopyable
 	sf::RenderWindow window;
 	TextureHolder textures;
 	FontHolder fonts;
+	GuiFileHolder gui;
 	SoundPlayer sounds;
 	MusicPlayer musics;
 	Player player;
