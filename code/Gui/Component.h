@@ -7,6 +7,6 @@ class Component : public sf::Drawable, public sf::Transformable, public sf::NonC
 {
     public:
         Component();
-        virtual void handleEvent(const sf::Event& event) = 0;
-        virtual void update() = 0;
+        virtual void handleEvent(const sf::Event& event);
+        virtual void update();
 };
