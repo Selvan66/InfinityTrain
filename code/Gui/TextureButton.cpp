@@ -2,14 +2,19 @@
 #include "Gui/TextureButton.h"
 #include "Utils/Utility.h"
 
-TextureButton::TextureButton(Context& context, const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed)
+TextureButton::TextureButton(Context& context)
 : Button(context)
-, mTexture(texture)
-, mNormalRect(normal)
-, mSelectedRect(selected)
-, mPressedRect(pressed)
+, mNormalButton()
+, mSelectedButton()
+, mPressedButton()
 , mButton()
-{ 
+{ }
+
+void TextureButton::setTextute(const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed)
+{
+    mNormalButton = sf::Sprite(texture, normal);
+    mSelectedButton = sf::Sprite(texture, selected);    
+    mPressedButton = sf::Sprite(texture, pressed);
     changeTexture(Button::Normal);
 }
 
@@ -23,13 +28,13 @@ void TextureButton::changeTexture(Button::Type buttonType)
     switch (buttonType)
     {
         case Normal:
-            mButton = sf::Sprite(mTexture, mNormalRect);
+            mButton = mNormalButton;
             break;
         case Selected:
-            mButton = sf::Sprite(mTexture, mSelectedRect);
+            mButton = mSelectedButton;
             break;
         case Pressed:
-            mButton = sf::Sprite(mTexture, mPressedRect);
+            mButton = mPressedButton;
             break;
     }
     Utility::centerOrigin(mButton);

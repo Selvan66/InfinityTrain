@@ -12,11 +12,11 @@ class TextSlider : public Component
         void addText(const std::string& text);
         std::string getCurrentText() const;
         void setCurrentText(const std::string& text);
-        void setPosition(float x, float y);
 
         virtual void handleEvent(const sf::Event& event) override;
         virtual void update() override;
     private:
+        void setPosition(const sf::Vector2f& pos);
         void setNextText();
         void setPrevText();
 

@@ -4,24 +4,27 @@
 
 TextSlider::TextSlider(Context& context)
 : mContext(context)
-, mLeft(context, 
-    context.textures.get(TexturesID::ArrowButtons), 
-    sf::IntRect(0, 0, 256, 256), 
-    sf::IntRect(257, 0, 256, 256), 
-    sf::IntRect(517, 0, 256, 256))
-, mRight(context, 
-    context.textures.get(TexturesID::ArrowButtons), 
-    sf::IntRect(0, 0, 256, 256), 
-    sf::IntRect(257, 0, 256, 256), 
-    sf::IntRect(517, 0, 256, 256))
+, mLeft(context)
+, mRight(context)
 , mTextArray()
 , mTextIndex(-1)
 , mMaxTextWidth(0)
 {
+    mLeft.setTextute(context.textures.get(TexturesID::ArrowButtons), 
+                    sf::IntRect(0, 0, 256, 256), 
+                    sf::IntRect(257, 0, 256, 256), 
+                    sf::IntRect(517, 0, 256, 256));
+    
     mLeft.rotate(180);  
     mLeft.setScale(60.f / 256.f, 60.f / 256.f); 
     mLeft.setCallback([this](){this->setPrevText();});
     
+    
+    mRight.setTextute(context.textures.get(TexturesID::ArrowButtons), 
+                    sf::IntRect(0, 0, 256, 256), 
+                    sf::IntRect(257, 0, 256, 256), 
+                    sf::IntRect(517, 0, 256, 256));
+                    
     mRight.setScale(60.f / 256.f, 60.f / 256.f); 
     mRight.setCallback([this](){this->setNextText();});
 }
@@ -60,13 +63,12 @@ void TextSlider::setCurrentText(const std::string& text)
 }
 
 // Apply after addText()
-void TextSlider::setPosition(float x, float y)
+void TextSlider::setPosition(const sf::Vector2f& pos)
 {
     mLeft.setPosition(-mMaxTextWidth / 1.5f, 0);
     mRight.setPosition(mMaxTextWidth / 1.5f, 0);
-    mLeft.move(x, y);
-    mRight.move(x, y);
-    sf::Transformable::setPosition(x, y);
+    mLeft.move(pos);
+    mRight.move(pos);
 }
 
 void TextSlider::handleEvent(const sf::Event& event)
@@ -79,6 +81,8 @@ void TextSlider::update()
 {
     mLeft.update();
     mRight.update();   
+
+    setPosition(sf::Transformable::getPosition());
 }
 
 void TextSlider::setNextText()
