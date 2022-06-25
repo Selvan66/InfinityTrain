@@ -1,17 +1,14 @@
 /** @file AudioSettingState.cpp */
 #include "States/AudioSettingState.h"
 #include "Utils/Utility.h"
-
+#include "Gui/TextSlider.h"
+#include "Gui/TextButton.h"
 
 AudioSettingState::AudioSettingState(StateStack& stack, Context& context)
 : State(stack, context)
-, mMusic("MUSIC VOLUME", context.fonts.get(FontsID::PixelFont), 60)
 , mSaveMusic(context.settings.get<float>("Audio", "Music Volume"))
-, mMusicSlider(context)
-, mSounds("SOUND VOLUME", context.fonts.get(FontsID::PixelFont), 60)
 , mSaveSound(context.settings.get<float>("Audio", "Sounds Volume"))
-, mSoundSlider(context)
-, mOptionButtons()
+, mGui()
 {
     createGUI();
 }
@@ -19,65 +16,40 @@ AudioSettingState::AudioSettingState(StateStack& stack, Context& context)
 void AudioSettingState::draw()
 {
     auto& window = State::getContext().window;
-    window.draw(mMusic);
-    window.draw(mMusicSlider);
-    window.draw(mSounds);
-    window.draw(mSoundSlider);
-    for (auto& button : mOptionButtons)
-		window.draw(button);
+    for (auto& component : *mGui)
+		window.draw(*component.second);
 }
 
 bool AudioSettingState::update(sf::Time)
 {
-    mMusicSlider.update();
-    mSoundSlider.update();
-    for (auto& button : mOptionButtons)
-		button.update();
+    for (auto& component : *mGui)
+		component.second->update(); 
     return true;
 }
 
 bool AudioSettingState::handleEvent(const sf::Event& event)
 {
-    mMusicSlider.handleEvent(event);
-    mSoundSlider.handleEvent(event);
-    for (auto& button : mOptionButtons)
-		button.handleEvent(event);
+    for (auto& component : *mGui)
+		component.second->handleEvent(event);
     return true;
 }
 
 void AudioSettingState::createGUI()
 {
     auto& context = State::getContext();
-    const sf::Vector2f& windowsize = context.window.getView().getSize();
+    const sf::Vector2f& window_size = context.window.getView().getSize();
 
-    for (int i = 0; i <= 100; i += 5)
-        mMusicSlider.addText(std::to_string(i));
-    mMusicSlider.setCurrentText(std::to_string(static_cast<int>(mSaveMusic)));
+    ParserGui& parser = context.gui.get(GuiFileID::AudioSetting);
+    parser.addConst("TEXT_HEIGHT", 100.f);
+    parser.addConst("TEXT_WIDTH", 270.f);
+    parser.addConst("WINDOW_WIDTH", window_size.x);
+	parser.addConst("WINDOW_HEIGHT", window_size.y);
+    mGui = parser.parse(context);
 
-    for (int i = 0; i <= 100; i += 5)
-        mSoundSlider.addText(std::to_string(i));
-    mSoundSlider.setCurrentText(std::to_string(static_cast<int>(mSaveSound)));
-
-    Utility::centerOrigin(mMusic);
-    mMusic.setOutlineThickness(2.f);
-	mMusic.setOutlineColor(sf::Color(0, 0, 0));
-    float textwidth = mMusic.getGlobalBounds().width * 3.f / 5.f;
-    float textheight = mMusic.getGlobalBounds().height + 50.f;
-    mMusic.setPosition(sf::Vector2f((windowsize.x / 2.f) - textwidth, windowsize.y / 2.f));
-    mMusicSlider.setPosition((windowsize.x / 2.f) + textwidth, windowsize.y / 2.f);
-
-    Utility::centerOrigin(mSounds);
-    mSounds.setOutlineThickness(2.f);
-	mSounds.setOutlineColor(sf::Color(0, 0, 0));
-    mSounds.setPosition(sf::Vector2f((windowsize.x / 2.f) - textwidth, (windowsize.y / 2.f) + textheight));
-    mSoundSlider.setPosition((windowsize.x / 2.f) + textwidth,(windowsize.y / 2.f) + textheight);
-
-
-    mOptionButtons.emplace_back(context);
-    auto& backButton = mOptionButtons.back();
-    backButton.setText("BACK");
-    backButton.setPosition(sf::Vector2f(windowsize.x  * 2.f/8.f, windowsize.y * 4.f / 5.f));
-    backButton.setCallback([&]()
+    Utility::safeCasting<TextSlider>(mGui->at("MusicSlider").get())->setCurrentText(std::to_string(static_cast<int>(mSaveMusic)));
+    Utility::safeCasting<TextSlider>(mGui->at("SoundSlider").get())->setCurrentText(std::to_string(static_cast<int>(mSaveSound)));
+    
+    Utility::safeCasting<TextButton>(mGui->at("BackButton").get())->setCallback([&]()
     {
         auto& context = State::getContext();
         context.settings.set(mSaveMusic, "Audio", "Music Volume");
@@ -88,28 +60,20 @@ void AudioSettingState::createGUI()
         this->requestStackPush(StatesID::SettingState);
     });
 
-    mOptionButtons.emplace_back(context);
-    auto& applyButton = mOptionButtons.back();
-    applyButton.setText("APPLY");
-    applyButton.setPosition(sf::Vector2f(windowsize.x  * 4.f/8.f, windowsize.y * 4.f / 5.f));
-    applyButton.setCallback([&]()
+    Utility::safeCasting<TextButton>(mGui->at("ApplyButton").get())->setCallback([&]()
     {
-        float applyMusic = std::stof(mMusicSlider.getCurrentText());
-        float applySound = std::stof(mSoundSlider.getCurrentText());
+        float applyMusic = std::stof(Utility::safeCasting<TextSlider>(mGui->at("MusicSlider").get())->getCurrentText());
+        float applySound = std::stof(Utility::safeCasting<TextSlider>(mGui->at("SoundSlider").get())->getCurrentText());
         context.settings.set(applyMusic, "Audio", "Music Volume");
         context.settings.set(applySound, "Audio", "Sounds Volume");
         context.applyAudioSettings();
         context.musics.replay();
     });
 
-    mOptionButtons.emplace_back(context);
-    auto& saveButton = mOptionButtons.back();
-    saveButton.setText("APPLY & SAVE");
-    saveButton.setPosition(sf::Vector2f(windowsize.x  * 6.f/8.f, windowsize.y * 4.f / 5.f));
-    saveButton.setCallback([&]()
+    Utility::safeCasting<TextButton>(mGui->at("ApplySaveButton").get())->setCallback([&]()
     {
-        mSaveMusic = std::stof(mMusicSlider.getCurrentText());
-        mSaveSound =std::stof(mSoundSlider.getCurrentText());
+        mSaveMusic = std::stof(Utility::safeCasting<TextSlider>(mGui->at("MusicSlider").get())->getCurrentText());
+        mSaveSound =std::stof(Utility::safeCasting<TextSlider>(mGui->at("SoundSlider").get())->getCurrentText());
         context.settings.set(mSaveMusic, "Audio", "Music Volume");
         context.settings.set(mSaveSound, "Audio", "Sounds Volume");
         context.applyAudioSettings();

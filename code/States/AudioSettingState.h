@@ -2,8 +2,7 @@
 #pragma once
 
 #include "States/State.h"
-#include "Gui/TextSlider.h"
-#include "Gui/TextButton.h"
+#include "Utils/ParserGui.h"
 
 class AudioSettingState : public State
 {
@@ -15,13 +14,8 @@ class AudioSettingState : public State
     private:
         void createGUI();
     private:
-        sf::Text mMusic;
         float mSaveMusic;
-        TextSlider mMusicSlider;
-
-        sf::Text mSounds;
         float mSaveSound;
-        TextSlider mSoundSlider;
 
-        std::list<TextButton> mOptionButtons; 
+        ParserGui::GuiParsePtr mGui;
 };
