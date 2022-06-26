@@ -4,8 +4,13 @@
 #include <sstream>
 
 #include "Utils/ParserGui.h"
+#include "Utils/Utility.h"
 #include "App/Context.h"
+#include "Gui/Text.h"
 #include "Gui/TextButton.h"
+#include "Gui/Checkbox.h"
+#include "Gui/TextureButton.h"
+#include "Gui/TextSlider.h"
 
 ParserGui::ParserGui()
 : mFile()
@@ -55,7 +60,8 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context)
         }
         else
         {
-            ss >> value;
+            ss.get();   // Delete whitespace
+            std::getline(ss, value);
             if (isId(word))
                 id = value;
             else
@@ -103,7 +109,14 @@ ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word, Context
 {
     if (word == "[TextButton]")
         return std::move(std::unique_ptr<TextButton>(new TextButton(context)));
-    
+    else if (word == "[CheckBox]")
+        return std::move(std::unique_ptr<Checkbox>(new Checkbox(context)));
+    else if (word == "[TextureButton]")
+        return std::move(std::unique_ptr<TextureButton>(new TextureButton(context)));
+    else if (word == "[Text]")
+        return std::move(std::unique_ptr<Text>(new Text(context)));
+    else if (word == "[TextSlider]")
+        return std::move(std::unique_ptr<TextSlider>(new TextSlider(context)));
     assert(true);   //TODO
 }
 
@@ -139,17 +152,14 @@ sf::Vector2f ParserGui::parsePosition(const std::string& value)
 void ParserGui::setProperties(ComponentPtr& component, const std::string& propertie, const std::string& value)
 {
     if (propertie == "pos")
-    {
         component->setPosition(parsePosition(value));
-    }
     else if (propertie == "text")
-    {
-        if (dynamic_cast<TextButton*>(component.get()) == nullptr)
-            assert(true);   //TODO
-        static_cast<TextButton*>(component.get())->setText(value);
-    }
+        Utility::safeCasting<TextButton>(component.get())->setText(value);
+    else if (propertie == "string")
+        Utility::safeCasting<Text>(component.get())->setString(value);
+    else if (propertie == "texts")
+        for (auto& text : splitVector(value)) 
+            Utility::safeCasting<TextSlider>(component.get())->addText(text);
     else
-    {
         assert(true);   //TODO
-    }
 }
