@@ -1,0 +1,33 @@
+[TextSlider]
+id ResolutionSlider
+texts {800x600,1024x576,1366x768,1600x900,1920x1080}
+pos {WINDOW_WIDTH / 2 + TEXT_WIDTH, WINDOW_HEIGHT / 2}
+
+[CheckBox]
+id FullscreenBox
+pos {WINDOW_WIDTH / 2 + TEXT_WIDTH, WINDOW_HEIGHT / 2 + TEXT_HEIGHT}
+
+[Text]
+id ResolutionText
+string RESOLUTION
+pos {WINDOW_WIDTH / 2 - TEXT_WIDTH, WINDOW_HEIGHT / 2}
+
+[Text]
+id FullscreenText
+string FULLSCREEN
+pos {WINDOW_WIDTH / 2 - TEXT_WIDTH, WINDOW_HEIGHT / 2 + TEXT_HEIGHT}
+
+[TextButton]
+id BackButton
+text BACK
+pos {WINDOW_WIDTH * 2 / 8, WINDOW_HEIGHT * 4 / 5}
+
+[TextButton]
+id ApplyButton
+text APPLY
+pos {WINDOW_WIDTH * 4 / 8, WINDOW_HEIGHT * 4 / 5}
+
+[TextButton]
+id ApplySaveButton
+text APPLY & SAVE
+pos {WINDOW_WIDTH * 6 / 8, WINDOW_HEIGHT * 4 / 5}
