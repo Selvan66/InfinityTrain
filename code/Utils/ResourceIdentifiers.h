@@ -40,7 +40,9 @@ typedef ResourceHolder<sf::SoundBuffer, SoundsID> SoundBufferHolder;
 
 enum class GuiFileID
 {
-	MenuOptions
+	MenuOptions,
+	AudioSetting,
+	GraphicsSetting,
 };
 
 typedef ResourceHolder<ParserGui, GuiFileID> GuiFileHolder;
