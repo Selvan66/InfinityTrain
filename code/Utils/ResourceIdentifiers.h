@@ -43,6 +43,7 @@ enum class GuiFileID
 	MenuOptions,
 	AudioSetting,
 	GraphicsSetting,
+	Pause,
 };
 
 typedef ResourceHolder<ParserGui, GuiFileID> GuiFileHolder;

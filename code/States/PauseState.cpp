@@ -1,10 +1,11 @@
 /** @file PauseState.cpp */
 #include "States/PauseState.h"
 #include "Utils/Utility.h"
+#include "Gui/TextButton.h"
 
 PauseState::PauseState(StateStack& stack, Context& context)
 : State(stack, context)
-, mButtons()
+, mGui()
 , mBackgroundShape()
 {
     createGUI();
@@ -20,15 +21,15 @@ void PauseState::draw()
 {
     auto& window = State::getContext().window;
     window.draw(mBackgroundShape);
-    for (auto& button : mButtons)
-		window.draw(button);
+    for (auto& component : *mGui)
+		window.draw(*component.second);
 	
 }
 
 bool PauseState::update(sf::Time)
 {
-    for (auto& button : mButtons)
-        button.update();
+    for (auto& component : *mGui)
+		component.second->update();
     
     return false;
 }
@@ -38,8 +39,8 @@ bool PauseState::handleEvent(const sf::Event& event)
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         requestStackPop();
         
-    for (auto& button : mButtons)
-        button.handleEvent(event);
+    for (auto& component : *mGui)
+		component.second->handleEvent(event);
 
     return false;
 }
@@ -47,26 +48,24 @@ bool PauseState::handleEvent(const sf::Event& event)
 void PauseState::createGUI()
 {
     auto& context = State::getContext();
-    const sf::Vector2f& windowSize = context.window.getView().getSize();
-    const float buttonHeight = 65.f;
+    const sf::Vector2f& window_size = context.window.getView().getSize();
+    const float button_height = 65.f;
     
     mBackgroundShape.setFillColor(sf::Color(0, 0, 0, 150));
     mBackgroundShape.setSize(context.window.getView().getSize());
 
-    mButtons.emplace_back(context);
-	auto& backButton = mButtons.back();
-	backButton.setText("BACK");
-	backButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2));
-	backButton.setCallback([this]()
+    ParserGui& parser = context.gui.get(GuiFileID::Pause);
+    parser.addConst("BUTTON_HEIGHT", button_height);
+    parser.addConst("WINDOW_WIDTH", window_size.x);
+	parser.addConst("WINDOW_HEIGHT", window_size.y);
+    mGui = parser.parse(context);
+
+	Utility::safeCasting<TextButton>(mGui->at("BackButton").get())->setCallback([this]()
 	{
 		this->requestStackPop();
 	});
 
-    mButtons.emplace_back(context);
-	auto& quitButton = mButtons.back();
-	quitButton.setText("QUIT");
-	quitButton.setPosition(sf::Vector2f(windowSize.x / 2, windowSize.y / 2 + buttonHeight));
-	quitButton.setCallback([this]()
+	Utility::safeCasting<TextButton>(mGui->at("QuitButton").get())->setCallback([this]()
 	{
 		this->requestStackClear();
         this->requestStackPush(StatesID::MenuState);

@@ -118,6 +118,7 @@ ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word, Context
     else if (word == "[TextSlider]")
         return std::move(std::unique_ptr<TextSlider>(new TextSlider(context)));
     assert(true);   //TODO
+    return std::move(std::unique_ptr<Component>(nullptr));
 }
 
 bool ParserGui::isId(const std::string& word) const

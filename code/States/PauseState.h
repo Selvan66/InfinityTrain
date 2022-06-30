@@ -2,7 +2,7 @@
 #pragma once
 
 #include "States/State.h"
-#include "Gui/TextButton.h"
+#include "Utils/ParserGui.h"
 
 class PauseState : public State
 {
@@ -15,6 +15,6 @@ class PauseState : public State
     private:
         void createGUI();
     private:
-        std::list<TextButton> mButtons;
+        ParserGui::GuiParsePtr mGui;
         sf::RectangleShape mBackgroundShape;
 };

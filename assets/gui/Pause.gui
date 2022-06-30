@@ -1,0 +1,9 @@
+[TextButton]
+id BackButton
+pos {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2}
+text BACK
+
+[TextButton]
+id QuitButton
+pos {WINDOW_WIDTH / 2, (WINDOW_HEIGHT / 2) + BUTTON_HEIGHT}
+text QUIT
