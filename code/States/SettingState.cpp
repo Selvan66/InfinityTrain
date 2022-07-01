@@ -1,9 +1,11 @@
 /** @file SettingState.cpp */
 #include "States/SettingState.h"
+#include "Utils/Utility.h"
+#include "Gui/TextButton.h"
 
 SettingState::SettingState(StateStack& stack, Context& context)
 : State(stack, context)
-, mTextButtons()
+, mGui()
 {
     createButtons();
 }
@@ -11,22 +13,22 @@ SettingState::SettingState(StateStack& stack, Context& context)
 void SettingState::draw()
 {
     auto& window = State::getContext().window;
-    for (auto& button : mTextButtons)
-		window.draw(button);
+    for (auto& component : *mGui)
+		window.draw(*component.second);
 }
 
 bool SettingState::update(sf::Time )
 {
-    for (auto& button : mTextButtons)
-		button.update();
+    for (auto& component : *mGui)
+		component.second->update();
 	
     return true;
 }
 
 bool SettingState::handleEvent(const sf::Event& event)
 {
-    for (auto& button : mTextButtons)
-		button.handleEvent(event);
+    for (auto& component : *mGui)
+		component.second->handleEvent(event);
 	
     return true;
 }
@@ -34,45 +36,34 @@ bool SettingState::handleEvent(const sf::Event& event)
 void SettingState::createButtons()
 {
     auto& context = State::getContext();
-	const sf::Vector2f& window_size = context.window.getView().getSize();
-	const float buttonHeight = 65.f;
+    const sf::Vector2f& window_size = context.window.getView().getSize();
+    const float button_height = 65.f;
+    
+    ParserGui& parser = context.gui.get(GuiFileID::Setting);
+    parser.addConst("BUTTON_HEIGHT", button_height);
+    parser.addConst("WINDOW_WIDTH", window_size.x);
+	parser.addConst("WINDOW_HEIGHT", window_size.y);
+    mGui = parser.parse(context);
 	
-	mTextButtons.emplace_back(context);
-	auto& playButton = mTextButtons.back();
-	playButton.setText("GRAPHICS");
-	playButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2));
-	playButton.setCallback([this]()
+	Utility::safeCasting<TextButton>(mGui->at("GraphicsButton").get())->setCallback([this]()
 	{
 		this->requestStackPop();
         this->requestStackPush(StatesID::GraphicsSettingState);
 	});
 	
-	mTextButtons.emplace_back(context);
-	auto& achievementsButton = mTextButtons.back();
-	achievementsButton.setText("CONTROL");
-	achievementsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + buttonHeight));
-	achievementsButton.setCallback([this]()
+	Utility::safeCasting<TextButton>(mGui->at("ControlButton").get())->setCallback([this]()
 	{
 		this->requestStackPop();
         this->requestStackPush(StatesID::ControlSettingState);
 	});
 
-
-	mTextButtons.emplace_back(context);
-	auto& settingsButton = mTextButtons.back();
-	settingsButton.setText("AUDIO");
-	settingsButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 2)));
-	settingsButton.setCallback([this]()
+	Utility::safeCasting<TextButton>(mGui->at("AudioButton").get())->setCallback([this]()
 	{
 		this->requestStackPop();
         this->requestStackPush(StatesID::AudioSettingState);
 	});
 
-	mTextButtons.emplace_back(context);
-	auto& aboutButton = mTextButtons.back();
-	aboutButton.setText("BACK");
-	aboutButton.setPosition(sf::Vector2f(window_size.x / 2, window_size.y / 2 + (buttonHeight * 3)));
-	aboutButton.setCallback([this]()
+	Utility::safeCasting<TextButton>(mGui->at("BackButton").get())->setCallback([this]()
     {
         this->requestStackPop();
         this->requestStackPush(StatesID::MenuOptionsState);

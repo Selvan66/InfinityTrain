@@ -112,6 +112,7 @@ void Application::loadGuiFile()
 	mContext.gui.load(GuiFileID::GraphicsSetting, "gui/GraphicsSetting.gui");
 	mContext.gui.load(GuiFileID::AudioSetting, "gui/AudioSetting.gui");
 	mContext.gui.load(GuiFileID::Pause, "gui/Pause.gui");
+	mContext.gui.load(GuiFileID::Setting, "gui/Setting.gui");
 }
 
 void Application::updateStatistics(sf::Time dt)

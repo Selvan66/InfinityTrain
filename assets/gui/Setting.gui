@@ -1,0 +1,19 @@
+[TextButton]
+id GraphicsButton
+pos {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2}
+text GRAPHICS
+
+[TextButton]
+id ControlButton
+pos {WINDOW_WIDTH / 2, (WINDOW_HEIGHT / 2) + BUTTON_HEIGHT}
+text CONTROL
+
+[TextButton]
+id AudioButton
+pos {WINDOW_WIDTH / 2, (WINDOW_HEIGHT / 2) + (BUTTON_HEIGHT * 2)}
+text AUDIO
+
+[TextButton]
+id BackButton
+pos {WINDOW_WIDTH / 2, (WINDOW_HEIGHT / 2) + (BUTTON_HEIGHT * 3)}
+text BACK
