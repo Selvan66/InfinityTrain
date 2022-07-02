@@ -35,11 +35,6 @@ bool LoadingState::update(sf::Time dt)
     return true;
 }
 
-bool LoadingState::handleEvent(const sf::Event& event)
-{
-    return true;
-}
-
 void LoadingState::loadGameTexture()
 {
     auto& context = State::getContext();
