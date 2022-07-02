@@ -1,6 +1,5 @@
 /** @file AudioSettingState.cpp */
 #include "States/AudioSettingState.h"
-#include "Utils/Utility.h"
 #include "Gui/TextSlider.h"
 #include "Gui/TextButton.h"
 
@@ -8,50 +7,20 @@ AudioSettingState::AudioSettingState(StateStack& stack, Context& context)
 : State(stack, context)
 , mSaveMusic(context.settings.get<float>("Audio", "Music Volume"))
 , mSaveSound(context.settings.get<float>("Audio", "Sounds Volume"))
-, mGui()
 {
-    createGUI();
+    State::loadGuiParser(GuiFileID::AudioSetting);
+    applyGuiFunctions();
 }
 
-void AudioSettingState::draw()
-{
-    auto& window = State::getContext().window;
-    for (auto& component : *mGui)
-		window.draw(*component.second);
-}
-
-bool AudioSettingState::update(sf::Time)
-{
-    for (auto& component : *mGui)
-		component.second->update(); 
-    return true;
-}
-
-bool AudioSettingState::handleEvent(const sf::Event& event)
-{
-    for (auto& component : *mGui)
-		component.second->handleEvent(event);
-    return true;
-}
-
-void AudioSettingState::createGUI()
-{
+void AudioSettingState::applyGuiFunctions()
+{        
     auto& context = State::getContext();
-    const sf::Vector2f& window_size = context.window.getView().getSize();
 
-    ParserGui& parser = context.gui.get(GuiFileID::AudioSetting);
-    parser.addConst("TEXT_HEIGHT", 100.f);
-    parser.addConst("TEXT_WIDTH", 270.f);
-    parser.addConst("WINDOW_WIDTH", window_size.x);
-	parser.addConst("WINDOW_HEIGHT", window_size.y);
-    mGui = parser.parse(context);
-
-    Utility::safeCasting<TextSlider>(mGui->at("MusicSlider").get())->setCurrentText(std::to_string(static_cast<int>(mSaveMusic)));
-    Utility::safeCasting<TextSlider>(mGui->at("SoundSlider").get())->setCurrentText(std::to_string(static_cast<int>(mSaveSound)));
+    State::getGuiComponent<TextSlider>("MusicSlider").setCurrentText(std::to_string(static_cast<int>(mSaveMusic)));
+    State::getGuiComponent<TextSlider>("SoundSlider").setCurrentText(std::to_string(static_cast<int>(mSaveSound)));
     
-    Utility::safeCasting<TextButton>(mGui->at("BackButton").get())->setCallback([&]()
+    State::getGuiComponent<TextButton>("BackButton").setCallback([&]()
     {
-        auto& context = State::getContext();
         context.settings.set(mSaveMusic, "Audio", "Music Volume");
         context.settings.set(mSaveSound, "Audio", "Sounds Volume");
         context.applyAudioSettings();
@@ -60,20 +29,20 @@ void AudioSettingState::createGUI()
         this->requestStackPush(StatesID::SettingState);
     });
 
-    Utility::safeCasting<TextButton>(mGui->at("ApplyButton").get())->setCallback([&]()
+    State::getGuiComponent<TextButton>("ApplyButton").setCallback([&]()
     {
-        float applyMusic = std::stof(Utility::safeCasting<TextSlider>(mGui->at("MusicSlider").get())->getCurrentText());
-        float applySound = std::stof(Utility::safeCasting<TextSlider>(mGui->at("SoundSlider").get())->getCurrentText());
+        float applyMusic = std::stof(State::getGuiComponent<TextSlider>("MusicSlider").getCurrentText());
+        float applySound = std::stof(State::getGuiComponent<TextSlider>("SoundSlider").getCurrentText());
         context.settings.set(applyMusic, "Audio", "Music Volume");
         context.settings.set(applySound, "Audio", "Sounds Volume");
         context.applyAudioSettings();
         context.musics.replay();
     });
 
-    Utility::safeCasting<TextButton>(mGui->at("ApplySaveButton").get())->setCallback([&]()
+    State::getGuiComponent<TextButton>("ApplySaveButton").setCallback([&]()
     {
-        mSaveMusic = std::stof(Utility::safeCasting<TextSlider>(mGui->at("MusicSlider").get())->getCurrentText());
-        mSaveSound =std::stof(Utility::safeCasting<TextSlider>(mGui->at("SoundSlider").get())->getCurrentText());
+        mSaveMusic = std::stof(State::getGuiComponent<TextSlider>("MusicSlider").getCurrentText());
+        mSaveSound = std::stof(State::getGuiComponent<TextSlider>("SoundSlider").getCurrentText());
         context.settings.set(mSaveMusic, "Audio", "Music Volume");
         context.settings.set(mSaveSound, "Audio", "Sounds Volume");
         context.applyAudioSettings();
