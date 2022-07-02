@@ -45,6 +45,8 @@ enum class GuiFileID
 	GraphicsSetting,
 	Pause,
 	Setting,
+	Statistics,
+	ControlSetting
 };
 
 typedef ResourceHolder<ParserGui, GuiFileID> GuiFileHolder;

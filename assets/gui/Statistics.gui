@@ -1,0 +1,40 @@
+[Text]
+id TimePlayText
+string TIME PLAY
+pos {WINDOW_WIDTH / 3, WINDOW_HEIGHT / 3}
+
+[Text]
+id TimePlayVar
+pos {WINDOW_WIDTH * 2 / 3, WINDOW_HEIGHT / 3}
+
+[Text]
+id StartedGamesText
+string STARTED GAMES
+pos {WINDOW_WIDTH / 3, (WINDOW_HEIGHT / 3) + TEXT_HEIGHT}
+
+[Text]
+id StartedGamesVar
+pos {WINDOW_WIDTH * 2 / 3, (WINDOW_HEIGHT / 3) + TEXT_HEIGHT}
+
+[Text]
+id KilledEnemiesText
+string KILLED ENEMIES
+pos {WINDOW_WIDTH / 3, (WINDOW_HEIGHT / 3) + (TEXT_HEIGHT * 2)}
+
+[Text]
+id KilledEnemiesVar
+pos {WINDOW_WIDTH * 2 / 3, (WINDOW_HEIGHT / 3) + (TEXT_HEIGHT * 2)}
+
+[Text]
+id FinishedGamesText
+string FINISHED GAMES
+pos {WINDOW_WIDTH / 3, (WINDOW_HEIGHT / 3) + (TEXT_HEIGHT * 3)}
+
+[Text]
+id FinishedGamesVar
+pos {WINDOW_WIDTH * 2 / 3, (WINDOW_HEIGHT / 3) + (TEXT_HEIGHT * 3)}
+
+[TextButton]
+id BackButton
+text BACK
+pos {WINDOW_WIDTH / 2, (WINDOW_HEIGHT / 2) + (TEXT_HEIGHT * 4)}

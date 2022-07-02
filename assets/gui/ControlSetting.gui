@@ -1,0 +1,37 @@
+[TextButton]
+id PlayerMoveUp
+pos {WINDOW_WIDTH * 2 / 7, (WINDOW_HEIGHT / 2) - TEXT_HEIGHT}
+
+[TextButton]
+id PlayerMoveDown
+pos {WINDOW_WIDTH * 2 / 7, (WINDOW_HEIGHT / 2)}
+
+[TextButton]
+id PlayerMoveLeft
+pos {WINDOW_WIDTH * 2 / 7, (WINDOW_HEIGHT / 2) + TEXT_HEIGHT}
+
+[TextButton]
+id PlayerMoveRight
+pos {WINDOW_WIDTH * 2 / 7, (WINDOW_HEIGHT / 2) + (TEXT_HEIGHT * 2)}
+
+[TextButton]
+id PlayerFire
+pos {WINDOW_WIDTH * 5 / 7, (WINDOW_HEIGHT / 2) - TEXT_HEIGHT}
+
+[TextButton]
+id PlayerInteract
+pos {WINDOW_WIDTH * 5 / 7, (WINDOW_HEIGHT / 2)}
+
+[TextButton]
+id PlayerSpecial
+pos {WINDOW_WIDTH * 5 / 7, (WINDOW_HEIGHT / 2) + TEXT_HEIGHT}
+
+[TextButton]
+id BackButton
+text BACK
+pos {WINDOW_WIDTH / 3, WINDOW_HEIGHT * 4 / 5}
+
+[TextButton]
+id ApplySaveButton
+text APPLY & SAVE
+pos {WINDOW_WIDTH * 2 / 3, WINDOW_HEIGHT * 4 / 5}
