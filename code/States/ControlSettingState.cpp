@@ -1,190 +1,155 @@
 /** @file ControlSettingState.cpp */
 #include "States/ControlSettingState.h"
-#include "Utils/Utility.h"
+#include "Gui/TextButton.h"
 
 ControlSettingState::ControlSettingState(StateStack& stack, Context& context)
 : State(stack, context)
-, mActionBinding(context.settings.get<std::unordered_map<std::string, std::string>>("Control"))
-, mControlButton{context, context, context, context, context, context, context}      // It's stupid but works
+, mActionBinding(context.settings.get<std::unordered_map<std::string, std::string>>("Control"))     // It's stupid but works
 , mActionToChange("")
 , mChange(false)
 , mChangeBackground()
 , mChangeText("PRESS ANY KEY", context.fonts.get(FontsID::PixelFont), 90)
-, mOptionButton()
 {
-    createGUI();
-    updateTextOnButton();
+	const sf::Vector2f& window_size = context.window.getView().getSize();
+	mChangeBackground.setFillColor(sf::Color(0, 0, 0, 150));
+	mChangeBackground.setSize(context.window.getView().getSize());
+
+	Utility::centerOrigin(mChangeText);
+	mChangeText.setOutlineThickness(2.f);
+	mChangeText.setOutlineColor(sf::Color(0, 0, 0));
+	mChangeText.setPosition(sf::Vector2f(window_size.x / 2.f, window_size.y / 2.f));
+	
+	State::loadGuiParser(GuiFileID::ControlSetting);
+	applyGuiFunctions();
+	updateTextOnButton();
 }
 
 void ControlSettingState::draw()
 {
-    auto& window = State::getContext().window;
-    
-    for (auto& button : mControlButton)
-        window.draw(button);
+	State::draw();
 
-    for (auto& button : mOptionButton)
-        window.draw(button);
-    
-    if (mChange)
-    {
-        window.draw(mChangeBackground);
-        window.draw(mChangeText);
-    }
+	auto& window = State::getContext().window;
+	
+	if (mChange)
+	{
+		window.draw(mChangeBackground);
+		window.draw(mChangeText);
+	}
 }
 
-bool ControlSettingState::update(sf::Time)
+bool ControlSettingState::update(sf::Time dt)
 {
-    if (!mChange) 
-    {
-        for (auto& button : mControlButton)
-            button.update();
+	if (!mChange) 
+		State::update(dt);
 
-        for (auto& button : mOptionButton)
-            button.update();
-    }
-
-    return true;
+	return true;
 }
 
 bool ControlSettingState::handleEvent(const sf::Event& event)
 {
-    if (mChange)
-    {
-        if (event.type == sf::Event::KeyPressed)
-        {
-            if (event.key.code == sf::Keyboard::Escape)
-            {
-                mChange = false;
-                mActionToChange = "";
-                return true;
-            }
+	if (mChange)
+	{
+		if (event.type == sf::Event::KeyPressed)
+		{
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				mChange = false;
+				mActionToChange = "";
+				return true;
+			}
 
-            changeActionBinding(Utility::toString(event.key.code));
-        }
-        else if (event.type == sf::Event::MouseButtonPressed)
-        {
-            changeActionBinding(Utility::toString(event.mouseButton.button));
-        }
-    }
-    else 
-    {
-        for (auto& button : mControlButton)
-            button.handleEvent(event);
-
-        for (auto& button : mOptionButton)
-            button.handleEvent(event);
-    }
-    
-    
-    return true;
+			changeActionBinding(Utility::toString(event.key.code));
+		}
+		else if (event.type == sf::Event::MouseButtonPressed)
+		{
+			changeActionBinding(Utility::toString(event.mouseButton.button));
+		}
+	}
+	else 
+	{
+		State::handleEvent(event);
+	}
+	
+	return true;
 }
 
-void ControlSettingState::createGUI()
+void ControlSettingState::applyGuiFunctions()
 {
-    auto& context = State::getContext();
-    const sf::Vector2f& windowSize = context.window.getView().getSize();
-    const float textPadding = 100.f;
+	State::getGuiComponent<TextButton>("PlayerMoveUp").setCallback([&]()
+	{
+		mActionToChange = "Up";
+		mChange = true;
+	});
 
-    mChangeBackground.setFillColor(sf::Color(0, 0, 0, 150));
-    mChangeBackground.setSize(context.window.getView().getSize());
+	State::getGuiComponent<TextButton>("PlayerMoveDown").setCallback([&]()
+	{
+		mActionToChange = "Down";
+		mChange = true;
+	});
 
-    Utility::centerOrigin(mChangeText);
-    mChangeText.setOutlineThickness(2.f);
-	mChangeText.setOutlineColor(sf::Color(0, 0, 0));
-    mChangeText.setPosition(sf::Vector2f(windowSize.x / 2.f, windowSize.y / 2.f));
+	State::getGuiComponent<TextButton>("PlayerMoveLeft").setCallback([&]()
+	{
+		mActionToChange = "Left";
+		mChange = true;
+	});
 
-    mControlButton[Player::MoveUp].setPosition(sf::Vector2f(windowSize.x * 2.f / 7.f, (windowSize.y / 2.f) - (1 * textPadding)));
-    mControlButton[Player::MoveUp].setCallback([&]()
-    {
-        mActionToChange = "Up";
-        mChange = true;
-    });
+	State::getGuiComponent<TextButton>("PlayerMoveRight").setCallback([&]()
+	{
+		mActionToChange = "Right";
+		mChange = true;
+	});
 
-    mControlButton[Player::MoveDown].setPosition(sf::Vector2f(windowSize.x * 2.f / 7.f, (windowSize.y / 2.f) - (0 * textPadding)));
-    mControlButton[Player::MoveDown].setCallback([&]()
-    {
-        mActionToChange = "Down";
-        mChange = true;
-    });
+	State::getGuiComponent<TextButton>("PlayerFire").setCallback([&]()
+	{
+		mActionToChange = "Fire";
+		mChange = true;
+	});
 
-    mControlButton[Player::MoveLeft].setPosition(sf::Vector2f(windowSize.x * 2.f / 7.f, (windowSize.y / 2.f) + (1 * textPadding)));
-    mControlButton[Player::MoveLeft].setCallback([&]()
-    {
-        mActionToChange = "Left";
-        mChange = true;
-    });
+	State::getGuiComponent<TextButton>("PlayerInteract").setCallback([&]()
+	{
+		mActionToChange = "Interact";
+		mChange = true;
+	});
 
-    mControlButton[Player::MoveRight].setPosition(sf::Vector2f(windowSize.x * 2.f / 7.f, (windowSize.y / 2.f) + (2 * textPadding)));
-    mControlButton[Player::MoveRight].setCallback([&]()
-    {
-        mActionToChange = "Right";
-        mChange = true;
-    });
+	State::getGuiComponent<TextButton>("PlayerSpecial").setCallback([&]()
+	{
+		mActionToChange = "Special";
+		mChange = true;
+	});
 
-    mControlButton[Player::Fire].setPosition(sf::Vector2f(windowSize.x * 5.f / 7.f, (windowSize.y / 2.f) - (1 * textPadding)));
-    mControlButton[Player::Fire].setCallback([&]()
-    {
-        mActionToChange = "Fire";
-        mChange = true;
-    });
+	State::getGuiComponent<TextButton>("BackButton").setCallback([&]()
+	{
+		this->requestStackPop();
+		this->requestStackPush(StatesID::SettingState);
+	});
 
-    mControlButton[Player::Interact].setPosition(sf::Vector2f(windowSize.x * 5.f / 7.f, (windowSize.y / 2.f) - (0 * textPadding)));
-    mControlButton[Player::Interact].setCallback([&]()
-    {
-        mActionToChange = "Interact";
-        mChange = true;
-    });
-
-    mControlButton[Player::Special].setPosition(sf::Vector2f(windowSize.x * 5.f / 7.f, (windowSize.y / 2.f) + (1 * textPadding)));
-    mControlButton[Player::Special].setCallback([&]()
-    {
-        mActionToChange = "Special";
-        mChange = true;
-    });
-
-    mOptionButton.emplace_back(context);
-    auto& backButton = mOptionButton.back();
-    backButton.setText("BACK");
-    backButton.setPosition(sf::Vector2f(windowSize.x / 3.f, windowSize.y * 4.f / 5.f));
-    backButton.setCallback([&]()
-    {
-        this->requestStackPop();
-        this->requestStackPush(StatesID::SettingState);
-    });
-
-
-    mOptionButton.emplace_back(context);
-    auto& saveButton = mOptionButton.back();
-    saveButton.setText("APPLY & SAVE");
-    saveButton.setPosition(sf::Vector2f(windowSize.x * 2.f / 3.f, windowSize.y * 4.f / 5.f));
-    saveButton.setCallback([&]()
-    {
-        context.settings.set<std::unordered_map<std::string, std::string>>(mActionBinding, "Control");
-        context.applyContolSettings();
-    });
+	auto& context = State::getContext();
+	State::getGuiComponent<TextButton>("ApplySaveButton").setCallback([&]()
+	{
+		context.settings.set<std::unordered_map<std::string, std::string>>(mActionBinding, "Control");
+		context.applyContolSettings();
+	});
 }
 
 void ControlSettingState::updateTextOnButton()
 {
-    auto& settings = State::getContext().settings;
-    mControlButton[Player::MoveUp].setText("Move Up: " + mActionBinding["Up"]);
-    mControlButton[Player::MoveDown].setText("Move Down: " + mActionBinding["Down"]);
-    mControlButton[Player::MoveLeft].setText("Move Left: " + mActionBinding["Left"]);
-    mControlButton[Player::MoveRight].setText("Move Right: " + mActionBinding["Right"]);
-    mControlButton[Player::Fire].setText("Fire: " + mActionBinding["Fire"]);
-    mControlButton[Player::Interact].setText("Interact: " + mActionBinding["Interact"]);
-    mControlButton[Player::Special].setText("Special: " + mActionBinding["Special"]);
+	State::getGuiComponent<TextButton>("PlayerMoveUp").setText("Move Up: " + mActionBinding["Up"]);
+	State::getGuiComponent<TextButton>("PlayerMoveDown").setText("Move Down: " + mActionBinding["Down"]);
+	State::getGuiComponent<TextButton>("PlayerMoveLeft").setText("Move Left: " + mActionBinding["Left"]);
+	State::getGuiComponent<TextButton>("PlayerMoveRight").setText("Move Right: " + mActionBinding["Right"]);
+	State::getGuiComponent<TextButton>("PlayerFire").setText("Fire: " + mActionBinding["Fire"]);
+	State::getGuiComponent<TextButton>("PlayerInteract").setText("Interact: " + mActionBinding["Interact"]);
+	State::getGuiComponent<TextButton>("PlayerSpecial").setText("Special: " + mActionBinding["Special"]);
 }
 
 void ControlSettingState::changeActionBinding(std::string key)
 {
-    auto& found = std::find_if(mActionBinding.begin(), mActionBinding.end(), 
-                [&](auto& pair){ return pair.second == key; });
-    if (found != mActionBinding.end())
-        found->second = Utility::toString(sf::Keyboard::Unknown);
-    mActionBinding[mActionToChange] = key;
-    mChange = false;
-    updateTextOnButton();
-    mActionToChange = "";
+	auto& found = std::find_if(mActionBinding.begin(), mActionBinding.end(), 
+				[&](auto& pair){ return pair.second == key; });
+	if (found != mActionBinding.end())
+		found->second = Utility::toString(sf::Keyboard::Unknown);
+	mActionBinding[mActionToChange] = key;
+	mChange = false;
+	updateTextOnButton();
+	mActionToChange = "";
 }

@@ -1,10 +1,8 @@
 /** @file ControlSettingState.h */
 #pragma once
-#include <array>
 #include <unordered_map>
 
 #include "States/State.h"
-#include "Gui/TextButton.h"
 
 class ControlSettingState : public State
 {
@@ -14,16 +12,13 @@ class ControlSettingState : public State
         virtual bool update(sf::Time dt) override;
         virtual bool handleEvent(const sf::Event& event) override;
     private:
-        void createGUI();
+        void applyGuiFunctions();
         void updateTextOnButton();
         void changeActionBinding(std::string key);
     private:
-        std::array<TextButton, Player::ActionCount> mControlButton;
         std::unordered_map<std::string, std::string> mActionBinding;
         std::string mActionToChange;
         bool mChange;
         sf::RectangleShape mChangeBackground;
         sf::Text mChangeText;
-
-        std::list<TextButton> mOptionButton;
 };
