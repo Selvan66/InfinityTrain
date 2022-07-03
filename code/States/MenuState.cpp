@@ -1,6 +1,5 @@
 /** @file MenuState.cpp */
 #include "States/MenuState.h"
-#include "Utils/Utility.h"
 
 MenuState::MenuState(StateStack& stack, Context& context)
 : State(stack, context)
@@ -30,14 +29,3 @@ void MenuState::draw()
 	window.draw(mBackgroundSprite);
 	window.draw(mTitle);
 }
-
-bool MenuState::update(sf::Time)
-{ 
-	return true;
-}
-
-bool MenuState::handleEvent(const sf::Event&)
-{ 
-	return true;
-}
-
