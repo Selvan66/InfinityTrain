@@ -2,7 +2,6 @@
 #pragma once
 
 #include "States/State.h"
-#include "Utils/ParserGui.h"
 
 class PauseState : public State
 {
@@ -13,8 +12,7 @@ class PauseState : public State
         virtual bool update(sf::Time dt) override;
         virtual bool handleEvent(const sf::Event& event) override;
     private:
-        void createGUI();
+        void applyGuiFunctions();
     private:
-        ParserGui::GuiParsePtr mGui;
         sf::RectangleShape mBackgroundShape;
 };
