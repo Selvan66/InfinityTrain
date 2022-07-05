@@ -1,6 +1,7 @@
 /** @file TextSlider.cpp */
 #include "Gui/TextSlider.h"
 #include "Utils/Utility.h"
+#include "Utils/Exceptions/bad_argument.h"
 
 TextSlider::TextSlider(Context& context)
 : mContext(context)
@@ -58,8 +59,8 @@ void TextSlider::setCurrentText(const std::string& text)
             return;
         }
     }
-    // No found text in mTextArray
-    assert(true);
+    
+    throw Except::bad_argument().add("Text Slider").add("Not found text in mTextArray");
 }
 
 // Apply after addText()

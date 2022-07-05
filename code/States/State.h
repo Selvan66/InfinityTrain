@@ -5,6 +5,7 @@
 #include "App/Context.h"
 #include "Utils/ParserGui.h"
 #include "Utils/Utility.h"
+#include "Utils/Exceptions/bad_function_call.h"
 
 class StateStack;
 class State
@@ -38,6 +39,6 @@ template<typename T>
 T& State::getGuiComponent(const std::string& id)
 {
 	if (!mIsGuiLoad)
-		assert(true);		//TODO
+		throw Except::bad_function_call().add(typeid(*this).name()).add("ERROR: use getGuiComponent before loadGuiParser");
 	return *(Utility::safeCasting<T>(mGui->at(id).get()));
 }

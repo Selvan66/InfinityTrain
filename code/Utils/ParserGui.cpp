@@ -1,10 +1,11 @@
 /** @file ParserGui.cpp */
 #include <fstream>
-#include <regex>
 #include <sstream>
 
 #include "Utils/ParserGui.h"
 #include "Utils/Utility.h"
+#include "Utils/Exceptions/bad_argument.h"
+#include "Utils/Exceptions/bad_function_call.h"
 #include "App/Context.h"
 #include "Gui/Text.h"
 #include "Gui/TextButton.h"
@@ -51,7 +52,7 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context)
             if (component.get() != nullptr)
             {
                 if (id == "")
-                    assert(true);   //TODO
+                    throw Except::bad_argument().add("Parser Gui").add("No id in component");
                 ret->insert(std::make_pair(id, std::move(component)));
                 id = "";
             }
@@ -72,7 +73,7 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context)
     if (component.get() != nullptr)
     {
         if (id == "")
-            assert(true);   //TODO
+            throw Except::bad_argument().add("Parser Gui : parse()").add("No id in component");
         ret->insert(std::make_pair(id, std::move(component)));
     }
 
@@ -81,7 +82,7 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context)
 
 bool ParserGui::isVector(const std::string& word) const
 {
-    if ((word[0] == '{') && (word.back() != '}'))
+    if ((word[0] == '{') && (word.back() == '}'))
         return true;
     return false;
 }
@@ -117,8 +118,8 @@ ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word, Context
         return std::move(std::unique_ptr<Text>(new Text(context)));
     else if (word == "[TextSlider]")
         return std::move(std::unique_ptr<TextSlider>(new TextSlider(context)));
-    assert(true);   //TODO
-    return std::move(std::unique_ptr<Component>(nullptr));
+    
+    throw Except::bad_argument().add("Parser Gui : getComponent()").add("no such component found");
 }
 
 bool ParserGui::isId(const std::string& word) const
@@ -131,7 +132,7 @@ bool ParserGui::isId(const std::string& word) const
 sf::Vector2f ParserGui::parsePosition(const std::string& value)
 {
     if (!isVector(value))
-        assert(true);    //TODO
+        throw Except::bad_argument().add("Parser Gui : parserPosition()").add("value is not a vector");
     
     auto equtaions = splitVector(value);
 
@@ -143,7 +144,7 @@ sf::Vector2f ParserGui::parsePosition(const std::string& value)
     for (int i = 0; i < equtaions.size(); ++i)
     {
         if (!parser.compile(equtaions[i], expr))
-            assert(true);   //TODO
+            throw Except::bad_function_call().add("Parser Gui : parserPosition()").add("exprtk cannot compile");
         ret[i] = expr.value();
     }
 
@@ -158,9 +159,11 @@ void ParserGui::setProperties(ComponentPtr& component, const std::string& proper
         Utility::safeCasting<TextButton>(component.get())->setText(value);
     else if (propertie == "string")
         Utility::safeCasting<Text>(component.get())->setString(value);
+    else if (propertie == "charSize")
+        Utility::safeCasting<Text>(component.get())->setCharacterSize(std::stoi(value));
     else if (propertie == "texts")
         for (auto& text : splitVector(value)) 
             Utility::safeCasting<TextSlider>(component.get())->addText(text);
     else
-        assert(true);   //TODO
+        throw Except::bad_argument().add("Parser Gui : setProperties()").add("no such property");
 }
