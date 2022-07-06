@@ -13,9 +13,9 @@ class Application
 		void update(sf::Time dt);
 		void render();
 		void registerStates();
-		void loadMenuTexture();
+		void loadMenuTextures();
 		void loadFonts();
-		void loadGuiFile();
+		void loadMenuGuiFiles();
 
 		void updateStatistics(sf::Time dt); //< Only for debug
 	private:

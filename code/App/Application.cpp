@@ -18,9 +18,9 @@ Application::Application()
 , mStatisticsUpdateTime() //< Only for debug
 , mStatisticsNumFrames(0) //< Only for debug
 {
-	loadMenuTexture();
+	loadMenuTextures();
 	loadFonts();
-	loadGuiFile();
+	loadMenuGuiFiles();
 
 	mStatisticsText.setFont(mContext.fonts.get(FontsID::PixelFont)); //< Only for debug
 	mStatisticsText.setPosition(20.f, 20.f); //< Only for debug
@@ -93,7 +93,7 @@ void Application::registerStates()
 	mStateStack.registerState<LoadingState>(StatesID::LoadingState);
 }
 
-void Application::loadMenuTexture()
+void Application::loadMenuTextures()
 {
 	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
 	mContext.textures.load(TexturesID::ArrowButtons, "image/ArrowButtons.png");
@@ -106,7 +106,7 @@ void Application::loadFonts()
 	mContext.fonts.load(FontsID::PixelFont, "fonts/PixelFont.ttf");
 }
 
-void Application::loadGuiFile()
+void Application::loadMenuGuiFiles()
 {
 	mContext.gui.load(GuiFileID::MenuOptions, "gui/MenuOption.gui");
 	mContext.gui.load(GuiFileID::GraphicsSetting, "gui/GraphicsSetting.gui");
