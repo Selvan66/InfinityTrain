@@ -12,8 +12,8 @@ class Interactable : public Entity
         void setDistance(float distance);
 
         virtual void interact() = 0;
-        virtual unsigned int getCategory() const override;
     protected:
+        virtual unsigned int getCategory() const override;
         virtual void updateCurrent(sf::Time, CommandQueue& commands) override;
     private:
         float mDistance;

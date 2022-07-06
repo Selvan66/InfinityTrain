@@ -9,10 +9,10 @@ class Pickup : public Interactable
         Pickup(Context& context, TexturesID texture);
         void setCommand(Command command);
 
-        virtual sf::FloatRect getBoundingRect() const override;
         virtual void interact() override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
     protected:
+        virtual sf::FloatRect getBoundingRect() const override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
         sf::Sprite mSprite;
