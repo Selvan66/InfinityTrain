@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "App/Context.h"
+#include "Utils/ParserGui.h"
 
 class Stats : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
 {
@@ -14,15 +15,23 @@ class Stats : public sf::Drawable, public sf::Transformable, public sf::NonCopya
         {
             Lives,
             Money,
+            Armor,
+            Attack,
+            Speed,
             StatsCount
         };
     public:
-        Stats();
+        Stats(Context& context);
         int getState(Type stat) const;
         void setStat(Type stat, int value);
         void updateStat(Type stat, int value);
     private:
+        void updateStatsText();
+        void setDefaultStats();
+        void setStatWithRange(Type stat, int value);
+
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         std::array<int, StatsCount> mStats;
+        ParserGui::GuiParsePtr mGui;
 };
