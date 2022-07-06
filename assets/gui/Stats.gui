@@ -1,0 +1,24 @@
+[Text]
+id lives
+pos {0, 0}
+charSize 30
+
+[Text]
+id money
+pos {0, TEXT_HEIGHT}
+charSize 30
+
+[Text]
+id armor
+pos {0, TEXT_HEIGHT * 2}
+charSize 30
+
+[Text]
+id attack
+pos {0, TEXT_HEIGHT * 3}
+charSize 30
+
+[Text]
+id speed
+pos {0, TEXT_HEIGHT * 4}
+charSize 30

@@ -5,7 +5,8 @@ bool LoadingState::loaded = false;
 
 LoadingState::LoadingState(StateStack& stack, Context& context)
 : State(stack, context)
-, mTextureLoading(loaded ? std::function<bool()>([](){return true;}) : std::function<bool()>([this](){this->loadGameTexture(); return true;}))
+, mTexturesLoading(loaded ? std::function<bool()>([](){return true;}) : std::function<bool()>([this](){this->loadGameTextures(); return true;}))
+, mGuiFilesLoading(loaded ? std::function<bool()>([](){return true;}) : std::function<bool()>([this](){this->loadGameGuiFiles(); return true;}))
 , mLoading(context.textures.get(TexturesID::Loading))
 {
     mLoading.setDuration(sf::seconds(1));
@@ -25,7 +26,7 @@ bool LoadingState::update(sf::Time dt)
 {
     mLoading.update(dt);
 
-    if (mTextureLoading.isFinished())
+    if (mTexturesLoading.isFinished() && mGuiFilesLoading.isFinished())
     {
         loaded = true;
         requestStackPop();
@@ -35,7 +36,13 @@ bool LoadingState::update(sf::Time dt)
     return true;
 }
 
-void LoadingState::loadGameTexture()
+void LoadingState::loadGameGuiFiles()
+{
+    auto& context = State::getContext();
+	context.gui.load(GuiFileID::Stats, "gui/Stats.gui");
+}
+
+void LoadingState::loadGameTextures()
 {
     auto& context = State::getContext();
     context.textures.load(TexturesID::DefaultLevel, "image/defaultLevel.png");

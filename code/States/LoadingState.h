@@ -12,9 +12,11 @@ class LoadingState : public State
         virtual void draw() override;
         virtual bool update(sf::Time dt) override;
     private:
-        void loadGameTexture();
+        void loadGameTextures();
+        void loadGameGuiFiles();
     private:
-        ParallelTask mTextureLoading;
+        ParallelTask mTexturesLoading;
+        ParallelTask mGuiFilesLoading;
         Animation mLoading;
         static bool loaded;
 };
