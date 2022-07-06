@@ -8,20 +8,32 @@
 class PlayerNode : public Entity
 {
     public:
+        enum Action
+        {
+            MoveUp,
+            MoveDown,
+            MoveLeft,
+            MoveRight,
+            Fire,
+            Interact,
+            Special
+        };
+    public:
         PlayerNode(Context& context, PlayerInfo& playerInfo);
+        
+        void makeAction(Action action);
+        void increaseMoney(int value);
+        void increaseLive(int value);
+    protected:
+        virtual unsigned int getCategory() const override;
+        virtual sf::FloatRect getBoundingRect() const override;
+        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
+        virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
+    private:
         void fire();
         void interact();
         void special();
-        void increaseMoney(int value);
-        void increaseLive(int value);
-
-        virtual unsigned int getCategory() const override;
-        virtual sf::FloatRect getBoundingRect() const override;
-    private:
         void adaptVelocity();
-
-        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
-        virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
         Context& mContext;
         PlayerInfo& mPlayerInfo;

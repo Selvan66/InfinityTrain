@@ -42,13 +42,13 @@ void Player::handleRealtimeInput(CommandQueue& commands)
 
 void Player::initializeActions()
 {
-    mActionBinding[MoveLeft].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(-200.f, 0.f); });
-    mActionBinding[MoveRight].action =  derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(200.f, 0.f); });
-    mActionBinding[MoveUp].action =     derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(0.f, -200.f); });
-    mActionBinding[MoveDown].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.accelerate(0.f, 200.f); });
-    mActionBinding[Fire].action =       derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.fire(); });  
-    mActionBinding[Interact].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.interact(); }); 
-    mActionBinding[Special].action =    derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.special(); });  
+    mActionBinding[MoveLeft].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::MoveLeft); });
+    mActionBinding[MoveRight].action =  derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::MoveRight); });
+    mActionBinding[MoveUp].action =     derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::MoveUp); });
+    mActionBinding[MoveDown].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::MoveDown); });
+    mActionBinding[Fire].action =       derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::Fire); });  
+    mActionBinding[Interact].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::Interact); }); 
+    mActionBinding[Special].action =    derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::Special); });  
 
     for (auto& pair : mActionBinding)
         pair.second.category = Category::Player;

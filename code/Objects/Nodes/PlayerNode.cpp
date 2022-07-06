@@ -31,19 +31,32 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
     mSpecialCommand.action = [](SceneNode&, sf::Time) {std::cout << "Special" << std::endl;};
 }
 
-void PlayerNode::fire()
+void PlayerNode::makeAction(Action action)
 {
-    mIsFire = true;
-}
-
-void PlayerNode::interact()
-{
-    mIsInteract = true;
-}
-
-void PlayerNode::special()
-{
-    mIsSpecial = true;
+    switch (action)
+    {
+        case MoveUp:
+            Entity::accelerate({0.f, static_cast<float>(-mPlayerInfo.stats.getState(Stats::Speed))});
+            break;
+        case MoveDown:
+            Entity::accelerate({0.f, static_cast<float>(mPlayerInfo.stats.getState(Stats::Speed))});
+            break;
+        case MoveLeft:
+            Entity::accelerate({static_cast<float>(-mPlayerInfo.stats.getState(Stats::Speed)), 0.f});
+            break;
+        case MoveRight:
+            Entity::accelerate({static_cast<float>(mPlayerInfo.stats.getState(Stats::Speed)), 0.f});
+            break;
+        case Fire:
+            fire();
+            break;
+        case Interact:
+            interact();
+            break;
+        case Special:
+            special();
+            break;
+    }    
 }
 
 void PlayerNode::increaseMoney(int value)
@@ -64,6 +77,21 @@ unsigned int PlayerNode::getCategory() const
 sf::FloatRect PlayerNode::getBoundingRect() const
 {
     return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
+}
+
+void PlayerNode::fire()
+{
+    mIsFire = true;
+}
+
+void PlayerNode::interact()
+{
+    mIsInteract = true;
+}
+
+void PlayerNode::special()
+{
+    mIsSpecial = true;
 }
 
 void PlayerNode::adaptVelocity()
