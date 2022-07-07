@@ -8,6 +8,8 @@
 
 struct PlayerInfo
 {
+    PlayerInfo(Context& context);
+
     Stats stats;
     Backpack backpack;
 };
