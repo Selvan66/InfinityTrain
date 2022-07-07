@@ -108,7 +108,7 @@ void Level::buildScene()
 
     std::unique_ptr<HeartNode> test(new HeartNode(mContext, 20));
     test->setPosition({600, 500});
-    mPlayerInfo.backpack.addItemToBackpack(std::move(test));
+    mSceneLayer[Floor]->attachChild(std::move(test));
 
     std::unique_ptr<MoneyNode> test2(new MoneyNode(mContext, 5));
     test2->setPosition({1000, 300});
