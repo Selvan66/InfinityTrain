@@ -10,7 +10,7 @@ TextureButton::TextureButton(Context& context)
 , mButton()
 { }
 
-void TextureButton::setTextute(const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed)
+void TextureButton::setTextures(const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed)
 {
     mNormalButton = sf::Sprite(texture, normal);
     mSelectedButton = sf::Sprite(texture, selected);    

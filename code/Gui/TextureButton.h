@@ -7,7 +7,7 @@ class TextureButton : public Button
 {
     public:
         TextureButton(Context& context);
-        void setTextute(const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed);
+        void setTextures(const sf::Texture& texture, sf::IntRect normal, sf::IntRect selected, sf::IntRect pressed);
     private:
         virtual sf::FloatRect getGlobalBounds() const override;
         virtual void changeTexture(Button::Type buttonType) override;

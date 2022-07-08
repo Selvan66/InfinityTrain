@@ -11,7 +11,7 @@ TextSlider::TextSlider(Context& context)
 , mTextIndex(-1)
 , mMaxTextWidth(0)
 {
-    mLeft.setTextute(context.textures.get(TexturesID::ArrowButtons), 
+    mLeft.setTextures(context.textures.get(TexturesID::ArrowButtons), 
                     sf::IntRect(0, 0, 256, 256), 
                     sf::IntRect(257, 0, 256, 256), 
                     sf::IntRect(517, 0, 256, 256));
@@ -21,7 +21,7 @@ TextSlider::TextSlider(Context& context)
     mLeft.setCallback([this](){this->setPrevText();});
     
     
-    mRight.setTextute(context.textures.get(TexturesID::ArrowButtons), 
+    mRight.setTextures(context.textures.get(TexturesID::ArrowButtons), 
                     sf::IntRect(0, 0, 256, 256), 
                     sf::IntRect(257, 0, 256, 256), 
                     sf::IntRect(517, 0, 256, 256));
