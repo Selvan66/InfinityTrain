@@ -3,7 +3,8 @@
 
 Button::Button(Context& context)
 : Component()
-, mCallback()
+, mLeftClickCallback()
+, mRightClickCallback()
 , mIsSelected(false)
 , mIsPressed(false)
 , mContext(context)
@@ -13,7 +14,18 @@ Button::Button(Context& context)
 
 void Button::setCallback(Callback callback)
 {
-    mCallback = std::move(callback);
+    setLeftClickCallback(callback);
+    setRightClickCallback(callback);
+}
+
+void Button::setLeftClickCallback(Callback callback)
+{
+    mLeftClickCallback = std::move(callback);
+}
+
+void Button::setRightClickCallback(Callback callback)
+{
+    mRightClickCallback = std::move(callback);
 }
 
 void Button::handleEvent(const sf::Event& event)
@@ -41,10 +53,13 @@ void Button::handleEvent(const sf::Event& event)
             mContext.sounds.play(SoundsID::ButtonClick);
         }
     }
-    else if (event.type == sf::Event::MouseButtonReleased)
+    if (event.type == sf::Event::MouseButtonReleased)
     {
-        if (mIsPressed && mIsSelected)
-            mCallback();
+        if (mIsPressed && mIsSelected && event.mouseButton.button == sf::Mouse::Right)
+            mRightClickCallback();
+        if (mIsPressed && mIsSelected && event.mouseButton.button == sf::Mouse::Left)
+            mLeftClickCallback();
+        
 
         mIsPressed = false;
     }

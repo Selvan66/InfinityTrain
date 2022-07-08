@@ -19,6 +19,8 @@ class Button : public Component
     public:
         Button(Context& context);
         void setCallback(Callback callback);
+        void setLeftClickCallback(Callback callback);
+        void setRightClickCallback(Callback callback);
         
         virtual void handleEvent(const sf::Event& event) override;
         virtual void update() override;
@@ -26,7 +28,8 @@ class Button : public Component
         virtual sf::FloatRect getGlobalBounds() const = 0;
         virtual void changeTexture(Type buttonType);
     private:
-        Callback mCallback;
+        Callback mLeftClickCallback;
+        Callback mRightClickCallback;
         bool mIsSelected;
         bool mIsPressed;
         Context& mContext;
