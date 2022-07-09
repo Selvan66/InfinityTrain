@@ -10,3 +10,4 @@ conan/graph_info.json
 
 # vscode
 .vscode/
+.VSCodeCounter/
