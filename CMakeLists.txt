@@ -27,6 +27,7 @@ include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_cmake_run(CONANFILE conanfile.txt
                 BASIC_SETUP CMAKE_TARGETS
+                BUILD_TYPE "Debug"
                 BUILD missing)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
