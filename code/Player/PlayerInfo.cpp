@@ -2,5 +2,5 @@
 
 PlayerInfo::PlayerInfo(Context& context)
 : stats(context)
-, backpack()
+, backpack(context)
 { }
