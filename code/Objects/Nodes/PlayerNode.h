@@ -22,8 +22,8 @@ class PlayerNode : public Entity
         PlayerNode(Context& context, PlayerInfo& playerInfo);
         
         void makeAction(Action action);
-        void increaseMoney(int value);
-        void increaseLive(int value);
+        void pickup(std::unique_ptr<Pickup> pickup);
+        void updateStat(Stats::Type stat, int value);
     protected:
         virtual unsigned int getCategory() const override;
         virtual sf::FloatRect getBoundingRect() const override;

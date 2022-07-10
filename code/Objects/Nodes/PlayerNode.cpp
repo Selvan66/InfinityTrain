@@ -59,14 +59,14 @@ void PlayerNode::makeAction(Action action)
     }    
 }
 
-void PlayerNode::increaseMoney(int value)
+void PlayerNode::pickup(std::unique_ptr<Pickup> pickup)
 {
-    mPlayerInfo.stats.updateStat(Stats::Money, value);
+    mPlayerInfo.backpack.addItemToBackpack(std::move(pickup));
 }
 
-void PlayerNode::increaseLive(int value)
+void PlayerNode::updateStat(Stats::Type stat, int value)
 {
-    mPlayerInfo.stats.updateStat(Stats::Lives, value);
+    mPlayerInfo.stats.updateStat(stat, value);
 }
 
 unsigned int PlayerNode::getCategory() const
