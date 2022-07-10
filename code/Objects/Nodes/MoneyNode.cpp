@@ -11,7 +11,7 @@ MoneyNode::MoneyNode(Context& context, unsigned int value)
     Command command;
     command.category = Category::Player;
     command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
-        player.increaseMoney(mValue);
+        player.updateStat(Stats::Money, mValue);
         this->destroy();
     });
 
