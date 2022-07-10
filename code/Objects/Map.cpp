@@ -18,7 +18,8 @@ Map::Map(Context& context)
     mTimerText.setOutlineThickness(2.f);
     mTimerText.setPosition({10, 40});
 
-    mPlayerInfo.stats.setPosition({120, 200});
+    mPlayerInfo.stats.setPosition({150, 300});
+    mPlayerInfo.backpack.setPosition({1650, 600});
 }
 
 void Map::update(sf::Time dt)
@@ -33,12 +34,15 @@ void Map::update(sf::Time dt)
         mNumLevel++;
         createLevel();
     }
+
+    mPlayerInfo.backpack.update();
 }
 
 void Map::handleEvent(const sf::Event& event)
 {
     auto& commands = mLevel->getCommandQueue();
     mContext.player.handleEvent(event, commands);
+    mPlayerInfo.backpack.handleEvent(event);
 }
 
 void Map::draw()
@@ -46,6 +50,7 @@ void Map::draw()
     mLevel->draw();
     mContext.window.draw(mTimerText);
     mContext.window.draw(mPlayerInfo.stats);
+    mContext.window.draw(mPlayerInfo.backpack);
 }
 
 void Map::registerLevels()
