@@ -18,7 +18,9 @@ enum class TexturesID
 	PrehistoryLevel,
 	Player,
 	Money,
-	Heart
+	Heart,
+	OpenDoors,
+	CloseDoors,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

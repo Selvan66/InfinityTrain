@@ -50,4 +50,6 @@ void LoadingState::loadGameTextures()
     context.textures.load(TexturesID::Player, "image/player1.png");
     context.textures.load(TexturesID::Money, "image/money.png");
     context.textures.load(TexturesID::Heart, "image/heart.png");
+    context.textures.load(TexturesID::OpenDoors, "image/doors2.png");
+    context.textures.load(TexturesID::CloseDoors, "image/doors.png");
 }
