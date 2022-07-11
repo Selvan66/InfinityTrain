@@ -1,6 +1,6 @@
 /** @file Animation.cpp */
 #include "Effects/Animation.h"
-
+#include "Utils/Utility.h"
 
 Animation::Animation()
 : mSprite()
@@ -35,6 +35,8 @@ const sf::Texture& Animation::getTexture() const
 void Animation::setFrameSize(sf::Vector2i frameSize)
 {
     mFrameSize = frameSize;
+    mSprite.setTextureRect(sf::IntRect(0, 0, mFrameSize.x, mFrameSize.y));
+    Utility::centerOrigin(mSprite);
 }
 
 sf::Vector2i Animation::getFrameSize() const
@@ -82,14 +84,9 @@ bool Animation::isFinished() const
     return mCurrentFrame >= mNumFrames;
 }
 
-sf::FloatRect Animation::getLocalBounds() const
-{
-    return sf::FloatRect(sf::Transformable::getOrigin(), static_cast<sf::Vector2f>(mFrameSize));
-}
-
 sf::FloatRect Animation::getGlobalBounds() const
 {
-    return sf::Transformable::getTransform().transformRect(getLocalBounds());
+    return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
 }
 
 void Animation::update(sf::Time dt)
@@ -103,7 +100,7 @@ void Animation::update(sf::Time dt)
     if (mCurrentFrame == 0)
         textureRect = sf::IntRect(0, 0, mFrameSize.x, mFrameSize.y);
 
-    while (mElapsedTime >= timePerFrame && (mCurrentFrame <= mNumFrames || mRepeat)) 
+    while (mElapsedTime >= timePerFrame && (mCurrentFrame < mNumFrames || mRepeat)) 
     {
         textureRect.left += textureRect.width;
 
