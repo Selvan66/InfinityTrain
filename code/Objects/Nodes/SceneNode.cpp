@@ -29,6 +29,11 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode& node)
     return result;    
 }
 
+size_t SceneNode::getChildrenSize() const
+{
+    return mChildren.size();
+}
+
 void SceneNode::update(sf::Time dt, CommandQueue& commands)
 {
     updateCurrent(dt, commands);
