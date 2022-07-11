@@ -45,7 +45,7 @@ void Stats::setDefaultStats()
     setStat(Money, 0);
     setStat(Armor, 0);
     setStat(Attack, 0);
-    setStat(Speed, 200);
+    setStat(Speed, 250);
 }
 
 void Stats::setStatWithRange(Type stat, int value)

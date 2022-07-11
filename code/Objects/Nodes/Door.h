@@ -7,7 +7,7 @@
 class Door : public Interactable
 {
     public:
-        Door(Context& context, bool isOpen);
+        Door(Context& context, bool toClose);
         void open();
         void close();
         bool isInteract() const;

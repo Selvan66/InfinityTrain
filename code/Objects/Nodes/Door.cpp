@@ -2,7 +2,7 @@
 #include "Objects/Nodes/Door.h"
 
 
-Door::Door(Context& context, bool isOpen)
+Door::Door(Context& context, bool toClose)
 : Interactable()
 , mIsOpen(false)
 , mInteract(false)
@@ -12,7 +12,7 @@ Door::Door(Context& context, bool isOpen)
     Interactable::setDistance(100.f);
     Utility::centerOrigin(mBackground);
 
-    if (isOpen)
+    if (toClose)
     {
         mAnimation.setTexture(context.textures.get(TexturesID::OpenDoors));
         mAnimation.setNumFrames(2);
