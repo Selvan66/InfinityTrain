@@ -5,7 +5,10 @@ namespace LevelID
 {
     enum ID
     {
+        StartLevel,
+        FirstLevel,
         Prehistory,
-        LevelCount
+        LevelCount,
+        None
     };
 }

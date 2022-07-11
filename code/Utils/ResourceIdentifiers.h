@@ -16,6 +16,8 @@ enum class TexturesID
 	Loading,
 	DefaultLevel,
 	PrehistoryLevel,
+	StartLevel,
+	FirstLevel,
 	Player,
 	Money,
 	Heart,
@@ -50,6 +52,7 @@ enum class GuiFileID
 	Statistics,
 	ControlSetting,
 	Stats,
+	Map,
 };
 
 typedef ResourceHolder<ParserGui, GuiFileID> GuiFileHolder;

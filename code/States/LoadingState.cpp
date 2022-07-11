@@ -40,6 +40,7 @@ void LoadingState::loadGameGuiFiles()
 {
     auto& context = State::getContext();
 	context.gui.load(GuiFileID::Stats, "gui/Stats.gui");
+    context.gui.load(GuiFileID::Map, "gui/Map.gui");
 }
 
 void LoadingState::loadGameTextures()
@@ -47,6 +48,8 @@ void LoadingState::loadGameTextures()
     auto& context = State::getContext();
     context.textures.load(TexturesID::DefaultLevel, "image/defaultLevel.png");
     context.textures.load(TexturesID::PrehistoryLevel, "image/prehistoryLevel.png");
+    context.textures.load(TexturesID::StartLevel, "image/StartLevel.png");
+    context.textures.load(TexturesID::FirstLevel, "image/FirstLevel.png");
     context.textures.load(TexturesID::Player, "image/player1.png");
     context.textures.load(TexturesID::Money, "image/money.png");
     context.textures.load(TexturesID::Heart, "image/heart.png");
