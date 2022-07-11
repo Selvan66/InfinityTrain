@@ -1,0 +1,9 @@
+[Text]
+id timer
+pos {WINDOW_WIDTH / 9, TEXT_HEIGHT}
+charSize 50
+
+[Text]
+id level
+pos {WINDOW_WIDTH / 9, (2 * TEXT_HEIGHT)}
+charSize 50

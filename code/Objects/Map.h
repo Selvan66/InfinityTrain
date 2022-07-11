@@ -7,6 +7,7 @@
 #include "Objects/Levels/LevelID.h"
 #include "Objects/Levels/Level.h"
 #include "Player/PlayerInfo.h"
+#include "Utils/ParserGui.h"
 
 class Map
 {
@@ -19,14 +20,13 @@ class Map
         template <typename T>
         void registerLevel(LevelID::ID id);
         void registerLevels();
-        void createLevel();
     private:
         Context& mContext;
         Level::Ptr mLevel;
         unsigned int mNumLevel;
         std::array<std::function<Level::Ptr()>, LevelID::LevelCount> mFactories;
         unsigned long long mStartTime;
-        sf::Text mTimerText;
+        ParserGui::GuiParsePtr mGui;
         PlayerInfo mPlayerInfo;
 };
 
@@ -35,6 +35,6 @@ void Map::registerLevel(LevelID::ID id)
 {
     mFactories[id] = [this]
     {
-        return Level::Ptr(new T(mContext, mPlayerInfo));
+        return Level::Ptr(new T(mContext, mPlayerInfo, mNumLevel));
     };
 }
