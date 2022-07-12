@@ -1,9 +1,7 @@
 /** @file Level.cpp */
 #include "Objects/Levels/Level.h"
-#include "Objects/Nodes/MoneyNode.h"
-#include "Objects/Nodes/HeartNode.h"
 
-Level::Level(Context& context, PlayerInfo& playerInfo)
+Level::Level(Context& context, PlayerInfo& playerInfo, unsigned int numLevel)
 : mContext(context)
 , mPlayerInfo(playerInfo)
 , mCommands()
@@ -11,6 +9,7 @@ Level::Level(Context& context, PlayerInfo& playerInfo)
 , mSceneLayer()
 , mPlayer(nullptr)
 , mFinished(false)
+, mNumLevel(numLevel)
 { 
     buildScene();
 }
@@ -27,6 +26,12 @@ void Level::update(sf::Time dt)
     mPlayer->setVelocity(0, 0);
     mPlayerInfo.backpack.drop(mPlayer->getPosition(), *mSceneLayer[Floor]);
 
+    if (mSceneLayer[Battlefield]->getChildrenSize() == 1)
+        mFinished = true;
+
+    if (mFinished)
+        mDoor->open();
+
     while (!mCommands.isEmpty())
         mSceneGraph.onCommand(mCommands.pop(), dt);
 
@@ -42,9 +47,19 @@ void Level::draw()
     window.draw(mSceneGraph);
 }
 
+LevelID::ID Level::nextLevel() const
+{
+    return LevelID::None;
+}
+
 bool Level::isFinished() const
 {
     return mFinished;
+}
+
+bool Level::isPlayerGoToNextLevel() const
+{
+    return mDoor->isInteract();
 }
 
 Context& Level::getContext() const
@@ -60,6 +75,21 @@ CommandQueue& Level::getCommandQueue()
 SceneNode* Level::getLayer(Layer layer) const
 {
     return mSceneLayer[layer];
+}
+
+PlayerNode* Level::getPlayer() const
+{
+    return mPlayer;
+}
+
+Door* Level::getDoor() const
+{
+    return mDoor;
+}
+
+unsigned int Level::getNumLevel() const
+{
+    return mNumLevel;
 }
 
 void Level::adaptNodesPosition(SceneNode* node)
@@ -102,15 +132,12 @@ void Level::buildScene()
     }
 
     std::unique_ptr<PlayerNode> player(new PlayerNode(Level::getContext(), mPlayerInfo));
-    player->setPosition(900, 500);
+    player->setPosition({960, 998});
     mPlayer = player.get();
     mSceneLayer[Battlefield]->attachChild(std::move(player)); 
 
-    std::unique_ptr<HeartNode> test(new HeartNode(mContext, 20));
-    test->setPosition({600, 500});
-    mSceneLayer[Floor]->attachChild(std::move(test));
-
-    std::unique_ptr<MoneyNode> test2(new MoneyNode(mContext, 5));
-    test2->setPosition({1000, 300});
-    mSceneLayer[Floor]->attachChild(std::move(test2));
+    std::unique_ptr<Door> door(new Door(Level::getContext(), false));
+    door->setPosition({960, 41});
+    mDoor = door.get();
+    mSceneLayer[Floor]->attachChild(std::move(door));
 }
