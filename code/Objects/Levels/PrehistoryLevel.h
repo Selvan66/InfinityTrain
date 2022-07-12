@@ -6,7 +6,9 @@
 class PrehistoryLevel : public Level
 {
     public:
-        PrehistoryLevel(Context& context, PlayerInfo& playerInfo);
+        PrehistoryLevel(Context& context, PlayerInfo& playerInfo, unsigned int numLevel);
+
+        virtual LevelID::ID nextLevel() const;
     private:
-        void buildScene();
+        void buildScene();       
 };
