@@ -5,60 +5,59 @@
 #include "Objects/Levels/FirstLevel.h"
 #include "Gui/Text.h"
 
-#include <iostream>
-
 Map::Map(Context& context)
-: mContext(context)
+: mLvlContext{context, PlayerInfo(context), 0}
 , mLevel(nullptr)
-, mNumLevel(0)
 , mStartTime(context.statistics.get(Statistics::TimePlay))
 , mGui()
-, mPlayerInfo(context)
 {
     registerLevels();
     mLevel = mFactories[LevelID::StartLevel]();
 
-    sf::Vector2f window_size = sf::Vector2f(mContext.window.getView().getSize());
+    sf::Vector2f window_size = sf::Vector2f(context.window.getView().getSize());
     ParserGui parser = context.gui.get(GuiFileID::Map);
     parser.addConst("WINDOW_WIDTH", window_size.x);
     parser.addConst("TEXT_HEIGHT", 70.f);
     mGui = parser.parse(context);
 
-    mPlayerInfo.stats.setPosition({window_size.x / 9, 300});
-    mPlayerInfo.backpack.setPosition({(window_size.x * 8 / 9) - 100, 600});
+    mLvlContext.playerInfo.stats.setPosition({window_size.x / 9, 300});
+    mLvlContext.playerInfo.backpack.setPosition({(window_size.x * 8 / 9) - 100, 600});
 }
 
 void Map::update(sf::Time dt)
 {
     auto& commands = mLevel->getCommandQueue();
-    mContext.player.handleRealtimeInput(commands);
+    auto& context = mLvlContext.context;
 
-    Utility::safeCasting<Text>(mGui->at("timer").get())->setString("Time: " + Utility::timeToString((mContext.statistics.get(Statistics::TimePlay) - mStartTime)/1000));
+    context.player.handleRealtimeInput(commands);
+    mLvlContext.playerInfo.backpack.update();
+
+    Utility::safeCasting<Text>(mGui->at("timer").get())->setString("Time: " + Utility::timeToString((context.statistics.get(Statistics::TimePlay) - mStartTime)/1000));
+    
     mLevel->update(dt);
-    if (mLevel->isPlayerGoToNextLevel())
+    if (mLevel->nextLevel() != LevelID::None)
     {
-        mNumLevel++;
-        Utility::safeCasting<Text>(mGui->at("level").get())->setString("Level: " + std::to_string(mNumLevel));
+        mLvlContext.numLevel++;
+        Utility::safeCasting<Text>(mGui->at("level").get())->setString("Level: " + std::to_string(mLvlContext.numLevel));
         mLevel = mFactories[mLevel->nextLevel()]();
     }
-
-    mPlayerInfo.backpack.update();
 }
 
 void Map::handleEvent(const sf::Event& event)
 {
     auto& commands = mLevel->getCommandQueue();
-    mContext.player.handleEvent(event, commands);
-    mPlayerInfo.backpack.handleEvent(event);
+    mLvlContext.context.player.handleEvent(event, commands);
+    mLvlContext.playerInfo.backpack.handleEvent(event);
 }
 
 void Map::draw()
 {
+    auto& context = mLvlContext.context;
     for (auto& component : *mGui)
-			mContext.window.draw(*component.second);
+			context.window.draw(*component.second);
     mLevel->draw();
-    mContext.window.draw(mPlayerInfo.stats);
-    mContext.window.draw(mPlayerInfo.backpack);
+    context.window.draw(mLvlContext.playerInfo.stats);
+    context.window.draw(mLvlContext.playerInfo.backpack);
 }
 
 void Map::registerLevels()
