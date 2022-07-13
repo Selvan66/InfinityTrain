@@ -4,26 +4,14 @@
 #include <array>
 
 #include "Objects/CommandQueue.h"
-#include "Objects/Nodes/Door.h"
 #include "Objects/Nodes/PlayerNode.h"
+#include "Objects/Levels/LvlContext.h"
 #include "Objects/Levels/LevelID.h"
-#include "Player/PlayerInfo.h"
-#include "App/Context.h"
 
 class Level : public sf::NonCopyable
 {
     public:
         typedef std::unique_ptr<Level> Ptr;
-    public:
-        explicit Level(Context& context, PlayerInfo& playerInfo, unsigned int numLevel);
-        sf::FloatRect getLevelBounds() const;
-        CommandQueue& getCommandQueue();
-        void update(sf::Time dt);
-        void draw();
-        bool isFinished() const;
-        bool isPlayerGoToNextLevel() const;
-
-        virtual LevelID::ID nextLevel() const;
     protected:
         enum Layer
         {
@@ -32,25 +20,24 @@ class Level : public sf::NonCopyable
             Battlefield,
             LayerCount
         };
+    public:
+        explicit Level(LvlContext& lvlContext);
+        CommandQueue& getCommandQueue();
+        void update(sf::Time dt);
+        void draw();
+
+        virtual LevelID::ID nextLevel() const;
     protected:
-        Context& getContext() const;
+        bool isFinished() const;
         SceneNode* getLayer(Layer layer) const;
-        PlayerNode* getPlayer() const;
-        Door* getDoor() const;
-        unsigned int getNumLevel() const;
+        void updatePlayer(PlayerNode* player);
     private:
-        void handleCollision();
-        void adaptNodesPosition(SceneNode* node);
         void buildScene();
+        void adaptNodesPosition(SceneNode* node);
+        sf::FloatRect getLevelBounds() const;
     private:
-        Context& mContext;
-        PlayerInfo& mPlayerInfo;
+        LvlContext& mLvlContext;
         CommandQueue mCommands;
-        sf::FloatRect mLevelBounds;
         SceneNode mSceneGraph;
         std::array<SceneNode*, LayerCount> mSceneLayer;
-        PlayerNode* mPlayer;
-        Door* mDoor;
-        bool mFinished;
-        unsigned int mNumLevel;
 };  

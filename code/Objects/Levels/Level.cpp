@@ -1,49 +1,34 @@
 /** @file Level.cpp */
 #include "Objects/Levels/Level.h"
 
-Level::Level(Context& context, PlayerInfo& playerInfo, unsigned int numLevel)
-: mContext(context)
-, mPlayerInfo(playerInfo)
+Level::Level(LvlContext& lvlContext)
+: mLvlContext(lvlContext)
 , mCommands()
-, mLevelBounds(500.f, 80.f, 920.f, 920.f)
+, mSceneGraph()
 , mSceneLayer()
-, mPlayer(nullptr)
-, mFinished(false)
-, mNumLevel(numLevel)
 { 
     buildScene();
 }
 
 sf::FloatRect Level::getLevelBounds() const
 {
-    return mLevelBounds;
+    return sf::FloatRect(500.f, 80.f, 920.f, 920.f);
 }
 
 void Level::update(sf::Time dt)
 {
-    mContext.statistics.increase(Statistics::TimePlay, dt.asMilliseconds());
-
-    mPlayer->setVelocity(0, 0);
-    mPlayerInfo.backpack.drop(mPlayer->getPosition(), *mSceneLayer[Floor]);
-
-    if (mSceneLayer[Battlefield]->getChildrenSize() == 1)
-        mFinished = true;
-
-    if (mFinished)
-        mDoor->open();
+    mLvlContext.context.statistics.increase(Statistics::TimePlay, dt.asMilliseconds());
 
     while (!mCommands.isEmpty())
         mSceneGraph.onCommand(mCommands.pop(), dt);
 
     mSceneGraph.removeObjects();
     mSceneGraph.update(dt, mCommands);
-
-    adaptNodesPosition(mPlayer);
 }
 
 void Level::draw()
 {
-    auto& window = mContext.window;
+    auto& window = mLvlContext.context.window;
     window.draw(mSceneGraph);
 }
 
@@ -54,17 +39,7 @@ LevelID::ID Level::nextLevel() const
 
 bool Level::isFinished() const
 {
-    return mFinished;
-}
-
-bool Level::isPlayerGoToNextLevel() const
-{
-    return mDoor->isInteract();
-}
-
-Context& Level::getContext() const
-{
-    return mContext;
+    return mSceneLayer[Battlefield]->getChildrenSize() == 1;
 }
 
 CommandQueue& Level::getCommandQueue()
@@ -77,19 +52,12 @@ SceneNode* Level::getLayer(Layer layer) const
     return mSceneLayer[layer];
 }
 
-PlayerNode* Level::getPlayer() const
+void Level::updatePlayer(PlayerNode* player)
 {
-    return mPlayer;
-}
+    player->setVelocity(0, 0);
+    adaptNodesPosition(player);
 
-Door* Level::getDoor() const
-{
-    return mDoor;
-}
-
-unsigned int Level::getNumLevel() const
-{
-    return mNumLevel;
+    mLvlContext.playerInfo.backpack.drop(player->getPosition(), *mSceneLayer[Floor]);
 }
 
 void Level::adaptNodesPosition(SceneNode* node)
@@ -130,14 +98,4 @@ void Level::buildScene()
 
         mSceneGraph.attachChild(std::move(layer));
     }
-
-    std::unique_ptr<PlayerNode> player(new PlayerNode(Level::getContext(), mPlayerInfo));
-    player->setPosition({960, 998});
-    mPlayer = player.get();
-    mSceneLayer[Battlefield]->attachChild(std::move(player)); 
-
-    std::unique_ptr<Door> door(new Door(Level::getContext(), false));
-    door->setPosition({960, 41});
-    mDoor = door.get();
-    mSceneLayer[Floor]->attachChild(std::move(door));
 }
