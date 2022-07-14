@@ -59,6 +59,7 @@ void Animation::setReversed(bool flag)
 void Animation::restart()
 {
     mCurrentFrame = 0;
+    mElapsedTime = sf::Time::Zero;
 }
 
 bool Animation::isFinished() const
