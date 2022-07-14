@@ -21,8 +21,7 @@ enum class TexturesID
 	Player,
 	Money,
 	Heart,
-	OpenDoors,
-	CloseDoors,
+	Door,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

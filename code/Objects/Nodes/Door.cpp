@@ -2,32 +2,20 @@
 #include "Objects/Nodes/Door.h"
 
 
-Door::Door(Context& context, bool toClose)
+Door::Door(Context& context)
 : Interactable()
 , mIsOpen(false)
 , mInteract(false)
 , mBackground({152, 82})
-, mAnimation()
+, mAnimation(context.textures.get(TexturesID::Door))
 {
     Interactable::setDistance(100.f);
     Utility::centerOrigin(mBackground);
 
-    if (toClose)
-    {
-        mAnimation.setTexture(context.textures.get(TexturesID::OpenDoors));
-        mAnimation.setNumFrames(2);
-        mIsOpen = true;
-        sf::Transformable::setRotation(180);
-    }
-    else
-    {
-        mAnimation.setTexture(context.textures.get(TexturesID::CloseDoors));
-        mAnimation.setNumFrames(3); 
-    }
     mAnimation.setDuration(sf::seconds(2));
-    mAnimation.setRepeating(false);
+    mAnimation.setNumFrames(4);
+    mAnimation.setReversed(true);
     mAnimation.setFrameSize({150, 82});
-    mAnimation.update(sf::seconds(0));
 }
 
 void Door::interact()
@@ -43,12 +31,22 @@ sf::FloatRect Door::getBoundingRect() const
 
 void Door::open()
 {
-    mIsOpen = true;
+    if (!mIsOpen)
+    {
+        mIsOpen = true;
+        mAnimation.setReversed(false);
+        mAnimation.restart();
+    }
 }
 
 void Door::close()
 {
-    mIsOpen = false;
+    if (mIsOpen)
+    {
+        mIsOpen = false;
+        mAnimation.setReversed(true);
+        mAnimation.restart();
+    }
 }
 
 bool Door::isInteract() const
@@ -59,8 +57,7 @@ bool Door::isInteract() const
 void Door::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     Interactable::updateCurrent(dt, commands);
-    if (mIsOpen)
-        mAnimation.update(dt);
+    mAnimation.update(dt);
 }
 
 void Door::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
