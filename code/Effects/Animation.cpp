@@ -10,6 +10,7 @@ Animation::Animation()
 , mDuration(sf::Time::Zero)
 , mElapsedTime(sf::Time::Zero)
 , mRepeat(false)
+, mReverse(false)
 { }
 
 Animation::Animation(const sf::Texture& texture)
@@ -20,16 +21,12 @@ Animation::Animation(const sf::Texture& texture)
 , mDuration(sf::Time::Zero)
 , mElapsedTime(sf::Time::Zero)
 , mRepeat(false)
+, mReverse(false)
 { }
 
 void Animation::setTexture(const sf::Texture& texture)
 {
     mSprite.setTexture(texture);
-}
-
-const sf::Texture& Animation::getTexture() const
-{
-    return *mSprite.getTexture();
 }
 
 void Animation::setFrameSize(sf::Vector2i frameSize)
@@ -39,19 +36,9 @@ void Animation::setFrameSize(sf::Vector2i frameSize)
     Utility::centerOrigin(mSprite);
 }
 
-sf::Vector2i Animation::getFrameSize() const
-{
-    return mFrameSize;
-}
-
 void Animation::setNumFrames(std::size_t numFrames)
 {
     mNumFrames = numFrames;
-}
-
-std::size_t Animation::getNumFrames() const
-{
-    return mNumFrames;
 }
 
 void Animation::setDuration(sf::Time duration)
@@ -59,19 +46,14 @@ void Animation::setDuration(sf::Time duration)
     mDuration = duration;
 }
 
-sf::Time Animation::getDuration() const
-{
-    return mDuration;
-}
-
 void Animation::setRepeating(bool flag)
 {
     mRepeat = flag;
 }
 
-bool Animation::isRepeating() const
+void Animation::setReversed(bool flag)
 {
-    return mRepeat;
+    mReverse = flag;
 }
 
 void Animation::restart()
@@ -94,35 +76,67 @@ void Animation::update(sf::Time dt)
     sf::Time timePerFrame = mDuration / static_cast<float>(mNumFrames);
     mElapsedTime += dt;
 
-    sf::Vector2i textureBounds(mSprite.getTexture()->getSize());
     sf::IntRect textureRect = mSprite.getTextureRect();
 
     if (mCurrentFrame == 0)
-        textureRect = sf::IntRect(0, 0, mFrameSize.x, mFrameSize.y);
-
-    while (mElapsedTime >= timePerFrame && (mCurrentFrame < mNumFrames || mRepeat)) 
     {
-        textureRect.left += textureRect.width;
+        textureRect = firstFrame();
+        incrementCurrentFrame();
+    }
 
-        if (textureRect.left + textureRect.width > textureBounds.x) {
-            textureRect.left = 0;
-            textureRect.top += textureRect.height;
-        }
-
+    while ((mElapsedTime >= timePerFrame) && ((mCurrentFrame < mNumFrames) || mRepeat))
+    {
         mElapsedTime -= timePerFrame;
-
-        if (mRepeat) 
-        {
-            mCurrentFrame = (mCurrentFrame + 1) % mNumFrames;
-            if (mCurrentFrame == 0)
-                textureRect = sf::IntRect(0, 0, mFrameSize.x, mFrameSize.y);
-        }
-        else 
-        {
-            mCurrentFrame++;
-        }
+        textureRect = nextFrame(textureRect);
+        incrementCurrentFrame();
     }
     mSprite.setTextureRect(textureRect);
+}
+
+sf::IntRect Animation::firstFrame() const
+{
+    if (mReverse)
+    {
+        sf::Vector2i bounds(mSprite.getTexture()->getSize());
+        return sf::IntRect(bounds.x - mFrameSize.x, bounds.y - mFrameSize.y, mFrameSize.x, mFrameSize.y);
+    }
+
+    return sf::IntRect(0, 0, mFrameSize.x, mFrameSize.y);
+}
+
+sf::IntRect Animation::nextFrame(sf::IntRect rect) const
+{
+    if (mRepeat && mCurrentFrame == 0)
+        return firstFrame();
+
+    sf::Vector2i bounds(mSprite.getTexture()->getSize());
+    if (mReverse)
+    {
+        rect.left -= mFrameSize.x;
+        if (rect.left - mFrameSize.x < 0)
+        {
+            rect.left = bounds.x - mFrameSize.x;
+            rect.top -= mFrameSize.y;
+        }
+    }
+    else
+    {
+        rect.left += mFrameSize.x;
+        if (rect.left + mFrameSize.x > bounds.x)
+        {
+            rect.left = 0;
+            rect.top += mFrameSize.y;
+        }
+    }
+
+    return rect;
+}
+
+void Animation::incrementCurrentFrame()
+{
+    mCurrentFrame++;
+    if (mRepeat)
+        mCurrentFrame %= (mNumFrames + 1);  
 }
 
 void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const

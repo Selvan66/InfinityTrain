@@ -10,21 +10,20 @@ class Animation : public sf::Drawable, public sf::Transformable
         Animation();
         explicit Animation(const sf::Texture& texture);
         void setTexture(const sf::Texture& texture);
-        const sf::Texture& getTexture() const;
         void setFrameSize(sf::Vector2i frameSize);
-        sf::Vector2i getFrameSize() const;
         void setNumFrames(std::size_t numFrames);
-        std::size_t getNumFrames() const;
         void setDuration(sf::Time duration);
-        sf::Time getDuration() const;
         void setRepeating(bool flag);
-        bool isRepeating() const;
+        void setReversed(bool flag);
         void restart();
         bool isFinished() const;
-        sf::FloatRect getLocalBounds() const;
         sf::FloatRect getGlobalBounds() const;
         void update(sf::Time dt);
     private:
+        sf::IntRect firstFrame() const;
+        sf::IntRect nextFrame(sf::IntRect rect) const;
+        void incrementCurrentFrame();
+
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::Sprite mSprite;
@@ -34,4 +33,5 @@ class Animation : public sf::Drawable, public sf::Transformable
         sf::Time mDuration;
         sf::Time mElapsedTime;
         bool mRepeat;
+        bool mReverse;
 };
