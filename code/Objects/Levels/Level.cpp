@@ -52,6 +52,11 @@ SceneNode* Level::getLayer(Layer layer) const
     return mSceneLayer[layer];
 }
 
+LvlContext& Level::getLvlContext() const
+{
+    return mLvlContext;
+}
+
 void Level::updatePlayer(PlayerNode* player)
 {
     player->setVelocity(0, 0);

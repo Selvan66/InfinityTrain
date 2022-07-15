@@ -21,15 +21,16 @@ class Level : public sf::NonCopyable
             LayerCount
         };
     public:
-        explicit Level(LvlContext& lvlContext);
+        Level(LvlContext& lvlContext);
         CommandQueue& getCommandQueue();
-        void update(sf::Time dt);
         void draw();
 
+        virtual void update(sf::Time dt);
         virtual LevelID::ID nextLevel() const;
     protected:
         bool isFinished() const;
         SceneNode* getLayer(Layer layer) const;
+        LvlContext& getLvlContext() const;
         void updatePlayer(PlayerNode* player);
     private:
         void buildScene();
