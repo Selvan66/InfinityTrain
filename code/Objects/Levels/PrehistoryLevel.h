@@ -2,13 +2,21 @@
 #pragma once
 
 #include "Objects/Levels/Level.h"
+#include "Objects/Nodes/Door.h"
 
 class PrehistoryLevel : public Level
 {
     public:
-        PrehistoryLevel(Context& context, PlayerInfo& playerInfo, unsigned int numLevel);
+        PrehistoryLevel(LvlContext& lvlContext);
 
+        virtual void update(sf::Time dt) override;
         virtual LevelID::ID nextLevel() const;
     private:
-        void buildScene();       
+        void buildBackground();
+        void buildFloor();
+        void buildBattlefield();
+        void buildScene();
+    private:
+        PlayerNode* mPlayer;
+        Door* mDoor;   
 };

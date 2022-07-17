@@ -4,33 +4,49 @@
 #include "Objects/Nodes/MoneyNode.h"
 #include "Objects/Nodes/HeartNode.h"
 
-PrehistoryLevel::PrehistoryLevel(Context& context, PlayerInfo& playerInfo, unsigned int numLevel)
-: Level(context, playerInfo, numLevel)
+PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
+: Level(lvlContext)
 {
     buildScene();
 }
 
-LevelID::ID PrehistoryLevel::nextLevel() const
+void PrehistoryLevel::update(sf::Time dt)
 {
-    return LevelID::FirstLevel;
+    Level::update(dt);
+    Level::updatePlayer(mPlayer);
+
+    if (Level::isFinished())
+        mDoor->open();
 }
 
-void PrehistoryLevel::buildScene()
+LevelID::ID PrehistoryLevel::nextLevel() const
 {
-    auto* backgroundLayer = Level::getLayer(Level::Background);
-    auto* floorLayer = Level::getLayer(Level::Floor);
-    auto& context = Level::getContext();
+    if (mDoor->isInteract())
+        return LevelID::FirstLevel;
+    return LevelID::None;
+}
 
-    //Background
+void PrehistoryLevel::buildBackground()
+{
+    auto& context = Level::getLvlContext().context;
+    auto* backgroundLayer = Level::getLayer(Level::Background);
+
     const sf::Texture& texture = context.textures.get(TexturesID::PrehistoryLevel);
     std::unique_ptr<SpriteNode> background(new SpriteNode(texture));
     background->setPosition(420.f, 0.f);
     backgroundLayer->attachChild(std::move(background));
+}
 
-    std::unique_ptr<Door> door2(new Door(Level::getContext(), true));
-    door2->setPosition({960, 1039});
-    door2->setRotation(180);
-    floorLayer->attachChild(std::move(door2));
+void PrehistoryLevel::buildFloor()
+{
+    auto& context = Level::getLvlContext().context;
+    auto* floorLayer = Level::getLayer(Level::Floor);
+
+    std::unique_ptr<Door> door(new Door(context));
+    door->setPosition({960, 1039});
+    door->setRotation(180);
+    mDoor = door.get();
+    floorLayer->attachChild(std::move(door));
 
     std::unique_ptr<HeartNode> test(new HeartNode(context, 20));
     test->setPosition({600, 500});
@@ -39,4 +55,23 @@ void PrehistoryLevel::buildScene()
     std::unique_ptr<MoneyNode> test2(new MoneyNode(context, 5));
     test2->setPosition({1000, 300});
     floorLayer->attachChild(std::move(test2));
+}
+
+void PrehistoryLevel::buildBattlefield()
+{
+    auto& context = Level::getLvlContext().context;
+    auto* battlefieldLayer = Level::getLayer(Level::Battlefield);
+    
+    std::unique_ptr<PlayerNode> playerNode(new PlayerNode(context, Level::getLvlContext().playerInfo));
+    playerNode->setPosition({960, 540});
+    mPlayer = playerNode.get();
+    battlefieldLayer->attachChild(std::move(playerNode));
+    
+}
+
+void PrehistoryLevel::buildScene()
+{
+    buildBackground();
+    buildFloor();
+    buildBattlefield();
 }
