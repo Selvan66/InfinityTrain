@@ -2,13 +2,21 @@
 #pragma once
 
 #include "Objects/Levels/Level.h"
+#include "Objects/Nodes/Door.h"
 
 class StartLevel : public Level
 {
     public:
-        StartLevel(Context& context, PlayerInfo& playerInfo, unsigned int numLevel);
+        StartLevel(LvlContext& lvlContext);
 
-        virtual LevelID::ID nextLevel() const;
+        virtual void update(sf::Time dt) override;
+        virtual LevelID::ID nextLevel() const override;
     private:
+        void buildBackground();
+        void buildFloor();
+        void buildBattlefield();
         void buildScene();
+    private:
+        PlayerNode* mPlayer;
+        Door* mDoor;
 };
