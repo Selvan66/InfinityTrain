@@ -3,12 +3,12 @@
 
 #include <iostream> //< for debug
 
+#define V1_POCKET Pocket(context)
+#define V4_POCKET V1_POCKET, V1_POCKET, V1_POCKET, V1_POCKET
+#define V20_POCKET V4_POCKET, V4_POCKET, V4_POCKET, V4_POCKET, V4_POCKET
+
 Backpack::Backpack(Context& context)
-: mBackpack
-{context, context, context, context, context, 
-context, context, context, context, context, 
-context, context, context, context, context, 
-context, context, context, context, context}
+: mBackpack{ V20_POCKET }
 , mDropQueue()
 {
     for (int i = 0; i < mSize; ++i)

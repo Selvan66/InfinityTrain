@@ -21,7 +21,7 @@ class Stats : public sf::Drawable, public sf::Transformable, public sf::NonCopya
             StatsCount
         };
     public:
-        Stats(Context& context);
+        explicit Stats(Context& context);
         int getState(Type stat) const;
         void setStat(Type stat, int value);
         void updateStat(Type stat, int value);

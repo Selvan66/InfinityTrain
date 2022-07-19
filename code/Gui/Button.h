@@ -17,7 +17,7 @@ class Button : public Component
             Pressed
         };
     public:
-        Button(Context& context);
+        explicit Button(Context& context);
         void setCallback(Callback callback);
         void setLeftClickCallback(Callback callback);
         void setRightClickCallback(Callback callback);

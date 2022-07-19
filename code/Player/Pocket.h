@@ -8,7 +8,7 @@
 class Pocket : public Button
 {
     public:
-        Pocket(Context& context);
+        explicit Pocket(Context& context);
 
         void addItem(std::unique_ptr<Pickup> item);
         std::unique_ptr<Pickup> dropItem();

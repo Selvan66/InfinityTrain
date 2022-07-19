@@ -7,7 +7,7 @@
 class FirstLevel : public Level
 {
     public:
-        FirstLevel(LvlContext& lvlContext);
+        explicit FirstLevel(LvlContext& lvlContext);
         
         virtual void update(sf::Time dt) override;
         virtual LevelID::ID nextLevel() const override;

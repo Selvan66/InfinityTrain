@@ -7,7 +7,7 @@
 class PrehistoryLevel : public Level
 {
     public:
-        PrehistoryLevel(LvlContext& lvlContext);
+        explicit PrehistoryLevel(LvlContext& lvlContext);
 
         virtual void update(sf::Time dt) override;
         virtual LevelID::ID nextLevel() const;

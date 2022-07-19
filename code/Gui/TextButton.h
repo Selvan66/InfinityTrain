@@ -6,7 +6,7 @@
 class TextButton : public Button
 {
     public:
-        TextButton(Context& context);
+        explicit TextButton(Context& context);
         void setText(const std::string& text);
     private:
         virtual sf::FloatRect getGlobalBounds() const override;

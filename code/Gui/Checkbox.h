@@ -5,7 +5,7 @@
 class Checkbox : public Button
 {
     public:
-        Checkbox(Context& context);
+        explicit Checkbox(Context& context);
         void setSelection(bool isSelect);
         bool isSelected() const;
     private:

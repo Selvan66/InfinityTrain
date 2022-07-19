@@ -7,7 +7,7 @@
 class Text : public Component
 {
     public:
-        Text(Context& context);
+        explicit Text(Context& context);
         void setString(const std::string& string);
         void setCharacterSize(unsigned int size);
     private:

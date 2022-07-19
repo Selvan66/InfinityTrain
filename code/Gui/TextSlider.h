@@ -8,7 +8,7 @@
 class TextSlider : public Component
 {
     public:
-        TextSlider(Context& context);
+        explicit TextSlider(Context& context);
         void addText(const std::string& text);
         std::string getCurrentText() const;
         void setCurrentText(const std::string& text);

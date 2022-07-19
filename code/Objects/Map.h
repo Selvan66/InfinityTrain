@@ -9,7 +9,7 @@
 class Map
 {
     public:
-        Map(Context& context);
+        explicit Map(Context& context);
         void update(sf::Time dt);
         void handleEvent(const sf::Event& event);
         void draw();

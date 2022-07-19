@@ -9,7 +9,7 @@
 class Backpack : public sf::Drawable, public sf::Transformable, public sf::NonCopyable
 {
     public:
-        Backpack(Context& context);
+        explicit Backpack(Context& context);
 
         void addItemToBackpack(std::unique_ptr<Pickup> item);
         void giveItemToDrop(size_t index);

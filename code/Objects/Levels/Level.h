@@ -21,7 +21,7 @@ class Level : public sf::NonCopyable
             LayerCount
         };
     public:
-        Level(LvlContext& lvlContext);
+        explicit Level(LvlContext& lvlContext);
         CommandQueue& getCommandQueue();
         void draw();
 
