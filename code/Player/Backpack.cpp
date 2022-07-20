@@ -11,8 +11,8 @@ Backpack::Backpack(Context& context)
 : mBackpack{ V20_POCKET }
 , mDropQueue()
 {
-    for (int i = 0; i < mSize; ++i)
-        mBackpack[i].setLeftClickCallback([this](){std::cout << "TEST" << std::endl;});
+    for (auto& pocket : mBackpack)
+        pocket.setLeftClickCallback([this](){std::cout << "TEST" << std::endl;});
     
     for (int i = 0; i < mSize; ++i)
         mBackpack[i].setRightClickCallback([this, i](){this->giveItemToDrop(i);});
@@ -56,20 +56,20 @@ void Backpack::drop(sf::Vector2f pos, SceneNode& node)
 
 void Backpack::handleEvent(const sf::Event& event)
 {
-    for (int i = 0; i < mSize; ++i)
-        mBackpack[i].handleEvent(event);
+    for (auto& pocket : mBackpack)
+        pocket.handleEvent(event);
 }
 
 void Backpack::update()
 {
-    for (int i = 0; i < mSize; ++i)
-        mBackpack[i].update();
+    for (auto& pocket : mBackpack)
+        pocket.update();
 }
 
 void Backpack::setPosition(sf::Vector2f position)
 {
-    for (int i = 0; i < mSize; ++i)
-        mBackpack[i].move(position);
+    for (auto& pocket : mBackpack)
+        pocket.move(position);
 }
 
 size_t Backpack::getFirstFreeIndex() const
@@ -83,6 +83,6 @@ size_t Backpack::getFirstFreeIndex() const
 void Backpack::draw(sf::RenderTarget &target, sf::RenderStates states) const 
 {
     states.transform *= sf::Transformable::getTransform();
-    for (int i = 0; i < mSize; ++i)
-        target.draw(mBackpack[i], states);
+    for (auto& pocket : mBackpack)
+        target.draw(pocket, states);
 }
