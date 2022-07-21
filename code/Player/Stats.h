@@ -25,12 +25,12 @@ class Stats : public sf::Drawable, public sf::Transformable, public sf::NonCopya
         int getState(Type stat) const;
         void setStat(Type stat, int value);
         void updateStat(Type stat, int value);
+    protected:
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         void updateStatsText();
         void setDefaultStats();
         void setStatWithRange(Type stat, int value);
-
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         std::array<int, StatsCount> mStats;
         ParserGui::GuiParsePtr mGui;

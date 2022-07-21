@@ -8,7 +8,7 @@ class TextButton : public Button
     public:
         explicit TextButton(Context& context);
         void setText(const std::string& text);
-    private:
+    protected:
         virtual sf::FloatRect getGlobalBounds() const override;
         virtual void changeTexture(Button::Type buttonType) override;
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;

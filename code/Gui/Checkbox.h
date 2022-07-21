@@ -8,7 +8,7 @@ class Checkbox : public Button
         explicit Checkbox(Context& context);
         void setSelection(bool isSelect);
         bool isSelected() const;
-    private:
+    protected:
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
         virtual sf::FloatRect getGlobalBounds() const override;
     private:

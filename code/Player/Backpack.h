@@ -18,10 +18,10 @@ class Backpack : public sf::Drawable, public sf::Transformable, public sf::NonCo
         void handleEvent(const sf::Event& event);
         void update();
         void setPosition(sf::Vector2f position);
+    protected:
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         size_t getFirstFreeIndex() const;
-        
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         static constexpr size_t mSize = 20;
         std::array<Pocket, mSize> mBackpack;

@@ -24,7 +24,7 @@ class Button : public Component
         
         virtual void handleEvent(const sf::Event& event) override;
         virtual void update() override;
-    private:
+    protected:
         virtual sf::FloatRect getGlobalBounds() const = 0;
         virtual void changeTexture(Type buttonType);
     private:

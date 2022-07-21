@@ -15,12 +15,12 @@ class TextSlider : public Component
 
         virtual void handleEvent(const sf::Event& event) override;
         virtual void update() override;
+    protected:
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         void setPosition(const sf::Vector2f& pos);
         void setNextText();
         void setPrevText();
-
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         Context& mContext;
         TextureButton mLeft;

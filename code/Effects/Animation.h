@@ -19,12 +19,12 @@ class Animation : public sf::Drawable, public sf::Transformable
         bool isFinished() const;
         sf::FloatRect getGlobalBounds() const;
         void update(sf::Time dt);
+    protected:
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::IntRect firstFrame() const;
         sf::IntRect nextFrame(sf::IntRect rect) const;
         void incrementCurrentFrame();
-
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::Sprite mSprite;
         sf::Vector2i mFrameSize;

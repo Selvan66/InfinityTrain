@@ -10,7 +10,7 @@ class Text : public Component
         explicit Text(Context& context);
         void setString(const std::string& string);
         void setCharacterSize(unsigned int size);
-    private:
+    protected:
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         sf::Text mText;

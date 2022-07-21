@@ -10,11 +10,11 @@ class PopupLabel : public sf::Drawable, public sf::NonCopyable
         void setText(const std::string& text);
         void setObjectRect(const sf::FloatRect& objectRect);
         void handleEvent(const sf::Event& event);
+    protected:
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         void setBackgoundRect();
         void setLabelPos(const sf::Vector2f& pos);
-        
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::RectangleShape mBackground;
         bool mShow;

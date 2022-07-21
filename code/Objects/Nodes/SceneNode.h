@@ -32,15 +32,15 @@ class SceneNode : public sf::Transformable, public sf::Drawable, public sf::NonC
         virtual sf::FloatRect getBoundingRect() const;
         virtual bool isMarkedForRemoval() const;
         virtual bool isDestroyed() const;
+    protected:
+        virtual void updateCurrent(sf::Time dt, CommandQueue& commands);
+        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         void updateChildren(sf::Time dt, CommandQueue& commands);
         void drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
         void drawBoundingRect(sf::RenderTarget& target, sf::RenderStates states) const; //<Only for debug
-
-        virtual void updateCurrent(sf::Time dt, CommandQueue& commands);
-        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
-    
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         std::vector<Ptr> mChildren;
         SceneNode* mParent;

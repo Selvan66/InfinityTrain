@@ -13,7 +13,7 @@ class Pocket : public Button
         void addItem(std::unique_ptr<Pickup> item);
         std::unique_ptr<Pickup> dropItem();
         bool isItem() const;
-    private: 
+    protected: 
         virtual sf::FloatRect getGlobalBounds() const override;
         virtual void changeTexture(Button::Type buttonType) override;
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
