@@ -63,15 +63,6 @@ void TextSlider::setCurrentText(const std::string& text)
     throw Except::bad_argument().add("Text Slider").add("Not found text in mTextArray");
 }
 
-// Apply after addText()
-void TextSlider::setPosition(const sf::Vector2f& pos)
-{
-    mLeft.setPosition(-mMaxTextWidth / 1.5f, 0);
-    mRight.setPosition(mMaxTextWidth / 1.5f, 0);
-    mLeft.move(pos);
-    mRight.move(pos);
-}
-
 void TextSlider::handleEvent(const sf::Event& event)
 {
     mLeft.handleEvent(event);
@@ -84,6 +75,15 @@ void TextSlider::update()
     mRight.update();   
 
     setPosition(sf::Transformable::getPosition());
+}
+
+// Apply after addText()
+void TextSlider::setPosition(const sf::Vector2f& pos)
+{
+    mLeft.setPosition(-mMaxTextWidth / 1.5f, 0);
+    mRight.setPosition(mMaxTextWidth / 1.5f, 0);
+    mLeft.move(pos);
+    mRight.move(pos);
 }
 
 void TextSlider::setNextText()

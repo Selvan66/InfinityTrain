@@ -94,6 +94,12 @@ void Animation::update(sf::Time dt)
     mSprite.setTextureRect(textureRect);
 }
 
+void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    states.transform *= sf::Transformable::getTransform();
+    target.draw(mSprite, states);
+}
+
 sf::IntRect Animation::firstFrame() const
 {
     if (mReverse)
@@ -138,10 +144,4 @@ void Animation::incrementCurrentFrame()
     mCurrentFrame++;
     if (mRepeat)
         mCurrentFrame %= (mNumFrames + 1);  
-}
-
-void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    states.transform *= sf::Transformable::getTransform();
-    target.draw(mSprite, states);
 }
