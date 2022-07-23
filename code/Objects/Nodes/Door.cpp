@@ -18,17 +18,6 @@ Door::Door(Context& context)
     mAnimation.setFrameSize({150, 82});
 }
 
-void Door::interact()
-{
-    if (mIsOpen)
-        mInteract = true;
-}
-
-sf::FloatRect Door::getBoundingRect() const 
-{
-    return sf::Transformable::getTransform().transformRect(mAnimation.getGlobalBounds());
-}
-
 void Door::open()
 {
     if (!mIsOpen)
@@ -54,6 +43,17 @@ bool Door::isInteract() const
     return mInteract;
 }
 
+void Door::interact()
+{
+    if (mIsOpen)
+        mInteract = true;
+}
+
+sf::FloatRect Door::getBoundingRect() const 
+{
+    return sf::Transformable::getTransform().transformRect(mAnimation.getGlobalBounds());
+}
+
 void Door::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     Interactable::updateCurrent(dt, commands);
@@ -65,5 +65,3 @@ void Door::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(mBackground, states);
     target.draw(mAnimation, states);
 }
-
-

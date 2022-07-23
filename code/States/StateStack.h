@@ -16,8 +16,6 @@ class StateStack : public sf::NonCopyable
 		};
 	public:
 		explicit StateStack(Context& context);
-		template<typename T>
-		void registerState(StatesID stateID);
 		void update(sf::Time dt);
 		void draw();
 		void handleEvent(const sf::Event& event);
@@ -25,6 +23,9 @@ class StateStack : public sf::NonCopyable
 		void popState();
 		void clearState();
 		bool isEmpty() const;
+
+		template<typename T>
+		void registerState(StatesID stateID);
 	private:
 		State::Ptr createState(StatesID stateID);
 		void applyPendingChanges();

@@ -15,11 +15,6 @@ void Pickup::setCommand(Command command)
     mCommand = command;
 }
 
-sf::FloatRect Pickup::getBoundingRect() const 
-{
-    return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
-}
-
 void Pickup::interact()
 {
     mPickedUp = true;
@@ -28,6 +23,11 @@ void Pickup::interact()
 void Pickup::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
 {
     target.draw(mSprite, states);
+}
+
+sf::FloatRect Pickup::getBoundingRect() const 
+{
+    return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
 }
 
 void Pickup::updateCurrent(sf::Time dt, CommandQueue& commands)

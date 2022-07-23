@@ -30,6 +30,13 @@ void Stats::updateStat(Type stat, int value)
     updateStatsText();
 }
 
+void Stats::draw(sf::RenderTarget &target, sf::RenderStates states) const 
+{
+    states.transform = sf::Transformable::getTransform();
+    for (auto& component : *mGui)
+        target.draw(*component.second, states);
+}
+
 void Stats::updateStatsText()
 {
     Utility::safeCasting<Text>(mGui->at("lives").get())->setString("Lives: " + std::to_string(mStats[Lives]));
@@ -64,11 +71,4 @@ void Stats::setStatWithRange(Type stat, int value)
             mStats[stat] = std::max(25, value);  // stat >= 25
             break;
     }
-}
-
-void Stats::draw(sf::RenderTarget &target, sf::RenderStates states) const 
-{
-    states.transform = sf::Transformable::getTransform();
-    for (auto& component : *mGui)
-        target.draw(*component.second, states);
 }

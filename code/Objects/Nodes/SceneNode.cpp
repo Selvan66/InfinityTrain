@@ -108,6 +108,23 @@ bool SceneNode::isDestroyed() const
     return false;
 }
 
+void SceneNode::updateCurrent(sf::Time dt, CommandQueue& commands)
+{ }
+
+void SceneNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    for (auto& child : mChildren)
+        child->draw(target, states);
+}
+
+void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    states.transform *= sf::Transformable::getTransform();
+    drawCurrent(target, states);
+    drawChildren(target, states);
+    drawBoundingRect(target, states);   //< Only for debug
+}
+
 void SceneNode::updateChildren(sf::Time dt, CommandQueue& commands)
 {
     for (auto& child : mChildren)
@@ -131,21 +148,4 @@ void SceneNode::drawBoundingRect(sf::RenderTarget& target, sf::RenderStates stat
     shape.setOutlineThickness(1.f);
 
     target.draw(shape);
-}
-
-void SceneNode::updateCurrent(sf::Time dt, CommandQueue& commands)
-{ }
-
-void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    states.transform *= sf::Transformable::getTransform();
-    drawCurrent(target, states);
-    drawChildren(target, states);
-    drawBoundingRect(target, states);   //< Only for debug
-}
-
-void SceneNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    for (auto& child : mChildren)
-        child->draw(target, states);
 }

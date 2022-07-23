@@ -10,9 +10,15 @@ Level::Level(LvlContext& lvlContext)
     buildScene();
 }
 
-sf::FloatRect Level::getLevelBounds() const
+CommandQueue& Level::getCommandQueue()
 {
-    return sf::FloatRect(500.f, 80.f, 920.f, 920.f);
+    return mCommands;
+}
+
+void Level::draw()
+{
+    auto& window = mLvlContext.context.window;
+    window.draw(mSceneGraph);
 }
 
 void Level::update(sf::Time dt)
@@ -26,12 +32,6 @@ void Level::update(sf::Time dt)
     mSceneGraph.update(dt, mCommands);
 }
 
-void Level::draw()
-{
-    auto& window = mLvlContext.context.window;
-    window.draw(mSceneGraph);
-}
-
 LevelID::ID Level::nextLevel() const
 {
     return LevelID::None;
@@ -40,11 +40,6 @@ LevelID::ID Level::nextLevel() const
 bool Level::isFinished() const
 {
     return mSceneLayer[Battlefield]->getChildrenSize() == 1;
-}
-
-CommandQueue& Level::getCommandQueue()
-{
-    return mCommands;
 }
 
 SceneNode* Level::getLayer(Layer layer) const
@@ -63,20 +58,6 @@ void Level::updatePlayer(PlayerNode* player)
     adaptNodesPosition(player);
 
     mLvlContext.playerInfo.backpack.drop(player->getPosition(), *mSceneLayer[Floor]);
-}
-
-void Level::adaptNodesPosition(SceneNode* node)
-{
-    sf::FloatRect bounds = getLevelBounds();
-    sf::Vector2f position = node->getPosition();
-    sf::FloatRect size = node->getBoundingRect();
-
-    position.x = std::max(position.x, bounds.left + size.width / 2.f);
-    position.x = std::min(position.x, bounds.left + bounds.width - size.width / 2.f);
-    position.y = std::max(position.y, bounds.top - size.height / 4.f);
-    position.y = std::min(position.y, bounds.top + bounds.height - size.height / 2.f);
-
-    node->setPosition(position);
 }
 
 void Level::buildScene()
@@ -103,4 +84,23 @@ void Level::buildScene()
 
         mSceneGraph.attachChild(std::move(layer));
     }
+}
+
+void Level::adaptNodesPosition(SceneNode* node)
+{
+    sf::FloatRect bounds = getLevelBounds();
+    sf::Vector2f position = node->getPosition();
+    sf::FloatRect size = node->getBoundingRect();
+
+    position.x = std::max(position.x, bounds.left + size.width / 2.f);
+    position.x = std::min(position.x, bounds.left + bounds.width - size.width / 2.f);
+    position.y = std::max(position.y, bounds.top - size.height / 4.f);
+    position.y = std::min(position.y, bounds.top + bounds.height - size.height / 2.f);
+
+    node->setPosition(position);
+}
+
+sf::FloatRect Level::getLevelBounds() const
+{
+    return sf::FloatRect(500.f, 80.f, 920.f, 920.f);
 }

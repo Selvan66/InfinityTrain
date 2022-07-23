@@ -13,4 +13,3 @@ class bad_argument : public base_exception
 };
 
 }
-

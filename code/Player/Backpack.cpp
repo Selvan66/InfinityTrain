@@ -72,17 +72,17 @@ void Backpack::setPosition(sf::Vector2f position)
         pocket.move(position);
 }
 
+void Backpack::draw(sf::RenderTarget &target, sf::RenderStates states) const 
+{
+    states.transform *= sf::Transformable::getTransform();
+    for (auto& pocket : mBackpack)
+        target.draw(pocket, states);
+}
+
 size_t Backpack::getFirstFreeIndex() const
 {
     for (size_t i = 0; i < mSize; ++i)
         if (!mBackpack[i].isItem())
             return i;
     return -1;
-}
-
-void Backpack::draw(sf::RenderTarget &target, sf::RenderStates states) const 
-{
-    states.transform *= sf::Transformable::getTransform();
-    for (auto& pocket : mBackpack)
-        target.draw(pocket, states);
 }

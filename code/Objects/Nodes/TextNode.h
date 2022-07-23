@@ -3,6 +3,7 @@
 
 #include "Objects/Nodes/SceneNode.h"
 #include "App/Context.h"
+#include "Gui/Text.h"
 
 class TextNode : public SceneNode
 {
@@ -12,5 +13,5 @@ class TextNode : public SceneNode
     protected:
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
-        sf::Text mText;
+        Text mText;
 };

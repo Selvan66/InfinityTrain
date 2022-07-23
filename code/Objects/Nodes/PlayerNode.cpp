@@ -79,29 +79,6 @@ sf::FloatRect PlayerNode::getBoundingRect() const
     return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
 }
 
-void PlayerNode::fire()
-{
-    mIsFire = true;
-}
-
-void PlayerNode::interact()
-{
-    mIsInteract = true;
-}
-
-void PlayerNode::special()
-{
-    mIsSpecial = true;
-}
-
-void PlayerNode::adaptVelocity()
-{
-    sf::Vector2f velocity = Entity::getVelocity();
-
-    if (velocity.x != 0.f && velocity.y != 0.f)
-        Entity::setVelocity(velocity / std::sqrt(2.f));
-}
-
 void PlayerNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(mSprite, states);
@@ -127,4 +104,27 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 
     adaptVelocity();
     Entity::updateCurrent(dt, commands);
+}
+
+void PlayerNode::fire()
+{
+    mIsFire = true;
+}
+
+void PlayerNode::interact()
+{
+    mIsInteract = true;
+}
+
+void PlayerNode::special()
+{
+    mIsSpecial = true;
+}
+
+void PlayerNode::adaptVelocity()
+{
+    sf::Vector2f velocity = Entity::getVelocity();
+
+    if (velocity.x != 0.f && velocity.y != 0.f)
+        Entity::setVelocity(velocity / std::sqrt(2.f));
 }
