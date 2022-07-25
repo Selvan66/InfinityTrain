@@ -31,6 +31,7 @@ void Context::applyGraphicSettings()
         window.create(sf::VideoMode(1920, 1080), "Infinity Train", sf::Style::Close);
         window.setSize(sf::Vector2u(window_size.first, window_size.second));
     }    
+    window.setPosition({(int)sf::VideoMode::getDesktopMode().width / 2 - window_size.first / 2, (int)sf::VideoMode::getDesktopMode().height / 2 - window_size.second / 2});
     window.setKeyRepeatEnabled(false);
    	window.setVerticalSyncEnabled(true);
     auto icon = textures.get(TexturesID::Icon).copyToImage();
