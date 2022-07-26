@@ -1,8 +1,8 @@
 /** @file PrehistoryLevel.cpp */
 #include "Objects/Levels/PrehistoryLevel.h"
 #include "Objects/Nodes/SpriteNode.h"
-#include "Objects/Nodes/MoneyNode.h"
-#include "Objects/Nodes/HeartNode.h"
+#include "Objects/Nodes/Pickup/Money.h"
+#include "Objects/Nodes/Pickup/Potion.h"
 
 PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 : Level(lvlContext)
@@ -48,11 +48,11 @@ void PrehistoryLevel::buildFloor()
     mDoor = door.get();
     floorLayer->attachChild(std::move(door));
 
-    std::unique_ptr<HeartNode> test(new HeartNode(context, 20));
+    std::unique_ptr<Potion> test(new Potion(context, 20));
     test->setPosition({600, 500});
     floorLayer->attachChild(std::move(test));
 
-    std::unique_ptr<MoneyNode> test2(new MoneyNode(context, 5));
+    std::unique_ptr<Money> test2(new Money(context, 5));
     test2->setPosition({1000, 300});
     floorLayer->attachChild(std::move(test2));
 }

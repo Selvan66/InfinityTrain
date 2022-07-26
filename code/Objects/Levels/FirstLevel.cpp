@@ -1,7 +1,7 @@
 /** @file FirstLevel.cpp */
 #include "Objects/Levels/FirstLevel.h"
 #include "Objects/Nodes/SpriteNode.h"
-#include "Objects/Nodes/MoneyNode.h"
+#include "Objects/Nodes/Pickup/Money.h"
 
 FirstLevel::FirstLevel(LvlContext& lvlContext)
 : Level(lvlContext)
@@ -53,7 +53,7 @@ void FirstLevel::buildFloor()
 
     for (int i = 0; i < 10; i++)
     {
-        std::unique_ptr<MoneyNode> test(new MoneyNode(context, 20));
+        std::unique_ptr<Money> test(new Money(context, 20));
         test->setPosition({(30.f * i) + 500.f, 500.f});
         floorLayer->attachChild(std::move(test));
     }

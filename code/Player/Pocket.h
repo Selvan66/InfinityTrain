@@ -3,7 +3,7 @@
 
 #include "Gui/Button.h"
 #include "App/Context.h"
-#include "Objects/Nodes/Pickup.h"
+#include "Objects/Nodes/Pickup/Pickup.h"
 
 class Pocket : public Button
 {
