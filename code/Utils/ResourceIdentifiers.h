@@ -21,6 +21,7 @@ enum class TexturesID
 	Player,
 	Money,
 	Heart,
+	Potion,
 	Door,
 };
 

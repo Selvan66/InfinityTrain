@@ -3,6 +3,8 @@
 
 #include "Objects/Nodes/Pickup/Pickup.h"
 
+class PlayerNode;
+
 class Potion : public Pickup
 {
     public:
