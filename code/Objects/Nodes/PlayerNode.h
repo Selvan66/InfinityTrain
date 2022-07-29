@@ -23,7 +23,7 @@ class PlayerNode : public Entity
         
         void makeAction(Action action);
         void pickup(std::unique_ptr<Pickup> pickup);
-        void updateStat(Stats::Type stat, int value);
+        bool updateStat(Stats::Type stat, int value);
     protected:
         virtual unsigned int getCategory() const override;
         virtual sf::FloatRect getBoundingRect() const override;

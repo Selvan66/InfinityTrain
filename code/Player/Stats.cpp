@@ -18,16 +18,20 @@ int Stats::getState(Type stat) const
     return mStats[stat];
 }
 
-void Stats::setStat(Type stat, int value)
+bool Stats::setStat(Type stat, int value)
 {
+    auto oldStat = mStats[stat];
     setStatWithRange(stat, value);
     updateStatsText();
+    return oldStat != mStats[stat];
 }
 
-void Stats::updateStat(Type stat, int value)
+bool Stats::updateStat(Type stat, int value)
 {
+    auto oldStat = mStats[stat];
     setStat(stat, mStats[stat] + value);
     updateStatsText();
+    return oldStat != mStats[stat];
 }
 
 void Stats::draw(sf::RenderTarget &target, sf::RenderStates states) const 

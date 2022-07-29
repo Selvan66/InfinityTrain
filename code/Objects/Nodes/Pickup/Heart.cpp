@@ -19,6 +19,6 @@ Heart::Heart(Context& context, int value)
 
 void Heart::use(PlayerNode& player)
 {
-    player.updateStat(Stats::Lives, mValue);
-    this->destroy();
+    if (player.updateStat(Stats::Lives, mValue))
+        this->destroy();
 }

@@ -23,8 +23,8 @@ class Stats : public sf::Drawable, public sf::Transformable, public sf::NonCopya
     public:
         explicit Stats(Context& context);
         int getState(Type stat) const;
-        void setStat(Type stat, int value);
-        void updateStat(Type stat, int value);
+        bool setStat(Type stat, int value);
+        bool updateStat(Type stat, int value);
     protected:
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:

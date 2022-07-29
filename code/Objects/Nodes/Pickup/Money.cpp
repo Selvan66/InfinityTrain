@@ -20,6 +20,6 @@ Money::Money(Context& context, unsigned int value)
 
 void Money::use(PlayerNode& player)
 {
-    player.updateStat(Stats::Money, mValue);
-    this->destroy();
+    if (player.updateStat(Stats::Money, mValue))
+        this->destroy();
 }

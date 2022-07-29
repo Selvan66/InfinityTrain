@@ -64,9 +64,9 @@ void PlayerNode::pickup(std::unique_ptr<Pickup> pickup)
     mPlayerInfo.backpack.addItemToBackpack(std::move(pickup));
 }
 
-void PlayerNode::updateStat(Stats::Type stat, int value)
+bool PlayerNode::updateStat(Stats::Type stat, int value)
 {
-    mPlayerInfo.stats.updateStat(stat, value);
+    return mPlayerInfo.stats.updateStat(stat, value);
 }
 
 unsigned int PlayerNode::getCategory() const

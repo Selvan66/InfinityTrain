@@ -1,6 +1,7 @@
 /** @file Pickup.cpp */
 #include "Objects/Nodes/Pickup/Pickup.h"
 #include "Objects/Nodes/TextNode.h"
+#include "Objects/Nodes/PlayerNode.h"
 
 Pickup::Pickup(Context& context, TexturesID texture)
 : Interactable()
@@ -16,6 +17,9 @@ void Pickup::setCommand(Command command)
 {
     mCommand = command;
 }
+
+void Pickup::use(PlayerNode& player)
+{ }
 
 void Pickup::interact()
 {
