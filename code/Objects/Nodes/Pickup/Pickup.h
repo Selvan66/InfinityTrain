@@ -3,13 +3,15 @@
 
 #include "Objects/Nodes/Interactable.h"
 
+class PlayerNode;
+
 class Pickup : public Interactable
 {
     public:
         Pickup(Context& context, TexturesID texture);
         void setCommand(Command command);
 
-        virtual void use(PlayerNode& player) = 0;
+        virtual void use(PlayerNode& player);
         
         virtual void interact() override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 

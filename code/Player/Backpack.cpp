@@ -1,7 +1,6 @@
 /** @file Backpack.cpp */
 #include "Player/Backpack.h"
-
-#include <iostream> //< for debug
+#include "Objects/Nodes/PlayerNode.h"
 
 #define V1_POCKET Pocket(context)
 #define V4_POCKET V1_POCKET, V1_POCKET, V1_POCKET, V1_POCKET
@@ -10,12 +9,13 @@
 Backpack::Backpack(Context& context)
 : mBackpack{ V20_POCKET }
 , mDropQueue()
+, mUseQueue()
 {
-    for (auto& pocket : mBackpack)
-        pocket.setLeftClickCallback([this](){std::cout << "TEST" << std::endl;});
+    for (int i = 0; i < mSize; ++i)
+        mBackpack[i].setLeftClickCallback([this, i](){ this->giveItemToUse(i); });
     
     for (int i = 0; i < mSize; ++i)
-        mBackpack[i].setRightClickCallback([this, i](){this->giveItemToDrop(i);});
+        mBackpack[i].setRightClickCallback([this, i](){ this->giveItemToDrop(i); });
 
     for (int i = 0; i < 4; ++i)
         for (int j = 0; j < 5; ++j)
@@ -42,15 +42,30 @@ void Backpack::giveItemToDrop(size_t index)
     mDropQueue.push(std::move(mBackpack[index].dropItem()));
 }
 
+void Backpack::giveItemToUse(size_t index)
+{
+    if (!mBackpack[index].isItem())
+        return;
+    mUseQueue.push(std::move(mBackpack[index].dropItem()));
+}
+
 void Backpack::drop(sf::Vector2f pos, SceneNode& node)
 {
-    Command command;
-    command.category = Category::Floor;
     while (!mDropQueue.empty())
     {
         mDropQueue.front()->setPosition(pos);
         node.attachChild(std::move(mDropQueue.front()));
         mDropQueue.pop();
+    }
+}
+
+void Backpack::use(PlayerNode& player)
+{
+    while (!mUseQueue.empty())
+    {
+        auto pickup = std::move(mUseQueue.front());
+        pickup->use(player);
+        mUseQueue.pop();
     }
 }
 

@@ -3,6 +3,7 @@
 #include "Objects/Nodes/SpriteNode.h"
 #include "Objects/Nodes/Pickup/Money.h"
 #include "Objects/Nodes/Pickup/Potion.h"
+#include "Objects/Nodes/Pickup/Heart.h"
 
 PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 : Level(lvlContext)
@@ -55,6 +56,10 @@ void PrehistoryLevel::buildFloor()
     std::unique_ptr<Money> test2(new Money(context, 5));
     test2->setPosition({1000, 300});
     floorLayer->attachChild(std::move(test2));
+
+    std::unique_ptr<Heart> test3(new Heart(context, 5));
+    test3->setPosition({1200, 400});
+    floorLayer->attachChild(std::move(test3));
 }
 
 void PrehistoryLevel::buildBattlefield()
