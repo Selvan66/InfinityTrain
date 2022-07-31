@@ -1,11 +1,9 @@
 <map id="code/Gui/TextureButton.h" name="code/Gui/TextureButton.h">
-<area shape="rect" id="node1" title=" " alt="" coords="286,5,457,32"/>
-<area shape="rect" id="node2" href="$_text_slider_8h.html" title=" " alt="" coords="203,80,350,107"/>
-<area shape="rect" id="node9" href="$_texture_button_8cpp.html" title=" " alt="" coords="374,80,558,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="551,5,722,32"/>
+<area shape="rect" id="node2" href="$_text_slider_8h.html" title=" " alt="" coords="407,80,554,107"/>
+<area shape="rect" id="node6" href="$_parser_gui_8cpp.html" title=" " alt="" coords="600,162,767,189"/>
+<area shape="rect" id="node7" href="$_texture_button_8cpp.html" title=" " alt="" coords="674,80,858,107"/>
 <area shape="rect" id="node3" href="$_text_slider_8cpp.html" title=" " alt="" coords="5,162,167,189"/>
-<area shape="rect" id="node4" href="$_audio_setting_state_8h.html" title=" " alt="" coords="191,155,362,196"/>
-<area shape="rect" id="node7" href="$_graphics_setting_state_8h.html" title=" " alt="" coords="386,155,575,196"/>
-<area shape="rect" id="node5" href="$_application_8cpp.html" title=" " alt="" coords="289,251,459,278"/>
-<area shape="rect" id="node6" href="$_audio_setting_state_8cpp.html" title=" " alt="" coords="94,244,265,285"/>
-<area shape="rect" id="node8" href="$_graphics_setting_state_8cpp.html" title=" " alt="" coords="483,244,673,285"/>
+<area shape="rect" id="node4" href="$_audio_setting_state_8cpp.html" title=" " alt="" coords="191,155,362,196"/>
+<area shape="rect" id="node5" href="$_graphics_setting_state_8cpp.html" title=" " alt="" coords="386,155,575,196"/>
 </map>

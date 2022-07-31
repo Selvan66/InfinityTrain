@@ -1,14 +1,16 @@
 <map id="SceneNode" name="SceneNode">
-<area shape="rect" id="node1" title=" " alt="" coords="160,80,249,107"/>
-<area shape="rect" id="node5" href="$class_entity.html" title=" " alt="" coords="23,155,79,181"/>
-<area shape="rect" id="node7" href="$class_interactable.html" title=" " alt="" coords="104,155,193,181"/>
-<area shape="rect" id="node11" href="$class_sprite_node.html" title=" " alt="" coords="217,155,304,181"/>
-<area shape="rect" id="node12" href="$class_text_node.html" title=" " alt="" coords="329,155,406,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="12,5,133,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="158,5,251,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="275,5,393,32"/>
-<area shape="rect" id="node6" href="$class_player_node.html" title=" " alt="" coords="5,229,95,256"/>
-<area shape="rect" id="node8" href="$class_pickup.html" title=" " alt="" coords="119,229,181,256"/>
-<area shape="rect" id="node9" href="$class_heart_node.html" title=" " alt="" coords="54,304,137,331"/>
-<area shape="rect" id="node10" href="$class_money_node.html" title=" " alt="" coords="161,304,251,331"/>
+<area shape="rect" id="node1" title=" " alt="" coords="181,80,270,107"/>
+<area shape="rect" id="node5" href="$class_entity.html" title=" " alt="" coords="101,155,157,181"/>
+<area shape="rect" id="node13" href="$class_sprite_node.html" title=" " alt="" coords="182,155,269,181"/>
+<area shape="rect" id="node14" href="$class_text_node.html" title=" " alt="" coords="293,155,371,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="33,5,154,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="179,5,272,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="296,5,413,32"/>
+<area shape="rect" id="node6" href="$class_interactable.html" title=" " alt="" coords="29,229,118,256"/>
+<area shape="rect" id="node12" href="$class_player_node.html" title=" " alt="" coords="142,229,231,256"/>
+<area shape="rect" id="node7" href="$class_door.html" title=" " alt="" coords="9,304,58,331"/>
+<area shape="rect" id="node8" href="$class_pickup.html" title=" " alt="" coords="82,304,145,331"/>
+<area shape="rect" id="node9" href="$class_heart.html" title=" " alt="" coords="5,379,59,405"/>
+<area shape="rect" id="node10" href="$class_money.html" title=" " alt="" coords="83,379,144,405"/>
+<area shape="rect" id="node11" href="$class_potion.html" title=" " alt="" coords="168,379,227,405"/>
 </map>

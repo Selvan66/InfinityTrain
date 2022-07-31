@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>InfinityTrain: code/Objects/PlayerInfo.h Source File</title>
+<title>InfinityTrain: code/Player/PlayerInfo.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_a21068d2252b7a8c865954874e18ba2a.html">Objects</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_f2db6aa0e583514d3efa67c300e23778.html">Player</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -69,15 +69,27 @@ $(function() {
 <div class="title">PlayerInfo.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="struct_player_info.html">    3</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_player_info.html">PlayerInfo</a></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lives;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> money;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="comment">// wepons</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;};</div>
-<div class="ttc" id="astruct_player_info_html"><div class="ttname"><a href="struct_player_info.html">PlayerInfo</a></div><div class="ttdef"><b>Definition:</b> PlayerInfo.h:4</div></div>
+<a href="_player_info_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_backpack_8h.html">Player/Backpack.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_stats_8h.html">Player/Stats.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="struct_player_info.html">    9</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_player_info.html">PlayerInfo</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="struct_player_info.html">PlayerInfo</a>(<a class="code" href="struct_context.html">Context</a>&amp; context);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_stats.html">Stats</a> stats;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_backpack.html">Backpack</a> backpack;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<div class="ttc" id="a_backpack_8h_html"><div class="ttname"><a href="_backpack_8h.html">Backpack.h</a></div></div>
+<div class="ttc" id="a_stats_8h_html"><div class="ttname"><a href="_stats_8h.html">Stats.h</a></div></div>
+<div class="ttc" id="aclass_backpack_html"><div class="ttname"><a href="class_backpack.html">Backpack</a></div><div class="ttdef"><b>Definition:</b> Backpack.h:10</div></div>
+<div class="ttc" id="aclass_stats_html"><div class="ttname"><a href="class_stats.html">Stats</a></div><div class="ttdef"><b>Definition:</b> Stats.h:12</div></div>
+<div class="ttc" id="astruct_context_html"><div class="ttname"><a href="struct_context.html">Context</a></div><div class="ttdef"><b>Definition:</b> Context.h:11</div></div>
+<div class="ttc" id="astruct_player_info_html"><div class="ttname"><a href="struct_player_info.html">PlayerInfo</a></div><div class="ttdef"><b>Definition:</b> PlayerInfo.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

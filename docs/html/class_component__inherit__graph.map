@@ -1,0 +1,13 @@
+<map id="Component" name="Component">
+<area shape="rect" id="node1" title=" " alt="" coords="224,80,312,107"/>
+<area shape="rect" id="node5" href="$class_button.html" title=" " alt="" coords="161,155,221,181"/>
+<area shape="rect" id="node10" href="$class_text.html" title=" " alt="" coords="245,155,291,181"/>
+<area shape="rect" id="node11" href="$class_text_slider.html" title=" " alt="" coords="316,155,396,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="89,5,183,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="207,5,329,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="353,5,471,32"/>
+<area shape="rect" id="node6" href="$class_checkbox.html" title=" " alt="" coords="5,229,85,256"/>
+<area shape="rect" id="node7" href="$class_pocket.html" title=" " alt="" coords="110,229,173,256"/>
+<area shape="rect" id="node8" href="$class_text_button.html" title=" " alt="" coords="197,229,283,256"/>
+<area shape="rect" id="node9" href="$class_texture_button.html" title=" " alt="" coords="307,229,410,256"/>
+</map>

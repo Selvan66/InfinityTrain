@@ -76,9 +76,11 @@ Inheritance diagram for Level:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_level__inherit__graph.png" border="0" usemap="#a_level_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_level_inherit__map" id="a_level_inherit__map">
-<area shape="rect" title=" " alt="" coords="39,80,89,107"/>
-<area shape="rect" href="class_prehistory_level.html" title=" " alt="" coords="9,155,119,181"/>
-<area shape="rect" title=" " alt="" coords="5,5,123,32"/>
+<area shape="rect" title=" " alt="" coords="137,80,188,107"/>
+<area shape="rect" href="class_first_level.html" title=" " alt="" coords="5,155,83,181"/>
+<area shape="rect" href="class_prehistory_level.html" title=" " alt="" coords="107,155,218,181"/>
+<area shape="rect" href="class_start_level.html" title=" " alt="" coords="242,155,321,181"/>
+<area shape="rect" title=" " alt="" coords="104,5,221,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -99,24 +101,21 @@ typedef std::unique_ptr&lt; <a class="el" href="class_level.html">Level</a> &gt;
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a67ee67a4da5010e9413381cc6b43fd66"><td class="memItemLeft" align="right" valign="top"><a id="a67ee67a4da5010e9413381cc6b43fd66"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Level</b> (<a class="el" href="struct_context.html">Context</a> &amp;context, <a class="el" href="struct_player_info.html">PlayerInfo</a> &amp;playerInfo)</td></tr>
-<tr class="separator:a67ee67a4da5010e9413381cc6b43fd66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaf4f71353872e8c01c08e70e24beb9e"><td class="memItemLeft" align="right" valign="top"><a id="adaf4f71353872e8c01c08e70e24beb9e"></a>
-sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getLevelBounds</b> () const</td></tr>
-<tr class="separator:adaf4f71353872e8c01c08e70e24beb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6d7e563330ecfc8cd0cc2acb4d1c6a"><td class="memItemLeft" align="right" valign="top"><a id="aab6d7e563330ecfc8cd0cc2acb4d1c6a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Level</b> (<a class="el" href="struct_lvl_context.html">LvlContext</a> &amp;lvlContext)</td></tr>
+<tr class="separator:aab6d7e563330ecfc8cd0cc2acb4d1c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0676c021f2be5baa5e8b7e7a82a61a2f"><td class="memItemLeft" align="right" valign="top"><a id="a0676c021f2be5baa5e8b7e7a82a61a2f"></a>
 <a class="el" href="class_command_queue.html">CommandQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCommandQueue</b> ()</td></tr>
 <tr class="separator:a0676c021f2be5baa5e8b7e7a82a61a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67f86520cebd83af4312dc7ed26fb694"><td class="memItemLeft" align="right" valign="top"><a id="a67f86520cebd83af4312dc7ed26fb694"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Time dt)</td></tr>
-<tr class="separator:a67f86520cebd83af4312dc7ed26fb694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b7478818e1aa80d3d4d059fa5faf9bf"><td class="memItemLeft" align="right" valign="top"><a id="a9b7478818e1aa80d3d4d059fa5faf9bf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()</td></tr>
 <tr class="separator:a9b7478818e1aa80d3d4d059fa5faf9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa309bdd913240cd6ed6586e910bb506d"><td class="memItemLeft" align="right" valign="top"><a id="aa309bdd913240cd6ed6586e910bb506d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFinished</b> () const</td></tr>
-<tr class="separator:aa309bdd913240cd6ed6586e910bb506d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67f86520cebd83af4312dc7ed26fb694"><td class="memItemLeft" align="right" valign="top"><a id="a67f86520cebd83af4312dc7ed26fb694"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Time dt)</td></tr>
+<tr class="separator:a67f86520cebd83af4312dc7ed26fb694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8ad2156e9074bf666ff0db3654a1b0b"><td class="memItemLeft" align="right" valign="top"><a id="af8ad2156e9074bf666ff0db3654a1b0b"></a>
+virtual LevelID::ID&#160;</td><td class="memItemRight" valign="bottom"><b>nextLevel</b> () const</td></tr>
+<tr class="separator:af8ad2156e9074bf666ff0db3654a1b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -129,12 +128,18 @@ Protected Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:af6c19393015713d7fd95c999a4bb422b"><td class="memItemLeft" align="right" valign="top"><a id="af6c19393015713d7fd95c999a4bb422b"></a>
-<a class="el" href="struct_context.html">Context</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getContext</b> () const</td></tr>
-<tr class="separator:af6c19393015713d7fd95c999a4bb422b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa309bdd913240cd6ed6586e910bb506d"><td class="memItemLeft" align="right" valign="top"><a id="aa309bdd913240cd6ed6586e910bb506d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFinished</b> () const</td></tr>
+<tr class="separator:aa309bdd913240cd6ed6586e910bb506d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03476e181591d8dd5fac4626dadf4955"><td class="memItemLeft" align="right" valign="top"><a id="a03476e181591d8dd5fac4626dadf4955"></a>
 <a class="el" href="class_scene_node.html">SceneNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getLayer</b> (Layer layer) const</td></tr>
 <tr class="separator:a03476e181591d8dd5fac4626dadf4955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b8694451eca8690fe6c2eb8be4b280"><td class="memItemLeft" align="right" valign="top"><a id="a76b8694451eca8690fe6c2eb8be4b280"></a>
+<a class="el" href="struct_lvl_context.html">LvlContext</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLvlContext</b> () const</td></tr>
+<tr class="separator:a76b8694451eca8690fe6c2eb8be4b280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c0f155cd339bb5a58a22386a557b26"><td class="memItemLeft" align="right" valign="top"><a id="a95c0f155cd339bb5a58a22386a557b26"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updatePlayer</b> (<a class="el" href="class_player_node.html">PlayerNode</a> *player)</td></tr>
+<tr class="separator:a95c0f155cd339bb5a58a22386a557b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>code/Objects/Levels/<a class="el" href="_level_8h_source.html">Level.h</a></li>

@@ -73,19 +73,31 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_level_8h.html">Objects/Levels/Level.h</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_prehistory_level.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_prehistory_level.html">PrehistoryLevel</a> : <span class="keyword">public</span> <a class="code" href="class_level.html">Level</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="class_prehistory_level.html">PrehistoryLevel</a>(<a class="code" href="struct_context.html">Context</a>&amp; context, <a class="code" href="struct_player_info.html">PlayerInfo</a>&amp; playerInfo);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordtype">void</span> buildScene();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;};</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_door_8h.html">Objects/Nodes/Door.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_prehistory_level.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_prehistory_level.html">PrehistoryLevel</a> : <span class="keyword">public</span> <a class="code" href="class_level.html">Level</a></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="class_prehistory_level.html">PrehistoryLevel</a>(<a class="code" href="struct_lvl_context.html">LvlContext</a>&amp; lvlContext);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> update(sf::Time dt) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keyword">virtual</span> LevelID::ID nextLevel() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">void</span> buildBackground();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordtype">void</span> buildFloor();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">void</span> buildBattlefield();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">void</span> buildScene();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_player_node.html">PlayerNode</a>* mPlayer;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_door.html">Door</a>* mDoor;   </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
+<div class="ttc" id="a_door_8h_html"><div class="ttname"><a href="_door_8h.html">Door.h</a></div></div>
 <div class="ttc" id="a_level_8h_html"><div class="ttname"><a href="_level_8h.html">Level.h</a></div></div>
+<div class="ttc" id="aclass_door_html"><div class="ttname"><a href="class_door.html">Door</a></div><div class="ttdef"><b>Definition:</b> Door.h:8</div></div>
 <div class="ttc" id="aclass_level_html"><div class="ttname"><a href="class_level.html">Level</a></div><div class="ttdef"><b>Definition:</b> Level.h:12</div></div>
-<div class="ttc" id="aclass_prehistory_level_html"><div class="ttname"><a href="class_prehistory_level.html">PrehistoryLevel</a></div><div class="ttdef"><b>Definition:</b> PrehistoryLevel.h:7</div></div>
-<div class="ttc" id="astruct_context_html"><div class="ttname"><a href="struct_context.html">Context</a></div><div class="ttdef"><b>Definition:</b> Context.h:11</div></div>
-<div class="ttc" id="astruct_player_info_html"><div class="ttname"><a href="struct_player_info.html">PlayerInfo</a></div><div class="ttdef"><b>Definition:</b> PlayerInfo.h:4</div></div>
+<div class="ttc" id="aclass_player_node_html"><div class="ttname"><a href="class_player_node.html">PlayerNode</a></div><div class="ttdef"><b>Definition:</b> PlayerNode.h:9</div></div>
+<div class="ttc" id="aclass_prehistory_level_html"><div class="ttname"><a href="class_prehistory_level.html">PrehistoryLevel</a></div><div class="ttdef"><b>Definition:</b> PrehistoryLevel.h:8</div></div>
+<div class="ttc" id="astruct_lvl_context_html"><div class="ttname"><a href="struct_lvl_context.html">LvlContext</a></div><div class="ttdef"><b>Definition:</b> LvlContext.h:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

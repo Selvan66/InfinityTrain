@@ -64,6 +64,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_scene_node-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SceneNode Class Reference</div>  </div>
@@ -74,18 +75,20 @@ Inheritance diagram for SceneNode:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_scene_node__inherit__graph.png" border="0" usemap="#a_scene_node_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_scene_node_inherit__map" id="a_scene_node_inherit__map">
-<area shape="rect" title=" " alt="" coords="160,80,249,107"/>
-<area shape="rect" href="class_entity.html" title=" " alt="" coords="23,155,79,181"/>
-<area shape="rect" href="class_interactable.html" title=" " alt="" coords="104,155,193,181"/>
-<area shape="rect" href="class_sprite_node.html" title=" " alt="" coords="217,155,304,181"/>
-<area shape="rect" href="class_text_node.html" title=" " alt="" coords="329,155,406,181"/>
-<area shape="rect" title=" " alt="" coords="12,5,133,32"/>
-<area shape="rect" title=" " alt="" coords="158,5,251,32"/>
-<area shape="rect" title=" " alt="" coords="275,5,393,32"/>
-<area shape="rect" href="class_player_node.html" title=" " alt="" coords="5,229,95,256"/>
-<area shape="rect" href="class_pickup.html" title=" " alt="" coords="119,229,181,256"/>
-<area shape="rect" href="class_heart_node.html" title=" " alt="" coords="54,304,137,331"/>
-<area shape="rect" href="class_money_node.html" title=" " alt="" coords="161,304,251,331"/>
+<area shape="rect" title=" " alt="" coords="181,80,270,107"/>
+<area shape="rect" href="class_entity.html" title=" " alt="" coords="101,155,157,181"/>
+<area shape="rect" href="class_sprite_node.html" title=" " alt="" coords="182,155,269,181"/>
+<area shape="rect" href="class_text_node.html" title=" " alt="" coords="293,155,371,181"/>
+<area shape="rect" title=" " alt="" coords="33,5,154,32"/>
+<area shape="rect" title=" " alt="" coords="179,5,272,32"/>
+<area shape="rect" title=" " alt="" coords="296,5,413,32"/>
+<area shape="rect" href="class_interactable.html" title=" " alt="" coords="29,229,118,256"/>
+<area shape="rect" href="class_player_node.html" title=" " alt="" coords="142,229,231,256"/>
+<area shape="rect" href="class_door.html" title=" " alt="" coords="9,304,58,331"/>
+<area shape="rect" href="class_pickup.html" title=" " alt="" coords="82,304,145,331"/>
+<area shape="rect" href="class_heart.html" title=" " alt="" coords="5,379,59,405"/>
+<area shape="rect" href="class_money.html" title=" " alt="" coords="83,379,144,405"/>
+<area shape="rect" href="class_potion.html" title=" " alt="" coords="168,379,227,405"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -120,6 +123,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>attachChild</b> (Ptr 
 <tr class="memitem:a3b9681eb3db7d9e575945b57e275e040"><td class="memItemLeft" align="right" valign="top"><a id="a3b9681eb3db7d9e575945b57e275e040"></a>
 Ptr&#160;</td><td class="memItemRight" valign="bottom"><b>detachChild</b> (const <a class="el" href="class_scene_node.html">SceneNode</a> &amp;node)</td></tr>
 <tr class="separator:a3b9681eb3db7d9e575945b57e275e040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64c4d0ace1a9dce9eb63114ddce8368"><td class="memItemLeft" align="right" valign="top"><a id="ac64c4d0ace1a9dce9eb63114ddce8368"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getChildrenSize</b> () const</td></tr>
+<tr class="separator:ac64c4d0ace1a9dce9eb63114ddce8368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5494c3a380d7ea5ae7148122c4255400"><td class="memItemLeft" align="right" valign="top"><a id="a5494c3a380d7ea5ae7148122c4255400"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Time dt, <a class="el" href="class_command_queue.html">CommandQueue</a> &amp;commands)</td></tr>
 <tr class="separator:a5494c3a380d7ea5ae7148122c4255400"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +159,18 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMarkedForRe
 <tr class="memitem:add1a151301a5056b29e552a83be4f507"><td class="memItemLeft" align="right" valign="top"><a id="add1a151301a5056b29e552a83be4f507"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDestroyed</b> () const</td></tr>
 <tr class="separator:add1a151301a5056b29e552a83be4f507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a09e4ce66d7dac35e9d665200bee2595b"><td class="memItemLeft" align="right" valign="top"><a id="a09e4ce66d7dac35e9d665200bee2595b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCurrent</b> (sf::Time dt, <a class="el" href="class_command_queue.html">CommandQueue</a> &amp;commands)</td></tr>
+<tr class="separator:a09e4ce66d7dac35e9d665200bee2595b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d9ad9725fb8c7bbaa71026c46e5a50"><td class="memItemLeft" align="right" valign="top"><a id="af3d9ad9725fb8c7bbaa71026c46e5a50"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawCurrent</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const</td></tr>
+<tr class="separator:af3d9ad9725fb8c7bbaa71026c46e5a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dc8212d4f88626048db71fc3c6e5dcb"><td class="memItemLeft" align="right" valign="top"><a id="a5dc8212d4f88626048db71fc3c6e5dcb"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>
+<tr class="separator:a5dc8212d4f88626048db71fc3c6e5dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>code/Objects/Nodes/<a class="el" href="_scene_node_8h_source.html">SceneNode.h</a></li>

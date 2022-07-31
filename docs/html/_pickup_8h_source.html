@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>InfinityTrain: code/Objects/Nodes/Pickup.h Source File</title>
+<title>InfinityTrain: code/Objects/Nodes/Pickup/Pickup.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_a21068d2252b7a8c865954874e18ba2a.html">Objects</a></li><li class="navelem"><a class="el" href="dir_44008cd37ecb0017a09543f2818ac405.html">Nodes</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_a21068d2252b7a8c865954874e18ba2a.html">Objects</a></li><li class="navelem"><a class="el" href="dir_44008cd37ecb0017a09543f2818ac405.html">Nodes</a></li><li class="navelem"><a class="el" href="dir_5fbf0e0b577087562c58cd6ce780adc5.html">Pickup</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -74,28 +74,34 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_interactable_8h.html">Objects/Nodes/Interactable.h</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_pickup.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pickup.html">Pickup</a> : <span class="keyword">public</span> <a class="code" href="class_interactable.html">Interactable</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="class_pickup.html">Pickup</a>(<a class="code" href="struct_context.html">Context</a>&amp; context, TexturesID texture);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordtype">void</span> setCommand(<a class="code" href="struct_command.html">Command</a> command);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">virtual</span> sf::FloatRect getBoundingRect() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> interact() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isDestroyed() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> drawCurrent(sf::RenderTarget&amp; target, sf::RenderStates states) <span class="keyword">const override</span>; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> updateCurrent(sf::Time dt, <a class="code" href="class_command_queue.html">CommandQueue</a>&amp; commands) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        sf::Sprite mSprite;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordtype">bool</span> mPickedUp;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">bool</span> mIsDestroyed;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="struct_command.html">Command</a> mCommand;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span><a class="code" href="class_player_node.html">PlayerNode</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_pickup.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pickup.html">Pickup</a> : <span class="keyword">public</span> <a class="code" href="class_interactable.html">Interactable</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="class_pickup.html">Pickup</a>(<a class="code" href="struct_context.html">Context</a>&amp; context, TexturesID texture);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordtype">void</span> setCommand(<a class="code" href="struct_command.html">Command</a> command);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> use(<a class="code" href="class_player_node.html">PlayerNode</a>&amp; player);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> interact() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> drawCurrent(sf::RenderTarget&amp; target, sf::RenderStates states) <span class="keyword">const override</span>; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">void</span> addText(<span class="keyword">const</span> std::string&amp; text);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">virtual</span> sf::FloatRect getBoundingRect() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> updateCurrent(sf::Time dt, <a class="code" href="class_command_queue.html">CommandQueue</a>&amp; commands) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="struct_context.html">Context</a>&amp; mContext;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        sf::Sprite mSprite;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">bool</span> mPickedUp;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="struct_command.html">Command</a> mCommand;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
 <div class="ttc" id="a_interactable_8h_html"><div class="ttname"><a href="_interactable_8h.html">Interactable.h</a></div></div>
 <div class="ttc" id="aclass_command_queue_html"><div class="ttname"><a href="class_command_queue.html">CommandQueue</a></div><div class="ttdef"><b>Definition:</b> CommandQueue.h:9</div></div>
-<div class="ttc" id="aclass_interactable_html"><div class="ttname"><a href="class_interactable.html">Interactable</a></div><div class="ttdef"><b>Definition:</b> Interactable.h:7</div></div>
-<div class="ttc" id="aclass_pickup_html"><div class="ttname"><a href="class_pickup.html">Pickup</a></div><div class="ttdef"><b>Definition:</b> Pickup.h:7</div></div>
+<div class="ttc" id="aclass_interactable_html"><div class="ttname"><a href="class_interactable.html">Interactable</a></div><div class="ttdef"><b>Definition:</b> Interactable.h:8</div></div>
+<div class="ttc" id="aclass_pickup_html"><div class="ttname"><a href="class_pickup.html">Pickup</a></div><div class="ttdef"><b>Definition:</b> Pickup.h:9</div></div>
+<div class="ttc" id="aclass_player_node_html"><div class="ttname"><a href="class_player_node.html">PlayerNode</a></div><div class="ttdef"><b>Definition:</b> PlayerNode.h:9</div></div>
 <div class="ttc" id="astruct_command_html"><div class="ttname"><a href="struct_command.html">Command</a></div><div class="ttdef"><b>Definition:</b> Command.h:14</div></div>
 <div class="ttc" id="astruct_context_html"><div class="ttname"><a href="struct_context.html">Context</a></div><div class="ttdef"><b>Definition:</b> Context.h:11</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -1,11 +1,14 @@
 <map id="code/Utils/ResourceIdentifiers.h" name="code/Utils/ResourceIdentifiers.h">
-<area shape="rect" id="node1" title=" " alt="" coords="125,5,331,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,144,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="169,80,287,107"/>
-<area shape="rect" id="node4" href="$_resource_holder_8h.html" title=" " alt="" coords="312,80,467,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="141,155,251,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="275,155,330,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="355,155,424,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="449,155,527,181"/>
-<area shape="rect" id="node9" title=" " alt="" coords="551,155,617,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="351,5,556,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,229,144,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="637,80,755,107"/>
+<area shape="rect" id="node4" href="$_resource_holder_8h.html" title=" " alt="" coords="457,80,612,107"/>
+<area shape="rect" id="node10" href="$_parser_gui_8h.html" title=" " alt="" coords="311,80,433,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="317,155,427,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="451,155,506,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="531,155,600,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="625,155,703,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="727,155,793,181"/>
+<area shape="rect" id="node11" title=" " alt="" coords="209,155,292,181"/>
+<area shape="rect" id="node12" href="$_component_8h.html" title=" " alt="" coords="63,155,185,181"/>
 </map>

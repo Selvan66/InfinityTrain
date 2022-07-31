@@ -98,13 +98,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> () o
 <tr class="memitem:a18252dd61c8d83e75c2cf5fe6a55cf8d"><td class="memItemLeft" align="right" valign="top"><a id="a18252dd61c8d83e75c2cf5fe6a55cf8d"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Time dt) override</td></tr>
 <tr class="separator:a18252dd61c8d83e75c2cf5fe6a55cf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2134e380c1ceaea71cf8b8d80c389ecc"><td class="memItemLeft" align="right" valign="top"><a id="a2134e380c1ceaea71cf8b8d80c389ecc"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event) override</td></tr>
-<tr class="separator:a2134e380c1ceaea71cf8b8d80c389ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_state"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_state')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_state.html">State</a></td></tr>
 <tr class="memitem:a301900d6a0779de34b39caa8d863794c inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top"><a id="a301900d6a0779de34b39caa8d863794c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (<a class="el" href="class_state_stack.html">StateStack</a> &amp;stack, <a class="el" href="struct_context.html">Context</a> &amp;context)</td></tr>
 <tr class="separator:a301900d6a0779de34b39caa8d863794c inherit pub_methods_class_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a206ec1cf77942b51da6a2a878aae2fa2 inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top"><a id="a206ec1cf77942b51da6a2a878aae2fa2"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const sf::Event &amp;event)</td></tr>
+<tr class="separator:a206ec1cf77942b51da6a2a878aae2fa2 inherit pub_methods_class_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -125,6 +125,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>requestStackClear</b>
 <tr class="memitem:a78038efe9d8b1817a81fb74e4c0925dc inherit pro_methods_class_state"><td class="memItemLeft" align="right" valign="top"><a id="a78038efe9d8b1817a81fb74e4c0925dc"></a>
 <a class="el" href="struct_context.html">Context</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getContext</b> () const</td></tr>
 <tr class="separator:a78038efe9d8b1817a81fb74e4c0925dc inherit pro_methods_class_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a859aec7e57d5eeb44c5649d02f05c837 inherit pro_methods_class_state"><td class="memItemLeft" align="right" valign="top"><a id="a859aec7e57d5eeb44c5649d02f05c837"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>loadGuiParser</b> (GuiFileID guiFileID)</td></tr>
+<tr class="separator:a859aec7e57d5eeb44c5649d02f05c837 inherit pro_methods_class_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7386a49a639f1fd8cc61dc5d8c3efcad inherit pro_methods_class_state"><td class="memTemplParams" colspan="2"><a id="a7386a49a639f1fd8cc61dc5d8c3efcad"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7386a49a639f1fd8cc61dc5d8c3efcad inherit pro_methods_class_state"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>getGuiComponent</b> (const std::string &amp;id)</td></tr>
+<tr class="separator:a7386a49a639f1fd8cc61dc5d8c3efcad inherit pro_methods_class_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>code/States/<a class="el" href="_loading_state_8h_source.html">LoadingState.h</a></li>

@@ -1,7 +1,6 @@
 <map id="code/Gui/Checkbox.h" name="code/Gui/Checkbox.h">
-<area shape="rect" id="node1" title=" " alt="" coords="113,5,259,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="213,5,359,32"/>
 <area shape="rect" id="node2" href="$_checkbox_8cpp.html" title=" " alt="" coords="5,87,167,114"/>
-<area shape="rect" id="node3" href="$_graphics_setting_state_8h.html" title=" " alt="" coords="191,80,381,121"/>
-<area shape="rect" id="node4" href="$_application_8cpp.html" title=" " alt="" coords="98,177,269,203"/>
-<area shape="rect" id="node5" href="$_graphics_setting_state_8cpp.html" title=" " alt="" coords="293,169,482,211"/>
+<area shape="rect" id="node3" href="$_graphics_setting_state_8cpp.html" title=" " alt="" coords="191,80,381,121"/>
+<area shape="rect" id="node4" href="$_parser_gui_8cpp.html" title=" " alt="" coords="405,87,572,114"/>
 </map>

@@ -63,6 +63,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_sprite_node-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SpriteNode Class Reference</div>  </div>
@@ -111,6 +112,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>attachChild</b> (Ptr 
 <tr class="memitem:a3b9681eb3db7d9e575945b57e275e040 inherit pub_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a3b9681eb3db7d9e575945b57e275e040"></a>
 Ptr&#160;</td><td class="memItemRight" valign="bottom"><b>detachChild</b> (const <a class="el" href="class_scene_node.html">SceneNode</a> &amp;node)</td></tr>
 <tr class="separator:a3b9681eb3db7d9e575945b57e275e040 inherit pub_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64c4d0ace1a9dce9eb63114ddce8368 inherit pub_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="ac64c4d0ace1a9dce9eb63114ddce8368"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getChildrenSize</b> () const</td></tr>
+<tr class="separator:ac64c4d0ace1a9dce9eb63114ddce8368 inherit pub_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5494c3a380d7ea5ae7148122c4255400 inherit pub_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a5494c3a380d7ea5ae7148122c4255400"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Time dt, <a class="el" href="class_command_queue.html">CommandQueue</a> &amp;commands)</td></tr>
 <tr class="separator:a5494c3a380d7ea5ae7148122c4255400 inherit pub_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,6 +148,19 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMarkedForRe
 <tr class="memitem:add1a151301a5056b29e552a83be4f507 inherit pub_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="add1a151301a5056b29e552a83be4f507"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDestroyed</b> () const</td></tr>
 <tr class="separator:add1a151301a5056b29e552a83be4f507 inherit pub_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a2c0a99c1696444591ff5d495b24eb9af"><td class="memItemLeft" align="right" valign="top"><a id="a2c0a99c1696444591ff5d495b24eb9af"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawCurrent</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>
+<tr class="separator:a2c0a99c1696444591ff5d495b24eb9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_scene_node"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_scene_node')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_scene_node.html">SceneNode</a></td></tr>
+<tr class="memitem:a09e4ce66d7dac35e9d665200bee2595b inherit pro_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a09e4ce66d7dac35e9d665200bee2595b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCurrent</b> (sf::Time dt, <a class="el" href="class_command_queue.html">CommandQueue</a> &amp;commands)</td></tr>
+<tr class="separator:a09e4ce66d7dac35e9d665200bee2595b inherit pro_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dc8212d4f88626048db71fc3c6e5dcb inherit pro_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a5dc8212d4f88626048db71fc3c6e5dcb"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>
+<tr class="separator:a5dc8212d4f88626048db71fc3c6e5dcb inherit pro_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
