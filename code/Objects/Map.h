@@ -3,8 +3,6 @@
 #include <functional>
 
 #include "Objects/Levels/Level.h"
-#include "Objects/Levels/LvlContext.h"
-#include "Utils/ParserGui.h"
 
 class Map
 {
