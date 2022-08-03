@@ -11,7 +11,7 @@ class Pickup : public Interactable
         Pickup(Context& context, TexturesID texture);
         void setCommand(Command command);
 
-        virtual void use(PlayerNode& player);
+        virtual bool use(PlayerNode& player);
         
         virtual void interact() override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 

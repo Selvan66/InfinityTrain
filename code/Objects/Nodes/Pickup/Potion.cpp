@@ -18,8 +18,12 @@ Potion::Potion(Context& context, unsigned int value)
     Pickup::addText(std::to_string(value) + "HP");
 }
 
-void Potion::use(PlayerNode& player)
+bool Potion::use(PlayerNode& player)
 {
     if (player.updateStat(Stats::Lives, mValue))
+    {
         this->destroy();
+        return true;
+    }
+    return false;
 }

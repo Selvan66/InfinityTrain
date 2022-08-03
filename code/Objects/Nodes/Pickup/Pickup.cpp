@@ -18,8 +18,10 @@ void Pickup::setCommand(Command command)
     mCommand = command;
 }
 
-void Pickup::use(PlayerNode& player)
-{ }
+bool Pickup::use(PlayerNode& player)
+{ 
+    return false;
+}
 
 void Pickup::interact()
 {

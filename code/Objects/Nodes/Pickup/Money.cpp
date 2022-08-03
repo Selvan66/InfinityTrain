@@ -18,8 +18,12 @@ Money::Money(Context& context, unsigned int value)
     Pickup::addText(std::to_string(value) + "$");
 }
 
-void Money::use(PlayerNode& player)
+bool Money::use(PlayerNode& player)
 {
     if (player.updateStat(Stats::Money, mValue))
+    {
         this->destroy();
+        return true;
+    }
+    return false;
 }

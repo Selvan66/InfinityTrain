@@ -64,7 +64,8 @@ void Backpack::use(PlayerNode& player)
     while (!mUseQueue.empty())
     {
         auto pickup = std::move(mUseQueue.front());
-        pickup->use(player);
+        if (!pickup->use(player))
+            addItemToBackpack(std::move(pickup));
         mUseQueue.pop();
     }
 }
