@@ -7,6 +7,7 @@ Pocket::Pocket(Context& context)
 , mContext(context)
 , mBackground({32.f, 32.f})
 , mItem(nullptr)
+, mPopupLabel(context)
 {
     mBackground.setOutlineThickness(1.5f);
     mBackground.setOutlineColor(sf::Color::White);
@@ -17,18 +18,27 @@ Pocket::Pocket(Context& context)
 void Pocket::addItem(std::unique_ptr<Pickup> item)
 {
     mItem = std::move(item);
+    mPopupLabel.setText(mItem->getDescription());
+    mPopupLabel.setObjectRect(getGlobalBounds());
 }
 
 std::unique_ptr<Pickup> Pocket::dropItem()
 {
     std::unique_ptr<Pickup> item = std::move(mItem);
     mItem = nullptr;
+    mPopupLabel.setText("");
     return item;
 }
 
 bool Pocket::isItem() const
 {
     return mItem != nullptr;
+}
+
+void Pocket::handleEvent(const sf::Event& event)
+{
+    Button::handleEvent(event);
+    mPopupLabel.handleEvent(event);
 }
 
 sf::FloatRect Pocket::getGlobalBounds() const 
@@ -58,4 +68,5 @@ void Pocket::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(mBackground, states);
     if (isItem())
         mItem->drawCurrent(target, states);
+    target.draw(mPopupLabel);
 }

@@ -10,6 +10,7 @@ class Pickup : public Interactable
     public:
         Pickup(Context& context, TexturesID texture);
         void setCommand(Command command);
+        std::string getDescription() const;
 
         virtual bool use(PlayerNode& player);
         
@@ -17,6 +18,7 @@ class Pickup : public Interactable
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
     protected:
         void addText(const std::string& text);
+        void addDescription(const std::string& description);
 
         virtual sf::FloatRect getBoundingRect() const override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
@@ -25,4 +27,5 @@ class Pickup : public Interactable
         sf::Sprite mSprite;
         bool mPickedUp;
         Command mCommand;
+        std::string mDescription;
 };

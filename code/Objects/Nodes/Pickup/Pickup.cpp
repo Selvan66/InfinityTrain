@@ -9,6 +9,7 @@ Pickup::Pickup(Context& context, TexturesID texture)
 , mSprite(context.textures.get(texture))
 , mPickedUp(false)
 , mCommand()
+, mDescription()
 {
     Utility::centerOrigin(mSprite);
 }
@@ -16,6 +17,11 @@ Pickup::Pickup(Context& context, TexturesID texture)
 void Pickup::setCommand(Command command)
 {
     mCommand = command;
+}
+
+std::string Pickup::getDescription() const
+{
+    return mDescription;
 }
 
 bool Pickup::use(PlayerNode& player)
@@ -39,6 +45,11 @@ void Pickup::addText(const std::string& text)
     textNode->setPosition(0.f, -40.f);
     textNode->setString(text);
     SceneNode::attachChild(std::move(textNode));
+}
+
+void Pickup::addDescription(const std::string& description)
+{
+    mDescription = description;
 }
 
 sf::FloatRect Pickup::getBoundingRect() const 

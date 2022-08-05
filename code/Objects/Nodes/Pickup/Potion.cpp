@@ -16,6 +16,7 @@ Potion::Potion(Context& context, unsigned int value)
 
     Pickup::setCommand(command);
     Pickup::addText(std::to_string(value) + "HP");
+    Pickup::addDescription("Heal " + std::to_string(value) + "HP");
 }
 
 bool Potion::use(PlayerNode& player)
