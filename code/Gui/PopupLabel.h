@@ -6,7 +6,7 @@
 class PopupLabel : public sf::Drawable, public sf::NonCopyable
 {
     public:
-        PopupLabel(Context& context, const sf::FloatRect& objectRect = sf::FloatRect(0.f, 0.f, 0.f, 0.f));
+        PopupLabel(Context& context);
         void setText(const std::string& text);
         void setObjectRect(const sf::FloatRect& objectRect);
         void handleEvent(const sf::Event& event);

@@ -4,11 +4,11 @@
 #include "Gui/PopupLabel.h"
 #include "Utils/Utility.h"
 
-PopupLabel::PopupLabel(Context& context, const sf::FloatRect& objectRect)
+PopupLabel::PopupLabel(Context& context)
 : mBackground()
 , mShow(false)
-, mText("", context.fonts.get(FontsID::PixelFont), 10)
-, mObjectRect(objectRect)
+, mText("", context.fonts.get(FontsID::PixelFont), 15)
+, mObjectRect()
 , mContext(context)
 { }
 
@@ -44,7 +44,7 @@ void PopupLabel::handleEvent(const sf::Event& event)
 
 void PopupLabel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (mShow)
+    if (mShow && !mText.getString().isEmpty())
     {
         target.draw(mBackground, states);
         target.draw(mText, states);
