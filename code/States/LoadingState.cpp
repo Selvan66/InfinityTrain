@@ -50,7 +50,7 @@ void LoadingState::loadGameTextures()
     context.textures.load(TexturesID::PrehistoryLevel, "image/prehistoryLevel.png");
     context.textures.load(TexturesID::StartLevel, "image/StartLevel.png");
     context.textures.load(TexturesID::FirstLevel, "image/FirstLevel.png");
-    context.textures.load(TexturesID::Player, "image/player1.png");
+    context.textures.load(TexturesID::Player, "image/player.png");
     context.textures.load(TexturesID::Money, "image/money.png");
     context.textures.load(TexturesID::Heart, "image/heart.png");
     context.textures.load(TexturesID::Potion, "image/potion.png");

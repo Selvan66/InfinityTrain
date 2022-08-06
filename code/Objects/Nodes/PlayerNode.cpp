@@ -14,10 +14,8 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 , mIsInteract(false)
 , mSpecialCommand()
 , mIsSpecial(false)
-, mSprite(context.textures.get(TexturesID::Player))
-{
-    Utility::centerOrigin(mSprite);
-    
+, mAnimation(context.textures.get(TexturesID::Player))
+{   
     mFireCommand.category = Category::Battlefield;
     mFireCommand.action = [](SceneNode&, sf::Time) {std::cout << "Fire" << std::endl;};
 
@@ -29,6 +27,11 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
     
     mSpecialCommand.category = Category::Battlefield;
     mSpecialCommand.action = [](SceneNode&, sf::Time) {std::cout << "Special" << std::endl;};
+
+    mAnimation.setFrameSize({80, 61});
+    mAnimation.setNumFrames(9);
+    mAnimation.setDuration(sf::seconds(0.7f));
+    mAnimation.setRepeating(true);
 }
 
 void PlayerNode::makeAction(Action action)
@@ -76,12 +79,12 @@ unsigned int PlayerNode::getCategory() const
 
 sf::FloatRect PlayerNode::getBoundingRect() const
 {
-    return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
+    return sf::Transformable::getTransform().transformRect(mAnimation.getGlobalBounds());
 }
 
 void PlayerNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target.draw(mSprite, states);
+    target.draw(mAnimation, states);
 }
 
 void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
@@ -102,6 +105,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
         mIsSpecial = false;
     }
 
+    updateAnimation(dt);
     adaptVelocity();
     Entity::updateCurrent(dt, commands);
 }
@@ -119,6 +123,28 @@ void PlayerNode::interact()
 void PlayerNode::special()
 {
     mIsSpecial = true;
+}
+
+void PlayerNode::updateAnimation(sf::Time dt)
+{
+    sf::Vector2f velocity = Entity::getVelocity();
+    if (velocity.x == 0.f && velocity.y == 0.f)
+    {
+        mAnimation.restart();
+        mAnimation.update(dt);
+        mAnimation.pause();
+    }
+    else
+    {
+        if (velocity.x > 0.f)
+            mAnimation.setScale(1.f, 1.f);
+        else
+            mAnimation.setScale(-1.f, 1.f);
+            
+        mAnimation.play();
+    }
+
+    mAnimation.update(dt);
 }
 
 void PlayerNode::adaptVelocity()

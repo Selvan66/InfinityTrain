@@ -4,6 +4,7 @@
 #include "Objects/Nodes/Entity.h"
 #include "Player/PlayerInfo.h"
 #include "App/Context.h"
+#include "Effects/Animation.h"
 
 class PlayerNode : public Entity
 {
@@ -33,6 +34,7 @@ class PlayerNode : public Entity
         void fire();
         void interact();
         void special();
+        void updateAnimation(sf::Time dt);
         void adaptVelocity();
     private:
         Context& mContext;
@@ -43,5 +45,5 @@ class PlayerNode : public Entity
         bool mIsInteract;
         Command mSpecialCommand;
         bool mIsSpecial;
-        sf::Sprite mSprite;            
+        Animation mAnimation;            
 };
