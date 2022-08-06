@@ -16,6 +16,8 @@ class Animation : public sf::Drawable, public sf::Transformable
         void setRepeating(bool flag);
         void setReversed(bool flag);
         void restart();
+        void play();
+        void pause();
         bool isFinished() const;
         sf::FloatRect getGlobalBounds() const;
         void update(sf::Time dt);
@@ -34,4 +36,5 @@ class Animation : public sf::Drawable, public sf::Transformable
         sf::Time mElapsedTime;
         bool mRepeat;
         bool mReverse;
+        bool mPaused;
 };

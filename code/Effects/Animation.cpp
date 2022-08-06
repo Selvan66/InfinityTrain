@@ -11,6 +11,7 @@ Animation::Animation()
 , mElapsedTime(sf::Time::Zero)
 , mRepeat(false)
 , mReverse(false)
+, mPaused(false)
 { }
 
 Animation::Animation(const sf::Texture& texture)
@@ -22,6 +23,7 @@ Animation::Animation(const sf::Texture& texture)
 , mElapsedTime(sf::Time::Zero)
 , mRepeat(false)
 , mReverse(false)
+, mPaused(false)
 { }
 
 void Animation::setTexture(const sf::Texture& texture)
@@ -62,6 +64,16 @@ void Animation::restart()
     mElapsedTime = sf::Time::Zero;
 }
 
+void Animation::play()
+{
+    mPaused = false;
+}
+
+void Animation::pause()
+{
+    mPaused = true;
+}
+
 bool Animation::isFinished() const
 {
     return mCurrentFrame >= mNumFrames;
@@ -74,6 +86,9 @@ sf::FloatRect Animation::getGlobalBounds() const
 
 void Animation::update(sf::Time dt)
 {
+    if (mPaused)
+        return;
+
     sf::Time timePerFrame = mDuration / static_cast<float>(mNumFrames);
     mElapsedTime += dt;
 
