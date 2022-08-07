@@ -3,21 +3,14 @@
 #include "Objects/Nodes/TextNode.h"
 #include "Objects/Nodes/PlayerNode.h"
 
-Pickup::Pickup(Context& context, TexturesID texture)
+Pickup::Pickup(Context& context)
 : Interactable()
 , mContext(context)
-, mSprite(context.textures.get(texture))
+, mSprite()
 , mPickedUp(false)
 , mCommand()
 , mDescription()
-{
-    Utility::centerOrigin(mSprite);
-}
-
-void Pickup::setCommand(Command command)
-{
-    mCommand = command;
-}
+{ }
 
 std::string Pickup::getDescription() const
 {
@@ -37,6 +30,17 @@ void Pickup::interact()
 void Pickup::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
 {
     target.draw(mSprite, states);
+}
+
+void Pickup::setTexture(TexturesID texture)
+{
+    mSprite.setTexture(mContext.textures.get(texture));
+    Utility::centerOrigin(mSprite);
+}
+
+void Pickup::setCommand(Command command)
+{
+    mCommand = command;
 }
 
 void Pickup::addText(const std::string& text)

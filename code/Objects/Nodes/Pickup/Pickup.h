@@ -8,8 +8,7 @@ class PlayerNode;
 class Pickup : public Interactable
 {
     public:
-        Pickup(Context& context, TexturesID texture);
-        void setCommand(Command command);
+        Pickup(Context& context);
         std::string getDescription() const;
 
         virtual bool use(PlayerNode& player);
@@ -17,6 +16,8 @@ class Pickup : public Interactable
         virtual void interact() override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
     protected:
+        void setTexture(TexturesID texture);
+        void setCommand(Command command);
         void addText(const std::string& text);
         void addDescription(const std::string& description);
 

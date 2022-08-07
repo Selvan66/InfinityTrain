@@ -3,7 +3,7 @@
 #include "Objects/Nodes/PlayerNode.h"
 
 Potion::Potion(Context& context, unsigned int value)
-: Pickup(context, TexturesID::Potion)
+: Pickup(context)
 , mValue(value)
 {
     Interactable::setDistance(50.f);
@@ -14,6 +14,7 @@ Potion::Potion(Context& context, unsigned int value)
         this->destroy();
     });
 
+    Pickup::setTexture(TexturesID::Potion);
     Pickup::setCommand(command);
     Pickup::addText(std::to_string(value) + "HP");
     Pickup::addDescription("Heal " + std::to_string(value) + "HP");

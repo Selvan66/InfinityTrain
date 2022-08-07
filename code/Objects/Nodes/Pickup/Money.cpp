@@ -3,7 +3,7 @@
 #include "Objects/Nodes/PlayerNode.h"
 
 Money::Money(Context& context, unsigned int value)
-: Pickup(context, TexturesID::Money)
+: Pickup(context)
 , mValue(value)
 {
     Interactable::setDistance(50.f);
@@ -14,6 +14,7 @@ Money::Money(Context& context, unsigned int value)
         this->use(player);
     });
 
+    Pickup::setTexture(TexturesID::Money);
     Pickup::setCommand(command);
     Pickup::addText(std::to_string(value) + "$");
 }

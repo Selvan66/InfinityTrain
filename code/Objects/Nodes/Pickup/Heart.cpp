@@ -3,7 +3,7 @@
 #include "Objects/Nodes/PlayerNode.h"
 
 Heart::Heart(Context& context, int value)
-: Pickup(context, TexturesID::Heart)
+: Pickup(context)
 , mValue(value)
 {
     Interactable::setDistance(50.f);
@@ -13,6 +13,7 @@ Heart::Heart(Context& context, int value)
         this->use(player);
     });
 
+    Pickup::setTexture(TexturesID::Heart);
     Pickup::setCommand(command);
     Pickup::addText(std::to_string(value) + "HP");
 }
