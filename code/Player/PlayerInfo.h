@@ -5,6 +5,7 @@
 
 #include "Player/Backpack.h"
 #include "Player/Stats.h"
+#include "Player/Equipment.h"
 
 struct PlayerInfo
 {
@@ -12,4 +13,5 @@ struct PlayerInfo
 
     Stats stats;
     Backpack backpack;
+    Equipment equipment;
 };

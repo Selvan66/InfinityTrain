@@ -64,7 +64,7 @@ void PlayerNode::makeAction(Action action)
 
 void PlayerNode::pickup(std::unique_ptr<Pickup> pickup)
 {
-    mPlayerInfo.backpack.addItemToBackpack(std::move(pickup));
+    mPlayerInfo.equipment.equipOrAddToBackpack(std::move(pickup));
 }
 
 bool PlayerNode::updateStat(Stats::Type stat, int value)
