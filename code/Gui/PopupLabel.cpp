@@ -30,7 +30,7 @@ void PopupLabel::handleEvent(const sf::Event& event)
     {
         const auto& mouse = event.mouseMove;
         sf::Vector2f mousePos = mContext.window.mapPixelToCoords(sf::Vector2i(mouse.x, mouse.y)); 
-        if (mObjectRect.contains(mousePos))
+        if (mObjectRect.contains(mousePos) && !mText.getString().isEmpty())
         {
             mShow = true;
             setLabelPos(mousePos);
