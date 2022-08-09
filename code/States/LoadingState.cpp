@@ -55,4 +55,5 @@ void LoadingState::loadGameTextures()
     context.textures.load(TexturesID::Heart, "image/heart.png");
     context.textures.load(TexturesID::Potion, "image/potion.png");
     context.textures.load(TexturesID::Door, "image/doors.png");
+    context.textures.load(TexturesID::HeadArmor, "image/helmet.png");
 }

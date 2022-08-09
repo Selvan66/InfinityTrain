@@ -4,6 +4,7 @@
 #include "Objects/Nodes/Pickup/Money.h"
 #include "Objects/Nodes/Pickup/Potion.h"
 #include "Objects/Nodes/Pickup/Heart.h"
+#include "Objects/Nodes/Pickup/HeadArmor.h"
 
 PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 : Level(lvlContext)
@@ -60,6 +61,14 @@ void PrehistoryLevel::buildFloor()
     std::unique_ptr<Heart> test3(new Heart(context, 5));
     test3->setPosition({1200, 400});
     floorLayer->attachChild(std::move(test3));
+
+    std::unique_ptr<HeadArmor> test4(new HeadArmor(context));
+    test4->setPosition({800, 700});
+    floorLayer->attachChild(std::move(test4));
+
+    std::unique_ptr<HeadArmor> test5(new HeadArmor(context));
+    test5->setPosition({800, 800});
+    floorLayer->attachChild(std::move(test5));
 }
 
 void PrehistoryLevel::buildBattlefield()
