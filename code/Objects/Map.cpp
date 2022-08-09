@@ -22,6 +22,7 @@ Map::Map(Context& context)
 
     mLvlContext.playerInfo.stats.setPosition({window_size.x / 9, 300});
     mLvlContext.playerInfo.backpack.setPosition({(window_size.x * 8 / 9) - 100, 600});
+    mLvlContext.playerInfo.equipment.setPosition({(window_size.x * 8 / 9) - 20, 200});
 }
 
 void Map::update(sf::Time dt)
@@ -31,6 +32,7 @@ void Map::update(sf::Time dt)
 
     context.player.handleRealtimeInput(commands);
     mLvlContext.playerInfo.backpack.update();
+    mLvlContext.playerInfo.equipment.update();
 
     Utility::safeCasting<Text>(mGui->at("timer").get())->setString("Time: " + Utility::timeToString((context.statistics.get(Statistics::TimePlay) - mStartTime)/1000));
     
@@ -48,6 +50,7 @@ void Map::handleEvent(const sf::Event& event)
     auto& commands = mLevel->getCommandQueue();
     mLvlContext.context.player.handleEvent(event, commands);
     mLvlContext.playerInfo.backpack.handleEvent(event);
+    mLvlContext.playerInfo.equipment.handleEvent(event);
 }
 
 void Map::draw()
@@ -58,6 +61,7 @@ void Map::draw()
     mLevel->draw();
     context.window.draw(mLvlContext.playerInfo.stats);
     context.window.draw(mLvlContext.playerInfo.backpack);
+    context.window.draw(mLvlContext.playerInfo.equipment);
 }
 
 void Map::registerLevels()
