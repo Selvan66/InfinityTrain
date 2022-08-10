@@ -1,24 +1,24 @@
 [Text]
-id lives
+id Lives
 pos {0, 0}
 charSize 30
 
 [Text]
-id money
+id Money
 pos {0, TEXT_HEIGHT}
 charSize 30
 
 [Text]
-id armor
+id Armor
 pos {0, TEXT_HEIGHT * 2}
 charSize 30
 
 [Text]
-id attack
+id Attack
 pos {0, TEXT_HEIGHT * 3}
 charSize 30
 
 [Text]
-id speed
+id Speed
 pos {0, TEXT_HEIGHT * 4}
 charSize 30

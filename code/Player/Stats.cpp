@@ -43,11 +43,11 @@ void Stats::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 void Stats::updateStatsText()
 {
-    Utility::safeCasting<Text>(mGui->at("lives").get())->setString("Lives: " + std::to_string(mStats[Lives]));
-    Utility::safeCasting<Text>(mGui->at("money").get())->setString("Money: " + std::to_string(mStats[Money]));
-    Utility::safeCasting<Text>(mGui->at("armor").get())->setString("Armor: " + std::to_string(mStats[Armor]));
-    Utility::safeCasting<Text>(mGui->at("attack").get())->setString("Attack: " + std::to_string(mStats[Attack]));
-    Utility::safeCasting<Text>(mGui->at("speed").get())->setString("Speed: " + std::to_string(mStats[Speed]));
+    Utility::safeCasting<Text>(mGui->at("Lives").get())->setString("Lives: " + std::to_string(mStats[Lives]));
+    Utility::safeCasting<Text>(mGui->at("Money").get())->setString("Money: " + std::to_string(mStats[Money]));
+    Utility::safeCasting<Text>(mGui->at("Armor").get())->setString("Armor: " + std::to_string(mStats[Armor]));
+    Utility::safeCasting<Text>(mGui->at("Attack").get())->setString("Attack: " + std::to_string(mStats[Attack]));
+    Utility::safeCasting<Text>(mGui->at("Speed").get())->setString("Speed: " + std::to_string(mStats[Speed]));
 }
 
 void Stats::setDefaultStats()
