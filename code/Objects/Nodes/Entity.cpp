@@ -32,6 +32,11 @@ void Entity::accelerate(float vx, float vy)
     mVelocity.y += vy;
 }
 
+void Entity::setHitpoints(int hitpoints)
+{
+    mHitpoints = hitpoints;
+}
+
 sf::Vector2f Entity::getVelocity() const
 {
     return mVelocity;
