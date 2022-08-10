@@ -4,7 +4,7 @@
 #include "Objects/Nodes/Pickup/Money.h"
 #include "Objects/Nodes/Pickup/Potion.h"
 #include "Objects/Nodes/Pickup/Heart.h"
-#include "Objects/Nodes/Pickup/HeadArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
 
 PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 : Level(lvlContext)
