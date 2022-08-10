@@ -1,7 +1,8 @@
 /** @file Equipment.cpp */
 #include "Player/Equipment.h"
 #include "Player/PlayerInfo.h"
-#include "Objects/Nodes/Pickup/HeadArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
+#include "Utils/Exceptions/bad_argument.h"
 
 #define V1_POCKET Pocket(context)
 #define V5_POCKET V1_POCKET, V1_POCKET, V1_POCKET, V1_POCKET, V1_POCKET
@@ -30,21 +31,26 @@ Equipment::Equipment(Context& context, PlayerInfo& playerInfo)
     mPlayerSprite.setColor(playerColor);
 }
 
-void Equipment::equipOrAddToBackpack(std::unique_ptr<Pickup> item)
+bool Equipment::canBeEquipped(const std::unique_ptr<Pickup>& item) const
 {
-    if (dynamic_cast<HeadArmor*>(item.get()) != nullptr)
-    {
-        unequip(Head);
-        mSlots[Head].addItem(std::move(item));
-        return;
-    }
+    Slot slot = getItemSlot(item);
+    if (slot == None || mSlots[slot].isItem())
+        return false;
+    return true;
+}
 
-    mPlayerInfo.backpack.addItemToBackpack(std::move(item));
+void Equipment::equip(std::unique_ptr<Pickup> item)
+{
+    if (!canBeEquipped(item))
+        throw Except::bad_argument().add("Equipment : equip()").add("Item cannot be equipped");
+
+    Slot slot = getItemSlot(item);
+    mSlots[slot].addItem(std::move(item));
 }
 
 void Equipment::unequip(Slot slot)
 {
-    if (mSlots[Head].isItem())
+    if (mSlots[slot].isItem())
         mPlayerInfo.backpack.addItemToBackpack(std::move(mSlots[slot].dropItem()));
 }
 
@@ -73,4 +79,11 @@ void Equipment::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(mPlayerSprite, states);
     for (auto& slot : mSlots)
         target.draw(slot, states);
+}
+
+Equipment::Slot Equipment::getItemSlot(const std::unique_ptr<Pickup>& item) const
+{
+    if (dynamic_cast<const HeadArmor*>(item.get()))
+        return Head;
+    return None;
 }
