@@ -17,7 +17,7 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 , mAnimation(context.textures.get(TexturesID::Player))
 {   
     mFireCommand.category = Category::Battlefield;
-    mFireCommand.action = [](SceneNode&, sf::Time) {std::cout << "Fire" << std::endl;};
+    mFireCommand.action = [&](SceneNode&, sf::Time) { if (mPlayerInfo.equipment.isItem(Equipment::Head)) mPlayerInfo.equipment.getItem(Equipment::Head)->damage(1); };
 
     mInteractCommand.category = Category::Interactable;
     mInteractCommand.action = derivedAction<Interactable>([] (Interactable& interactable, sf::Time) {
