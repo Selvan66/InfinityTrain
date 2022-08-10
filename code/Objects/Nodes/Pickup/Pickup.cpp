@@ -9,12 +9,11 @@ Pickup::Pickup(Context& context)
 , mSprite()
 , mPickedUp(false)
 , mCommand()
-, mDescription()
 { }
 
 std::string Pickup::getDescription() const
 {
-    return mDescription;
+    return "";
 }
 
 bool Pickup::use(PlayerNode& player)
@@ -49,11 +48,6 @@ void Pickup::addText(const std::string& text)
     textNode->setPosition(0.f, -40.f);
     textNode->setString(text);
     SceneNode::attachChild(std::move(textNode));
-}
-
-void Pickup::addDescription(const std::string& description)
-{
-    mDescription = description;
 }
 
 sf::FloatRect Pickup::getBoundingRect() const 
