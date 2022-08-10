@@ -18,8 +18,6 @@ Pocket::Pocket(Context& context)
 void Pocket::addItem(std::unique_ptr<Pickup> item)
 {
     mItem = std::move(item);
-    mPopupLabel.setText(mItem->getDescription());
-    mPopupLabel.setObjectRect(getGlobalBounds());
 }
 
 std::unique_ptr<Pickup> Pocket::dropItem()
@@ -35,10 +33,25 @@ bool Pocket::isItem() const
     return mItem != nullptr;
 }
 
+std::unique_ptr<Pickup>& Pocket::getItem()
+{
+    return mItem;
+}
+
 void Pocket::handleEvent(const sf::Event& event)
 {
     Button::handleEvent(event);
     mPopupLabel.handleEvent(event);
+}
+
+void Pocket::update()
+{
+    Button::update();
+    if (isItem())
+    {
+        mPopupLabel.setText(mItem->getDescription());
+        mPopupLabel.setObjectRect(getGlobalBounds());
+    }
 }
 
 sf::FloatRect Pocket::getGlobalBounds() const 
