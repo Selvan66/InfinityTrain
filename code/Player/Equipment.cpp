@@ -34,7 +34,7 @@ Equipment::Equipment(Context& context, PlayerInfo& playerInfo)
 bool Equipment::canBeEquipped(const std::unique_ptr<Pickup>& item) const
 {
     Slot slot = getItemSlot(item);
-    if (slot == None || mSlots[slot].isItem())
+    if (slot == None || isItem(slot))
         return false;
     return true;
 }
@@ -50,8 +50,18 @@ void Equipment::equip(std::unique_ptr<Pickup> item)
 
 void Equipment::unequip(Slot slot)
 {
-    if (mSlots[slot].isItem())
+    if (isItem(slot))
         mPlayerInfo.backpack.addItemToBackpack(std::move(mSlots[slot].dropItem()));
+}
+
+std::unique_ptr<Pickup>& Equipment::getItem(Slot slot)
+{
+    return mSlots[slot].getItem();
+}
+
+bool Equipment::isItem(Slot slot) const
+{
+    return mSlots[slot].isItem();
 }
 
 void Equipment::handleEvent(const sf::Event& event)
@@ -63,7 +73,13 @@ void Equipment::handleEvent(const sf::Event& event)
 void Equipment::update()
 {
     for (auto& slot : mSlots)
+        if (slot.isItem() && slot.getItem()->isDestroyed())
+            slot.dropItem();
+
+    for (auto& slot : mSlots)
         slot.update();
+
+    updateStats();
 }
 
 void Equipment::setPosition(sf::Vector2f position)
@@ -86,4 +102,13 @@ Equipment::Slot Equipment::getItemSlot(const std::unique_ptr<Pickup>& item) cons
     if (dynamic_cast<const HeadArmor*>(item.get()))
         return Head;
     return None;
+}
+
+void Equipment::updateStats()
+{
+    int armor = 0;
+    if (isItem(Head))
+        armor += getItem(Head)->getHitpoints();
+    
+    mPlayerInfo.stats.setStat(Stats::Armor, armor);
 }
