@@ -34,6 +34,22 @@ bool Stats::updateStat(Type stat, int value)
     return oldStat != mStats[stat];
 }
 
+bool Stats::updateStat(const std::unordered_map<Type, int>& stats)
+{
+    bool changes = false;
+    for (auto& stat : stats)
+        changes = updateStat(stat.first, stat.second) ? true : changes;
+    return changes;
+}
+
+bool Stats::restoreStats(const std::unordered_map<Type, int>& stats)
+{
+    bool changes = false;
+    for (auto& stat : stats)
+        changes = updateStat(stat.first, -stat.second) ? true : changes;
+    return changes;
+}
+
 void Stats::draw(sf::RenderTarget &target, sf::RenderStates states) const 
 {
     states.transform = sf::Transformable::getTransform();
