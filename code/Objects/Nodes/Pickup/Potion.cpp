@@ -28,9 +28,6 @@ std::string Potion::getDescription() const
 bool Potion::use(PlayerNode& player)
 {
     if (player.updateStat(Stats::Lives, mValue))
-    {
-        this->destroy();
         return true;
-    }
     return false;
 }

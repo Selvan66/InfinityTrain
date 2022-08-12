@@ -11,20 +11,11 @@ Money::Money(Context& context, unsigned int value)
     Command command;
     command.category = Category::Player;
     command.action = derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
-        this->use(player);
+        if (player.updateStat(Stats::Money, mValue))
+            this->destroy();
     });
 
     Pickup::setTexture(TexturesID::Money);
     Pickup::setCommand(command);
     Pickup::addText(std::to_string(value) + "$");
-}
-
-bool Money::use(PlayerNode& player)
-{
-    if (player.updateStat(Stats::Money, mValue))
-    {
-        this->destroy();
-        return true;
-    }
-    return false;
 }

@@ -10,20 +10,11 @@ Heart::Heart(Context& context, int value)
     Command command;
     command.category = Category::Player;
     command.action = derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
-        this->use(player);
+        if (player.updateStat(Stats::Lives, mValue))
+            this->destroy();
     });
 
     Pickup::setTexture(TexturesID::Heart);
     Pickup::setCommand(command);
     Pickup::addText(std::to_string(value) + "HP");
-}
-
-bool Heart::use(PlayerNode& player)
-{
-    if (player.updateStat(Stats::Lives, mValue))
-    {
-        this->destroy();
-        return true;
-    }
-    return false;
 }

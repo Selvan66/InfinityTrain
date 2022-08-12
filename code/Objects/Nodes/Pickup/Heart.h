@@ -8,7 +8,5 @@ class Heart : public Pickup
     public:
         Heart(Context& context, int value);
     private:
-        virtual bool use(PlayerNode& player) override;
-    private:
         int mValue;
 };
