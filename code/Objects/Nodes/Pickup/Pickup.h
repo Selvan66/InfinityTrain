@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Objects/Nodes/Interactable.h"
+#include "Player/Stats.h"
 
 class PlayerNode;
 
@@ -11,6 +12,7 @@ class Pickup : public Interactable
         Pickup(Context& context);
 
         virtual std::string getDescription() const;
+        virtual std::unordered_map<Stats::Type, int> getStats() const;
         virtual bool use(PlayerNode& player);
         
         virtual void interact() override;

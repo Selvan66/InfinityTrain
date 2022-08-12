@@ -16,6 +16,11 @@ std::string Pickup::getDescription() const
     return "";
 }
 
+std::unordered_map<Stats::Type, int> Pickup::getStats() const
+{
+    return {{}};
+}
+
 bool Pickup::use(PlayerNode& player)
 { 
     return false;
