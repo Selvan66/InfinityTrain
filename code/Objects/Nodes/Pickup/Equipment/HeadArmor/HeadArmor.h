@@ -8,8 +8,10 @@ class HeadArmor : public Pickup
     public:
         explicit HeadArmor(Context& context, unsigned int durability = 100);
 
-        virtual std::string getDescription() const;
+        virtual std::string getDescription() const override;
+        virtual std::unordered_map<Stats::Type, int> getStats() const override;
         virtual bool use(PlayerNode& player) override;
     private:
         Context& mContext;
+        std::unordered_map<Stats::Type, int> mStats;
 };

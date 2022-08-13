@@ -5,6 +5,7 @@
 HeadArmor::HeadArmor(Context& context, unsigned int durability)
 : Pickup(context)
 , mContext(context)
+, mStats()
 {
     Interactable::setDistance(50.f);
     
@@ -25,12 +26,18 @@ HeadArmor::HeadArmor(Context& context, unsigned int durability)
 
 std::string HeadArmor::getDescription() const
 {
-    return "Head Armor\nDurability: " + std::to_string(Entity::getHitpoints());
+    return "Head Armor\nDurability: " 
+           + std::to_string(Entity::getHitpoints()) + 
+           "\nSpeed: -50";
+}
+
+std::unordered_map<Stats::Type, int> HeadArmor::getStats() const 
+{
+    return {{Stats::Speed, -50}};
 }
 
 bool HeadArmor::use(PlayerNode& player)
 {
     player.pickup(std::unique_ptr<HeadArmor>(new HeadArmor(mContext, Entity::getHitpoints())));
-    this->destroy();
     return true;
 }
