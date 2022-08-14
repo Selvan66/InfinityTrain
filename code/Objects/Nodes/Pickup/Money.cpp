@@ -6,8 +6,6 @@ Money::Money(Context& context, unsigned int value)
 : Pickup(context)
 , mValue(value)
 {
-    Interactable::setDistance(50.f);
-
     Command command;
     command.category = Category::Player;
     command.action = derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
@@ -17,5 +15,5 @@ Money::Money(Context& context, unsigned int value)
 
     Pickup::setTexture(TexturesID::Money);
     Pickup::setCommand(command);
-    Pickup::addText(std::to_string(value) + "$");
+    Pickup::setText(std::to_string(value) + "$");
 }

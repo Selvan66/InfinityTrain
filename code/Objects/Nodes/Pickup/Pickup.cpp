@@ -47,7 +47,17 @@ void Pickup::setCommand(Command command)
     mCommand = command;
 }
 
-void Pickup::addText(const std::string& text)
+Context& Pickup::getContext() const
+{
+    return mContext;
+}
+
+std::unique_ptr<Pickup> Pickup::create() const
+{
+    return std::unique_ptr<Pickup>(new Pickup(mContext));
+}
+
+void Pickup::setText(const std::string& text)
 {
     std::unique_ptr<TextNode> textNode(new TextNode(mContext));
     textNode->setPosition(0.f, -40.f);

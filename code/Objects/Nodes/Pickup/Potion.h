@@ -12,6 +12,8 @@ class Potion : public Pickup
 
         virtual std::string getDescription() const override;
         virtual bool use(PlayerNode& player) override;
+    protected:
+        virtual std::unique_ptr<Pickup> create() const override;
     private:
         unsigned int mValue;
         std::string mDescription;

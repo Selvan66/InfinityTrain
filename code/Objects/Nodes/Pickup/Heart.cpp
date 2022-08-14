@@ -6,7 +6,6 @@ Heart::Heart(Context& context, int value)
 : Pickup(context)
 , mValue(value)
 {
-    Interactable::setDistance(50.f);
     Command command;
     command.category = Category::Player;
     command.action = derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
@@ -16,5 +15,5 @@ Heart::Heart(Context& context, int value)
 
     Pickup::setTexture(TexturesID::Heart);
     Pickup::setCommand(command);
-    Pickup::addText(std::to_string(value) + "HP");
+    Pickup::setText(std::to_string(value) + "HP");
 }

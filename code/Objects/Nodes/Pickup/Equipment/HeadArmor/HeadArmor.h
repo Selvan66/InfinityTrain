@@ -11,7 +11,6 @@ class HeadArmor : public Pickup
         virtual std::string getDescription() const override;
         virtual std::unordered_map<Stats::Type, int> getStats() const override;
         virtual bool use(PlayerNode& player) override;
-    private:
-        Context& mContext;
-        std::unordered_map<Stats::Type, int> mStats;
+    protected:
+        virtual std::unique_ptr<Pickup> create() const override;
 };

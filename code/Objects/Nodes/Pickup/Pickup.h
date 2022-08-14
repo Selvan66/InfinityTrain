@@ -20,8 +20,11 @@ class Pickup : public Interactable
     protected:
         void setTexture(TexturesID texture);
         void setCommand(Command command);
-        void addText(const std::string& text);
+        void setText(const std::string& text);
 
+        Context& getContext() const;
+
+        virtual std::unique_ptr<Pickup> create() const;
         virtual sf::FloatRect getBoundingRect() const override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:

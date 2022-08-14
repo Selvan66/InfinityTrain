@@ -11,13 +11,13 @@ Potion::Potion(Context& context, unsigned int value)
     Command command;
     command.category = Category::Player;
     command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
-        player.pickup(std::unique_ptr<Potion>(new Potion(context, mValue)));
+        player.pickup(create());
         this->destroy();
     });
 
     Pickup::setTexture(TexturesID::Potion);
     Pickup::setCommand(command);
-    Pickup::addText(std::to_string(value) + "HP");
+    Pickup::setText(std::to_string(value) + "HP");
 }
 
 std::string Potion::getDescription() const
@@ -30,4 +30,9 @@ bool Potion::use(PlayerNode& player)
     if (player.updateStat(Stats::Lives, mValue))
         return true;
     return false;
+}
+
+std::unique_ptr<Pickup> Potion::create() const 
+{
+    return std::unique_ptr<Pickup>(new Potion(Pickup::getContext(), mValue));
 }
