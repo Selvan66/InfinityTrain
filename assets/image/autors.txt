@@ -5,3 +5,5 @@
 <a href="https://www.flaticon.com/free-icons/heart" title="heart icons">Heart icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/potion" title="potion icons">Potion icons created by mj - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/helmet" title="helmet icons">Helmet icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/armor" title="armor icons">Armor icons created by Nikita Golubev - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/punk" title="punk icons">Punk icons created by Freepik - Flaticon</a>
