@@ -1,7 +1,9 @@
 /** @file Equipment.cpp */
 #include "Player/Equipment.h"
 #include "Player/PlayerInfo.h"
-#include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/HeadArmor/HeadArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/ChestArmor/ChestArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/BootsArmor/BootsArmor.h"
 #include "Utils/Exceptions/bad_argument.h"
 
 #define V1_POCKET Pocket(context)
@@ -45,13 +47,17 @@ void Equipment::equip(std::unique_ptr<Pickup> item)
         throw Except::bad_argument().add("Equipment : equip()").add("Item cannot be equipped");
 
     Slot slot = getItemSlot(item);
+    mPlayerInfo.stats.updateStat(item->getStats());
     mSlots[slot].addItem(std::move(item));
 }
 
 void Equipment::unequip(Slot slot)
 {
     if (isItem(slot))
+    {
+        mPlayerInfo.stats.restoreStats(getItem(slot)->getStats());
         mPlayerInfo.backpack.addItemToBackpack(std::move(mSlots[slot].dropItem()));
+    }
 }
 
 std::unique_ptr<Pickup>& Equipment::getItem(Slot slot)
@@ -74,12 +80,15 @@ void Equipment::update()
 {
     for (auto& slot : mSlots)
         if (slot.isItem() && slot.getItem()->isDestroyed())
+        {
+            mPlayerInfo.stats.restoreStats(slot.getItem()->getStats());
             slot.dropItem();
-
+        }
+        
     for (auto& slot : mSlots)
         slot.update();
-
-    updateStats();
+    
+    updateArmorStats();
 }
 
 void Equipment::setPosition(sf::Vector2f position)
@@ -101,14 +110,21 @@ Equipment::Slot Equipment::getItemSlot(const std::unique_ptr<Pickup>& item) cons
 {
     if (dynamic_cast<const HeadArmor*>(item.get()))
         return Head;
+    if (dynamic_cast<const ChestArmor*>(item.get()))
+        return Chest;
+    if (dynamic_cast<const BootsArmor*>(item.get()))
+        return Boots;
     return None;
 }
 
-void Equipment::updateStats()
+void Equipment::updateArmorStats()
 {
     int armor = 0;
     if (isItem(Head))
         armor += getItem(Head)->getHitpoints();
-    
+    if (isItem(Chest))
+        armor += getItem(Chest)->getHitpoints();
+    if (isItem(Boots))
+        armor += getItem(Boots)->getHitpoints();
     mPlayerInfo.stats.setStat(Stats::Armor, armor);
 }

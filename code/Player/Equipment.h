@@ -12,10 +12,10 @@ class Equipment : public sf::Drawable, public sf::Transformable, public sf::NonC
     public:
         enum Slot
         {
+            LeftHand,
             Head,
             Chest,
             Boots,
-            LeftHand,
             RightHand,
             SlotCount,
             None
@@ -35,7 +35,7 @@ class Equipment : public sf::Drawable, public sf::Transformable, public sf::NonC
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         Slot getItemSlot(const std::unique_ptr<Pickup>& item) const;
-        void updateStats();
+        void updateArmorStats();
     private:
         Context& mContext;
         PlayerInfo& mPlayerInfo;
