@@ -80,9 +80,9 @@ void Stats::setStatWithRange(Type stat, int value)
     switch (stat)
     {
         case Lives:
-        case Armor:
             mStats[stat] = std::min(100, std::max(value, 0));   // 0 <= stat <= 100
             break;
+        case Armor:
         case Money:
         case Attack:
             mStats[stat] = std::max(0, value);  // stat >= 0
