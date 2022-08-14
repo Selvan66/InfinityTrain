@@ -4,7 +4,7 @@
 
 Interactable::Interactable()
 : Entity()
-, mDistance(0)
+, mDistance(50)
 , mIsInteractable(false)
 {
     mCommand.category = Category::Player;
