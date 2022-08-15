@@ -50,6 +50,19 @@ bool Stats::restoreStats(const std::unordered_map<Type, int>& stats)
     return changes;
 }
 
+const char* Stats::toString(Type type)
+{
+    switch (type)
+    {
+        case Type::Lives: return "Lives";
+        case Type::Money: return "Money";
+        case Type::Armor: return "Armor";
+        case Type::Attack: return "Attack";
+        case Type::Speed: return "Speed";
+        default: return "";
+    };
+}
+
 void Stats::draw(sf::RenderTarget &target, sf::RenderStates states) const 
 {
     states.transform = sf::Transformable::getTransform();

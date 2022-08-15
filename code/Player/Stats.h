@@ -27,6 +27,8 @@ class Stats : public sf::Drawable, public sf::Transformable, public sf::NonCopya
         bool updateStat(Type stat, int value);
         bool updateStat(const std::unordered_map<Type, int>& stats);
         bool restoreStats(const std::unordered_map<Type, int>& stats);
+
+        static const char* toString(Type type);
     protected:
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
