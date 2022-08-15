@@ -35,14 +35,7 @@ float distance(const SceneNode& lhs, const SceneNode& rhs)
 
 std::string timeToString(unsigned long long time)
 {
-    std::stringstream parser;
-    if(((time / 100) + (time % 100) / 60) < 10) 
-        parser << "0";  
-    parser << ((time / 100) + (time % 100 ) / 60) << ':';                                   
-    if(((time % 100) % 60) < 10) 
-        parser << "0";          
-    parser << (time % 100) % 60;  
-    return parser.str();
+    return stringFormat("%02d:%02d", ((time / 100) + (time % 100 ) / 60), (time % 100) % 60);
 }
 
 std::string toString(Player::Output key)
