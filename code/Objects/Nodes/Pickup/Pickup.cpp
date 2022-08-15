@@ -9,6 +9,7 @@ Pickup::Pickup(Context& context)
 , mSprite()
 , mPickedUp(false)
 , mCommand()
+, mText()
 { }
 
 std::string Pickup::getDescription() const
@@ -16,9 +17,9 @@ std::string Pickup::getDescription() const
     return "";
 }
 
-std::unordered_map<Stats::Type, int> Pickup::getStats() const
+const std::unordered_map<Stats::Type, int>& Pickup::getStats() const
 {
-    return {{}};
+    return std::move(std::unordered_map<Stats::Type, int>());
 }
 
 bool Pickup::use(PlayerNode& player)
@@ -52,6 +53,11 @@ Context& Pickup::getContext() const
     return mContext;
 }
 
+const std::string& Pickup::getName() const
+{
+    return mText;
+}
+
 std::unique_ptr<Pickup> Pickup::create() const
 {
     return std::unique_ptr<Pickup>(new Pickup(mContext));
@@ -59,6 +65,7 @@ std::unique_ptr<Pickup> Pickup::create() const
 
 void Pickup::setText(const std::string& text)
 {
+    mText = text;
     std::unique_ptr<TextNode> textNode(new TextNode(mContext));
     textNode->setPosition(0.f, -40.f);
     textNode->setString(text);

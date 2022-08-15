@@ -12,7 +12,7 @@ class Pickup : public Interactable
         Pickup(Context& context);
 
         virtual std::string getDescription() const;
-        virtual std::unordered_map<Stats::Type, int> getStats() const;
+        virtual const std::unordered_map<Stats::Type, int>& getStats() const;
         virtual bool use(PlayerNode& player);
         
         virtual void interact() override;
@@ -23,6 +23,7 @@ class Pickup : public Interactable
         void setText(const std::string& text);
 
         Context& getContext() const;
+        const std::string& getName() const;
 
         virtual std::unique_ptr<Pickup> create() const;
         virtual sf::FloatRect getBoundingRect() const override;
@@ -32,4 +33,5 @@ class Pickup : public Interactable
         sf::Sprite mSprite;
         bool mPickedUp;
         Command mCommand;
+        std::string mText;
 };
