@@ -1,9 +1,9 @@
 /** @file Equipment.cpp */
 #include "Player/Equipment.h"
 #include "Player/PlayerInfo.h"
-#include "Objects/Nodes/Pickup/Equipment/HeadArmor/HeadArmor.h"
-#include "Objects/Nodes/Pickup/Equipment/ChestArmor/ChestArmor.h"
-#include "Objects/Nodes/Pickup/Equipment/BootsArmor/BootsArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/ChestArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/BootsArmor.h"
 #include "Utils/Exceptions/bad_argument.h"
 
 #define V1_POCKET Pocket(context)

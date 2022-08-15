@@ -25,7 +25,8 @@ enum class TexturesID
 	Door,
 	HeadArmor,
 	ChestArmor,
-	BootsArmor,
+	HeavyBoots,
+	LightBoots,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;
