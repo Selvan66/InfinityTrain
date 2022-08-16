@@ -25,7 +25,7 @@ std::string Potion::getDescription() const
     return mDescription;
 }
 
-bool Potion::use(PlayerNode& player)
+bool Potion::action(PlayerNode& player)
 {
     if (player.updateStat(Stats::Lives, mValue))
         return true;

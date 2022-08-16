@@ -58,7 +58,7 @@ void Level::updatePlayer(PlayerNode* player)
     adaptNodesPosition(player);
 
     mLvlContext.playerInfo.backpack.drop(player->getPosition(), *mSceneLayer[Floor]);
-    mLvlContext.playerInfo.backpack.use(*player);
+    mLvlContext.playerInfo.backpack.action(*player);
 }
 
 void Level::buildScene()

@@ -11,7 +11,7 @@ class Potion : public Pickup
         Potion(Context& context, unsigned int value);
 
         virtual std::string getDescription() const override;
-        virtual bool use(PlayerNode& player) override;
+        virtual bool action(PlayerNode& player) override;
     protected:
         virtual std::unique_ptr<Pickup> create() const override;
     private:

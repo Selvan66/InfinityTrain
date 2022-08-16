@@ -13,7 +13,7 @@ class Pickup : public Interactable
 
         virtual std::string getDescription() const;
         virtual const std::unordered_map<Stats::Type, int>& getStats() const;
-        virtual bool use(PlayerNode& player);
+        virtual bool action(PlayerNode& player);
         
         virtual void interact() override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 

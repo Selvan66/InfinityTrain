@@ -22,7 +22,7 @@ const std::unordered_map<Stats::Type, int>& Pickup::getStats() const
     return std::move(std::unordered_map<Stats::Type, int>());
 }
 
-bool Pickup::use(PlayerNode& player)
+bool Pickup::action(PlayerNode& player)
 { 
     return false;
 }

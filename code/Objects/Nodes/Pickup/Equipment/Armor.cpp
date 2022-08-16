@@ -15,7 +15,7 @@ Armor::Armor(Context& context, unsigned int durability)
     Entity::setHitpoints(durability);
 }
 
-bool Armor::use(PlayerNode& player)
+bool Armor::action(PlayerNode& player)
 {
     player.pickup(create());
     return true;

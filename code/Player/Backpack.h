@@ -15,7 +15,7 @@ class Backpack : public sf::Drawable, public sf::Transformable, public sf::NonCo
         void giveItemToDrop(size_t index);
         void giveItemToUse(size_t index);
         void drop(sf::Vector2f pos, SceneNode& node);
-        void use(PlayerNode& player);
+        void action(PlayerNode& player);
 
         void handleEvent(const sf::Event& event);
         void update();

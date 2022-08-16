@@ -59,12 +59,12 @@ void Backpack::drop(sf::Vector2f pos, SceneNode& node)
     }
 }
 
-void Backpack::use(PlayerNode& player)
+void Backpack::action(PlayerNode& player)
 {
     while (!mUseQueue.empty())
     {
         auto pickup = std::move(mUseQueue.front());
-        if (!pickup->use(player))
+        if (!pickup->action(player))
             addItemToBackpack(std::move(pickup));
         mUseQueue.pop();
     }

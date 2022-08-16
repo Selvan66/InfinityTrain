@@ -7,7 +7,7 @@ class Armor : public Pickup
 {
     public:
         Armor(Context& context, unsigned int durability);
-        virtual bool use(PlayerNode& player) override;
+        virtual bool action(PlayerNode& player) override;
         virtual std::string getDescription() const override;
 };
 
