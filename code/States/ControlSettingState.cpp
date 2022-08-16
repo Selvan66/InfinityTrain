@@ -144,8 +144,8 @@ void ControlSettingState::updateTextOnButton()
 
 void ControlSettingState::changeActionBinding(std::string key)
 {
-	auto& found = std::find_if(mActionBinding.begin(), mActionBinding.end(), 
-				[&](auto& pair){ return pair.second == key; });
+	auto found = std::find_if(mActionBinding.begin(), mActionBinding.end(), 
+				[&key](const auto& pair){ return pair.second == key; });
 	if (found != mActionBinding.end())
 		found->second = Utility::toString(sf::Keyboard::Unknown);
 	mActionBinding[mActionToChange] = key;

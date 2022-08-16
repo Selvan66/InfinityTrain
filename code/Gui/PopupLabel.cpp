@@ -54,7 +54,7 @@ void PopupLabel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void PopupLabel::setLabelPos(const sf::Vector2f& pos)
 {
     mBackground.setPosition(pos);
-    auto& bound = mBackground.getGlobalBounds();
+    const auto& bound = mBackground.getGlobalBounds();
     mText.setPosition(sf::Vector2f(bound.left + bound.width / 2.f, bound.top + bound.height / 2.f));
 }
 

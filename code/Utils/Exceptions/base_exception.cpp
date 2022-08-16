@@ -33,7 +33,7 @@ const char* base_exception::name() const
     return "Base Exception";
 }
 
-const char* base_exception::what() const 
+const char* base_exception::what() const noexcept
 {
     return mMessage;
 }
@@ -45,7 +45,7 @@ void base_exception::insertMassage(const char* message)
     if (mMessageSize >= MESSAGE_SIZE)
         throw std::out_of_range("Base Exception: RESIZE MESSAGE SIZE YOU GREEDY MAN");
 
-    strcat_s(mMessage, message);
+    strcat(mMessage, message);
 }
 
 }

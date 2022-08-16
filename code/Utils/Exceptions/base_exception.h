@@ -12,7 +12,7 @@ class base_exception : public std::exception
         base_exception& add(const char* message);
 
         virtual const char* name() const;
-        virtual const char* what() const override;
+        virtual const char* what() const noexcept override;
     protected:
         base_exception(const char* message);
     private:
