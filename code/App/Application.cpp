@@ -96,8 +96,7 @@ void Application::registerStates()
 void Application::loadMenuTextures()
 {
 	mContext.textures.load(TexturesID::TitleScreen, "image/TitleScreen.png");
-	mContext.textures.load(TexturesID::ArrowButtons, "image/ArrowButtons.png");
-	mContext.textures.load(TexturesID::Checkbox, "image/true.png");
+	mContext.textures.load(TexturesID::Gui, "image/Gui.png");
 	mContext.textures.load(TexturesID::Loading, "image/loading.png");
 }
 

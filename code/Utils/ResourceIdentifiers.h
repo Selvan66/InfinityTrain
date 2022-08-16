@@ -10,8 +10,7 @@
 enum class TexturesID
 {
 	TitleScreen,
-	ArrowButtons,
-	Checkbox,
+	Gui,
 	Icon,
 	Loading,
 	DefaultLevel,

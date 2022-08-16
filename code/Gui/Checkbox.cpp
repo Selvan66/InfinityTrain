@@ -4,13 +4,12 @@
 
 Checkbox::Checkbox(Context& context)
 : Button(context)
-, mCheck(context.textures.get(TexturesID::Checkbox))
+, mCheck(context.textures.get(TexturesID::Gui), sf::IntRect(181, 0, 50, 50))
 , mBox(sf::Vector2f(60, 60))
 , mIsSelected(false)
 {
     Button::setCallback([this](){this->mIsSelected = !this->mIsSelected;});
 
-    mCheck.setScale(50.f / 256.f, 50.f / 256.f);
     Utility::centerOrigin(mCheck);
 
     Utility::centerOrigin(mBox);

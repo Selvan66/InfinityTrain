@@ -11,22 +11,20 @@ TextSlider::TextSlider(Context& context)
 , mTextIndex(-1)
 , mMaxTextWidth(0)
 {
-    mLeft.setTextures(context.textures.get(TexturesID::ArrowButtons), 
-                    sf::IntRect(0, 0, 256, 256), 
-                    sf::IntRect(257, 0, 256, 256), 
-                    sf::IntRect(517, 0, 256, 256));
+    mLeft.setTextures(context.textures.get(TexturesID::Gui), 
+                    sf::IntRect(0, 0, 60, 60), 
+                    sf::IntRect(61, 0, 60, 60), 
+                    sf::IntRect(121, 0, 60, 60));
     
     mLeft.rotate(180);  
-    mLeft.setScale(60.f / 256.f, 60.f / 256.f); 
     mLeft.setCallback([this](){this->setPrevText();});
     
     
-    mRight.setTextures(context.textures.get(TexturesID::ArrowButtons), 
-                    sf::IntRect(0, 0, 256, 256), 
-                    sf::IntRect(257, 0, 256, 256), 
-                    sf::IntRect(517, 0, 256, 256));
+    mRight.setTextures(context.textures.get(TexturesID::Gui), 
+                    sf::IntRect(0, 0, 60, 60), 
+                    sf::IntRect(61, 0, 60, 60), 
+                    sf::IntRect(121, 0, 60, 60));
                     
-    mRight.setScale(60.f / 256.f, 60.f / 256.f); 
     mRight.setCallback([this](){this->setNextText();});
 }
 
