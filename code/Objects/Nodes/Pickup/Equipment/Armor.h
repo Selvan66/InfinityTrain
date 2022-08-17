@@ -6,7 +6,7 @@
 class Armor : public Pickup
 {
     public:
-        Armor(Context& context, unsigned int durability);
+        Armor(Context& context, int durability);
         virtual bool action(PlayerNode& player) override;
         virtual std::string getDescription() const override;
 };
@@ -14,7 +14,7 @@ class Armor : public Pickup
 struct ArmorParam
 {
     const char* name;
-    const unsigned int durability;
+    const int durability;
     const std::unordered_map<Stats::Type, int>& stats;
     const TexturesID texture;
     const sf::IntRect textureRect;

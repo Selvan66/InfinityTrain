@@ -13,7 +13,7 @@ HeadArmor::HeadArmor(Context& context, size_t index)
 : HeadArmor(context, index, helmets[index].durability)
 { }
 
-HeadArmor::HeadArmor(Context& context, size_t index, unsigned int durability)
+HeadArmor::HeadArmor(Context& context, size_t index, int durability)
 : Armor(context, durability)
 , mIndex(index)
 {

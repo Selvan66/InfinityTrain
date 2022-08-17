@@ -14,7 +14,7 @@ BootsArmor::BootsArmor(Context& context, size_t index)
 : BootsArmor(context, index, boots[index].durability)
 { }
 
-BootsArmor::BootsArmor(Context& context, size_t index, unsigned int durability)
+BootsArmor::BootsArmor(Context& context, size_t index, int durability)
 : Armor(context, durability)
 , mIndex(index)
 {

@@ -13,7 +13,7 @@ ChestArmor::ChestArmor(Context& context, size_t index)
 : ChestArmor(context, index, chests[index].durability)
 { }
 
-ChestArmor::ChestArmor(Context& context, size_t index, unsigned int durability)
+ChestArmor::ChestArmor(Context& context, size_t index, int durability)
 : Armor(context, durability)
 , mIndex(index)
 {
