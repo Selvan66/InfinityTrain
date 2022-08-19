@@ -2,7 +2,7 @@
 #include "Objects/Nodes/Pickup/Equipment/Armor.h"
 #include "Objects/Nodes/PlayerNode.h"
 
-Armor::Armor(Context& context, unsigned int durability)
+Armor::Armor(Context& context, int durability)
 : Pickup(context)
 {
     Command command;
