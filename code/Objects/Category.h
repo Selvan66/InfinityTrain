@@ -11,6 +11,7 @@ enum Type
     Battlefield = 1 << 1,
     Floor = 1 << 2,
     Interactable = 1 << 3,
+    Enemy = 1 << 4,
 };
 
 }
