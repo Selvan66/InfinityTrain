@@ -81,6 +81,9 @@ void Pickup::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     Interactable::updateCurrent(dt, commands);
 
-    if (mPickedUp)
+    if (mPickedUp) 
+    {
         commands.push(mCommand);
+        mPickedUp = false;
+    }
 }
