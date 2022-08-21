@@ -8,6 +8,8 @@ class Enemy : public Entity
 {
     public:
         Enemy(Context& context);
+
+        virtual sf::FloatRect getBoundingRect() const override;
     protected:
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;

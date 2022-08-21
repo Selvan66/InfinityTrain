@@ -8,12 +8,18 @@ Enemy::Enemy(Context& context)
 : Entity(100)
 , mSprite(context.textures.get(TexturesID::Player), {0, 0, 80, 61})
 , mPlayer(nullptr)
+{ 
+    Utility::centerOrigin(mSprite);
+}
+
+sf::FloatRect Enemy::getBoundingRect() const 
 {
-    
+    return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
 }
 
 void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
+    Entity::updateCurrent(dt, commands);
     if (mPlayer == nullptr)
     {
         Command command;
@@ -30,7 +36,7 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
         if (length > 0.f)
         {
             direction /= length;
-            Entity::move(direction * 100.f * dt.asSeconds());
+            Entity::setVelocity(direction * 100.f);
         }
     }
 }
