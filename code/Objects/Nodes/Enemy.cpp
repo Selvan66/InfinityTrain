@@ -14,7 +14,7 @@ Enemy::Enemy(Context& context)
 
 sf::FloatRect Enemy::getBoundingRect() const 
 {
-    return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
+    return SceneNode::getWorldTransform().transformRect(mSprite.getGlobalBounds());
 }
 
 void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)

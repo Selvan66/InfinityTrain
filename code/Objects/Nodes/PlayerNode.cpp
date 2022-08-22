@@ -88,7 +88,7 @@ unsigned int PlayerNode::getCategory() const
 
 sf::FloatRect PlayerNode::getBoundingRect() const
 {
-    return sf::Transformable::getTransform().transformRect(mAnimation.getGlobalBounds());
+    return SceneNode::getWorldTransform().transformRect(mAnimation.getGlobalBounds());
 }
 
 void PlayerNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

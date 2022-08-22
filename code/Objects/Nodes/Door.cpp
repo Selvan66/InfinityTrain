@@ -51,7 +51,7 @@ void Door::interact()
 
 sf::FloatRect Door::getBoundingRect() const 
 {
-    return sf::Transformable::getTransform().transformRect(mAnimation.getGlobalBounds());
+    return SceneNode::getWorldTransform().transformRect(mAnimation.getGlobalBounds());
 }
 
 void Door::updateCurrent(sf::Time dt, CommandQueue& commands)
