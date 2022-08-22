@@ -34,4 +34,5 @@ class Pickup : public Interactable
         bool mPickedUp;
         Command mCommand;
         std::string mText;
+        std::unordered_map<Stats::Type, int> mStats;
 };

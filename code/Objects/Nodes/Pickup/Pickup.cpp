@@ -10,6 +10,7 @@ Pickup::Pickup(Context& context)
 , mPickedUp(false)
 , mCommand()
 , mText()
+, mStats()
 { }
 
 std::string Pickup::getDescription() const
@@ -19,7 +20,7 @@ std::string Pickup::getDescription() const
 
 const std::unordered_map<Stats::Type, int>& Pickup::getStats() const
 {
-    return std::move(std::unordered_map<Stats::Type, int>());
+    return mStats;
 }
 
 bool Pickup::action(PlayerNode& player)
@@ -74,7 +75,7 @@ void Pickup::setText(const std::string& text)
 
 sf::FloatRect Pickup::getBoundingRect() const 
 {
-    return sf::Transformable::getTransform().transformRect(mSprite.getGlobalBounds());
+    return SceneNode::getWorldTransform().transformRect(mSprite.getGlobalBounds());
 }
 
 void Pickup::updateCurrent(sf::Time dt, CommandQueue& commands)
