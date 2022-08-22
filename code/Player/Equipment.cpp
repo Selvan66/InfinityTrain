@@ -4,6 +4,7 @@
 #include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
 #include "Objects/Nodes/Pickup/Equipment/ChestArmor.h"
 #include "Objects/Nodes/Pickup/Equipment/BootsArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Utils/Exceptions/bad_argument.h"
 
 #define V1_POCKET Pocket(context)
@@ -114,6 +115,8 @@ Equipment::Slot Equipment::getItemSlot(const std::unique_ptr<Pickup>& item) cons
         return Chest;
     if (dynamic_cast<const BootsArmor*>(item.get()))
         return Boots;
+    if (dynamic_cast<const Weapon*>(item.get()))
+        return LeftHand;
     return None;
 }
 

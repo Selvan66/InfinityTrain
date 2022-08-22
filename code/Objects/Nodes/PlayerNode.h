@@ -45,5 +45,5 @@ class PlayerNode : public Entity
         bool mIsInteract;
         Command mSpecialCommand;
         bool mIsSpecial;
-        Animation mAnimation;            
+        Animation mAnimation;       
 };

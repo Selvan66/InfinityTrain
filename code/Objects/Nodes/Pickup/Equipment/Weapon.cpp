@@ -42,6 +42,7 @@ void Weapon::setCommand(Command command)
 
 void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
+    Pickup::updateCurrent(dt, commands);
     if (mUse)
     {
         commands.push(mAttackCommand);
