@@ -19,7 +19,7 @@ BootsArmor::BootsArmor(Context& context, size_t index, int durability)
 , mIndex(index)
 {
     Pickup::setTexture(boots[index].texture);
-    Pickup::setText(boots[index].name);
+    Pickup::setName(boots[index].name);
 }
 
 const std::unordered_map<Stats::Type, int>& BootsArmor::getStats() const 

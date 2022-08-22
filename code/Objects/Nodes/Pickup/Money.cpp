@@ -15,5 +15,5 @@ Money::Money(Context& context, unsigned int value)
 
     Pickup::setTexture(TexturesID::Money);
     Pickup::setCommand(command);
-    Pickup::setText(std::to_string(value) + "$");
+    Pickup::setLabel(std::to_string(value) + "$");
 }

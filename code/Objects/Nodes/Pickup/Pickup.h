@@ -20,7 +20,8 @@ class Pickup : public Interactable
     protected:
         void setTexture(TexturesID texture);
         void setCommand(Command command);
-        void setText(const std::string& text);
+        void setLabel(const std::string& text);
+        void setName(std::string name);
 
         Context& getContext() const;
         const std::string& getName() const;
@@ -33,6 +34,6 @@ class Pickup : public Interactable
         sf::Sprite mSprite;
         bool mPickedUp;
         Command mCommand;
-        std::string mText;
+        std::string mName;
         std::unordered_map<Stats::Type, int> mStats;
 };

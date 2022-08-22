@@ -15,5 +15,5 @@ Heart::Heart(Context& context, int value)
 
     Pickup::setTexture(TexturesID::Heart);
     Pickup::setCommand(command);
-    Pickup::setText(std::to_string(value) + "HP");
+    Pickup::setLabel(std::to_string(value) + "HP");
 }

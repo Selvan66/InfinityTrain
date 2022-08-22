@@ -18,7 +18,7 @@ HeadArmor::HeadArmor(Context& context, size_t index, int durability)
 , mIndex(index)
 {
     Pickup::setTexture(helmets[index].texture);
-    Pickup::setText(helmets[index].name);
+    Pickup::setName(helmets[index].name);
 }
 
 const std::unordered_map<Stats::Type, int>& HeadArmor::getStats() const 

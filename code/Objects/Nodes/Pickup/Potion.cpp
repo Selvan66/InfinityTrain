@@ -17,7 +17,7 @@ Potion::Potion(Context& context, unsigned int value)
 
     Pickup::setTexture(TexturesID::Potion);
     Pickup::setCommand(command);
-    Pickup::setText(std::to_string(value) + "HP");
+    Pickup::setLabel(std::to_string(value) + "HP");
 }
 
 std::string Potion::getDescription() const

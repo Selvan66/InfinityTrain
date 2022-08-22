@@ -36,7 +36,7 @@ CloseWeapon::CloseWeapon(Context& context, size_t index, int ammos)
     });
 
     Pickup::setTexture(closeWeapons[index].animation);
-    Pickup::setText(closeWeapons[index].name);
+    Pickup::setName(closeWeapons[index].name);
 }
 
 sf::FloatRect CloseWeapon::getBoundingRect() const 
