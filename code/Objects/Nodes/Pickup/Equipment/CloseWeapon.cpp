@@ -7,7 +7,7 @@
 static std::array<CloseWeaponParam, CloseWeapon::CloseWeaponCount> closeWeapons = 
 {
     {
-        { "Knife", 1, 25, TexturesID::HeadArmor /*TODO Change*/, sf::IntRect(0, 0, 32, 32) }
+        { "Knife", 1, 25, TexturesID::Knife, sf::IntRect(0, 0, 32, 32) }
     }
 };
 
@@ -29,11 +29,9 @@ CloseWeapon::CloseWeapon(Context& context, size_t index, int ammos)
     command.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time)
     {
         if (enemy.getBoundingRect().intersects(Pickup::getBoundingRect()))
-        {
             enemy.damage(closeWeapons[mIndex].damage);
-            mAnimation.restart();
-        }   
     });
+    Weapon::setCommand(command);
 
     Pickup::setTexture(closeWeapons[index].animation);
     Pickup::setName(closeWeapons[index].name);
