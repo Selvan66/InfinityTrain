@@ -10,6 +10,7 @@ class Enemy : public Entity
         Enemy(Context& context);
 
         virtual sf::FloatRect getBoundingRect() const override;
+        virtual unsigned int getCategory() const override;
     protected:
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
