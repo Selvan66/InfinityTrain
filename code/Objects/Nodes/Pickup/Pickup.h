@@ -16,7 +16,8 @@ class Pickup : public Interactable
         virtual bool action(PlayerNode& player);
         
         virtual void interact() override;
-        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
+        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
+        virtual std::unique_ptr<Pickup> create() const;
     protected:
         void setTexture(TexturesID texture);
         void setCommand(Command command);
@@ -26,7 +27,6 @@ class Pickup : public Interactable
         Context& getContext() const;
         const std::string& getName() const;
 
-        virtual std::unique_ptr<Pickup> create() const;
         virtual sf::FloatRect getBoundingRect() const override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:

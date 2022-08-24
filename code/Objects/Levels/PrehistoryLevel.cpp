@@ -7,6 +7,8 @@
 #include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
 #include "Objects/Nodes/Pickup/Equipment/BootsArmor.h"
 #include "Objects/Nodes/Pickup/Equipment/ChestArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/CloseWeapon.h"
+#include "Objects/Nodes/Enemy.h"
 
 PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 : Level(lvlContext)
@@ -72,13 +74,17 @@ void PrehistoryLevel::buildFloor()
     test5->setPosition({800, 800});
     floorLayer->attachChild(std::move(test5));
 
+    std::unique_ptr<ChestArmor> test6(new ChestArmor(context, ChestArmor::HeavyChest));
+    test6->setPosition({800, 900});
+    floorLayer->attachChild(std::move(test6));
+
     std::unique_ptr<BootsArmor> test7(new BootsArmor(context, BootsArmor::LightBoots));
     test7->setPosition({700, 800});
     floorLayer->attachChild(std::move(test7));
 
-    std::unique_ptr<ChestArmor> test6(new ChestArmor(context, ChestArmor::HeavyChest));
-    test6->setPosition({800, 900});
-    floorLayer->attachChild(std::move(test6));
+    std::unique_ptr<CloseWeapon> test8(new CloseWeapon(context, CloseWeapon::Knife));
+    test8->setPosition({700, 900});
+    floorLayer->attachChild(std::move(test8));
 }
 
 void PrehistoryLevel::buildBattlefield()
@@ -91,6 +97,9 @@ void PrehistoryLevel::buildBattlefield()
     mPlayer = playerNode.get();
     battlefieldLayer->attachChild(std::move(playerNode));
     
+    std::unique_ptr<Enemy> enemy(new Enemy(context));
+    enemy->setPosition({960, 540});
+    battlefieldLayer->attachChild(std::move(enemy));
 }
 
 void PrehistoryLevel::buildScene()

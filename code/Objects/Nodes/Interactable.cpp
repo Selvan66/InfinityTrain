@@ -9,7 +9,7 @@ Interactable::Interactable()
 {
     mCommand.category = Category::Player;
     mCommand.action = derivedAction<PlayerNode>([&] (PlayerNode& player, sf::Time) {
-        if (Utility::distance(player, *this) <= mDistance)
+        if (Utility::distance(player, *this) < mDistance)
             mIsInteractable = true;
         else
             mIsInteractable = false;

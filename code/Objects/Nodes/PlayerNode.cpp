@@ -15,14 +15,13 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 , mSpecialCommand()
 , mIsSpecial(false)
 , mAnimation(context.textures.get(TexturesID::Player))
+, mWeapon(nullptr)
 {   
     mFireCommand.category = Category::Battlefield;
     mFireCommand.action = [&](SceneNode&, sf::Time)
     { 
-        if (mPlayerInfo.equipment.isItem(Equipment::Head)) 
-            mPlayerInfo.equipment.getItem(Equipment::Head)->damage(1); 
-        else 
-            mPlayerInfo.stats.updateStat(Stats::Lives, -1); 
+        if (mWeapon != nullptr)
+            mWeapon->use(); 
     };
 
     mInteractCommand.category = Category::Interactable;
@@ -71,7 +70,13 @@ void PlayerNode::makeAction(Action action)
 void PlayerNode::pickup(std::unique_ptr<Pickup> pickup)
 {
     if (mPlayerInfo.equipment.canBeEquipped(pickup))
-        mPlayerInfo.equipment.equip(std::move(pickup));
+    {
+        if (dynamic_cast<Weapon*>(pickup.get()))
+            SceneNode::attachChild(std::move(pickup));
+        else 
+            mPlayerInfo.equipment.equip(std::move(pickup));
+
+    }
     else
         mPlayerInfo.backpack.addItemToBackpack(std::move(pickup));
 }

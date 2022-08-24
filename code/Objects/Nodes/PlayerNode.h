@@ -5,6 +5,7 @@
 #include "Player/PlayerInfo.h"
 #include "App/Context.h"
 #include "Effects/Animation.h"
+#include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 
 class PlayerNode : public Entity
 {
@@ -45,5 +46,6 @@ class PlayerNode : public Entity
         bool mIsInteract;
         Command mSpecialCommand;
         bool mIsSpecial;
-        Animation mAnimation;       
+        Animation mAnimation;
+        Weapon* mWeapon;
 };
