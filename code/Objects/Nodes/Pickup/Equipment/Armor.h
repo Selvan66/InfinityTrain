@@ -8,7 +8,6 @@ class Armor : public Pickup
     public:
         Armor(Context& context, int durability);
         virtual bool action(PlayerNode& player) override;
-        virtual std::string getDescription() const override;
 };
 
 struct ArmorParam

@@ -27,14 +27,6 @@ bool Weapon::action(PlayerNode& player)
     return true;
 }
 
-std::string Weapon::getDescription() const 
-{
-    std::stringstream ss;
-    ss << getName() << '\n';
-    ss << "Ammos: " << Entity::getHitpoints();
-    return ss.str();
-}
-
 void Weapon::setCommand(Command command)
 {
     mAttackCommand = command;
