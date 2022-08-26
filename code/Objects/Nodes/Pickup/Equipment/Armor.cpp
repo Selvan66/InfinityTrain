@@ -20,3 +20,14 @@ bool Armor::action(PlayerNode& player)
     player.pickup(create());
     return true;
 }
+
+std::string Armor::getDescription() const 
+{
+    std::stringstream ss;
+    ss << getName() << '\n';
+    ss << "Durability: " << Entity::getHitpoints();
+
+    for (auto& stat : getStats())
+        ss << '\n' << Stats::toString(stat.first) << ": " << stat.second;
+    return ss.str();
+}

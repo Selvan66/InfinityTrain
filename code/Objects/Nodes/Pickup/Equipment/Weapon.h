@@ -11,6 +11,7 @@ class Weapon : public Pickup
         void use();
 
         virtual bool action(PlayerNode& player) override;
+        virtual std::string getDescription() const override;
     protected:
         void setCommand(Command command);
 

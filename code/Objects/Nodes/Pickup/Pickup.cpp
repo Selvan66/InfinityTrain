@@ -15,12 +15,7 @@ Pickup::Pickup(Context& context)
 
 std::string Pickup::getDescription() const
 {
-    std::stringstream ss;
-    ss << getName();
-
-    for (auto& stat : getStats())
-        ss << '\n' << Stats::toString(stat.first) << ": " << stat.second;
-    return ss.str();
+    return "";
 }
 
 const std::unordered_map<Stats::Type, int>& Pickup::getStats() const

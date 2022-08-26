@@ -11,7 +11,7 @@ class Pickup : public Interactable
     public:
         Pickup(Context& context);
 
-        std::string getDescription() const;
+        virtual std::string getDescription() const;
         virtual const std::unordered_map<Stats::Type, int>& getStats() const;
         virtual bool action(PlayerNode& player);
         
