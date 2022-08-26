@@ -37,6 +37,7 @@ class PlayerNode : public Entity
         void special();
         void updateAnimation(sf::Time dt);
         void adaptVelocity();
+        void updateEquipment();
     private:
         Context& mContext;
         PlayerInfo& mPlayerInfo;

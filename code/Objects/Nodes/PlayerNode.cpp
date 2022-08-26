@@ -70,13 +70,7 @@ void PlayerNode::makeAction(Action action)
 void PlayerNode::pickup(std::unique_ptr<Pickup> pickup)
 {
     if (mPlayerInfo.equipment.canBeEquipped(pickup))
-    {
-        if (dynamic_cast<Weapon*>(pickup.get()))
-            SceneNode::attachChild(std::move(pickup));
-        else 
-            mPlayerInfo.equipment.equip(std::move(pickup));
-
-    }
+        mPlayerInfo.equipment.equip(std::move(pickup));
     else
         mPlayerInfo.backpack.addItemToBackpack(std::move(pickup));
 }
@@ -121,6 +115,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 
     updateAnimation(dt);
     adaptVelocity();
+    updateEquipment();
     Entity::updateCurrent(dt, commands);
 }
 
@@ -151,9 +146,9 @@ void PlayerNode::updateAnimation(sf::Time dt)
     else
     {
         if (velocity.x > 0.f)
-            mAnimation.setScale(1.f, 1.f);
+            sf::Transformable::setScale(1.f, 1.f);
         else
-            mAnimation.setScale(-1.f, 1.f);
+            sf::Transformable::setScale(-1.f, 1.f);
             
         mAnimation.play();
     }
@@ -167,4 +162,31 @@ void PlayerNode::adaptVelocity()
 
     if (velocity.x != 0.f && velocity.y != 0.f)
         Entity::setVelocity(velocity / std::sqrt(2.f));
+}
+
+void PlayerNode::updateEquipment()
+{
+    if (mWeapon != nullptr)
+    {
+        if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
+        {
+            mPlayerInfo.equipment.getItem(Equipment::LeftHand)->setHitpoints(mWeapon->getHitpoints());
+        }
+        else 
+        {
+            SceneNode::detachChild(*mWeapon);
+            mWeapon = nullptr;
+        }
+    }
+    else
+    {
+        if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
+        {
+            auto weapon_ptr = mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
+            weapon_ptr->setPosition(20.f, 0.f);
+            weapon_ptr->setDistance(0.f);
+            mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
+            SceneNode::attachChild(std::move(weapon_ptr));
+        }
+    }
 }
