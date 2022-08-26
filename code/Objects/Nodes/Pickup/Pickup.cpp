@@ -43,6 +43,11 @@ void Pickup::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) cons
     target.draw(mSprite, states);
 }
 
+std::unique_ptr<Pickup> Pickup::create() const
+{
+    return std::unique_ptr<Pickup>(new Pickup(mContext));
+}
+
 void Pickup::setTexture(TexturesID texture)
 {
     mSprite.setTexture(mContext.textures.get(texture));
@@ -62,11 +67,6 @@ Context& Pickup::getContext() const
 const std::string& Pickup::getName() const
 {
     return mName;
-}
-
-std::unique_ptr<Pickup> Pickup::create() const
-{
-    return std::unique_ptr<Pickup>(new Pickup(mContext));
 }
 
 void Pickup::setLabel(const std::string& text)
