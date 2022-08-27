@@ -14,7 +14,7 @@ class ChestArmor : public Armor
     public:
         ChestArmor(Context& context, size_t index);
         ChestArmor(Context& context, size_t index, int durability);
-        virtual const std::unordered_map<Stats::Type, int>& getStats() const override;
+        virtual std::unordered_map<Stats::Type, int> getStats() const override;
     protected:
         virtual std::unique_ptr<Pickup> create() const override;
     private:

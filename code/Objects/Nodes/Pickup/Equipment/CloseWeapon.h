@@ -15,6 +15,8 @@ class CloseWeapon : public Weapon
     public:
         CloseWeapon(Context& context, size_t index);
         CloseWeapon(Context& context, size_t index, int ammos);
+    
+        virtual std::unordered_map<Stats::Type, int> getStats() const override;
     protected:
         virtual sf::FloatRect getBoundingRect() const override;
         virtual std::unique_ptr<Pickup> create() const override;

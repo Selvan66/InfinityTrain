@@ -22,7 +22,7 @@ BootsArmor::BootsArmor(Context& context, size_t index, int durability)
     Pickup::setName(boots[index].name);
 }
 
-const std::unordered_map<Stats::Type, int>& BootsArmor::getStats() const 
+std::unordered_map<Stats::Type, int> BootsArmor::getStats() const 
 {
     return boots[mIndex].stats;
 }

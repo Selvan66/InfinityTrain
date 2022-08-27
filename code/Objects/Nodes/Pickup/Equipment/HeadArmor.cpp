@@ -21,7 +21,7 @@ HeadArmor::HeadArmor(Context& context, size_t index, int durability)
     Pickup::setName(helmets[index].name);
 }
 
-const std::unordered_map<Stats::Type, int>& HeadArmor::getStats() const 
+std::unordered_map<Stats::Type, int> HeadArmor::getStats() const 
 {
     return helmets[mIndex].stats;
 }

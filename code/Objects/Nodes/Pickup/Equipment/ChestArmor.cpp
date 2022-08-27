@@ -21,7 +21,7 @@ ChestArmor::ChestArmor(Context& context, size_t index, int durability)
     Pickup::setName(chests[index].name);
 }
 
-const std::unordered_map<Stats::Type, int>& ChestArmor::getStats() const 
+std::unordered_map<Stats::Type, int> ChestArmor::getStats() const 
 {
     return chests[mIndex].stats;
 }

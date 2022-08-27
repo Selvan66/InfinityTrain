@@ -10,7 +10,6 @@ Pickup::Pickup(Context& context)
 , mPickedUp(false)
 , mCommand()
 , mName()
-, mStats()
 { }
 
 std::string Pickup::getDescription() const
@@ -18,9 +17,9 @@ std::string Pickup::getDescription() const
     return "";
 }
 
-const std::unordered_map<Stats::Type, int>& Pickup::getStats() const
+std::unordered_map<Stats::Type, int> Pickup::getStats() const
 {
-    return mStats;
+    return {{}};
 }
 
 bool Pickup::action(PlayerNode& player)

@@ -12,7 +12,7 @@ class Pickup : public Interactable
         Pickup(Context& context);
 
         virtual std::string getDescription() const;
-        virtual const std::unordered_map<Stats::Type, int>& getStats() const;
+        virtual std::unordered_map<Stats::Type, int> getStats() const;
         virtual bool action(PlayerNode& player);
         
         virtual void interact() override;
@@ -35,5 +35,4 @@ class Pickup : public Interactable
         bool mPickedUp;
         Command mCommand;
         std::string mName;
-        std::unordered_map<Stats::Type, int> mStats;
 };
