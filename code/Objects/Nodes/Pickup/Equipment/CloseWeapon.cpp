@@ -7,7 +7,7 @@
 static std::array<CloseWeaponParam, CloseWeapon::CloseWeaponCount> closeWeapons = 
 {
     {
-        { "Knife", 1, 25, TexturesID::Knife, sf::IntRect(0, 0, 32, 32) }
+        { "Knife", 25, 25, sf::seconds(0.3f), TexturesID::Knife, sf::IntRect(0, 0, 32, 32) }
     }
 };
 
@@ -19,6 +19,7 @@ CloseWeapon::CloseWeapon(Context& context, size_t index, int ammos)
 : Weapon(context, ammos)
 , mIndex(index)
 , mAnimation(context.textures.get(closeWeapons[index].animation))
+, mDuration()
 {
     mAnimation.setFrameSize({closeWeapons[index].animationRect.width, closeWeapons[index].animationRect.height});
     mAnimation.setNumFrames(1);
@@ -26,10 +27,17 @@ CloseWeapon::CloseWeapon(Context& context, size_t index, int ammos)
 
     Command command;
     command.category = Category::Enemy;
-    command.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time)
+    command.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time dt)    // You cant attack if there's no enemy
     {
-        if (enemy.getBoundingRect().intersects(Pickup::getBoundingRect()))
-            enemy.damage(closeWeapons[mIndex].damage);
+        mDuration += dt;
+        if (closeWeapons[mIndex].duration <= mDuration)
+        {
+            mDuration = sf::Time::Zero;
+            Entity::damage(1);
+
+            if (enemy.getBoundingRect().intersects(Pickup::getBoundingRect()))
+                enemy.damage(closeWeapons[mIndex].damage);
+        }
     });
     Weapon::setCommand(command);
 

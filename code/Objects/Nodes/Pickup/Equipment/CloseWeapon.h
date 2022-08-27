@@ -22,6 +22,7 @@ class CloseWeapon : public Weapon
     private:
         size_t mIndex;
         Animation mAnimation;
+        sf::Time mDuration;
 };
 
 struct CloseWeaponParam
@@ -29,6 +30,7 @@ struct CloseWeaponParam
     const char* name;
     const int ammos;
     const int damage;
+    sf::Time duration;
     const TexturesID animation;
     const sf::IntRect animationRect;
 };
