@@ -55,8 +55,9 @@ const char* Stats::toString(Type type)
     switch (type)
     {
         case Type::Lives: return "Lives";
-        case Type::Money: return "Money";
         case Type::Armor: return "Armor";
+        case Type::Ammo: return "Ammo";
+        case Type::Money: return "Money";
         case Type::Attack: return "Attack";
         case Type::Speed: return "Speed";
         default: return "";
@@ -73,8 +74,9 @@ void Stats::draw(sf::RenderTarget &target, sf::RenderStates states) const
 void Stats::updateStatsText()
 {
     Utility::safeCasting<Text>(mGui->at("Lives").get())->setString("Lives: " + std::to_string(mStats[Lives]));
-    Utility::safeCasting<Text>(mGui->at("Money").get())->setString("Money: " + std::to_string(mStats[Money]));
     Utility::safeCasting<Text>(mGui->at("Armor").get())->setString("Armor: " + std::to_string(mStats[Armor]));
+    Utility::safeCasting<Text>(mGui->at("Ammo").get())->setString("Ammo: " + std::to_string(mStats[Ammo]));
+    Utility::safeCasting<Text>(mGui->at("Money").get())->setString("Money: " + std::to_string(mStats[Money]));
     Utility::safeCasting<Text>(mGui->at("Attack").get())->setString("Attack: " + std::to_string(mStats[Attack]));
     Utility::safeCasting<Text>(mGui->at("Speed").get())->setString("Speed: " + std::to_string(mStats[Speed]));
 }
@@ -82,8 +84,9 @@ void Stats::updateStatsText()
 void Stats::setDefaultStats()
 {
     setStat(Lives, 100);
-    setStat(Money, 0);
     setStat(Armor, 0);
+    setStat(Ammo, 0);
+    setStat(Money, 0);
     setStat(Attack, 0);
     setStat(Speed, 250);
 }
@@ -96,6 +99,7 @@ void Stats::setStatWithRange(Type stat, int value)
             mStats[stat] = std::min(100, std::max(value, 0));   // 0 <= stat <= 100
             break;
         case Armor:
+        case Ammo:
         case Money:
         case Attack:
             mStats[stat] = std::max(0, value);  // stat >= 0

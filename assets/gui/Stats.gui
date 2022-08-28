@@ -4,21 +4,26 @@ pos {0, 0}
 charSize 30
 
 [Text]
-id Money
+id Armor
 pos {0, TEXT_HEIGHT}
 charSize 30
 
 [Text]
-id Armor
+id Ammo
 pos {0, TEXT_HEIGHT * 2}
 charSize 30
 
 [Text]
-id Attack
+id Money
 pos {0, TEXT_HEIGHT * 3}
 charSize 30
 
 [Text]
-id Speed
+id Attack
 pos {0, TEXT_HEIGHT * 4}
+charSize 30
+
+[Text]
+id Speed
+pos {0, TEXT_HEIGHT * 5}
 charSize 30

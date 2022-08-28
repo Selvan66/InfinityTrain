@@ -14,8 +14,9 @@ class Stats : public sf::Drawable, public sf::Transformable, public sf::NonCopya
         enum Type
         {
             Lives,
-            Money,
             Armor,
+            Ammo,
+            Money,
             Attack,
             Speed,
             StatsCount
