@@ -33,6 +33,11 @@ float distance(const SceneNode& lhs, const SceneNode& rhs)
     return length(lhs.getWorldPosition() - rhs.getWorldPosition());
 }
 
+bool collision(const SceneNode& lhs, const SceneNode& rhs)
+{
+    return lhs.getBoundingRect().intersects(rhs.getBoundingRect());
+}
+
 std::string timeToString(unsigned long long time)
 {
     return stringFormat("%02d:%02d", ((time / 100) + (time % 100 ) / 60), (time % 100) % 60);

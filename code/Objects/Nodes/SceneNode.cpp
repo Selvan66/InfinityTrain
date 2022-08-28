@@ -1,10 +1,6 @@
 /** @file SceneNode.cpp */
 #include "Objects/Nodes/SceneNode.h"
-
-bool collision(const SceneNode& lhs, const SceneNode& rhs)
-{
-    return lhs.getBoundingRect().intersects(rhs.getBoundingRect());
-}
+#include "Utils/Utility.h"
 
 SceneNode::SceneNode(Category::Type category)
 : mChildren()
@@ -66,7 +62,7 @@ void SceneNode::onCommand(const Command& command, sf::Time dt)
 
 void SceneNode::checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPair)
 {
-    if (this != &node && collision(*this, node) && !isDestroyed() && !node.isDestroyed())
+    if (this != &node && Utility::collision(*this, node) && !isDestroyed() && !node.isDestroyed())
         collisionPair.insert(std::minmax(this, &node));
 
     for (auto& child : mChildren)
