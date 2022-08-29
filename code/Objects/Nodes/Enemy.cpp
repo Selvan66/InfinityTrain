@@ -8,8 +8,15 @@ Enemy::Enemy(Context& context)
 : Entity(100)
 , mSprite(context.textures.get(TexturesID::Player), {0, 0, 80, 61})
 , mPlayer(nullptr)
+, mDuration(sf::Time::Zero)
+, mText(nullptr)
 { 
     Utility::centerOrigin(mSprite);
+    std::unique_ptr<TextNode> text(new TextNode(context));
+    text->setString(std::to_string(Entity::getHitpoints()) + "HP");
+    text->setPosition(0.f, -40.f);
+    mText = text.get();
+    SceneNode::attachChild(std::move(text));
 }
 
 sf::FloatRect Enemy::getBoundingRect() const 
@@ -44,6 +51,23 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
             Entity::setVelocity(direction * 100.f);
         }
     }
+
+    Command command;
+    command.category = Category::Player;
+    command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time dt) 
+    {
+        mDuration += dt;
+        if (mDuration >= sf::seconds(0.5f))
+        {
+            if (Utility::collision(*this, player))
+                player.damage(1);
+            mDuration = sf::Time::Zero;
+        }
+            
+    });
+    commands.push(command);
+
+    mText->setString(std::to_string(Entity::getHitpoints()) + "HP");
 }
 
 void Enemy::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 

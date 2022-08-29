@@ -3,6 +3,7 @@
 
 #include "Objects/Nodes/Entity.h"
 #include "Objects/Nodes/PlayerNode.h"
+#include "Objects/Nodes/TextNode.h"
 
 class Enemy : public Entity
 {
@@ -17,4 +18,6 @@ class Enemy : public Entity
     private:
         sf::Sprite mSprite;
         PlayerNode* mPlayer;
+        sf::Time mDuration;
+        TextNode* mText;
 };
