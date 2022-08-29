@@ -24,6 +24,8 @@ class Level : public sf::NonCopyable
 
         virtual void update(sf::Time dt);
         virtual LevelID::ID nextLevel() const;
+
+        static const sf::FloatRect getLevelBounds();
     protected:
         bool isFinished() const;
         SceneNode* getLayer(Layer layer) const;
@@ -32,7 +34,6 @@ class Level : public sf::NonCopyable
     private:
         void buildScene();
         void adaptNodesPosition(SceneNode* node);
-        sf::FloatRect getLevelBounds() const;
     private:
         LvlContext& mLvlContext;
         CommandQueue mCommands;

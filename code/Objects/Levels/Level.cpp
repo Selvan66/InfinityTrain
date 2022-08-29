@@ -37,6 +37,11 @@ LevelID::ID Level::nextLevel() const
     return LevelID::None;
 }
 
+const sf::FloatRect Level::getLevelBounds()
+{
+    return sf::FloatRect(500.f, 80.f, 920.f, 920.f);
+}
+
 bool Level::isFinished() const
 {
     return mSceneLayer[Battlefield]->getChildrenSize() == 1;
@@ -99,9 +104,4 @@ void Level::adaptNodesPosition(SceneNode* node)
     position.y = std::min(position.y, bounds.top + bounds.height - size.height / 2.f);
 
     node->setPosition(position);
-}
-
-sf::FloatRect Level::getLevelBounds() const
-{
-    return sf::FloatRect(500.f, 80.f, 920.f, 920.f);
 }
