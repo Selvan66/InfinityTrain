@@ -47,21 +47,25 @@ int Entity::getHitpoints() const
     return mHitpoints;
 }
 
-void Entity::heal(int points)
-{
-    assert(points > 0);
-    mHitpoints = std::min(mHitpoints + points, 100);
-}
-
-void Entity::damage(int points)
-{
-    assert(points > 0);
-    mHitpoints -= points;
-}
-
 void Entity::destroy()
 {
     mHitpoints = 0;
+}
+
+bool Entity::heal(int points)
+{
+    assert(points > 0);
+    int old_hitpoints = mHitpoints;
+    mHitpoints = std::min(mHitpoints + points, 100);
+    return old_hitpoints != mHitpoints;
+}
+
+bool Entity::damage(int points)
+{
+    assert(points > 0);
+    int old_hitpoints = mHitpoints;
+    mHitpoints = std::max(mHitpoints - points, 0);
+    return old_hitpoints != mHitpoints;
 }
 
 void Entity::remove()

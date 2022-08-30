@@ -15,10 +15,10 @@ class Entity : public SceneNode
         void setHitpoints(int hitpoints);
         sf::Vector2f getVelocity() const;
         int getHitpoints() const;
-        void heal(int points);
-        void damage(int points);
         void destroy();
-
+        bool heal(int points);
+        bool damage(int points);
+        
         virtual void remove();
         virtual bool isDestroyed() const override;
     protected:
