@@ -27,7 +27,7 @@ std::string Potion::getDescription() const
 
 bool Potion::action(PlayerNode& player)
 {
-    if (player.updateStat(Stats::Lives, mValue))
+    if (player.heal(mValue))
         return true;
     return false;
 }

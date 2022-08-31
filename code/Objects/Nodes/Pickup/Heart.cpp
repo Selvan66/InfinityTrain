@@ -9,7 +9,7 @@ Heart::Heart(Context& context, int value)
     Command command;
     command.category = Category::Player;
     command.action = derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
-        if (player.updateStat(Stats::Lives, mValue))
+        if (player.heal(mValue))
             this->destroy();
     });
 
