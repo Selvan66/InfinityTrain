@@ -36,6 +36,7 @@ class Equipment : public sf::Drawable, public sf::Transformable, public sf::NonC
     private:
         Slot getItemSlot(const std::unique_ptr<Pickup>& item) const;
         void updateArmorStats();
+        void updateWeaponStats();
     private:
         Context& mContext;
         PlayerInfo& mPlayerInfo;

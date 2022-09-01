@@ -90,6 +90,7 @@ void Equipment::update()
         slot.update();
     
     updateArmorStats();
+    updateWeaponStats();
 }
 
 void Equipment::setPosition(sf::Vector2f position)
@@ -130,4 +131,10 @@ void Equipment::updateArmorStats()
     if (isItem(Boots))
         armor += getItem(Boots)->getHitpoints();
     mPlayerInfo.stats.setStat(Stats::Armor, armor);
+}
+
+void Equipment::updateWeaponStats()
+{
+    if (isItem(LeftHand))
+        mPlayerInfo.stats.setStat(Stats::Ammo, getItem(LeftHand)->getHitpoints());
 }
