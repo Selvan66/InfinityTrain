@@ -1,11 +1,12 @@
 /** @file PlayerNode.cpp */
 #include "Objects/Nodes/PlayerNode.h"
 #include "Objects/Nodes/Interactable.h"
+#include "Objects/Levels/Level.h"
 
 #include <iostream> //To delete
 
 PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
-: Entity(1)
+: Entity(playerInfo.stats.getState(Stats::Lives))
 , mContext(context)
 , mPlayerInfo(playerInfo)
 , mFireCommand()
@@ -99,7 +100,10 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     if (mIsFire)
     {
-        commands.push(mFireCommand);
+        auto a = sf::Mouse::getPosition(mContext.window);
+        sf::Vector2f mousePos = mContext.window.mapPixelToCoords(a); 
+        if (Level::getLevelBounds().contains(mousePos))
+            commands.push(mFireCommand);
         mIsFire = false;
     }
     if (mIsInteract)
@@ -116,6 +120,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
     updateAnimation(dt);
     adaptVelocity();
     updateEquipment();
+    mPlayerInfo.stats.setStat(Stats::Lives, Entity::getHitpoints());
     Entity::updateCurrent(dt, commands);
 }
 
@@ -183,7 +188,7 @@ void PlayerNode::updateEquipment()
         if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
         {
             auto weapon_ptr = mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
-            weapon_ptr->setPosition(20.f, 0.f);
+            weapon_ptr->setPosition(40.f, 0.f);
             weapon_ptr->setDistance(0.f);
             mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
             SceneNode::attachChild(std::move(weapon_ptr));

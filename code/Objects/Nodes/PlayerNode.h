@@ -26,9 +26,10 @@ class PlayerNode : public Entity
         void makeAction(Action action);
         void pickup(std::unique_ptr<Pickup> pickup);
         bool updateStat(Stats::Type stat, int value);
+        
+        virtual sf::FloatRect getBoundingRect() const override;
     protected:
         virtual unsigned int getCategory() const override;
-        virtual sf::FloatRect getBoundingRect() const override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
