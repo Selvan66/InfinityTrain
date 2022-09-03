@@ -2,9 +2,11 @@
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Objects/Nodes/PlayerNode.h"
 
-Weapon::Weapon(Context& context, int ammos)
+Weapon::Weapon(Context& context, int ammos, sf::Time duration)
 : Pickup(context)
 , mUse(false)
+, mDuration(duration)
+, mElapsed()
 {
     Command command;
     command.category = Category::Player;
@@ -43,9 +45,15 @@ void Weapon::setCommand(Command command)
 void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     Pickup::updateCurrent(dt, commands);
-    if (mUse)
+    mElapsed += dt;
+    if (mElapsed >= mDuration)
     {
-        commands.push(mAttackCommand);
-        mUse = false;
+        if (mUse)
+        {
+            commands.push(mAttackCommand);
+            mElapsed = sf::Time::Zero;
+            Entity::damage(1);
+        }
     }
+    mUse = false;
 }

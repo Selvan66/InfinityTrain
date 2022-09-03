@@ -6,7 +6,7 @@
 class Weapon : public Pickup
 {
     public:
-        Weapon(Context& context, int ammos);
+        Weapon(Context& context, int ammos, const sf::Time duration);
 
         void use();
 
@@ -19,4 +19,6 @@ class Weapon : public Pickup
     private:
         Command mAttackCommand;
         bool mUse;
+        const sf::Time mDuration;
+        sf::Time mElapsed;
 };
