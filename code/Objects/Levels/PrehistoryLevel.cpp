@@ -54,7 +54,7 @@ void PrehistoryLevel::buildFloor()
     mDoor = door.get();
     floorLayer->attachChild(std::move(door));
 
-    std::unique_ptr<Potion> test(new Potion(context, 20));
+    std::unique_ptr<Potion> test(new Potion(context, 50));
     test->setPosition({600, 500});
     floorLayer->attachChild(std::move(test));
 
@@ -62,7 +62,7 @@ void PrehistoryLevel::buildFloor()
     test2->setPosition({1000, 300});
     floorLayer->attachChild(std::move(test2));
 
-    std::unique_ptr<Heart> test3(new Heart(context, 5));
+    std::unique_ptr<Heart> test3(new Heart(context, 20));
     test3->setPosition({1200, 400});
     floorLayer->attachChild(std::move(test3));
 
