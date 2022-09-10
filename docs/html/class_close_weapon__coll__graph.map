@@ -1,0 +1,11 @@
+<map id="CloseWeapon" name="CloseWeapon">
+<area shape="rect" id="node1" title=" " alt="" coords="147,453,249,480"/>
+<area shape="rect" id="node2" href="$class_weapon.html" title=" " alt="" coords="163,379,233,405"/>
+<area shape="rect" id="node3" href="$class_pickup.html" title=" " alt="" coords="167,304,229,331"/>
+<area shape="rect" id="node4" href="$class_interactable.html" title=" " alt="" coords="153,229,243,256"/>
+<area shape="rect" id="node5" href="$class_entity.html" title=" " alt="" coords="170,155,226,181"/>
+<area shape="rect" id="node6" href="$class_scene_node.html" title=" " alt="" coords="153,80,243,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="5,5,127,32"/>
+<area shape="rect" id="node8" title=" " alt="" coords="151,5,245,32"/>
+<area shape="rect" id="node9" title=" " alt="" coords="269,5,386,32"/>
+</map>

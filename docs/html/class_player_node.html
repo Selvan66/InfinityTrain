@@ -133,6 +133,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>pickup</b> (std::uniq
 <tr class="memitem:acb4f5376e8e6e07cb829d859521065af"><td class="memItemLeft" align="right" valign="top"><a id="acb4f5376e8e6e07cb829d859521065af"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateStat</b> (Stats::Type stat, int value)</td></tr>
 <tr class="separator:acb4f5376e8e6e07cb829d859521065af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08cdfc62435fe792b363fc751f3fa861"><td class="memItemLeft" align="right" valign="top"><a id="a08cdfc62435fe792b363fc751f3fa861"></a>
+virtual sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getBoundingRect</b> () const override</td></tr>
+<tr class="separator:a08cdfc62435fe792b363fc751f3fa861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_entity.html">Entity</a></td></tr>
 <tr class="memitem:a305ac3dd729c288ab23db531fa3fb7e6 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a305ac3dd729c288ab23db531fa3fb7e6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (int hitpoints)</td></tr>
@@ -149,21 +152,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>accelerate</b> (sf::V
 <tr class="memitem:a2ff2403c455f15b3fe5d04e922b3943d inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a2ff2403c455f15b3fe5d04e922b3943d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>accelerate</b> (float vx, float vy)</td></tr>
 <tr class="separator:a2ff2403c455f15b3fe5d04e922b3943d inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a446b2ca88ff3079bb46c9cc493550038 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a446b2ca88ff3079bb46c9cc493550038"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setHitpoints</b> (int hitpoints)</td></tr>
+<tr class="separator:a446b2ca88ff3079bb46c9cc493550038 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7518a0181de088e0de2eacd1a13d656 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ae7518a0181de088e0de2eacd1a13d656"></a>
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getVelocity</b> () const</td></tr>
 <tr class="separator:ae7518a0181de088e0de2eacd1a13d656 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade4af3619c02f07429981259bacc881b inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ade4af3619c02f07429981259bacc881b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getHitpoints</b> () const</td></tr>
 <tr class="separator:ade4af3619c02f07429981259bacc881b inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae245446cf87974f7b65f14343dfea4b8 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ae245446cf87974f7b65f14343dfea4b8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>heal</b> (int points)</td></tr>
-<tr class="separator:ae245446cf87974f7b65f14343dfea4b8 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15660fa13012dbca80c8047e2cc6f1f5 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a15660fa13012dbca80c8047e2cc6f1f5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
-<tr class="separator:a15660fa13012dbca80c8047e2cc6f1f5 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a691dbe5f9ec930c27af2af0b97907a9e inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a691dbe5f9ec930c27af2af0b97907a9e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy</b> ()</td></tr>
 <tr class="separator:a691dbe5f9ec930c27af2af0b97907a9e inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa32bfe29c5c9c86d807225fd1eda0c21"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>heal</b> (int points)</td></tr>
+<tr class="separator:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ab881876a514a895a8216afbff455d9f1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
+<tr class="separator:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa84c32a5d1baceccefec62568edc0a4f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa84c32a5d1baceccefec62568edc0a4f"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> ()</td></tr>
 <tr class="separator:aa84c32a5d1baceccefec62568edc0a4f inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,9 +219,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ac9b51ca6e5f6255e3dd4e04112331a9b"><td class="memItemLeft" align="right" valign="top"><a id="ac9b51ca6e5f6255e3dd4e04112331a9b"></a>
 virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCategory</b> () const override</td></tr>
 <tr class="separator:ac9b51ca6e5f6255e3dd4e04112331a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08cdfc62435fe792b363fc751f3fa861"><td class="memItemLeft" align="right" valign="top"><a id="a08cdfc62435fe792b363fc751f3fa861"></a>
-virtual sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getBoundingRect</b> () const override</td></tr>
-<tr class="separator:a08cdfc62435fe792b363fc751f3fa861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5408f74e625e6e2f6b16930750e78c2"><td class="memItemLeft" align="right" valign="top"><a id="af5408f74e625e6e2f6b16930750e78c2"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawCurrent</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>
 <tr class="separator:af5408f74e625e6e2f6b16930750e78c2"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -85,20 +85,32 @@ $(function() {
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> centerOrigin(sf::Shape&amp; shape);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">float</span> length(sf::Vector2f vector);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">float</span> distance(<span class="keyword">const</span> <a class="code" href="class_scene_node.html">SceneNode</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="class_scene_node.html">SceneNode</a>&amp; rhs);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;std::string timeToString(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> time);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;std::string toString(Player::Output key);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;Player::Output toKey(std::string key);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">bool</span> collision(<span class="keyword">const</span> <a class="code" href="class_scene_node.html">SceneNode</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="class_scene_node.html">SceneNode</a>&amp; rhs);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;std::string timeToString(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> time);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;std::string toString(Player::Output key);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;Player::Output toKey(std::string key);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> P&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;T* safeCasting(P* cast)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    assert(<span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(cast) != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>T*<span class="keyword">&gt;</span>(cast);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ... Args&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;std::string stringFormat(<span class="keyword">const</span> std::string&amp; format, Args ... args)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">int</span> size_s = std::snprintf( <span class="keyword">nullptr</span>, 0, format.c_str(), args ... ) + 1;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">if</span>( size_s &lt;= 0 ){ <span class="keywordflow">throw</span> std::runtime_error( <span class="stringliteral">&quot;Error during formatting.&quot;</span> ); }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">auto</span> size = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>( size_s );</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::unique_ptr&lt;char[]&gt; buf( <span class="keyword">new</span> <span class="keywordtype">char</span>[ size ] );</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::snprintf( buf.get(), size, format.c_str(), args ... );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">return</span> std::string( buf.get(), buf.get() + size - 1 );</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> P&gt;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;T* safeCasting(P* cast)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    assert(<span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(cast) != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>T*<span class="keyword">&gt;</span>(cast);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 <div class="ttc" id="a_player_8h_html"><div class="ttname"><a href="_player_8h.html">Player.h</a></div></div>
 <div class="ttc" id="a_scene_node_8h_html"><div class="ttname"><a href="_scene_node_8h.html">SceneNode.h</a></div></div>
 <div class="ttc" id="aclass_scene_node_html"><div class="ttname"><a href="class_scene_node.html">SceneNode</a></div><div class="ttdef"><b>Definition:</b> SceneNode.h:14</div></div>

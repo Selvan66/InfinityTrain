@@ -1,0 +1,12 @@
+<map id="code/Objects/Nodes/Pickup/Equipment/Armor.h" name="code/Objects/Nodes/Pickup/Equipment/Armor.h">
+<area shape="rect" id="node1" title=" " alt="" coords="361,5,544,47"/>
+<area shape="rect" id="node2" href="$_armor_8cpp.html" title=" " alt="" coords="5,95,201,136"/>
+<area shape="rect" id="node3" href="$_boots_armor_8h.html" title=" " alt="" coords="703,95,919,136"/>
+<area shape="rect" id="node7" href="$_chest_armor_8h.html" title=" " alt="" coords="226,95,442,136"/>
+<area shape="rect" id="node9" href="$_head_armor_8h.html" title=" " alt="" coords="467,95,679,136"/>
+<area shape="rect" id="node4" href="$_prehistory_level_8cpp.html" title=" " alt="" coords="318,184,457,225"/>
+<area shape="rect" id="node5" href="$_boots_armor_8cpp.html" title=" " alt="" coords="940,184,1171,225"/>
+<area shape="rect" id="node6" href="$_equipment_8cpp.html" title=" " alt="" coords="481,191,664,218"/>
+<area shape="rect" id="node8" href="$_chest_armor_8cpp.html" title=" " alt="" coords="63,184,293,225"/>
+<area shape="rect" id="node10" href="$_head_armor_8cpp.html" title=" " alt="" coords="689,184,915,225"/>
+</map>
