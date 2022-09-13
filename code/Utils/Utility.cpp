@@ -43,6 +43,11 @@ std::string timeToString(unsigned long long time)
     return stringFormat("%02d:%02d", ((time / 100) + (time % 100 ) / 60), (time % 100) % 60);
 }
 
+sf::Vector2f getMousePos(sf::RenderWindow& window)
+{
+    return window.mapPixelToCoords(sf::Mouse::getPosition(window));
+}
+
 std::string toString(Player::Output key)
 {
     sf::Keyboard::Key* keyboard = std::get_if<sf::Keyboard::Key>(&key);

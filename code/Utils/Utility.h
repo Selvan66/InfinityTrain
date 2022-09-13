@@ -17,6 +17,8 @@ float distance(const SceneNode& lhs, const SceneNode& rhs);
 bool collision(const SceneNode& lhs, const SceneNode& rhs);
 std::string timeToString(unsigned long long time);
 
+sf::Vector2f getMousePos(sf::RenderWindow& window);
+
 std::string toString(Player::Output key);
 Player::Output toKey(std::string key);
 

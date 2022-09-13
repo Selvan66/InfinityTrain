@@ -100,9 +100,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     if (mIsFire)
     {
-        auto a = sf::Mouse::getPosition(mContext.window);
-        sf::Vector2f mousePos = mContext.window.mapPixelToCoords(a); 
-        if (Level::getLevelBounds().contains(mousePos))
+        if (Level::getLevelBounds().contains(Utility::getMousePos(mContext.window)))
             commands.push(mFireCommand);
         mIsFire = false;
     }
