@@ -146,13 +146,19 @@ void PlayerNode::updateAnimation(sf::Time dt)
         mAnimation.pause();
     }
     else
-    {
-        if (velocity.x > 0.f)
-            sf::Transformable::setScale(1.f, 1.f);
-        else
-            sf::Transformable::setScale(-1.f, 1.f);
-            
+    {       
         mAnimation.play();
+    }
+
+    if (Utility::getMousePos(mContext.window).x < sf::Transformable::getPosition().x)
+    {
+        sf::Transformable::setScale(-1.f, 1.f);
+        mAnimation.setReversed(true);       // TODO: Last player texture must be like first one
+    }
+    else
+    {
+        sf::Transformable::setScale(1.f, 1.f);
+        mAnimation.setReversed(false);
     }
 
     mAnimation.update(dt);
