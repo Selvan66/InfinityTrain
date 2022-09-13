@@ -100,8 +100,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     if (mIsFire)
     {
-        if (Level::getLevelBounds().contains(Utility::getMousePos(mContext.window)))
-            commands.push(mFireCommand);
+        commands.push(mFireCommand);
         mIsFire = false;
     }
     if (mIsInteract)

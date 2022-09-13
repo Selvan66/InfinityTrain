@@ -3,6 +3,7 @@
 #include "App/Context.h"
 #include "Utils/Utility.h"
 #include "Objects/Nodes/PlayerNode.h"
+#include "Objects/Levels/Level.h"
 
 Player::Player(Context& context)
 : mContext(context)
@@ -29,7 +30,8 @@ void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
     {
         auto found = mKeyBinding.find(event.key.code);
         if (found != mKeyBinding.end() && !isRealtimeAction(found->second))
-            commands.push(mActionBinding[found->second]);
+            if (std::get_if<sf::Mouse::Button>(&(found->first)) != nullptr && Level::getLevelBounds().contains(Utility::getMousePos(mContext.window))) 
+                commands.push(mActionBinding[found->second]);
     }
 }
 
@@ -37,7 +39,8 @@ void Player::handleRealtimeInput(CommandQueue& commands)
 {
     for (auto& pair : mKeyBinding)
         if (isRealtimeAction(pair.second) && isOutputPressed(pair.first))
-            commands.push(mActionBinding[pair.second]);
+            if (std::get_if<sf::Mouse::Button>(&(pair.first)) == nullptr || Level::getLevelBounds().contains(Utility::getMousePos(mContext.window)))
+                commands.push(mActionBinding[pair.second]);
 }
 
 void Player::initializeActions()
