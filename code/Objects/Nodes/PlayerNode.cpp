@@ -120,7 +120,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
     updateAnimation(dt);
     adaptVelocity();
     updateEquipment();
-    mPlayerInfo.stats.setStat(Stats::Lives, Entity::getHitpoints());
+    updateStats();
     Entity::updateCurrent(dt, commands);
 }
 
@@ -194,4 +194,24 @@ void PlayerNode::updateEquipment()
             SceneNode::attachChild(std::move(weapon_ptr));
         }
     }
+}
+
+void PlayerNode::updateStats()
+{
+    auto& stats = mPlayerInfo.stats;
+    auto& eq = mPlayerInfo.equipment;
+
+    stats.setStat(Stats::Lives, Entity::getHitpoints());
+
+    int armor = 0;
+    if (eq.isItem(Equipment::Head))
+        armor += eq.getItem(Equipment::Head)->getHitpoints();
+    if (eq.isItem(Equipment::Chest))
+        armor += eq.getItem(Equipment::Chest)->getHitpoints();
+    if (eq.isItem(Equipment::Boots))
+        armor += eq.getItem(Equipment::Boots)->getHitpoints();
+    stats.setStat(Stats::Armor, armor);
+    
+    if (eq.isItem(Equipment::LeftHand))
+       stats.setStat(Stats::Ammo, eq.getItem(Equipment::LeftHand)->getHitpoints());
 }

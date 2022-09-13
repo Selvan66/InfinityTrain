@@ -88,9 +88,6 @@ void Equipment::update()
         
     for (auto& slot : mSlots)
         slot.update();
-    
-    updateArmorStats();
-    updateWeaponStats();
 }
 
 void Equipment::setPosition(sf::Vector2f position)
@@ -119,22 +116,4 @@ Equipment::Slot Equipment::getItemSlot(const std::unique_ptr<Pickup>& item) cons
     if (dynamic_cast<const Weapon*>(item.get()))
         return LeftHand;
     return None;
-}
-
-void Equipment::updateArmorStats()
-{
-    int armor = 0;
-    if (isItem(Head))
-        armor += getItem(Head)->getHitpoints();
-    if (isItem(Chest))
-        armor += getItem(Chest)->getHitpoints();
-    if (isItem(Boots))
-        armor += getItem(Boots)->getHitpoints();
-    mPlayerInfo.stats.setStat(Stats::Armor, armor);
-}
-
-void Equipment::updateWeaponStats()
-{
-    if (isItem(LeftHand))
-        mPlayerInfo.stats.setStat(Stats::Ammo, getItem(LeftHand)->getHitpoints());
 }

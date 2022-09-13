@@ -35,8 +35,6 @@ class Equipment : public sf::Drawable, public sf::Transformable, public sf::NonC
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     private:
         Slot getItemSlot(const std::unique_ptr<Pickup>& item) const;
-        void updateArmorStats();
-        void updateWeaponStats();
     private:
         Context& mContext;
         PlayerInfo& mPlayerInfo;
