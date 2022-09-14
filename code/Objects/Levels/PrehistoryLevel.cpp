@@ -82,7 +82,7 @@ void PrehistoryLevel::buildFloor()
     test7->setPosition({700, 800});
     floorLayer->attachChild(std::move(test7));
 
-    std::unique_ptr<CloseWeapon> test8(new CloseWeapon(context, CloseWeapon::Knife));
+    std::unique_ptr<CloseWeapon> test8(new CloseWeapon(context, CloseWeapon::Sword));
     test8->setPosition({700, 900});
     floorLayer->attachChild(std::move(test8));
 }

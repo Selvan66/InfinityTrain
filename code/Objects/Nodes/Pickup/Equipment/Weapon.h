@@ -14,7 +14,8 @@ class Weapon : public Pickup
         virtual std::string getDescription() const override;
     protected:
         void setCommand(Command command);
-
+        
+        virtual void used();
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
         Command mAttackCommand;

@@ -42,6 +42,9 @@ void Weapon::setCommand(Command command)
     mAttackCommand = command;
 }
 
+void Weapon::used()
+{ }
+
 void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     Pickup::updateCurrent(dt, commands);
@@ -52,7 +55,7 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
         {
             commands.push(mAttackCommand);
             mElapsed = sf::Time::Zero;
-            Entity::damage(1);
+            used();
         }
     }
     mUse = false;

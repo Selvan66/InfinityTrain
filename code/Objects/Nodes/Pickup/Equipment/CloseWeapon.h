@@ -10,6 +10,7 @@ class CloseWeapon : public Weapon
         enum Type
         {
             Knife,
+            Sword,
             CloseWeaponCount
         };
     public:
@@ -20,7 +21,10 @@ class CloseWeapon : public Weapon
     protected:
         virtual sf::FloatRect getBoundingRect() const override;
         virtual std::unique_ptr<Pickup> create() const override;
+
+        virtual void used() override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
+        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         size_t mIndex;
         Animation mAnimation;
@@ -35,4 +39,5 @@ struct CloseWeaponParam
     sf::Time duration;
     const TexturesID animation;
     const sf::IntRect animationRect;
+    const size_t frameNum;
 };

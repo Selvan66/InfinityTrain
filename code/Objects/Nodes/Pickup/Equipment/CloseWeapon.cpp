@@ -7,7 +7,8 @@
 static std::array<CloseWeaponParam, CloseWeapon::CloseWeaponCount> closeWeapons = 
 {
     {
-        { "Knife", 25, 25, sf::seconds(1), TexturesID::Knife, sf::IntRect(0, 0, 32, 32) }
+        { "Knife", 25, 25, sf::seconds(1), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1 } ,
+        { "Sword", 25, 50, sf::seconds(0.3f), TexturesID::Sword, sf::IntRect(0, 0, 32, 32), 5 }
     }
 };
 
@@ -21,8 +22,9 @@ CloseWeapon::CloseWeapon(Context& context, size_t index, int ammos)
 , mAnimation(context.textures.get(closeWeapons[index].animation))
 {
     mAnimation.setFrameSize({closeWeapons[index].animationRect.width, closeWeapons[index].animationRect.height});
-    mAnimation.setNumFrames(1);
+    mAnimation.setNumFrames(closeWeapons[index].frameNum);
     mAnimation.setDuration(closeWeapons[index].duration);
+    mAnimation.pause();
 
     Command command;
     command.category = Category::Enemy;
@@ -33,7 +35,6 @@ CloseWeapon::CloseWeapon(Context& context, size_t index, int ammos)
     });
     Weapon::setCommand(command);
 
-    Pickup::setTexture(closeWeapons[index].animation);
     Pickup::setName(closeWeapons[index].name);
 }
 
@@ -52,8 +53,26 @@ std::unique_ptr<Pickup> CloseWeapon::create() const
     return std::unique_ptr<Pickup>(new CloseWeapon(Pickup::getContext(), mIndex, Entity::getHitpoints()));   
 }
 
+void CloseWeapon::used()
+{
+    mAnimation.play();
+    Entity::damage(1);
+}
+
 void CloseWeapon::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     Weapon::updateCurrent(dt, commands);
     mAnimation.update(dt);
+
+    if (mAnimation.isFinished())
+    {
+        mAnimation.restart();
+        mAnimation.update(dt);   
+        mAnimation.pause();
+    }
+}
+
+void CloseWeapon::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
+{
+    target.draw(mAnimation, states);
 }
