@@ -6,6 +6,8 @@
 #include "Player/Player.h"
 #include "Objects/Nodes/SceneNode.h"
 
+#define INF 0x0FFFFFFF
+
 namespace Utility
 {
 

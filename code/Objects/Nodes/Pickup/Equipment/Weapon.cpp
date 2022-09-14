@@ -33,7 +33,7 @@ std::string Weapon::getDescription() const
 {
     std::stringstream ss;
     ss << getName() << '\n';
-    ss << "Ammos: " << Entity::getHitpoints();
+    ss << "Ammos: " << (Entity::getHitpoints() == INF ? "INF" : std::to_string(Entity::getHitpoints()));
     return ss.str();
 }
 

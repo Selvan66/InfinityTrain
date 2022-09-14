@@ -85,6 +85,10 @@ void PrehistoryLevel::buildFloor()
     std::unique_ptr<CloseWeapon> test8(new CloseWeapon(context, CloseWeapon::Sword));
     test8->setPosition({700, 900});
     floorLayer->attachChild(std::move(test8));
+
+    std::unique_ptr<CloseWeapon> test9(new CloseWeapon(context, CloseWeapon::Knife));
+    test9->setPosition({700, 1000});
+    floorLayer->attachChild(std::move(test9));
 }
 
 void PrehistoryLevel::buildBattlefield()

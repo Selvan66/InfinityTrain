@@ -7,7 +7,7 @@
 static std::array<CloseWeaponParam, CloseWeapon::CloseWeaponCount> closeWeapons = 
 {
     {
-        { "Knife", 25, 25, sf::seconds(1), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1 } ,
+        { "Knife", INF, 25, sf::seconds(1), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1 } ,
         { "Sword", 25, 50, sf::seconds(0.3f), TexturesID::Sword, sf::IntRect(0, 0, 32, 32), 5 }
     }
 };
@@ -56,7 +56,8 @@ std::unique_ptr<Pickup> CloseWeapon::create() const
 void CloseWeapon::used()
 {
     mAnimation.play();
-    Entity::damage(1);
+    if (closeWeapons[mIndex].ammos != INF)
+        Entity::damage(1);
 }
 
 void CloseWeapon::updateCurrent(sf::Time dt, CommandQueue& commands)

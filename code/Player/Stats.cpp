@@ -75,7 +75,7 @@ void Stats::updateStatsText()
 {
     Utility::safeCasting<Text>(mGui->at("Lives").get())->setString("Lives: " + std::to_string(mStats[Lives]));
     Utility::safeCasting<Text>(mGui->at("Armor").get())->setString("Armor: " + std::to_string(mStats[Armor]));
-    Utility::safeCasting<Text>(mGui->at("Ammo").get())->setString("Ammo: " + std::to_string(mStats[Ammo]));
+    Utility::safeCasting<Text>(mGui->at("Ammo").get())->setString("Ammo: " + (mStats[Ammo] == INF ? "INF" : std::to_string(mStats[Ammo])));
     Utility::safeCasting<Text>(mGui->at("Money").get())->setString("Money: " + std::to_string(mStats[Money]));
     Utility::safeCasting<Text>(mGui->at("Attack").get())->setString("Attack: " + std::to_string(mStats[Attack]));
     Utility::safeCasting<Text>(mGui->at("Speed").get())->setString("Speed: " + std::to_string(mStats[Speed]));
