@@ -2,24 +2,51 @@
 #pragma once
 
 #include "Objects/Nodes/Pickup/Pickup.h"
+#include "Objects/Nodes/Pickup/Equipment/Projectile.h"
+#include "Effects/Animation.h"
 
 class Weapon : public Pickup
 {
     public:
-        Weapon(Context& context, int ammos, const sf::Time duration);
+        enum Type
+        {
+            Knife,
+            Sword,
+            //Bow,
+            WeaponCount
+        };
+    public:
+        Weapon(Context& context, size_t index);
+        Weapon(Context& context, size_t index, int ammos);
 
         void use();
+        sf::Vector2f getSize() const;
 
         virtual bool action(PlayerNode& player) override;
         virtual std::string getDescription() const override;
-    protected:
-        void setCommand(Command command);
-        
-        virtual void used();
+        virtual std::unordered_map<Stats::Type, int> getStats() const override;
+    protected:    
+        virtual std::unique_ptr<Pickup> create() const override;
+        virtual sf::FloatRect getBoundingRect() const override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
+        virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         Command mAttackCommand;
         bool mUse;
-        const sf::Time mDuration;
+        const size_t mIndex;
         sf::Time mElapsed;
+        Animation mAnimation;
+};
+
+struct WeaponParam
+{
+    const char* name;
+    const int ammos;
+    const int damage;
+    const sf::Time duration;
+    const TexturesID animation;
+    const sf::IntRect animationRect;
+    const size_t frameNum;
+    const Projectile::Type projectile;
+    const sf::Vector2f size;
 };

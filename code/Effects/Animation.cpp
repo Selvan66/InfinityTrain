@@ -12,6 +12,7 @@ Animation::Animation()
 , mRepeat(false)
 , mReverse(false)
 , mPaused(false)
+, mRect()
 { }
 
 Animation::Animation(const sf::Texture& texture)
@@ -24,17 +25,38 @@ Animation::Animation(const sf::Texture& texture)
 , mRepeat(false)
 , mReverse(false)
 , mPaused(false)
+, mRect(0, 0, texture.getSize().x, texture.getSize().y)
+{ }
+
+Animation::Animation(const sf::Texture& texture, const sf::IntRect& rect)
+: mSprite(texture, rect)
+, mFrameSize()
+, mNumFrames()
+, mCurrentFrame(0)
+, mDuration(sf::Time::Zero)
+, mElapsedTime(sf::Time::Zero)
+, mRepeat(false)
+, mReverse(false)
+, mPaused(false)
+, mRect(rect)
 { }
 
 void Animation::setTexture(const sf::Texture& texture)
 {
     mSprite.setTexture(texture);
+    mRect = sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y);
+}
+
+void Animation::setTexture(const sf::Texture& texture, const sf::IntRect& rect)
+{
+    mSprite.setTexture(texture);
+    mRect = rect;
 }
 
 void Animation::setFrameSize(sf::Vector2i frameSize)
 {
     mFrameSize = frameSize;
-    mSprite.setTextureRect(sf::IntRect(0, 0, mFrameSize.x, mFrameSize.y));
+    mSprite.setTextureRect(sf::IntRect(mRect.left, mRect.top, mFrameSize.x, mFrameSize.y));
     Utility::centerOrigin(mSprite);
 }
 
@@ -118,12 +140,9 @@ void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const
 sf::IntRect Animation::firstFrame() const
 {
     if (mReverse)
-    {
-        sf::Vector2i bounds(mSprite.getTexture()->getSize());
-        return sf::IntRect(bounds.x - mFrameSize.x, bounds.y - mFrameSize.y, mFrameSize.x, mFrameSize.y);
-    }
+        return sf::IntRect(mRect.left + mRect.width - mFrameSize.x, mRect.top + mRect.height - mFrameSize.y, mFrameSize.x, mFrameSize.y);
 
-    return sf::IntRect(0, 0, mFrameSize.x, mFrameSize.y);
+    return sf::IntRect(mRect.left, mRect.top, mFrameSize.x, mFrameSize.y);
 }
 
 sf::IntRect Animation::nextFrame(sf::IntRect rect) const
@@ -131,11 +150,11 @@ sf::IntRect Animation::nextFrame(sf::IntRect rect) const
     if (mRepeat && mCurrentFrame == 0)
         return firstFrame();
 
-    sf::Vector2i bounds(mSprite.getTexture()->getSize());
+    sf::Vector2i bounds = {mRect.left + mRect.width, mRect.top + mRect.height};
     if (mReverse)
     {
         rect.left -= mFrameSize.x;
-        if (rect.left - mFrameSize.x < 0)
+        if (rect.left - mFrameSize.x < mRect.left)
         {
             rect.left = bounds.x - mFrameSize.x;
             rect.top -= mFrameSize.y;
@@ -146,7 +165,7 @@ sf::IntRect Animation::nextFrame(sf::IntRect rect) const
         rect.left += mFrameSize.x;
         if (rect.left + mFrameSize.x > bounds.x)
         {
-            rect.left = 0;
+            rect.left = mRect.left;
             rect.top += mFrameSize.y;
         }
     }

@@ -195,7 +195,8 @@ void PlayerNode::updateEquipment()
             auto weapon_ptr = mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
             mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
             mWeapon->setDistance(0.f);
-            mWeapon->setScale(2.f, 2.f);
+            sf::Vector2f size = { mWeapon->getSize().x / 32.f, mWeapon->getSize().y / 32.f };
+            mWeapon->setScale(size);
             SceneNode::attachChild(std::move(weapon_ptr));
         }
     }
