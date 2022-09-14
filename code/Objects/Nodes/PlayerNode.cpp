@@ -178,22 +178,17 @@ void PlayerNode::updateEquipment()
     if (mWeapon != nullptr)
     {
         if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
-        {
             mPlayerInfo.equipment.getItem(Equipment::LeftHand)->setHitpoints(mWeapon->getHitpoints());
-        }
         else 
-        {
-            SceneNode::detachChild(*mWeapon);
             mWeapon = nullptr;
-        }
     }
     else
     {
         if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
         {
             auto weapon_ptr = mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
-            weapon_ptr->setDistance(0.f);
             mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
+            mWeapon->setDistance(0.f);
             mWeapon->setScale(2.f, 2.f);
             SceneNode::attachChild(std::move(weapon_ptr));
         }
