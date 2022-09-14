@@ -9,7 +9,9 @@ class Animation : public sf::Drawable, public sf::Transformable
     public:
         Animation();
         explicit Animation(const sf::Texture& texture);
+        Animation(const sf::Texture& texture, const sf::IntRect& rect);
         void setTexture(const sf::Texture& texture);
+        void setTexture(const sf::Texture& texture, const sf::IntRect& rect);
         void setFrameSize(sf::Vector2i frameSize);
         void setNumFrames(std::size_t numFrames);
         void setDuration(sf::Time duration);
@@ -29,6 +31,7 @@ class Animation : public sf::Drawable, public sf::Transformable
         void incrementCurrentFrame();
     private:
         sf::Sprite mSprite;
+        sf::IntRect mRect;
         sf::Vector2i mFrameSize;
         std::size_t mNumFrames;
         std::size_t mCurrentFrame;
