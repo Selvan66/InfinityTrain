@@ -178,9 +178,15 @@ void PlayerNode::updateEquipment()
     if (mWeapon != nullptr)
     {
         if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
+        {
             mPlayerInfo.equipment.getItem(Equipment::LeftHand)->setHitpoints(mWeapon->getHitpoints());
-        else 
+
+        }
+        else
+        {
+            SceneNode::detachChild(*mWeapon);
             mWeapon = nullptr;
+        }
     }
     else
     {
