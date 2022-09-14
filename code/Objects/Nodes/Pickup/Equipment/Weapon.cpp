@@ -6,7 +6,7 @@
 static std::array<WeaponParam, Weapon::WeaponCount> weapons = {
     {
         { "Knife", INF, 10, sf::seconds(1.f), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1, Projectile::None, {52.f, 52.f} },
-        { "Sword", 25, 25, sf::seconds(0.3f), TexturesID::Sword, sf::IntRect(0, 0, 160, 32), 5, Projectile::None, {64.f, 64.f} },
+        { "Sword", 25, 25, sf::seconds(0.3f), TexturesID::Weapons, sf::IntRect(0, 128, 160, 32), 5, Projectile::None, {64.f, 64.f} },
         //{ "Bow", 10, 1, sf::seconds(0.5f), TexturesID::Bow, sf::IntRect(0, 0, 32, 32), 4, Projectile::Arrow }
     }
 };
@@ -21,7 +21,7 @@ Weapon::Weapon(Context& context, size_t index, int ammos)
 , mUse(false)
 , mIndex(index)
 , mElapsed()
-, mAnimation(context.textures.get(weapons[index].animation))
+, mAnimation(context.textures.get(weapons[index].animation), weapons[index].animationRect)
 {
     mAnimation.setFrameSize({32, 32});
     mAnimation.setNumFrames(weapons[index].frameNum);
