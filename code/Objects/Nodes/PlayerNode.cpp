@@ -118,6 +118,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
     adaptVelocity();
     updateEquipment();
     updateStats();
+    updateWeapon();
     Entity::updateCurrent(dt, commands);
 }
 
@@ -191,9 +192,9 @@ void PlayerNode::updateEquipment()
         if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
         {
             auto weapon_ptr = mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
-            weapon_ptr->setPosition(40.f, 0.f);
             weapon_ptr->setDistance(0.f);
             mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
+            mWeapon->setScale(2.f, 2.f);
             SceneNode::attachChild(std::move(weapon_ptr));
         }
     }
@@ -217,4 +218,14 @@ void PlayerNode::updateStats()
     
     if (eq.isItem(Equipment::LeftHand))
        stats.setStat(Stats::Ammo, eq.getItem(Equipment::LeftHand)->getHitpoints());
+}
+
+void PlayerNode::updateWeapon()
+{
+    if (mWeapon != nullptr)
+    {
+        sf::Vector2f vec = Utility::getMousePos(mContext.window) - sf::Transformable::getPosition();
+        mWeapon->setPosition(std::min(40.f, std::abs(vec.x)), std::min(40.f, std::max(-40.f, vec.y)));
+        mWeapon->setRotation(std::atan2(vec.y, std::abs(vec.x)) * 180.f / 3.14159265f);
+    }
 }

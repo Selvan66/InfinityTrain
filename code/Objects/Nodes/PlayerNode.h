@@ -40,6 +40,7 @@ class PlayerNode : public Entity
         void adaptVelocity();
         void updateEquipment();
         void updateStats();
+        void updateWeapon();
     private:
         Context& mContext;
         PlayerInfo& mPlayerInfo;

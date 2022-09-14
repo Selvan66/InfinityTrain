@@ -26,7 +26,7 @@ CloseWeapon::CloseWeapon(Context& context, size_t index, int ammos)
 
     Command command;
     command.category = Category::Enemy;
-    command.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time dt)    // You cant attack if there's no enemy
+    command.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time dt)
     {
         if (Utility::collision(*this, enemy))
             enemy.damage(closeWeapons[mIndex].damage);
