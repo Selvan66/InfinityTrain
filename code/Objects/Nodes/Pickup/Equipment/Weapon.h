@@ -16,8 +16,8 @@ class Weapon : public Pickup
             WeaponCount
         };
     public:
-        Weapon(Context& context, size_t index);
-        Weapon(Context& context, size_t index, int ammos);
+        Weapon(Context& context, Type type);
+        Weapon(Context& context, Type type, int ammos);
 
         void use();
         sf::Vector2f getSize() const;
@@ -33,7 +33,7 @@ class Weapon : public Pickup
     private:
         Command mAttackCommand;
         bool mUse;
-        const size_t mIndex;
+        const Type mType;
         sf::Time mElapsed;
         Animation mAnimation;
 };
