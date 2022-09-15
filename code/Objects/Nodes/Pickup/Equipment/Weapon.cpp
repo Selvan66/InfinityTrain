@@ -3,7 +3,8 @@
 #include "Objects/Nodes/PlayerNode.h"
 #include "Objects/Nodes/Enemy.h"
 
-static std::array<WeaponParam, Weapon::WeaponCount> weapons = {
+static const std::array<WeaponParam, Weapon::WeaponCount> weapons = 
+{
     {
         { "Knife", INF, 10, sf::seconds(1.f), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1, Projectile::None, {52.f, 52.f} },
         { "Sword", 25, 25, sf::seconds(0.3f), TexturesID::Weapons, sf::IntRect(0, 128, 160, 32), 5, Projectile::None, {64.f, 64.f} },
