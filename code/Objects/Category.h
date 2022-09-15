@@ -12,6 +12,9 @@ enum Type
     Floor = 1 << 2,
     Interactable = 1 << 3,
     Enemy = 1 << 4,
+    Helmet = 1 << 5,
+    Chestplate = 1 << 6,
+    Boots = 1 << 7,
 };
 
 }
