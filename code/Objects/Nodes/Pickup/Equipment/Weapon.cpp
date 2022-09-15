@@ -3,7 +3,8 @@
 #include "Objects/Nodes/PlayerNode.h"
 #include "Objects/Nodes/Enemy.h"
 
-static std::array<WeaponParam, Weapon::WeaponCount> weapons = {
+static const std::array<WeaponParam, Weapon::WeaponCount> weapons = 
+{
     {
         { "Knife", INF, 10, sf::seconds(1.f), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1, Projectile::None, {52.f, 52.f} },
         { "Sword", 25, 25, sf::seconds(0.3f), TexturesID::Weapons, sf::IntRect(0, 128, 160, 32), 5, Projectile::None, {64.f, 64.f} },
@@ -11,31 +12,31 @@ static std::array<WeaponParam, Weapon::WeaponCount> weapons = {
     }
 };
 
-Weapon::Weapon(Context& context, size_t index)
-: Weapon(context, index, weapons[index].ammos)
+Weapon::Weapon(Context& context, Type type)
+: Weapon(context, type, weapons[type].ammos)
 { }
 
-Weapon::Weapon(Context& context, size_t index, int ammos)
+Weapon::Weapon(Context& context, Type type, int ammos)
 : Pickup(context)
 , mAttackCommand()
 , mUse(false)
-, mIndex(index)
+, mType(type)
 , mElapsed()
-, mAnimation(context.textures.get(weapons[index].animation), weapons[index].animationRect)
+, mAnimation(context.textures.get(weapons[type].animation), weapons[type].animationRect)
 {
     mAnimation.setFrameSize({32, 32});
-    mAnimation.setNumFrames(weapons[index].frameNum);
-    mAnimation.setDuration(weapons[index].duration);
+    mAnimation.setNumFrames(weapons[type].frameNum);
+    mAnimation.setDuration(weapons[type].duration);
     mAnimation.pause();
 
     mAttackCommand.category = Category::Enemy;
     
-    if (weapons[index].projectile == Projectile::None)
+    if (weapons[type].projectile == Projectile::None)
     {
         mAttackCommand.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time dt)
         {
             if (Utility::collision(*this, enemy))
-                enemy.damage(weapons[mIndex].damage);
+                enemy.damage(weapons[mType].damage);
         });
     }
     // TODO : Projectile command
@@ -57,7 +58,12 @@ void Weapon::use()
 
 sf::Vector2f Weapon::getSize() const
 {
-    return weapons[mIndex].size;
+    return weapons[mType].size;
+}
+
+unsigned int Weapon::getCategory() const 
+{
+    return Pickup::getCategory() | Category::Weapon;
 }
 
 bool Weapon::action(PlayerNode& player)
@@ -69,19 +75,19 @@ bool Weapon::action(PlayerNode& player)
 std::string Weapon::getDescription() const 
 {
     std::stringstream ss;
-    ss << weapons[mIndex].name << '\n';
+    ss << weapons[mType].name << '\n';
     ss << "Ammos: " << (Entity::getHitpoints() == INF ? "INF" : std::to_string(Entity::getHitpoints()));
     return ss.str();
 }
 
 std::unordered_map<Stats::Type, int> Weapon::getStats() const 
 {
-    return { { Stats::Attack, weapons[mIndex].damage } };
+    return { { Stats::Attack, weapons[mType].damage } };
 }
 
 std::unique_ptr<Pickup> Weapon::create() const 
 {
-    return std::unique_ptr<Pickup>(new Weapon(Pickup::getContext(), mIndex, Entity::getHitpoints()));   
+    return std::unique_ptr<Pickup>(new Weapon(Pickup::getContext(), mType, Entity::getHitpoints()));   
 }
 
 sf::FloatRect Weapon::getBoundingRect() const 
@@ -93,7 +99,7 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     Pickup::updateCurrent(dt, commands);
     mElapsed += dt;
-    if (mElapsed >= weapons[mIndex].duration)
+    if (mElapsed >= weapons[mType].duration)
     {
         if (mUse)
         {
