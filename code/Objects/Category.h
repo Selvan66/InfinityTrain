@@ -15,6 +15,7 @@ enum Type
     Helmet = 1 << 5,
     Chestplate = 1 << 6,
     Boots = 1 << 7,
+    Weapon = 1 << 8,
 };
 
 }

@@ -61,6 +61,11 @@ sf::Vector2f Weapon::getSize() const
     return weapons[mType].size;
 }
 
+unsigned int Weapon::getCategory() const 
+{
+    return Pickup::getCategory() | Category::Weapon;
+}
+
 bool Weapon::action(PlayerNode& player)
 {
     player.pickup(create());

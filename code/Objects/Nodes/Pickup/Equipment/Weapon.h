@@ -22,6 +22,7 @@ class Weapon : public Pickup
         void use();
         sf::Vector2f getSize() const;
 
+        virtual unsigned int getCategory() const override;
         virtual bool action(PlayerNode& player) override;
         virtual std::string getDescription() const override;
         virtual std::unordered_map<Stats::Type, int> getStats() const override;
