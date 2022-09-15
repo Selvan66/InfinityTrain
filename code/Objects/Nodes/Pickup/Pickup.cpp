@@ -9,7 +9,6 @@ Pickup::Pickup(Context& context)
 , mSprite()
 , mPickedUp(false)
 , mCommand()
-, mName()
 { }
 
 std::string Pickup::getDescription() const
@@ -58,22 +57,12 @@ Context& Pickup::getContext() const
     return mContext;
 }
 
-const std::string& Pickup::getName() const
-{
-    return mName;
-}
-
 void Pickup::setLabel(const std::string& text)
 {
     std::unique_ptr<TextNode> textNode(new TextNode(mContext));
     textNode->setPosition(0.f, -40.f);
     textNode->setString(text);
     SceneNode::attachChild(std::move(textNode));
-}
-
-void Pickup::setName(std::string name)
-{
-    mName = name;
 }
 
 sf::FloatRect Pickup::getBoundingRect() const 

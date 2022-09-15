@@ -22,10 +22,8 @@ class Pickup : public Interactable
         void setTexture(TexturesID texture);
         void setCommand(Command command);
         void setLabel(const std::string& text);
-        void setName(std::string name);
 
         Context& getContext() const;
-        const std::string& getName() const;
 
         virtual sf::FloatRect getBoundingRect() const override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
@@ -34,5 +32,4 @@ class Pickup : public Interactable
         sf::Sprite mSprite;
         bool mPickedUp;
         Command mCommand;
-        std::string mName;
 };

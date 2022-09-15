@@ -4,9 +4,7 @@
 #include "Objects/Nodes/Pickup/Money.h"
 #include "Objects/Nodes/Pickup/Potion.h"
 #include "Objects/Nodes/Pickup/Heart.h"
-#include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
-#include "Objects/Nodes/Pickup/Equipment/BootsArmor.h"
-#include "Objects/Nodes/Pickup/Equipment/ChestArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/Armor.h"
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Objects/Nodes/Enemy.h"
 
@@ -66,19 +64,19 @@ void PrehistoryLevel::buildFloor()
     test3->setPosition({1200, 400});
     floorLayer->attachChild(std::move(test3));
 
-    std::unique_ptr<HeadArmor> test4(new HeadArmor(context, HeadArmor::HeavyHelmet));
+    std::unique_ptr<Armor> test4(new Armor(context, Armor::HeavyHelmet));
     test4->setPosition({800, 700});
     floorLayer->attachChild(std::move(test4));
 
-    std::unique_ptr<BootsArmor> test5(new BootsArmor(context, BootsArmor::HeavyBoots));
+    std::unique_ptr<Armor> test5(new Armor(context, Armor::HeavyBoots));
     test5->setPosition({800, 800});
     floorLayer->attachChild(std::move(test5));
 
-    std::unique_ptr<ChestArmor> test6(new ChestArmor(context, ChestArmor::HeavyChest));
+    std::unique_ptr<Armor> test6(new Armor(context, Armor::HeavyChest));
     test6->setPosition({800, 900});
     floorLayer->attachChild(std::move(test6));
 
-    std::unique_ptr<BootsArmor> test7(new BootsArmor(context, BootsArmor::LightBoots));
+    std::unique_ptr<Armor> test7(new Armor(context, Armor::LightBoots));
     test7->setPosition({700, 800});
     floorLayer->attachChild(std::move(test7));
 

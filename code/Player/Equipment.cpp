@@ -1,9 +1,7 @@
 /** @file Equipment.cpp */
 #include "Player/Equipment.h"
 #include "Player/PlayerInfo.h"
-#include "Objects/Nodes/Pickup/Equipment/HeadArmor.h"
-#include "Objects/Nodes/Pickup/Equipment/ChestArmor.h"
-#include "Objects/Nodes/Pickup/Equipment/BootsArmor.h"
+#include "Objects/Nodes/Pickup/Equipment/Armor.h"
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Utils/Exceptions/bad_argument.h"
 
@@ -107,13 +105,13 @@ void Equipment::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 Equipment::Slot Equipment::getItemSlot(const std::unique_ptr<Pickup>& item) const
 {
-    if (dynamic_cast<const HeadArmor*>(item.get()))
+    if (item->getCategory() & Category::Helmet)
         return Head;
-    if (dynamic_cast<const ChestArmor*>(item.get()))
+    if (item->getCategory() & Category::Chestplate)
         return Chest;
-    if (dynamic_cast<const BootsArmor*>(item.get()))
+    if (item->getCategory() & Category::Boots)
         return Boots;
-    if (dynamic_cast<const Weapon*>(item.get()))
+    if (item->getCategory() & Category::Weapon)
         return LeftHand;
     return None;
 }
