@@ -15,6 +15,8 @@ void centerOrigin(sf::Sprite& sprite);
 void centerOrigin(sf::Text& text);
 void centerOrigin(sf::Shape& shape);
 float length(sf::Vector2f vector);
+float toDegree(float radian);
+sf::Vector2f unitVector(sf::Vector2f vector);
 float distance(const SceneNode& lhs, const SceneNode& rhs);
 bool collision(const SceneNode& lhs, const SceneNode& rhs);
 std::string timeToString(unsigned long long time);

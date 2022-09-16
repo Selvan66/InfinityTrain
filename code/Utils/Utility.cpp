@@ -28,6 +28,17 @@ float length(sf::Vector2f vector)
     return std::sqrt(vector.x * vector.x + vector.y * vector.y);
 }
 
+float toDegree(float radian)
+{
+    return 180.f / 3.14159265f * radian;
+}
+
+sf::Vector2f unitVector(sf::Vector2f vector)
+{
+    assert(vector != sf::Vector2f(0.f, 0.f));
+	return vector / length(vector);
+}
+
 float distance(const SceneNode& lhs, const SceneNode& rhs)
 {
     return length(lhs.getWorldPosition() - rhs.getWorldPosition());

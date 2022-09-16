@@ -228,6 +228,6 @@ void PlayerNode::updateWeapon()
     {
         sf::Vector2f vec = Utility::getMousePos(mContext.window) - sf::Transformable::getPosition();
         mWeapon->setPosition(std::min(40.f, std::abs(vec.x)), std::min(40.f, std::max(-40.f, vec.y)));
-        mWeapon->setRotation(std::atan2(vec.y, std::abs(vec.x)) * 180.f / 3.14159265f);
+        mWeapon->setRotation(Utility::toDegree(std::atan2(vec.y, std::abs(vec.x))));
     }
 }
