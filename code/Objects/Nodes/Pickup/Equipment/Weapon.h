@@ -12,7 +12,7 @@ class Weapon : public Pickup
         {
             Knife,
             Sword,
-            //Bow,
+            Bow,
             WeaponCount
         };
     public:

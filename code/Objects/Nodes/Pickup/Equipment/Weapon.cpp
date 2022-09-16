@@ -8,7 +8,7 @@ static const std::array<WeaponParam, Weapon::WeaponCount> weapons =
     {
         { "Knife", INF, 10, sf::seconds(1.f), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1, Projectile::None, {52.f, 52.f} },
         { "Sword", 25, 25, sf::seconds(0.3f), TexturesID::Weapons, sf::IntRect(0, 64, 160, 32), 5, Projectile::None, {64.f, 64.f} },
-        //{ "Bow", 10, 1, sf::seconds(0.5f), TexturesID::Bow, sf::IntRect(0, 0, 32, 32), 4, Projectile::Arrow }
+        { "Bow", 10, 1, sf::seconds(0.2f), TexturesID::Weapons, sf::IntRect(0, 0, 192, 64), 12, Projectile::Arrow, {64.f, 64.f} },
     }
 };
 
@@ -29,17 +29,27 @@ Weapon::Weapon(Context& context, Type type, int ammos)
     mAnimation.setDuration(weapons[type].duration);
     mAnimation.pause();
 
-    mAttackCommand.category = Category::Enemy;
     
     if (weapons[type].projectile == Projectile::None)
     {
+        mAttackCommand.category = Category::Enemy;
         mAttackCommand.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time dt)
         {
             if (Utility::collision(*this, enemy))
                 enemy.damage(weapons[mType].damage);
         });
     }
-    // TODO : Projectile command
+    else
+    {
+        mAttackCommand.category = Category::Battlefield;
+        mAttackCommand.action = [&] (SceneNode& node, sf::Time)
+        {
+            auto projectile = std::make_unique<Projectile>(Pickup::getContext(), weapons[mType].projectile, Category::AlliedProjectile);
+            projectile->setPosition(SceneNode::getWorldPosition());
+            projectile->setDirection(Utility::getMousePos(context.window));
+            node.attachChild(std::move(projectile));
+        };
+    }
 
     Command command;
     command.category = Category::Player;

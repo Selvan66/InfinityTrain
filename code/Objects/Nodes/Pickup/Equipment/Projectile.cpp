@@ -7,7 +7,7 @@
 static const std::array<ProjectileParam, Projectile::ProjectileCount> projectiles = 
 {
     {
-        { 10, 300.f, true, TexturesID::Arrow, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
+        { 10, 150.f, false, TexturesID::Arrow, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
     }
 };
 
@@ -80,11 +80,9 @@ void Projectile::updateCurrent(sf::Time dt, CommandQueue& commands)
         commands.push(mFindCommand);
     
     const float approachRate = 200.f;
-
     sf::Vector2f newVelocity = Utility::unitVector(approachRate * dt.asSeconds() * mTargetDirection + Entity::getVelocity());
     newVelocity *= projectiles[mType].speed;
     float angle = std::atan2(newVelocity.y, newVelocity.x);
-
     Transformable::setRotation(Utility::toDegree(angle));
     Entity::setVelocity(newVelocity);
 }

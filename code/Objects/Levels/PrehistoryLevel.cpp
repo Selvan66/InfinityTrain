@@ -85,14 +85,9 @@ void PrehistoryLevel::buildFloor()
     test8->setPosition({700, 900});
     floorLayer->attachChild(std::move(test8));
 
-    std::unique_ptr<Weapon> test9(new Weapon(context, Weapon::Knife));
+    std::unique_ptr<Weapon> test9(new Weapon(context, Weapon::Bow));
     test9->setPosition({700, 700});
     floorLayer->attachChild(std::move(test9));
-
-    std::unique_ptr<Projectile> test10(new Projectile(context, Projectile::Arrow, Category::EnemyProjectile));
-    test10->setDirection({1, 0});
-    test10->setPosition({700, 600});
-    floorLayer->attachChild(std::move(test10));
 }
 
 void PrehistoryLevel::buildBattlefield()
