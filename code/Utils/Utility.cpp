@@ -33,6 +33,11 @@ float toDegree(float radian)
     return 180.f / 3.14159265f * radian;
 }
 
+float toRadian(float degree)
+{
+    return  3.14159265f / 180.f * degree;
+}
+
 sf::Vector2f unitVector(sf::Vector2f vector)
 {
     assert(vector != sf::Vector2f(0.f, 0.f));

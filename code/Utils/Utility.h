@@ -16,6 +16,7 @@ void centerOrigin(sf::Text& text);
 void centerOrigin(sf::Shape& shape);
 float length(sf::Vector2f vector);
 float toDegree(float radian);
+float toRadian(float degree);
 sf::Vector2f unitVector(sf::Vector2f vector);
 float distance(const SceneNode& lhs, const SceneNode& rhs);
 bool collision(const SceneNode& lhs, const SceneNode& rhs);
