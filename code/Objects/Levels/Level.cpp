@@ -30,6 +30,8 @@ void Level::update(sf::Time dt)
 
     mSceneGraph.removeObjects();
     mSceneGraph.update(dt, mCommands);
+
+    destoryEntitiesOutsideLevel();
 }
 
 LevelID::ID Level::nextLevel() const
@@ -104,4 +106,17 @@ void Level::adaptNodesPosition(SceneNode* node)
     position.y = std::min(position.y, bounds.top + bounds.height - size.height / 2.f);
 
     node->setPosition(position);
+}
+
+void Level::destoryEntitiesOutsideLevel()
+{
+    Command command;
+    command.category = Category::AlliedProjectile | Category::EnemyProjectile;
+    command.action = derivedAction<Entity>([this] (Entity& e, sf::Time) {
+        if (!getLevelBounds().intersects(e.getBoundingRect())) {
+            e.destroy();
+        }
+    });
+
+    mCommands.push(command);
 }

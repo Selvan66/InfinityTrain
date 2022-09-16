@@ -34,6 +34,7 @@ class Level : public sf::NonCopyable
     private:
         void buildScene();
         void adaptNodesPosition(SceneNode* node);
+        void destoryEntitiesOutsideLevel();
     private:
         LvlContext& mLvlContext;
         CommandQueue mCommands;
