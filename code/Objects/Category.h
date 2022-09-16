@@ -16,6 +16,8 @@ enum Type
     Chestplate = 1 << 6,
     Boots = 1 << 7,
     Weapon = 1 << 8,
+    AlliedProjectile = 1 << 9,
+    EnemyProjectile = 1 << 10,
 };
 
 }

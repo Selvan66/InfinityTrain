@@ -29,6 +29,7 @@ enum class TexturesID
 	Knife,
 	Sword,
 	Weapons,
+	Arrow,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

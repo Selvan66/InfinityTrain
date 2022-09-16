@@ -62,4 +62,5 @@ void LoadingState::loadGameTextures()
     context.textures.load(TexturesID::Knife, "image/knife.png");
     context.textures.load(TexturesID::Sword, "image/sword.png");
     context.textures.load(TexturesID::Weapons, "image/weapons.png");
+    context.textures.load(TexturesID::Arrow, "image/arrow.png");
 }
