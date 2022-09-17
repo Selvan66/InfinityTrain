@@ -28,6 +28,7 @@ class Projectile : public Entity
         Category::Type mCategoryType;
         Animation mAnimation;
         sf::Vector2f mTargetDirection;
+        float mClosedEnemy;
         Command mAttackCommand;
         Command mFindCommand;
 };

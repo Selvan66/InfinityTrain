@@ -103,6 +103,10 @@ void PrehistoryLevel::buildBattlefield()
     std::unique_ptr<Enemy> enemy(new Enemy(context));
     enemy->setPosition({960, 540});
     battlefieldLayer->attachChild(std::move(enemy));
+
+    std::unique_ptr<Enemy> enemy2(new Enemy(context));
+    enemy2->setPosition({860, 700});
+    battlefieldLayer->attachChild(std::move(enemy2));
 }
 
 void PrehistoryLevel::buildScene()

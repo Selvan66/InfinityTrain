@@ -7,7 +7,7 @@
 static const std::array<ProjectileParam, Projectile::ProjectileCount> projectiles = 
 {
     {
-        { 10, 150.f, false, TexturesID::Arrow, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
+        { 10, 300.f, false, TexturesID::Arrow, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
     }
 };
 
@@ -16,6 +16,7 @@ Projectile::Projectile(Context& context, Type type, Category::Type category)
 , mCategoryType(category)
 , mAnimation(context.textures.get(projectiles[type].animation), projectiles[type].animationRect)
 , mTargetDirection()
+, mClosedEnemy(100000.f)
 , mAttackCommand()
 , mFindCommand()
 {
@@ -51,7 +52,12 @@ Projectile::Projectile(Context& context, Type type, Category::Type category)
 
     mFindCommand.action = derivedAction<Entity>([&](Entity& entity, sf::Time dt)
     {
-        setDirection(entity.getWorldPosition());
+        float distance = Utility::length(entity.getWorldPosition() - SceneNode::getWorldPosition());
+        if (distance < mClosedEnemy)
+        {
+            mClosedEnemy = distance;
+            setDirection(entity.getWorldPosition());
+        }
     });
 }
 
