@@ -43,7 +43,7 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
     }
     else
     {
-        sf::Vector2f direction = mPlayer->getPosition() - getPosition();
+        sf::Vector2f direction = mPlayer->getWorldPosition() - SceneNode::getWorldPosition();
         float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
         if (length > 0.f)
         {

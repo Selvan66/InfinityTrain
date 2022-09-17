@@ -64,7 +64,7 @@ void Level::updatePlayer(PlayerNode* player)
     player->setVelocity(0, 0);
     adaptNodesPosition(player);
 
-    mLvlContext.playerInfo.backpack.drop(player->getPosition(), *mSceneLayer[Floor]);
+    mLvlContext.playerInfo.backpack.drop(player->getWorldPosition(), *mSceneLayer[Floor]);
     mLvlContext.playerInfo.backpack.action(*player);
 }
 
@@ -97,7 +97,7 @@ void Level::buildScene()
 void Level::adaptNodesPosition(SceneNode* node)
 {
     sf::FloatRect bounds = getLevelBounds();
-    sf::Vector2f position = node->getPosition();
+    sf::Vector2f position = node->getWorldPosition();
     sf::FloatRect size = node->getBoundingRect();
 
     position.x = std::max(position.x, bounds.left + size.width / 2.f);

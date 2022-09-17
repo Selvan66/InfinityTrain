@@ -151,7 +151,7 @@ void PlayerNode::updateAnimation(sf::Time dt)
         mAnimation.play();
     }
 
-    if (Utility::getMousePos(mContext.window).x < sf::Transformable::getPosition().x)
+    if (Utility::getMousePos(mContext.window).x < SceneNode::getWorldPosition().x)
     {
         sf::Transformable::setScale(-1.f, 1.f);
         mAnimation.setReversed(true);       // TODO: Last player texture must be like first one
@@ -226,7 +226,7 @@ void PlayerNode::updateWeapon()
 {
     if (mWeapon != nullptr)
     {
-        sf::Vector2f vec = Utility::getMousePos(mContext.window) - sf::Transformable::getPosition();
+        sf::Vector2f vec = Utility::getMousePos(mContext.window) - SceneNode::getWorldPosition();
         mWeapon->setPosition(std::min(40.f, std::abs(vec.x)), std::min(40.f, std::max(-40.f, vec.y)));
         mWeapon->setRotation(Utility::toDegree(std::atan2(vec.y, std::abs(vec.x))));
     }
