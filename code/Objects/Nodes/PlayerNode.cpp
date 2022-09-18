@@ -227,7 +227,7 @@ void PlayerNode::updateWeapon()
     if (mWeapon != nullptr)
     {
         sf::Vector2f vec = Utility::getMousePos(mContext.window) - SceneNode::getWorldPosition();
-        mWeapon->setPosition(std::min(40.f, std::abs(vec.x)), std::min(40.f, std::max(-40.f, vec.y)));
+        mWeapon->setPosition(std::min(40.f, std::abs(vec.x) - std::abs(vec.x / 1000.f)), std::min(40.f, std::max(-40.f, vec.y - (vec.y / 1000.f))));
         mWeapon->setRotation(Utility::toDegree(std::atan2(vec.y, std::abs(vec.x))));
     }
 }
