@@ -30,6 +30,8 @@ enum class TexturesID
 	Sword,
 	Weapons,
 	Arrow,
+	Bazooka,
+	Rocket,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

@@ -13,6 +13,7 @@ class Weapon : public Pickup
             Knife,
             Sword,
             Bow,
+            Bazooka,
             WeaponCount
         };
     public:

@@ -11,6 +11,7 @@ class Projectile : public Entity
         enum Type
         {
             Arrow,
+            Rocket,
             ProjectileCount,
             None,
         };

@@ -10,3 +10,5 @@
 <a href="https://www.flaticon.com/free-icons/shoe" title="shoe icons">Shoe icons created by smalllikeart - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/knife" title="knife icons">Knife icons created by Smashicons - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/bow" title="bow icons">Bow icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/bazooka" title="bazooka icons">Bazooka icons created by Izwar Muis - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/airforce" title="airforce icons">Airforce icons created by Ehtisham Abid - Flaticon</a>

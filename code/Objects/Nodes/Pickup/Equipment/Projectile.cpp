@@ -8,6 +8,7 @@ static const std::array<ProjectileParam, Projectile::ProjectileCount> projectile
 {
     {
         { 10, 300.f, false, TexturesID::Arrow, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
+        { 50, 250.f, true, TexturesID::Rocket, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
     }
 };
 
