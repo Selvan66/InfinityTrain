@@ -67,6 +67,11 @@ void Projectile::setDirection(sf::Vector2f pos)
     mTargetDirection = Utility::unitVector(pos - SceneNode::getWorldPosition());
 }
 
+const int Projectile::getDamage(Type type)
+{
+    return projectiles[type].damage;
+}
+
 unsigned int Projectile::getCategory() const 
 {
     return mCategoryType;
