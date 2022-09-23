@@ -48,7 +48,7 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
         if (length > 0.f)
         {
             direction /= length;
-            Entity::setVelocity(direction * 100.f);
+            Entity::accelerate(direction * 25.f);
         }
     }
 
@@ -60,7 +60,7 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
         if (mDuration >= sf::seconds(0.5f))
         {
             if (Utility::collision(*this, player))
-                player.damage(1);
+                player.damageFromPos(1, SceneNode::getWorldPosition());
             mDuration = sf::Time::Zero;
         }
             

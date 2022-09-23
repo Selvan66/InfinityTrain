@@ -115,7 +115,6 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands)
     }
 
     updateAnimation(dt);
-    adaptVelocity();
     updateEquipment();
     updateStats();
     updateWeapon();
@@ -163,14 +162,6 @@ void PlayerNode::updateAnimation(sf::Time dt)
     }
 
     mAnimation.update(dt);
-}
-
-void PlayerNode::adaptVelocity()
-{
-    sf::Vector2f velocity = Entity::getVelocity();
-
-    if (velocity.x != 0.f && velocity.y != 0.f)
-        Entity::setVelocity(velocity / std::sqrt(2.f));
 }
 
 void PlayerNode::updateEquipment()

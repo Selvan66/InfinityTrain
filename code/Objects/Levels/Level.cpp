@@ -61,7 +61,6 @@ LvlContext& Level::getLvlContext() const
 
 void Level::updatePlayer(PlayerNode* player)
 {
-    player->setVelocity(0, 0);
     adaptNodesPosition(player);
 
     mLvlContext.playerInfo.backpack.drop(player->getWorldPosition(), *mSceneLayer[Floor]);

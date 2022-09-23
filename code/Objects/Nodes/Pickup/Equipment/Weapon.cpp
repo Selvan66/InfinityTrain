@@ -37,7 +37,7 @@ Weapon::Weapon(Context& context, Type type, int ammos)
         mAttackCommand.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time dt)
         {
             if (Utility::collision(*this, enemy))
-                enemy.damage(weapons[mType].damage);
+                enemy.damageFromPos(weapons[mType].damage, SceneNode::getWorldPosition());
         });
     }
     else

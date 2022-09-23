@@ -2,8 +2,7 @@
 #include "Objects/Nodes/Entity.h"
 
 Entity::Entity()
-: mVelocity()
-, mHitpoints(1)
+: Entity(1)
 { }
 
 Entity::Entity(int hitpoints)
@@ -68,6 +67,13 @@ bool Entity::damage(int points)
     return old_hitpoints != mHitpoints;
 }
 
+bool Entity::damageFromPos(int points, sf::Vector2f pos)
+{
+    auto direction = Utility::unitVector(SceneNode::getWorldPosition() - pos);
+    accelerate(direction * 1000.f);
+    return damage(points);
+}
+
 void Entity::remove()
 {
     destroy();
@@ -80,5 +86,14 @@ bool Entity::isDestroyed() const
 
 void Entity::updateCurrent(sf::Time dt, CommandQueue&)
 {
-    sf::Transformable::move(mVelocity * dt.asSeconds());
+    mVelocity -= mVelocity * dt.asSeconds() * 10.f;
+    if (Utility::length(mVelocity) < 5.f)
+        mVelocity = sf::Vector2f(0, 0);
+
+    auto velocity = mVelocity;
+    if (velocity.x != 0 && velocity.y != 0)
+        velocity /= std::sqrtf(2);
+    
+
+    sf::Transformable::move(velocity * dt.asSeconds());
 }

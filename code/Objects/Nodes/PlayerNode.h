@@ -37,7 +37,6 @@ class PlayerNode : public Entity
         void interact();
         void special();
         void updateAnimation(sf::Time dt);
-        void adaptVelocity();
         void updateEquipment();
         void updateStats();
         void updateWeapon();

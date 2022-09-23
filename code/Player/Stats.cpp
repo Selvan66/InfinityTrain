@@ -88,7 +88,7 @@ void Stats::setDefaultStats()
     setStat(Ammo, 0);
     setStat(Money, 0);
     setStat(Attack, 0);
-    setStat(Speed, 250);
+    setStat(Speed, 75);
 }
 
 void Stats::setStatWithRange(Type stat, int value)

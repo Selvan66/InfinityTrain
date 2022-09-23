@@ -18,6 +18,7 @@ class Entity : public SceneNode
         void destroy();
         bool heal(int points);
         bool damage(int points);
+        bool damageFromPos(int points, sf::Vector2f pos);
         
         virtual void remove();
         virtual bool isDestroyed() const override;

@@ -7,8 +7,8 @@
 static const std::array<ProjectileParam, Projectile::ProjectileCount> projectiles = 
 {
     {
-        { 10, 300.f, false, TexturesID::Arrow, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
-        { 50, 250.f, true, TexturesID::Rocket, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
+        { 10, 100.f, false, TexturesID::Arrow, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
+        { 50, 75.f, true, TexturesID::Rocket, sf::IntRect(0, 0, 32, 32), 1, {32.f, 32.f} },
     }
 };
 
@@ -46,7 +46,7 @@ Projectile::Projectile(Context& context, Type type, Category::Type category)
     {
         if (Utility::collision(*this, entity))
         {
-            entity.damage(projectiles[mType].damage);
+            entity.damageFromPos(projectiles[mType].damage, SceneNode::getWorldPosition());
             this->destroy();
         }
     });
@@ -96,7 +96,7 @@ void Projectile::updateCurrent(sf::Time dt, CommandQueue& commands)
     newVelocity *= projectiles[mType].speed;
     float angle = std::atan2(newVelocity.y, newVelocity.x);
     Transformable::setRotation(Utility::toDegree(angle));
-    Entity::setVelocity(newVelocity);
+    Entity::accelerate(newVelocity);
 }
 
 void Projectile::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
