@@ -224,6 +224,8 @@ void PlayerNode::updateStats()
     
     if (eq.isItem(Equipment::LeftHand))
        stats.setStat(Stats::Ammo, eq.getItem(Equipment::LeftHand)->getHitpoints());
+    else
+        stats.setStat(Stats::Ammo, 0);
 }
 
 void PlayerNode::updateWeapon()
