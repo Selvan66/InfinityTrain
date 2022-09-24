@@ -17,6 +17,7 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 , mIsSpecial(false)
 , mAnimation(context.textures.get(TexturesID::Player))
 , mWeapon(nullptr)
+, mDamageDuration(sf::seconds(0.3f))
 {   
     mFireCommand.category = Category::Battlefield;
     mFireCommand.action = [&](SceneNode&, sf::Time)
@@ -91,6 +92,12 @@ sf::FloatRect PlayerNode::getBoundingRect() const
     return SceneNode::getWorldTransform().transformRect(mAnimation.getGlobalBounds());
 }
 
+void PlayerNode::damage(int points)
+{
+    mDamageDuration = sf::Time::Zero;
+    Entity::damage(points);
+}
+
 void PlayerNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(mAnimation, states);
@@ -138,6 +145,12 @@ void PlayerNode::special()
 
 void PlayerNode::updateAnimation(sf::Time dt)
 {
+    mDamageDuration += dt;
+    if (mDamageDuration < sf::seconds(0.3f))
+        mAnimation.setColor(sf::Color::Red);
+    else
+        mAnimation.setColor(sf::Color::White);
+
     sf::Vector2f velocity = Entity::getVelocity();
     if (velocity.x == 0.f && velocity.y == 0.f)
     {

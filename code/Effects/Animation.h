@@ -17,6 +17,7 @@ class Animation : public sf::Drawable, public sf::Transformable
         void setDuration(sf::Time duration);
         void setRepeating(bool flag);
         void setReversed(bool flag);
+        void setColor(const sf::Color& color);
         void restart();
         void play();
         void pause();

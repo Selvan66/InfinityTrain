@@ -80,6 +80,11 @@ void Animation::setReversed(bool flag)
     mReverse = flag;
 }
 
+void Animation::setColor(const sf::Color& color)
+{
+    mSprite.setColor(color);
+}
+
 void Animation::restart()
 {
     mCurrentFrame = 0;

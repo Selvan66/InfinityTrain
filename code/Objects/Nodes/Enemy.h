@@ -12,6 +12,7 @@ class Enemy : public Entity
 
         virtual sf::FloatRect getBoundingRect() const override;
         virtual unsigned int getCategory() const override;
+        virtual void damage(int points) override;
     protected:
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -20,4 +21,5 @@ class Enemy : public Entity
         PlayerNode* mPlayer;
         sf::Time mDuration;
         TextNode* mText;
+        sf::Time mDamageDuration;
 };

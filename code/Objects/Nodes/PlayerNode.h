@@ -28,6 +28,7 @@ class PlayerNode : public Entity
         bool updateStat(Stats::Type stat, int value);
         
         virtual sf::FloatRect getBoundingRect() const override;
+        virtual void damage(int points) override;
     protected:
         virtual unsigned int getCategory() const override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 
@@ -51,4 +52,5 @@ class PlayerNode : public Entity
         bool mIsSpecial;
         Animation mAnimation;
         Weapon* mWeapon;
+        sf::Time mDamageDuration;
 };

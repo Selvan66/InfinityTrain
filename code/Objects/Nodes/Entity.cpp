@@ -59,19 +59,17 @@ bool Entity::heal(int points)
     return old_hitpoints != mHitpoints;
 }
 
-bool Entity::damage(int points)
-{
-    assert(points > 0);
-    int old_hitpoints = mHitpoints;
-    mHitpoints = std::max(mHitpoints - points, 0);
-    return old_hitpoints != mHitpoints;
-}
-
-bool Entity::damageFromPos(int points, sf::Vector2f pos)
+void Entity::damageFromPos(int points, sf::Vector2f pos)
 {
     auto direction = Utility::unitVector(SceneNode::getWorldPosition() - pos);
     accelerate(direction * 1000.f);
-    return damage(points);
+    damage(points);
+}
+
+void Entity::damage(int points)
+{
+    assert(points > 0);
+    mHitpoints -= points;
 }
 
 void Entity::remove()

@@ -10,6 +10,7 @@ Enemy::Enemy(Context& context)
 , mPlayer(nullptr)
 , mDuration(sf::Time::Zero)
 , mText(nullptr)
+, mDamageDuration(sf::seconds(0.3f))
 { 
     Utility::centerOrigin(mSprite);
     std::unique_ptr<TextNode> text(new TextNode(context));
@@ -29,8 +30,20 @@ unsigned int Enemy::getCategory() const
     return Category::Enemy;
 }
 
+void Enemy::damage(int points)
+{
+    mDamageDuration = sf::Time::Zero;
+    Entity::damage(points);
+}
+
 void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
+    mDamageDuration += dt;
+    if (mDamageDuration < sf::seconds(0.3f))
+        mSprite.setColor(sf::Color::Red);
+    else
+        mSprite.setColor(sf::Color::White);
+
     Entity::updateCurrent(dt, commands);
     if (mPlayer == nullptr)
     {
