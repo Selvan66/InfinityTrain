@@ -17,9 +17,9 @@ class Entity : public SceneNode
         int getHitpoints() const;
         void destroy();
         bool heal(int points);
-        void damageFromPos(int points, sf::Vector2f pos);
+        bool damageFromPos(int points, sf::Vector2f pos);
 
-        virtual void damage(int points);
+        virtual bool damage(int points);
         virtual void remove();
         virtual bool isDestroyed() const override;
     protected:

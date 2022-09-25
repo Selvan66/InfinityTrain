@@ -92,10 +92,10 @@ sf::FloatRect PlayerNode::getBoundingRect() const
     return SceneNode::getWorldTransform().transformRect(mAnimation.getGlobalBounds());
 }
 
-void PlayerNode::damage(int points)
+bool PlayerNode::damage(int points)
 {
     mDamageDuration = sf::Time::Zero;
-    Entity::damage(points);
+    return Entity::damage(points);
 }
 
 void PlayerNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

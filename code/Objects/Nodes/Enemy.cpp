@@ -30,10 +30,10 @@ unsigned int Enemy::getCategory() const
     return Category::Enemy;
 }
 
-void Enemy::damage(int points)
+bool Enemy::damage(int points)
 {
     mDamageDuration = sf::Time::Zero;
-    Entity::damage(points);
+    return Entity::damage(points);
 }
 
 void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)

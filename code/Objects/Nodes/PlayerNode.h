@@ -28,7 +28,7 @@ class PlayerNode : public Entity
         bool updateStat(Stats::Type stat, int value);
         
         virtual sf::FloatRect getBoundingRect() const override;
-        virtual void damage(int points) override;
+        virtual bool damage(int points) override;
     protected:
         virtual unsigned int getCategory() const override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override; 

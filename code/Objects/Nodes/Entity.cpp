@@ -59,17 +59,18 @@ bool Entity::heal(int points)
     return old_hitpoints != mHitpoints;
 }
 
-void Entity::damageFromPos(int points, sf::Vector2f pos)
+bool Entity::damageFromPos(int points, sf::Vector2f pos)
 {
     auto direction = Utility::unitVector(SceneNode::getWorldPosition() - pos);
     accelerate(direction * 1000.f);
-    damage(points);
+    return damage(points);
 }
 
-void Entity::damage(int points)
+bool Entity::damage(int points)
 {
     assert(points > 0);
     mHitpoints -= points;
+    return true;
 }
 
 void Entity::remove()
