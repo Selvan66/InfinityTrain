@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['weapon_275',['Weapon',['../class_weapon.html',1,'']]]
+  ['weapon_259',['Weapon',['../class_weapon.html',1,'']]],
+  ['weaponparam_260',['WeaponParam',['../struct_weapon_param.html',1,'']]]
 ];

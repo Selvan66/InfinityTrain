@@ -62,7 +62,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_armor-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Armor Class Reference</div>  </div>
@@ -74,9 +76,6 @@ Inheritance diagram for Armor:</div>
 <div class="center"><img src="class_armor__inherit__graph.png" border="0" usemap="#a_armor_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_armor_inherit__map" id="a_armor_inherit__map">
 <area shape="rect" title=" " alt="" coords="169,379,227,405"/>
-<area shape="rect" href="class_boots_armor.html" title=" " alt="" coords="38,453,129,480"/>
-<area shape="rect" href="class_chest_armor.html" title=" " alt="" coords="153,453,243,480"/>
-<area shape="rect" href="class_head_armor.html" title=" " alt="" coords="268,453,355,480"/>
 <area shape="rect" href="class_pickup.html" title=" " alt="" coords="167,304,229,331"/>
 <area shape="rect" href="class_interactable.html" title=" " alt="" coords="153,229,243,256"/>
 <area shape="rect" href="class_entity.html" title=" " alt="" coords="170,155,226,181"/>
@@ -102,33 +101,56 @@ Collaboration diagram for Armor:</div>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa28032eea3f0fdb39eaac1fb4d32e52c"><td class="memItemLeft" align="right" valign="top"><a id="aa28032eea3f0fdb39eaac1fb4d32e52c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <br />
+&#160;&#160;<b>HeavyBoots</b>
+, <b>LightBoots</b>
+, <b>HeavyChest</b>
+, <b>HeavyHelmet</b>
+, <br />
+&#160;&#160;<b>ArmorCount</b>
+<br />
+ }</td></tr>
+<tr class="separator:aa28032eea3f0fdb39eaac1fb4d32e52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_class_scene_node"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_scene_node')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="class_scene_node.html">SceneNode</a></td></tr>
+<tr class="memitem:aaf5c9ad8475874b51b70e400822f2e9a inherit pub_types_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="aaf5c9ad8475874b51b70e400822f2e9a"></a>
+typedef std::unique_ptr&lt; <a class="el" href="class_scene_node.html">SceneNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Ptr</b></td></tr>
+<tr class="separator:aaf5c9ad8475874b51b70e400822f2e9a inherit pub_types_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a366efca54698fa3f6eaf80b41e7ff4df inherit pub_types_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a366efca54698fa3f6eaf80b41e7ff4df"></a>
+typedef std::pair&lt; <a class="el" href="class_scene_node.html">SceneNode</a> *, <a class="el" href="class_scene_node.html">SceneNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Pair</b></td></tr>
+<tr class="separator:a366efca54698fa3f6eaf80b41e7ff4df inherit pub_types_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a34dd5ec87813ba099bffa5723de856de"><td class="memItemLeft" align="right" valign="top"><a id="a34dd5ec87813ba099bffa5723de856de"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Armor</b> (<a class="el" href="struct_context.html">Context</a> &amp;context, int durability)</td></tr>
-<tr class="separator:a34dd5ec87813ba099bffa5723de856de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae01c5db3bfb391ca9600caee62066144"><td class="memItemLeft" align="right" valign="top"><a id="ae01c5db3bfb391ca9600caee62066144"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Armor</b> (<a class="el" href="struct_context.html">Context</a> &amp;context, Type type)</td></tr>
+<tr class="separator:ae01c5db3bfb391ca9600caee62066144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e9a9d3b7693d3ca80e7f5588bbdfcb"><td class="memItemLeft" align="right" valign="top"><a id="a73e9a9d3b7693d3ca80e7f5588bbdfcb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Armor</b> (<a class="el" href="struct_context.html">Context</a> &amp;context, Type type, int durability)</td></tr>
+<tr class="separator:a73e9a9d3b7693d3ca80e7f5588bbdfcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3494241258c38f5c883058f7773654c7"><td class="memItemLeft" align="right" valign="top"><a id="a3494241258c38f5c883058f7773654c7"></a>
+virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCategory</b> () const override</td></tr>
+<tr class="separator:a3494241258c38f5c883058f7773654c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a529ad4a2a2654af24a8cc1a17c2164b2"><td class="memItemLeft" align="right" valign="top"><a id="a529ad4a2a2654af24a8cc1a17c2164b2"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>action</b> (<a class="el" href="class_player_node.html">PlayerNode</a> &amp;player) override</td></tr>
 <tr class="separator:a529ad4a2a2654af24a8cc1a17c2164b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae454d284e68566f03c930aa0b0227760"><td class="memItemLeft" align="right" valign="top"><a id="ae454d284e68566f03c930aa0b0227760"></a>
 virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getDescription</b> () const override</td></tr>
 <tr class="separator:ae454d284e68566f03c930aa0b0227760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92e94b8bbc7384188749afe84fff075a"><td class="memItemLeft" align="right" valign="top"><a id="a92e94b8bbc7384188749afe84fff075a"></a>
+virtual std::unordered_map&lt; Stats::Type, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getStats</b> () const override</td></tr>
+<tr class="separator:a92e94b8bbc7384188749afe84fff075a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_pickup"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_pickup')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_pickup.html">Pickup</a></td></tr>
 <tr class="memitem:a679a73340e8aa054c7417f079bfbbb54 inherit pub_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="a679a73340e8aa054c7417f079bfbbb54"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Pickup</b> (<a class="el" href="struct_context.html">Context</a> &amp;context)</td></tr>
 <tr class="separator:a679a73340e8aa054c7417f079bfbbb54 inherit pub_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1d0c6177561f616f30df03c26678083 inherit pub_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="af1d0c6177561f616f30df03c26678083"></a>
-virtual std::unordered_map&lt; Stats::Type, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getStats</b> () const</td></tr>
-<tr class="separator:af1d0c6177561f616f30df03c26678083 inherit pub_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49522d92f78230ede8e4ec0946fed883 inherit pub_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="a49522d92f78230ede8e4ec0946fed883"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>interact</b> () override</td></tr>
 <tr class="separator:a49522d92f78230ede8e4ec0946fed883 inherit pub_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bcf33e640458d89de8980fb478b0c3a inherit pub_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="a4bcf33e640458d89de8980fb478b0c3a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawCurrent</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>
 <tr class="separator:a4bcf33e640458d89de8980fb478b0c3a inherit pub_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a057fb1cb94b5d531ad0455b04e68919d inherit pub_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="a057fb1cb94b5d531ad0455b04e68919d"></a>
-virtual std::unique_ptr&lt; <a class="el" href="class_pickup.html">Pickup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> () const</td></tr>
-<tr class="separator:a057fb1cb94b5d531ad0455b04e68919d inherit pub_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_interactable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_interactable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_interactable.html">Interactable</a></td></tr>
 <tr class="memitem:a9106fdad3241620efb88a226f525e7ce inherit pub_methods_class_interactable"><td class="memItemLeft" align="right" valign="top"><a id="a9106fdad3241620efb88a226f525e7ce"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInteract</b> () const</td></tr>
@@ -167,8 +189,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy</b> ()</td></
 <tr class="memitem:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa32bfe29c5c9c86d807225fd1eda0c21"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>heal</b> (int points)</td></tr>
 <tr class="separator:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0de939982e7d64bb3bcfd424dc9ea0f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="af0de939982e7d64bb3bcfd424dc9ea0f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>damageFromPos</b> (int points, sf::Vector2f pos)</td></tr>
+<tr class="separator:af0de939982e7d64bb3bcfd424dc9ea0f inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ab881876a514a895a8216afbff455d9f1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
 <tr class="separator:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa84c32a5d1baceccefec62568edc0a4f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa84c32a5d1baceccefec62568edc0a4f"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> ()</td></tr>
@@ -214,15 +239,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>removeObjects</b> ()<
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMarkedForRemoval</b> () const</td></tr>
 <tr class="separator:a8a0f6080efbd7e49569552b5542fd855 inherit pub_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_types_class_scene_node"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_scene_node')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="class_scene_node.html">SceneNode</a></td></tr>
-<tr class="memitem:aaf5c9ad8475874b51b70e400822f2e9a inherit pub_types_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="aaf5c9ad8475874b51b70e400822f2e9a"></a>
-typedef std::unique_ptr&lt; <a class="el" href="class_scene_node.html">SceneNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Ptr</b></td></tr>
-<tr class="separator:aaf5c9ad8475874b51b70e400822f2e9a inherit pub_types_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a366efca54698fa3f6eaf80b41e7ff4df inherit pub_types_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a366efca54698fa3f6eaf80b41e7ff4df"></a>
-typedef std::pair&lt; <a class="el" href="class_scene_node.html">SceneNode</a> *, <a class="el" href="class_scene_node.html">SceneNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Pair</b></td></tr>
-<tr class="separator:a366efca54698fa3f6eaf80b41e7ff4df inherit pub_types_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a7b8d0290d34728d76473a51f25b15f11"><td class="memItemLeft" align="right" valign="top"><a id="a7b8d0290d34728d76473a51f25b15f11"></a>
+virtual std::unique_ptr&lt; <a class="el" href="class_pickup.html">Pickup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> () const override</td></tr>
+<tr class="separator:a7b8d0290d34728d76473a51f25b15f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_pickup"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_pickup')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_pickup.html">Pickup</a></td></tr>
 <tr class="memitem:a9d2132509169713c6d950f019bb085b1 inherit pro_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="a9d2132509169713c6d950f019bb085b1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexture</b> (TexturesID texture)</td></tr>
@@ -233,25 +254,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setCommand</b> (<a cl
 <tr class="memitem:aa1c2e3fee3c96c67d8cfd0a8478891a3 inherit pro_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="aa1c2e3fee3c96c67d8cfd0a8478891a3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setLabel</b> (const std::string &amp;text)</td></tr>
 <tr class="separator:aa1c2e3fee3c96c67d8cfd0a8478891a3 inherit pro_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a991765b13b9b3266f7a0c25aa3083135 inherit pro_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="a991765b13b9b3266f7a0c25aa3083135"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (std::string name)</td></tr>
-<tr class="separator:a991765b13b9b3266f7a0c25aa3083135 inherit pro_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa836403dfd4fd9b6ff7ddc822b550f40 inherit pro_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="aa836403dfd4fd9b6ff7ddc822b550f40"></a>
 <a class="el" href="struct_context.html">Context</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getContext</b> () const</td></tr>
 <tr class="separator:aa836403dfd4fd9b6ff7ddc822b550f40 inherit pro_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6b1d95ec9e8c79d66cfdb456bb99e16 inherit pro_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="ac6b1d95ec9e8c79d66cfdb456bb99e16"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
-<tr class="separator:ac6b1d95ec9e8c79d66cfdb456bb99e16 inherit pro_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8ad2fecc806aa5cef4701d166674545 inherit pro_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="ab8ad2fecc806aa5cef4701d166674545"></a>
 virtual sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getBoundingRect</b> () const override</td></tr>
 <tr class="separator:ab8ad2fecc806aa5cef4701d166674545 inherit pro_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a578c2a3cf1c65fd5023ec3c8cc52010b inherit pro_methods_class_pickup"><td class="memItemLeft" align="right" valign="top"><a id="a578c2a3cf1c65fd5023ec3c8cc52010b"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCurrent</b> (sf::Time dt, <a class="el" href="class_command_queue.html">CommandQueue</a> &amp;commands) override</td></tr>
 <tr class="separator:a578c2a3cf1c65fd5023ec3c8cc52010b inherit pro_methods_class_pickup"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_class_interactable"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_interactable')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_interactable.html">Interactable</a></td></tr>
-<tr class="memitem:aa740f24a868a6ce7d10b7b7e4854be43 inherit pro_methods_class_interactable"><td class="memItemLeft" align="right" valign="top"><a id="aa740f24a868a6ce7d10b7b7e4854be43"></a>
-virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCategory</b> () const override</td></tr>
-<tr class="separator:aa740f24a868a6ce7d10b7b7e4854be43 inherit pro_methods_class_interactable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_scene_node"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_scene_node')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_scene_node.html">SceneNode</a></td></tr>
 <tr class="memitem:a5dc8212d4f88626048db71fc3c6e5dcb inherit pro_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a5dc8212d4f88626048db71fc3c6e5dcb"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>

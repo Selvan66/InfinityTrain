@@ -122,6 +122,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInteract</b> () con
 <tr class="memitem:a50e237bf4be2c52332cb7444d844ac58 inherit pub_methods_class_interactable"><td class="memItemLeft" align="right" valign="top"><a id="a50e237bf4be2c52332cb7444d844ac58"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setDistance</b> (float distance)</td></tr>
 <tr class="separator:a50e237bf4be2c52332cb7444d844ac58 inherit pub_methods_class_interactable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa740f24a868a6ce7d10b7b7e4854be43 inherit pub_methods_class_interactable"><td class="memItemLeft" align="right" valign="top"><a id="aa740f24a868a6ce7d10b7b7e4854be43"></a>
+virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCategory</b> () const override</td></tr>
+<tr class="separator:aa740f24a868a6ce7d10b7b7e4854be43 inherit pub_methods_class_interactable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_entity.html">Entity</a></td></tr>
 <tr class="memitem:a305ac3dd729c288ab23db531fa3fb7e6 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a305ac3dd729c288ab23db531fa3fb7e6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (int hitpoints)</td></tr>
@@ -153,8 +156,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy</b> ()</td></
 <tr class="memitem:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa32bfe29c5c9c86d807225fd1eda0c21"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>heal</b> (int points)</td></tr>
 <tr class="separator:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0de939982e7d64bb3bcfd424dc9ea0f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="af0de939982e7d64bb3bcfd424dc9ea0f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>damageFromPos</b> (int points, sf::Vector2f pos)</td></tr>
+<tr class="separator:af0de939982e7d64bb3bcfd424dc9ea0f inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ab881876a514a895a8216afbff455d9f1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
 <tr class="separator:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa84c32a5d1baceccefec62568edc0a4f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa84c32a5d1baceccefec62568edc0a4f"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> ()</td></tr>
@@ -211,10 +217,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCurrent
 <tr class="memitem:ad09e41cff82c2713c6e6a486f0942d37"><td class="memItemLeft" align="right" valign="top"><a id="ad09e41cff82c2713c6e6a486f0942d37"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawCurrent</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>
 <tr class="separator:ad09e41cff82c2713c6e6a486f0942d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_class_interactable"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_interactable')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_interactable.html">Interactable</a></td></tr>
-<tr class="memitem:aa740f24a868a6ce7d10b7b7e4854be43 inherit pro_methods_class_interactable"><td class="memItemLeft" align="right" valign="top"><a id="aa740f24a868a6ce7d10b7b7e4854be43"></a>
-virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCategory</b> () const override</td></tr>
-<tr class="separator:aa740f24a868a6ce7d10b7b7e4854be43 inherit pro_methods_class_interactable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_scene_node"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_scene_node')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_scene_node.html">SceneNode</a></td></tr>
 <tr class="memitem:a5dc8212d4f88626048db71fc3c6e5dcb inherit pro_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top"><a id="a5dc8212d4f88626048db71fc3c6e5dcb"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderTarget &amp;target, sf::RenderStates states) const override</td></tr>

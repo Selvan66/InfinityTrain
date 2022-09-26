@@ -1,7 +1,6 @@
 /** @file ResourceIdentifiers.h */
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 #include "Utils/ResourceHolder.h"

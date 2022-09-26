@@ -1,7 +1,5 @@
 <map id="Weapon" name="Weapon">
 <area shape="rect" id="node1" title=" " alt="" coords="163,379,233,405"/>
-<area shape="rect" id="node9" href="$class_close_weapon.html" title=" " alt="" coords="79,453,181,480"/>
-<area shape="rect" id="node10" href="$class_distance_weapon.html" title=" " alt="" coords="205,453,327,480"/>
 <area shape="rect" id="node2" href="$class_pickup.html" title=" " alt="" coords="167,304,229,331"/>
 <area shape="rect" id="node3" href="$class_interactable.html" title=" " alt="" coords="153,229,243,256"/>
 <area shape="rect" id="node4" href="$class_entity.html" title=" " alt="" coords="170,155,226,181"/>

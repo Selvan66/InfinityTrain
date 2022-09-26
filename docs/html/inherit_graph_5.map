@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_command_queue.html" title=" " alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,109,57"/>
+<area shape="rect" id="node2" href="$class_except_1_1base__exception.html" title=" " alt="" coords="157,31,320,57"/>
+<area shape="rect" id="node3" href="$class_except_1_1bad__argument.html" title=" " alt="" coords="377,5,530,32"/>
+<area shape="rect" id="node4" href="$class_except_1_1bad__function__call.html" title=" " alt="" coords="368,56,539,83"/>
 </map>

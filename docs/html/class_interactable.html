@@ -74,24 +74,19 @@ Inheritance diagram for Interactable:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_interactable__inherit__graph.png" border="0" usemap="#a_interactable_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_interactable_inherit__map" id="a_interactable_inherit__map">
-<area shape="rect" title=" " alt="" coords="242,229,331,256"/>
-<area shape="rect" href="class_door.html" title=" " alt="" coords="222,304,271,331"/>
-<area shape="rect" href="class_pickup.html" title=" " alt="" coords="295,304,358,331"/>
-<area shape="rect" href="class_entity.html" title=" " alt="" coords="259,155,315,181"/>
-<area shape="rect" href="class_scene_node.html" title=" " alt="" coords="242,80,331,107"/>
-<area shape="rect" title=" " alt="" coords="94,5,215,32"/>
-<area shape="rect" title=" " alt="" coords="240,5,333,32"/>
-<area shape="rect" title=" " alt="" coords="357,5,475,32"/>
-<area shape="rect" href="class_armor.html" title=" " alt="" coords="137,379,194,405"/>
-<area shape="rect" href="class_heart.html" title=" " alt="" coords="219,379,272,405"/>
-<area shape="rect" href="class_money.html" title=" " alt="" coords="296,379,357,405"/>
-<area shape="rect" href="class_potion.html" title=" " alt="" coords="381,379,440,405"/>
-<area shape="rect" href="class_weapon.html" title=" " alt="" coords="465,379,535,405"/>
-<area shape="rect" href="class_boots_armor.html" title=" " alt="" coords="5,453,96,480"/>
-<area shape="rect" href="class_chest_armor.html" title=" " alt="" coords="120,453,211,480"/>
-<area shape="rect" href="class_head_armor.html" title=" " alt="" coords="235,453,322,480"/>
-<area shape="rect" href="class_close_weapon.html" title=" " alt="" coords="398,453,501,480"/>
-<area shape="rect" href="class_distance_weapon.html" title=" " alt="" coords="525,453,646,480"/>
+<area shape="rect" title=" " alt="" coords="153,229,243,256"/>
+<area shape="rect" href="class_door.html" title=" " alt="" coords="133,304,183,331"/>
+<area shape="rect" href="class_pickup.html" title=" " alt="" coords="207,304,269,331"/>
+<area shape="rect" href="class_entity.html" title=" " alt="" coords="170,155,226,181"/>
+<area shape="rect" href="class_scene_node.html" title=" " alt="" coords="153,80,243,107"/>
+<area shape="rect" title=" " alt="" coords="5,5,127,32"/>
+<area shape="rect" title=" " alt="" coords="151,5,245,32"/>
+<area shape="rect" title=" " alt="" coords="269,5,386,32"/>
+<area shape="rect" href="class_armor.html" title=" " alt="" coords="48,379,105,405"/>
+<area shape="rect" href="class_heart.html" title=" " alt="" coords="130,379,183,405"/>
+<area shape="rect" href="class_money.html" title=" " alt="" coords="207,379,269,405"/>
+<area shape="rect" href="class_potion.html" title=" " alt="" coords="293,379,351,405"/>
+<area shape="rect" href="class_weapon.html" title=" " alt="" coords="376,379,447,405"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -119,6 +114,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setDistance</b> (floa
 <tr class="memitem:a516730694dd4f6a6b7229ce9939696cb"><td class="memItemLeft" align="right" valign="top"><a id="a516730694dd4f6a6b7229ce9939696cb"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>interact</b> ()=0</td></tr>
 <tr class="separator:a516730694dd4f6a6b7229ce9939696cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa740f24a868a6ce7d10b7b7e4854be43"><td class="memItemLeft" align="right" valign="top"><a id="aa740f24a868a6ce7d10b7b7e4854be43"></a>
+virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCategory</b> () const override</td></tr>
+<tr class="separator:aa740f24a868a6ce7d10b7b7e4854be43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_entity.html">Entity</a></td></tr>
 <tr class="memitem:a305ac3dd729c288ab23db531fa3fb7e6 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a305ac3dd729c288ab23db531fa3fb7e6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (int hitpoints)</td></tr>
@@ -150,8 +148,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>destroy</b> ()</td></
 <tr class="memitem:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa32bfe29c5c9c86d807225fd1eda0c21"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>heal</b> (int points)</td></tr>
 <tr class="separator:aa32bfe29c5c9c86d807225fd1eda0c21 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0de939982e7d64bb3bcfd424dc9ea0f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="af0de939982e7d64bb3bcfd424dc9ea0f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>damageFromPos</b> (int points, sf::Vector2f pos)</td></tr>
+<tr class="separator:af0de939982e7d64bb3bcfd424dc9ea0f inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ab881876a514a895a8216afbff455d9f1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> (int points)</td></tr>
 <tr class="separator:ab881876a514a895a8216afbff455d9f1 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa84c32a5d1baceccefec62568edc0a4f inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa84c32a5d1baceccefec62568edc0a4f"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> ()</td></tr>
@@ -202,9 +203,6 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMarkedForRe
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aa740f24a868a6ce7d10b7b7e4854be43"><td class="memItemLeft" align="right" valign="top"><a id="aa740f24a868a6ce7d10b7b7e4854be43"></a>
-virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getCategory</b> () const override</td></tr>
-<tr class="separator:aa740f24a868a6ce7d10b7b7e4854be43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa01541f470c0ba6310751919457f2142"><td class="memItemLeft" align="right" valign="top"><a id="aa01541f470c0ba6310751919457f2142"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCurrent</b> (sf::Time, <a class="el" href="class_command_queue.html">CommandQueue</a> &amp;commands) override</td></tr>
 <tr class="separator:aa01541f470c0ba6310751919457f2142"><td class="memSeparator" colspan="2">&#160;</td></tr>

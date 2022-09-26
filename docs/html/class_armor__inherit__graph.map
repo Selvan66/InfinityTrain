@@ -1,8 +1,5 @@
 <map id="Armor" name="Armor">
 <area shape="rect" id="node1" title=" " alt="" coords="169,379,227,405"/>
-<area shape="rect" id="node9" href="$class_boots_armor.html" title=" " alt="" coords="38,453,129,480"/>
-<area shape="rect" id="node10" href="$class_chest_armor.html" title=" " alt="" coords="153,453,243,480"/>
-<area shape="rect" id="node11" href="$class_head_armor.html" title=" " alt="" coords="268,453,355,480"/>
 <area shape="rect" id="node2" href="$class_pickup.html" title=" " alt="" coords="167,304,229,331"/>
 <area shape="rect" id="node3" href="$class_interactable.html" title=" " alt="" coords="153,229,243,256"/>
 <area shape="rect" id="node4" href="$class_entity.html" title=" " alt="" coords="170,155,226,181"/>
