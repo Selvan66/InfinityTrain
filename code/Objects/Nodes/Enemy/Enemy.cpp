@@ -1,7 +1,7 @@
 /** @file Enemy.cpp */
 #pragma once
 
-#include "Objects/Nodes/Enemy.h"
+#include "Objects/Nodes/Enemy/Enemy.h"
 
 
 Enemy::Enemy(Context& context)

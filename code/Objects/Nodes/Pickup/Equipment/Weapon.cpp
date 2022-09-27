@@ -1,7 +1,7 @@
 /** @file Weapon.cpp */
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Objects/Nodes/PlayerNode.h"
-#include "Objects/Nodes/Enemy.h"
+#include "Objects/Nodes/Enemy/Enemy.h"
 
 static const std::array<WeaponParam, Weapon::WeaponCount> weapons = 
 {

@@ -7,7 +7,7 @@
 #include "Objects/Nodes/Pickup/Equipment/Armor.h"
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Objects/Nodes/Pickup/Equipment/Projectile.h"
-#include "Objects/Nodes/Enemy.h"
+#include "Objects/Nodes/Enemy/Enemy.h"
 
 PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 : Level(lvlContext)
