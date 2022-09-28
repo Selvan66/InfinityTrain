@@ -8,6 +8,7 @@
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Objects/Nodes/Pickup/Equipment/Projectile.h"
 #include "Objects/Nodes/Enemy/Enemy.h"
+#include "Objects/Nodes/Pickup/Buyable.h"
 
 PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 : Level(lvlContext)
@@ -90,8 +91,9 @@ void PrehistoryLevel::buildFloor()
     floorLayer->attachChild(std::move(test9));
 
     std::unique_ptr<Weapon> test10(new Weapon(context, Weapon::Bazooka));
-    test10->setPosition({700, 600});
-    floorLayer->attachChild(std::move(test10));
+    std::unique_ptr<Buyable> test11(new Buyable(context, 25, std::move(test10)));
+    test11->setPosition({700, 600});
+    floorLayer->attachChild(std::move(test11));
 }
 
 void PrehistoryLevel::buildBattlefield()

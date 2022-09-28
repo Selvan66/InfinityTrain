@@ -77,6 +77,17 @@ void PlayerNode::pickup(std::unique_ptr<Pickup> pickup)
         mPlayerInfo.backpack.addItemToBackpack(std::move(pickup));
 }
 
+bool PlayerNode::pay(int price)
+{
+    if (mPlayerInfo.stats.getState(Stats::Money) >= price)
+    {
+        mPlayerInfo.stats.updateStat(Stats::Money, -price);
+        return true;
+    }
+
+    return false;
+}
+
 bool PlayerNode::updateStat(Stats::Type stat, int value)
 {
     return mPlayerInfo.stats.updateStat(stat, value);

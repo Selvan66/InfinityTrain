@@ -25,6 +25,7 @@ class PlayerNode : public Entity
         
         void makeAction(Action action);
         void pickup(std::unique_ptr<Pickup> pickup);
+        bool pay(int price);
         bool updateStat(Stats::Type stat, int value);
         
         virtual sf::FloatRect getBoundingRect() const override;

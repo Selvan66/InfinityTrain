@@ -16,6 +16,7 @@ class Pickup : public Interactable
         virtual bool action(PlayerNode& player);
         
         virtual void interact() override;
+        virtual sf::FloatRect getBoundingRect() const override;
         virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
         virtual std::unique_ptr<Pickup> create() const;
     protected:
@@ -25,7 +26,6 @@ class Pickup : public Interactable
 
         Context& getContext() const;
 
-        virtual sf::FloatRect getBoundingRect() const override;
         virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
     private:
         Context& mContext;

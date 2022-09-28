@@ -31,6 +31,11 @@ void Pickup::interact()
     mPickedUp = true;
 }
 
+sf::FloatRect Pickup::getBoundingRect() const 
+{
+    return SceneNode::getWorldTransform().transformRect(mSprite.getGlobalBounds());
+}
+
 void Pickup::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
 {
     target.draw(mSprite, states);
@@ -63,11 +68,6 @@ void Pickup::setLabel(const std::string& text)
     textNode->setPosition(0.f, -40.f);
     textNode->setString(text);
     SceneNode::attachChild(std::move(textNode));
-}
-
-sf::FloatRect Pickup::getBoundingRect() const 
-{
-    return SceneNode::getWorldTransform().transformRect(mSprite.getGlobalBounds());
 }
 
 void Pickup::updateCurrent(sf::Time dt, CommandQueue& commands)
