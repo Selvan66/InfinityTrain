@@ -6,7 +6,7 @@
 static const std::array<WeaponParam, Weapon::WeaponCount> weapons = 
 {
     {
-        { "Knife", INF, 10, sf::seconds(1.f), TexturesID::Knife, sf::IntRect(0, 0, 32, 32), 1, Projectile::None, {52.f, 52.f} },
+        { "Knife", INF, 10, sf::seconds(0.5f), TexturesID::Knife, sf::IntRect(0, 0, 160, 32), 5, Projectile::None, {52.f, 52.f} },
         { "Sword", 25, 25, sf::seconds(0.3f), TexturesID::Weapons, sf::IntRect(0, 64, 160, 32), 5, Projectile::None, {64.f, 64.f} },
         { "Bow", 10, Projectile::getDamage(Projectile::Arrow), sf::seconds(0.5f), TexturesID::Weapons, sf::IntRect(0, 0, 192, 64), 12, Projectile::Arrow, {64.f, 64.f} },
         { "Bazooka", 5, Projectile::getDamage(Projectile::Rocket), sf::seconds(0.5f), TexturesID::Bazooka, sf::IntRect(0, 0, 32, 32), 1, Projectile::Rocket, {64.f, 64.f} },

@@ -94,6 +94,10 @@ void PrehistoryLevel::buildFloor()
     std::unique_ptr<Buyable> test11(new Buyable(context, 25, std::move(test10)));
     test11->setPosition({700, 600});
     floorLayer->attachChild(std::move(test11));
+
+    std::unique_ptr<Weapon> test12(new Weapon(context, Weapon::Knife));
+    test12->setPosition({700, 500});
+    floorLayer->attachChild(std::move(test12));
 }
 
 void PrehistoryLevel::buildBattlefield()
