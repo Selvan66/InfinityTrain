@@ -87,7 +87,9 @@ std::string Weapon::getDescription() const
 {
     std::stringstream ss;
     ss << weapons[mType].name << '\n';
-    ss << "Ammos: " << (Entity::getHitpoints() == INF ? "INF" : std::to_string(Entity::getHitpoints()));
+    ss << "Damage: " << weapons[mType].damage << '\n';
+    ss << "Ammos: " << (Entity::getHitpoints() == INF ? "INF" : std::to_string(Entity::getHitpoints())) << '\n';
+    ss << "Duration: " << weapons[mType].duration.asSeconds() << "s";
     return ss.str();
 }
 
