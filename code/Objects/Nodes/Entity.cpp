@@ -68,7 +68,7 @@ bool Entity::damageFromPos(int points, sf::Vector2f pos)
 
 bool Entity::damage(int points)
 {
-    assert(points > 0);
+    assert(points >= 0);
     mHitpoints -= points;
     return true;
 }

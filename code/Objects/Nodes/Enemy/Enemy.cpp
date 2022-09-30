@@ -74,7 +74,7 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
         {
             if (Utility::collision(*this, player))
             {
-                player.damageFromPos(1, SceneNode::getWorldPosition());
+                player.damageFromPos(25, SceneNode::getWorldPosition());
                 mDuration = sf::Time::Zero;
             }
         }

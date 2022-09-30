@@ -5,10 +5,10 @@
 static const std::array<ArmorParam, Armor::ArmorCount> armors = 
 {
     {
-        { "Heavy Boots", 75, { { Stats::Speed, -25 } }, TexturesID::HeavyBoots, sf::IntRect(0, 0, 32, 32), Category::Boots },
-        { "Light Boots", 25, { { Stats::Speed, 25 } }, TexturesID::LightBoots, sf::IntRect(0, 0, 32, 32), Category::Boots },
-        { "Heavy Chest", 150, { { Stats::Speed, -50 } }, TexturesID::ChestArmor, sf::IntRect(0, 0, 32, 32), Category::Chestplate},
-        { "Heavy Helmet", 75, { { Stats::Speed, -25 } }, TexturesID::HeadArmor, sf::IntRect(0, 0, 32, 32), Category::Helmet },
+        { "Heavy Boots", 75, { { Stats::Speed, -15 } }, TexturesID::HeavyBoots, sf::IntRect(0, 0, 32, 32), Category::Boots },
+        { "Light Boots", 25, { { Stats::Speed, 15 } }, TexturesID::LightBoots, sf::IntRect(0, 0, 32, 32), Category::Boots },
+        { "Heavy Chest", 150, { { Stats::Speed, -30 } }, TexturesID::ChestArmor, sf::IntRect(0, 0, 32, 32), Category::Chestplate },
+        { "Heavy Helmet", 75, { { Stats::Speed, -15 } }, TexturesID::HeadArmor, sf::IntRect(0, 0, 32, 32), Category::Helmet },
     }
 };
 

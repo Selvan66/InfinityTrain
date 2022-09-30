@@ -105,8 +105,25 @@ sf::FloatRect PlayerNode::getBoundingRect() const
 
 bool PlayerNode::damage(int points)
 {
+    float damage = static_cast<float>(points);
     mDamageDuration = sf::Time::Zero;
-    return Entity::damage(points);
+    auto& eq = mPlayerInfo.equipment;
+    if (eq.isItem(Equipment::Head))
+    {
+        eq.getItem(Equipment::Head)->damage(static_cast<int>(points * 0.35));
+        damage -= points * 0.35f;
+    }
+    if (eq.isItem(Equipment::Chest))
+    {
+        eq.getItem(Equipment::Chest)->damage(static_cast<int>(points * 0.45));
+        damage -= points * 0.45f;
+    }
+    if (eq.isItem(Equipment::Boots))
+    {
+        eq.getItem(Equipment::Boots)->damage(static_cast<int>(points * 0.2));
+        damage -= points * 0.2f;
+    }
+    return Entity::damage(static_cast<int>(damage));
 }
 
 void PlayerNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
