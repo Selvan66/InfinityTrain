@@ -63,8 +63,6 @@ void PopupLabel::setBackgoundRect()
     auto textBounds = mText.getLocalBounds();
 
     mBackground.setSize(sf::Vector2f(textBounds.width + 20, textBounds.height + 20));
-    mBackground.setOutlineThickness(0.5);
-    mBackground.setOutlineColor(sf::Color(168, 137, 50));
     mBackground.setFillColor(sf::Color(60, 60, 60));
     auto bounds = mBackground.getLocalBounds();
     mBackground.setOrigin(bounds.left + bounds.width, bounds.top + bounds.height); 
