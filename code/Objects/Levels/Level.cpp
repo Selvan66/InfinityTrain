@@ -6,6 +6,7 @@ Level::Level(LvlContext& lvlContext)
 , mCommands()
 , mSceneGraph()
 , mSceneLayer()
+, mPlayerNode(nullptr)
 { 
     buildScene();
 }
@@ -21,16 +22,24 @@ void Level::draw()
     window.draw(mSceneGraph);
 }
 
+bool Level::isPlayerAlive() const
+{
+    if (mPlayerNode != nullptr)
+        return !mPlayerNode->isDestroyed();
+    return false;
+}
+
 void Level::update(sf::Time dt)
 {
     mLvlContext.context.statistics.increase(Statistics::TimePlay, dt.asMilliseconds());
 
-    while (!mCommands.isEmpty())
-        mSceneGraph.onCommand(mCommands.pop(), dt);
-
     mSceneGraph.removeObjects();
     mSceneGraph.update(dt, mCommands);
 
+    while (!mCommands.isEmpty())
+        mSceneGraph.onCommand(mCommands.pop(), dt);
+
+    updatePlayer(mPlayerNode);
     destoryEntitiesOutsideLevel();
 }
 
@@ -59,12 +68,10 @@ LvlContext& Level::getLvlContext() const
     return mLvlContext;
 }
 
-void Level::updatePlayer(PlayerNode* player)
+void Level::setPlayerPos(sf::Vector2f pos)
 {
-    adaptNodesPosition(player);
-
-    mLvlContext.playerInfo.backpack.drop(player->getWorldPosition(), *mSceneLayer[Floor]);
-    mLvlContext.playerInfo.backpack.action(*player);
+    assert(mPlayerNode != nullptr);
+    mPlayerNode->setPosition(pos);
 }
 
 void Level::buildScene()
@@ -91,6 +98,10 @@ void Level::buildScene()
 
         mSceneGraph.attachChild(std::move(layer));
     }
+
+    std::unique_ptr<PlayerNode> playerNode(new PlayerNode(mLvlContext.context, Level::getLvlContext().playerInfo));
+    mPlayerNode = playerNode.get();
+    mSceneLayer[Battlefield]->attachChild(std::move(playerNode));
 }
 
 void Level::adaptNodesPosition(SceneNode* node)
@@ -105,6 +116,14 @@ void Level::adaptNodesPosition(SceneNode* node)
     position.y = std::min(position.y, bounds.top + bounds.height - size.height / 2.f);
 
     node->setPosition(position);
+}
+
+void Level::updatePlayer(PlayerNode* player)
+{
+    adaptNodesPosition(player);
+
+    mLvlContext.playerInfo.backpack.drop(player->getWorldPosition(), *mSceneLayer[Floor]);
+    mLvlContext.playerInfo.backpack.action(*player);
 }
 
 void Level::destoryEntitiesOutsideLevel()

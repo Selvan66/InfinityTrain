@@ -21,6 +21,7 @@ class Level : public sf::NonCopyable
         explicit Level(LvlContext& lvlContext);
         CommandQueue& getCommandQueue();
         void draw();
+        bool isPlayerAlive() const;
 
         virtual void update(sf::Time dt);
         virtual LevelID::ID nextLevel() const;
@@ -30,14 +31,16 @@ class Level : public sf::NonCopyable
         bool isFinished() const;
         SceneNode* getLayer(Layer layer) const;
         LvlContext& getLvlContext() const;
-        void updatePlayer(PlayerNode* player);
+        void setPlayerPos(sf::Vector2f pos);
     private:
         void buildScene();
         void adaptNodesPosition(SceneNode* node);
+        void updatePlayer(PlayerNode* player);
         void destoryEntitiesOutsideLevel();
     private:
         LvlContext& mLvlContext;
         CommandQueue mCommands;
         SceneNode mSceneGraph;
         std::array<SceneNode*, LayerCount> mSceneLayer;
+        PlayerNode* mPlayerNode;
 };  

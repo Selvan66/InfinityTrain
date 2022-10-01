@@ -19,7 +19,6 @@ PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext)
 void PrehistoryLevel::update(sf::Time dt)
 {
     Level::update(dt);
-    Level::updatePlayer(mPlayer);
 
     if (Level::isFinished())
         mDoor->open();
@@ -105,10 +104,7 @@ void PrehistoryLevel::buildBattlefield()
     auto& context = Level::getLvlContext().context;
     auto* battlefieldLayer = Level::getLayer(Level::Battlefield);
     
-    std::unique_ptr<PlayerNode> playerNode(new PlayerNode(context, Level::getLvlContext().playerInfo));
-    playerNode->setPosition({960, 540});
-    mPlayer = playerNode.get();
-    battlefieldLayer->attachChild(std::move(playerNode));
+    Level::setPlayerPos({900.f, 540.f});
     
     std::unique_ptr<Enemy> enemy(new Enemy(context));
     enemy->setPosition({960, 540});

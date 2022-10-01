@@ -17,6 +17,5 @@ class StartLevel : public Level
         void buildBattlefield();
         void buildScene();
     private:
-        PlayerNode* mPlayer;
         Door* mDoor;
 };

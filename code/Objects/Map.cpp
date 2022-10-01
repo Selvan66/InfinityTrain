@@ -64,6 +64,11 @@ void Map::draw()
     context.window.draw(mLvlContext.playerInfo.equipment);
 }
 
+bool Map::isPlayerAlive() const
+{
+    return mLevel->isPlayerAlive();
+}
+
 void Map::registerLevels()
 {
     registerLevel<PrehistoryLevel>(LevelID::Prehistory);

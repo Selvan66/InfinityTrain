@@ -12,7 +12,6 @@ FirstLevel::FirstLevel(LvlContext& lvlContext)
 void FirstLevel::update(sf::Time dt)
 {
     Level::update(dt);
-    Level::updatePlayer(mPlayer);
 
     if (Level::isFinished())
         mDoor->open();
@@ -63,10 +62,7 @@ void FirstLevel::buildBattlefield()
 {
     auto& context = Level::getLvlContext().context;
     auto* battlefieldLayer = Level::getLayer(Level::Battlefield);
-    std::unique_ptr<PlayerNode> playerNode(new PlayerNode(context, Level::getLvlContext().playerInfo));
-    mPlayer = playerNode.get();
-    playerNode->setPosition({900.f, 540.f});
-    battlefieldLayer->attachChild(std::move(playerNode));
+    Level::setPlayerPos({900.f, 540.f});
 }
 
 void FirstLevel::buildScene()

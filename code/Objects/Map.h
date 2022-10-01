@@ -11,6 +11,7 @@ class Map
         void update(sf::Time dt);
         void handleEvent(const sf::Event& event);
         void draw();
+        bool isPlayerAlive() const;
     private:
         template <typename T>
         void registerLevel(LevelID::ID id);
