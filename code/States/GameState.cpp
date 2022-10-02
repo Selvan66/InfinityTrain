@@ -16,7 +16,11 @@ void GameState::draw()
 
 bool GameState::update(sf::Time dt)
 {
-    mMap.update(dt);
+    if (mMap.isPlayerAlive())
+        mMap.update(dt);
+    else
+        requestStackPush(StatesID::GameOverState);
+        
     return true;  
 }
 

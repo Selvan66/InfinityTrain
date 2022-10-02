@@ -10,6 +10,7 @@
 #include "States/LoadingState.h"
 #include "States/GameState.h"
 #include "States/PauseState.h"
+#include "States/GameOverState.h"
 
 Application::Application()
 : mContext()
@@ -90,6 +91,7 @@ void Application::registerStates()
 	mStateStack.registerState<StatisticsState>(StatesID::StatisticsState);
 	mStateStack.registerState<GameState>(StatesID::GameState);
 	mStateStack.registerState<PauseState>(StatesID::PauseState);
+	mStateStack.registerState<GameOverState>(StatesID::GameOverState);
 	mStateStack.registerState<LoadingState>(StatesID::LoadingState);
 }
 
@@ -111,6 +113,7 @@ void Application::loadMenuGuiFiles()
 	mContext.gui.load(GuiFileID::GraphicsSetting, "gui/GraphicsSetting.gui");
 	mContext.gui.load(GuiFileID::AudioSetting, "gui/AudioSetting.gui");
 	mContext.gui.load(GuiFileID::Pause, "gui/Pause.gui");
+	mContext.gui.load(GuiFileID::GameOver, "gui/GameOver.gui");
 	mContext.gui.load(GuiFileID::Setting, "gui/Setting.gui");
 	mContext.gui.load(GuiFileID::Statistics, "gui/Statistics.gui");
 	mContext.gui.load(GuiFileID::ControlSetting, "gui/ControlSetting.gui");

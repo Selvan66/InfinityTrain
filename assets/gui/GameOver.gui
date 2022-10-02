@@ -1,0 +1,5 @@
+[Text]
+id GameOver
+pos {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2}
+charSize 70
+string GAME OVER

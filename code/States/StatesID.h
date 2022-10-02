@@ -13,5 +13,6 @@ enum class StatesID
 	StatisticsState,
 	LoadingState,
 	GameState,
-	PauseState
+	PauseState,
+	GameOverState,
 };

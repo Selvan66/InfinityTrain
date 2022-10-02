@@ -56,6 +56,7 @@ enum class GuiFileID
 	AudioSetting,
 	GraphicsSetting,
 	Pause,
+	GameOver,
 	Setting,
 	Statistics,
 	ControlSetting,
