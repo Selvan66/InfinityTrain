@@ -3,9 +3,9 @@
 
 #include "Objects/Nodes/Enemy/Enemy.h"
 
-
 Enemy::Enemy(Context& context)
 : Entity(100)
+, mContext(context)
 , mSprite(context.textures.get(TexturesID::Player), {0, 0, 80, 61})
 , mPlayer(nullptr)
 , mDuration(sf::Time::Zero)
@@ -34,6 +34,13 @@ bool Enemy::damage(int points)
 {
     mDamageDuration = sf::Time::Zero;
     return Entity::damage(points);
+}
+
+bool Enemy::isMarkedForRemoval() const 
+{
+    if (SceneNode::isMarkedForRemoval())
+        mContext.statistics.increase(Statistics::KilledEnemies);
+    return SceneNode::isMarkedForRemoval();
 }
 
 void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands)
