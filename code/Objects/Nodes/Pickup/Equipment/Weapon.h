@@ -35,6 +35,7 @@ class Weapon : public Pickup
     private:
         Command mAttackCommand;
         bool mUse;
+        bool mAttacking;
         const Type mType;
         sf::Time mElapsed;
         Animation mAnimation;

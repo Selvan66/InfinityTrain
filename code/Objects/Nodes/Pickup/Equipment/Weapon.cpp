@@ -21,8 +21,9 @@ Weapon::Weapon(Context& context, Type type, int ammos)
 : Pickup(context)
 , mAttackCommand()
 , mUse(false)
+, mAttacking(false)
 , mType(type)
-, mElapsed()
+, mElapsed(weapons[type].duration + sf::seconds(1))
 , mAnimation(context.textures.get(weapons[type].animation), weapons[type].animationRect)
 {
     mAnimation.setFrameSize({32, 32});
@@ -116,7 +117,7 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
     {
         if (mUse)
         {
-            commands.push(mAttackCommand);
+            mAttacking = true;
             mElapsed = sf::Time::Zero;
             mAnimation.play();
             if (Entity::getHitpoints() != INF)
@@ -124,6 +125,12 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
         }
     }
     mUse = false;
+
+    if (mAttacking && (mElapsed >= (weapons[mType].duration / 2.f)))
+    {
+        mAttacking = false;
+        commands.push(mAttackCommand);
+    }
 
     mAnimation.update(dt);
     if (mAnimation.isFinished())
