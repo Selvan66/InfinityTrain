@@ -126,7 +126,7 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
     }
     mUse = false;
 
-    if (mAttacking && (mElapsed >= (weapons[mType].duration / 2.f)))
+    if (mAttacking && (mElapsed >= (weapons[mType].duration / 3.f)))
     {
         mAttacking = false;
         commands.push(mAttackCommand);
