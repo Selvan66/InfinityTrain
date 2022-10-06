@@ -32,7 +32,7 @@ struct ArmorParam
 {
     const char* name;
     const int durability;
-    std::unordered_map<Stats::Type, int> stats;
+    const std::unordered_map<Stats::Type, int> stats;
     const TexturesID texture;
     const sf::IntRect textureRect;
     const Category::Type type;
