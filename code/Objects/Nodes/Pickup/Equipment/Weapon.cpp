@@ -53,13 +53,6 @@ Weapon::Weapon(Context& context, Type type, int ammos)
         };
     }
 
-    Command command;
-    command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
-        player.pickup(create());
-        this->destroy();
-    });
-    Pickup::setCommand(command);
     Entity::setHitpoints(ammos);
 }
 
@@ -76,12 +69,6 @@ sf::Vector2f Weapon::getSize() const
 unsigned int Weapon::getCategory() const 
 {
     return Pickup::getCategory() | Category::Weapon;
-}
-
-bool Weapon::action(PlayerNode& player)
-{
-    player.pickup(create());
-    return true;
 }
 
 std::string Weapon::getDescription() const 

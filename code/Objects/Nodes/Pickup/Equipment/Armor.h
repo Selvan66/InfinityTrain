@@ -19,7 +19,6 @@ class Armor : public Pickup
         Armor(Context& context, Type type, int durability);
 
         virtual unsigned int getCategory() const override;
-        virtual bool action(PlayerNode& player) override;
         virtual std::string getDescription() const override;
         virtual std::unordered_map<Stats::Type, int> getStats() const override;
     protected:

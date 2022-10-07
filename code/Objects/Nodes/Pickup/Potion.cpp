@@ -8,15 +8,7 @@ Potion::Potion(Context& context, unsigned int value)
 , mDescription("Heal " + std::to_string(value) + " HP")
 {
     Interactable::setDistance(50.f);
-    Command command;
-    command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
-        player.pickup(create());
-        this->destroy();
-    });
-
     Pickup::setTexture(TexturesID::Potion);
-    Pickup::setCommand(command);
     Pickup::setLabel(std::to_string(value) + "HP");
 }
 

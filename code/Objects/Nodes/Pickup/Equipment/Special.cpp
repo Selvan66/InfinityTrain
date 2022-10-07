@@ -28,15 +28,6 @@ Special::Special(Context& context, Type type, int ammos)
 , mElapsed(specials[type].duration + sf::seconds(1))
 {
     initSpecialsActions(context);   //TODO: move this to a better place
-
-    Command command;
-    command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
-        player.pickup(create());
-        this->destroy();
-    });
-
-    Pickup::setCommand(command);
     Pickup::setTexture(specials[type].texture);
     Entity::setHitpoints(ammos);
 }
@@ -44,12 +35,6 @@ Special::Special(Context& context, Type type, int ammos)
 unsigned int Special::getCategory() const 
 {
     return Pickup::getCategory() | Category::Special;
-}
-
-bool Special::action(PlayerNode& player)
-{
-    player.pickup(create());
-    return true;
 }
 
 std::string Special::getDescription() const 

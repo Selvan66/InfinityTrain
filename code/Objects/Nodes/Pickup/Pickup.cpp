@@ -9,7 +9,13 @@ Pickup::Pickup(Context& context)
 , mSprite()
 , mPickedUp(false)
 , mCommand()
-{ }
+{ 
+    mCommand.category = Category::Player;
+    mCommand.action = derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
+        player.pickup(create());
+        this->destroy();
+    });
+}
 
 std::string Pickup::getDescription() const
 {
@@ -23,7 +29,8 @@ std::unordered_map<Stats::Type, int> Pickup::getStats() const
 
 bool Pickup::action(PlayerNode& player)
 { 
-    return false;
+    player.pickup(create());
+    return true;
 }
 
 void Pickup::interact()

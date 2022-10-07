@@ -20,14 +20,6 @@ Armor::Armor(Context& context, Type type, int durability)
 : Pickup(context)
 , mType(type)
 {
-    Command command;
-    command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
-        player.pickup(create());
-        this->destroy();
-    });
-
-    Pickup::setCommand(command);
     Pickup::setTexture(armors[type].texture);
     Entity::setHitpoints(durability);
 }
@@ -35,12 +27,6 @@ Armor::Armor(Context& context, Type type, int durability)
 unsigned int Armor::getCategory() const 
 {
     return Pickup::getCategory() | armors[mType].type;
-}
-
-bool Armor::action(PlayerNode& player)
-{
-    player.pickup(create());
-    return true;
 }
 
 std::string Armor::getDescription() const 
