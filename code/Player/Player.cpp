@@ -51,7 +51,7 @@ void Player::initializeActions()
     mActionBinding[MoveDown].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::MoveDown); });
     mActionBinding[Fire].action =       derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::Fire); });  
     mActionBinding[Interact].action =   derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::Interact); }); 
-    mActionBinding[Special].action =    derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::Special); });  
+    mActionBinding[Special].action =    derivedAction<PlayerNode>([] (PlayerNode& p, sf::Time) { p.makeAction(PlayerNode::Specials); });  
 
     for (auto& pair : mActionBinding)
         pair.second.category = Category::Player;

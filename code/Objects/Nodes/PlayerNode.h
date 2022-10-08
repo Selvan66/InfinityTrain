@@ -6,6 +6,7 @@
 #include "App/Context.h"
 #include "Effects/Animation.h"
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
+#include "Objects/Nodes/Pickup/Equipment/Special.h"
 
 class PlayerNode : public Entity
 {
@@ -18,7 +19,7 @@ class PlayerNode : public Entity
             MoveRight,
             Fire,
             Interact,
-            Special
+            Specials
         };
     public:
         PlayerNode(Context& context, PlayerInfo& playerInfo);
@@ -53,5 +54,6 @@ class PlayerNode : public Entity
         bool mIsSpecial;
         Animation mAnimation;
         Weapon* mWeapon;
+        Special* mSpecial;
         sf::Time mDamageDuration;
 };

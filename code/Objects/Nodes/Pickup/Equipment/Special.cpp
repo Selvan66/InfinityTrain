@@ -32,6 +32,11 @@ Special::Special(Context& context, Type type, int ammos)
     Entity::setHitpoints(ammos);
 }
 
+void Special::use()
+{
+    mUse = true;
+}
+
 unsigned int Special::getCategory() const 
 {
     return Pickup::getCategory() | Category::Special;
@@ -56,7 +61,7 @@ std::unordered_map<Stats::Type, int> Special::getStats() const
 
 std::unique_ptr<Pickup> Special::create() const 
 {
-    return std::make_unique<Special>(getContext(), mType, Entity::getHitpoints());
+    return std::unique_ptr<Pickup>(new Special(Pickup::getContext(), mType, Entity::getHitpoints()));
 }
 
 void Special::updateCurrent(sf::Time dt, CommandQueue& commands)

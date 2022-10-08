@@ -113,5 +113,7 @@ Equipment::Slot Equipment::getItemSlot(const std::unique_ptr<Pickup>& item) cons
         return Boots;
     if (item->getCategory() & Category::Weapon)
         return LeftHand;
+    if (item->getCategory() & Category::Special)
+        return RightHand;
     return None;
 }

@@ -3,8 +3,6 @@
 #include "Objects/Nodes/Interactable.h"
 #include "Objects/Levels/Level.h"
 
-#include <iostream> //To delete
-
 PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 : Entity(playerInfo.stats.getState(Stats::Lives))
 , mContext(context)
@@ -17,6 +15,7 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 , mIsSpecial(false)
 , mAnimation(context.textures.get(TexturesID::Player))
 , mWeapon(nullptr)
+, mSpecial(nullptr)
 , mDamageDuration(sf::seconds(0.3f))
 {   
     mFireCommand.category = Category::Battlefield;
@@ -33,7 +32,10 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
     });
     
     mSpecialCommand.category = Category::Battlefield;
-    mSpecialCommand.action = [](SceneNode&, sf::Time) {std::cout << "Special" << std::endl;};
+    mSpecialCommand.action = [&](SceneNode&, sf::Time) {
+        if (mSpecial != nullptr)
+            mSpecial->use();
+    };
 
     mAnimation.setFrameSize({80, 61});
     mAnimation.setNumFrames(9);
@@ -63,7 +65,7 @@ void PlayerNode::makeAction(Action action)
         case Interact:
             interact();
             break;
-        case Special:
+        case Specials:
             special();
             break;
     }    
@@ -212,7 +214,6 @@ void PlayerNode::updateEquipment()
         if (mPlayerInfo.equipment.isItem(Equipment::LeftHand))
         {
             mPlayerInfo.equipment.getItem(Equipment::LeftHand)->setHitpoints(mWeapon->getHitpoints());
-
         }
         else
         {
@@ -230,6 +231,30 @@ void PlayerNode::updateEquipment()
             sf::Vector2f size = { mWeapon->getSize().x / 32.f, mWeapon->getSize().y / 32.f };
             mWeapon->setScale(size);
             SceneNode::attachChild(std::move(weapon_ptr));
+        }
+    }
+
+    if (mSpecial != nullptr)
+    {
+        if (mPlayerInfo.equipment.isItem(Equipment::RightHand))
+        {
+            mPlayerInfo.equipment.getItem(Equipment::RightHand)->setHitpoints(mSpecial->getHitpoints());
+        }
+        else
+        {
+            mSpecial = nullptr;
+        }
+    }
+    else
+    {
+        if (mPlayerInfo.equipment.isItem(Equipment::RightHand))
+        {
+            // Drop unique_ptr
+            auto special_ptr = mPlayerInfo.equipment.getItem(Equipment::RightHand)->create();
+            mSpecial = dynamic_cast<Special*>(special_ptr.get());
+            mSpecial->setDistance(0.f);
+            mSpecial->setPosition(-40.f, -40.f);
+            SceneNode::attachChild(std::move(special_ptr));
         }
     }
 }
