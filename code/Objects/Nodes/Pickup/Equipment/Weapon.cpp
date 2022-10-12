@@ -107,8 +107,7 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
             mAttacking = true;
             mElapsed = sf::Time::Zero;
             mAnimation.play();
-            if (Entity::getHitpoints() != INF)
-                Entity::damage(1);
+            
         }
     }
     mUse = false;
@@ -117,6 +116,8 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands)
     {
         mAttacking = false;
         commands.push(mAttackCommand);
+        if (Entity::getHitpoints() != INF)
+            Entity::damage(1);
     }
 
     mAnimation.update(dt);

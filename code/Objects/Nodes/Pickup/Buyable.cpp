@@ -12,7 +12,7 @@ Buyable::Buyable(Context& context, int price, std::unique_ptr<Pickup> pickup)
     command.action = derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
         if (player.pay(mPrice))
         {
-            player.pickup(std::move(mPickup));
+            player.pickup(mPickup->create());
             this->destroy();
         }
     });
