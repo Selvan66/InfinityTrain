@@ -1,4 +1,5 @@
 /** @file Entity.cpp */
+#include <cmath>
 #include "Objects/Nodes/Entity.h"
 
 Entity::Entity()
@@ -91,7 +92,7 @@ void Entity::updateCurrent(sf::Time dt, CommandQueue&)
 
     auto velocity = mVelocity;
     if (velocity.x != 0 && velocity.y != 0)
-        velocity /= std::sqrtf(2);
+      velocity /= (float)std::sqrt(2.0);
     
 
     sf::Transformable::move(velocity * dt.asSeconds());

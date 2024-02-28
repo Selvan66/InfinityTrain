@@ -12,24 +12,9 @@ list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 17)
 
-
-# Conan
-if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
-  message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
-  file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/0.18.1/conan.cmake"
-                "${CMAKE_BINARY_DIR}/conan.cmake"
-                TLS_VERIFY ON)
-endif()
-
-include(${CMAKE_BINARY_DIR}/conan.cmake)
-
-conan_cmake_run(CONANFILE conanfile.txt
-                BASIC_SETUP CMAKE_TARGETS
-                BUILD_TYPE "Debug"
-                BUILD missing)
-
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "Release")
+endif (NOT CMAKE_BUILD_TYPE)
 
 # Setup
 set(CODE_DIR ${CMAKE_SOURCE_DIR}/code)
@@ -40,13 +25,20 @@ file(GLOB_RECURSE SOURCE LIST_DIRECTORY true ${CODE_DIR}/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
 
-target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
-
 target_include_directories(${PROJECT_NAME} PRIVATE ${CODE_DIR})
-target_include_directories(${PROJECT_NAME} PRIVATE ${CONAN_INCLUDE_DIRS})
 
+# Copy assets to build folder
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${ASSETS_DIR}/ $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+
+# Packages
+set(SFML_STATIC_LIBRARIES TRUE)
+find_package(SFML 2.5 COMPONENTS graphics windows audio system REQUIRED)
+find_package(Ogg)
+find_package(nlohmann_json)
+find_package(exprtk)
+target_link_libraries(${PROJECT_NAME} sfml::sfml Ogg::ogg nlohmann_json::nlohmann_json exprtk::exprtk)
+target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCLUDE_DIR} ${exprtk_INCLUDE_DIR} ${nlohmann_json_INCLUDE_DIR} ${Ogg_INCLUDE_DIR})
 
 # Doxygen
 option(BUILD_DOC "Build documentation" ON)
