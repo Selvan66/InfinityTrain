@@ -12,3 +12,6 @@ CMakeUserPresets.json
 # vscode
 .vscode/
 .VSCodeCounter/
+
+# nvim
+.cache/
