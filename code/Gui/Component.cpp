@@ -1,11 +1,8 @@
 /** @file Component.cpp */
 #include "Gui/Component.h"
 
-Component::Component()
-{ }
+Component::Component() {}
 
-void Component::handleEvent(const sf::Event& event)
-{ }
+void Component::handleEvent(const sf::Event &event) {}
 
-void Component::update()
-{ }
+void Component::update() {}

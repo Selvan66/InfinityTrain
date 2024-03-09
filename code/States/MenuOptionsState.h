@@ -3,10 +3,10 @@
 
 #include "States/State.h"
 
-class MenuOptionsState : public State
-{
-    public:
-		MenuOptionsState(StateStack& stack, Context& context);
-	private:
-		void applyGuiFunctions();
+class MenuOptionsState : public State {
+public:
+  MenuOptionsState(StateStack &stack, Context &context);
+
+private:
+  void applyGuiFunctions();
 };
