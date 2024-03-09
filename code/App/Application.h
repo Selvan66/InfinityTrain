@@ -17,12 +17,18 @@ private:
   void loadFonts();
   void loadMenuGuiFiles();
 
-  void updateStatistics(sf::Time dt); //< Only for debug
+  void updateStatistics(
+    sf::Time dt); //< Only for debug
 private:
   Context mContext;
   StateStack mStateStack;
 
-  sf::Text mStatisticsText;         //< Only for debug
-  sf::Time mStatisticsUpdateTime;   //< Only for debug
-  std::size_t mStatisticsNumFrames; //< Only for debug
+  sf::Text
+    mStatisticsText; //< Only for debug
+  sf::Time
+    mStatisticsUpdateTime; //< Only for
+                           //debug
+  std::size_t
+    mStatisticsNumFrames; //< Only for
+                          //debug
 };

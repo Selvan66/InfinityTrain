@@ -5,7 +5,7 @@
 #include "Player/PlayerInfo.h"
 
 struct LvlContext {
-  Context &context;
+  Context& context;
   PlayerInfo playerInfo;
   unsigned int numLevel;
 };

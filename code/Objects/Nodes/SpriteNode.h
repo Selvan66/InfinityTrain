@@ -5,12 +5,17 @@
 
 class SpriteNode : public SceneNode {
 public:
-  explicit SpriteNode(const sf::Texture &texture);
-  SpriteNode(const sf::Texture &texture, const sf::IntRect &textureRect);
+  explicit SpriteNode(
+    const sf::Texture& texture);
+  SpriteNode(
+    const sf::Texture& texture,
+    const sf::IntRect& textureRect);
 
 protected:
-  virtual void drawCurrent(sf::RenderTarget &target,
-                           sf::RenderStates states) const override;
+  virtual void
+  drawCurrent(sf::RenderTarget& target,
+              sf::RenderStates states)
+    const override;
 
 private:
   sf::Sprite mSprite;

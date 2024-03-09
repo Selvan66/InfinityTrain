@@ -8,7 +8,7 @@
 #include "Player/Stats.h"
 
 struct PlayerInfo {
-  explicit PlayerInfo(Context &context);
+  explicit PlayerInfo(Context& context);
 
   Stats stats;
   Backpack backpack;

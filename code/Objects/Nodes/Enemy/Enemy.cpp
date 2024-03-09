@@ -2,25 +2,39 @@
 #include "Objects/Nodes/Enemy/Enemy.h"
 #include "Utils/Utility.h"
 
-Enemy::Enemy(Context &context)
-    : Entity(100), mContext(context),
-      mSprite(context.textures.get(TexturesID::Player), {0, 0, 80, 61}),
-      mPlayer(nullptr), mDuration(sf::Time::Zero), mText(nullptr),
-      mDamageDuration(sf::seconds(0.3f)) {
+Enemy::Enemy(Context& context)
+  : Entity(100), mContext(context),
+    mSprite(context.textures.get(
+              TexturesID::Player),
+            {0, 0, 80, 61}),
+    mPlayer(nullptr),
+    mDuration(sf::Time::Zero),
+    mText(nullptr),
+    mDamageDuration(sf::seconds(0.3f)) {
   Utility::centerOrigin(mSprite);
-  std::unique_ptr<TextNode> text(new TextNode(context));
-  text->setString(std::to_string(Entity::getHitpoints()) + "HP");
+  std::unique_ptr<TextNode> text(
+    new TextNode(context));
+  text->setString(
+    std::to_string(
+      Entity::getHitpoints()) +
+    "HP");
   text->setPosition(0.f, -40.f);
   mText = text.get();
-  SceneNode::attachChild(std::move(text));
+  SceneNode::attachChild(
+    std::move(text));
 }
 
-sf::FloatRect Enemy::getBoundingRect() const {
-  return SceneNode::getWorldTransform().transformRect(
+sf::FloatRect
+Enemy::getBoundingRect() const {
+  return SceneNode::getWorldTransform()
+    .transformRect(
       mSprite.getGlobalBounds());
 }
 
-unsigned int Enemy::getCategory() const { return Category::Enemy; }
+unsigned int
+Enemy::getCategory() const {
+  return Category::Enemy;
+}
 
 bool Enemy::damage(int points) {
   mDamageDuration = sf::Time::Zero;
@@ -29,13 +43,17 @@ bool Enemy::damage(int points) {
 
 bool Enemy::isMarkedForRemoval() const {
   if (SceneNode::isMarkedForRemoval())
-    mContext.statistics.increase(Statistics::KilledEnemies);
-  return SceneNode::isMarkedForRemoval();
+    mContext.statistics.increase(
+      Statistics::KilledEnemies);
+  return SceneNode::
+    isMarkedForRemoval();
 }
 
-void Enemy::updateCurrent(sf::Time dt, CommandQueue &commands) {
+void Enemy::updateCurrent(
+  sf::Time dt, CommandQueue& commands) {
   mDamageDuration += dt;
-  if (mDamageDuration < sf::seconds(0.3f))
+  if (mDamageDuration <
+      sf::seconds(0.3f))
     mSprite.setColor(sf::Color::Red);
   else
     mSprite.setColor(sf::Color::White);
@@ -44,38 +62,55 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue &commands) {
   if (mPlayer == nullptr) {
     Command command;
     command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>(
-        [&](PlayerNode &player, sf::Time) { mPlayer = &player; });
+    command.action =
+      derivedAction<PlayerNode>(
+        [&](PlayerNode& player,
+            sf::Time) {
+          mPlayer = &player;
+        });
     commands.push(command);
   } else {
     sf::Vector2f direction =
-        mPlayer->getWorldPosition() - SceneNode::getWorldPosition();
-    float length =
-        std::sqrt(direction.x * direction.x + direction.y * direction.y);
+      mPlayer->getWorldPosition() -
+      SceneNode::getWorldPosition();
+    float length = std::sqrt(
+      direction.x * direction.x +
+      direction.y * direction.y);
     if (length > 0.f) {
       direction /= length;
-      Entity::accelerate(direction * 25.f);
+      Entity::accelerate(direction *
+                         25.f);
     }
   }
 
   Command command;
   command.category = Category::Player;
   command.action =
-      derivedAction<PlayerNode>([&](PlayerNode &player, sf::Time dt) {
+    derivedAction<PlayerNode>(
+      [&](PlayerNode& player,
+          sf::Time dt) {
         mDuration += dt;
-        if (mDuration >= sf::seconds(0.5f)) {
-          if (Utility::collision(*this, player)) {
-            player.damageFromPos(25, SceneNode::getWorldPosition());
+        if (mDuration >=
+            sf::seconds(0.5f)) {
+          if (Utility::collision(
+                *this, player)) {
+            player.damageFromPos(
+              25, SceneNode::
+                    getWorldPosition());
             mDuration = sf::Time::Zero;
           }
         }
       });
   commands.push(command);
 
-  mText->setString(std::to_string(Entity::getHitpoints()) + "HP");
+  mText->setString(
+    std::to_string(
+      Entity::getHitpoints()) +
+    "HP");
 }
 
-void Enemy::drawCurrent(sf::RenderTarget &target,
-                        sf::RenderStates states) const {
+void Enemy::drawCurrent(
+  sf::RenderTarget& target,
+  sf::RenderStates states) const {
   target.draw(mSprite, states);
 }

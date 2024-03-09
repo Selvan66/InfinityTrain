@@ -5,7 +5,8 @@
 
 class SettingState : public State {
 public:
-  SettingState(StateStack &stack, Context &context);
+  SettingState(StateStack& stack,
+               Context& context);
 
 private:
   void applyGuiFunctions();

@@ -5,7 +5,8 @@
 
 class MenuOptionsState : public State {
 public:
-  MenuOptionsState(StateStack &stack, Context &context);
+  MenuOptionsState(StateStack& stack,
+                   Context& context);
 
 private:
   void applyGuiFunctions();

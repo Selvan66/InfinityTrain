@@ -6,7 +6,7 @@
 
 class Door : public Interactable {
 public:
-  explicit Door(Context &context);
+  explicit Door(Context& context);
   void open();
   void close();
   bool isInteract() const;
@@ -14,10 +14,15 @@ public:
   virtual void interact() override;
 
 protected:
-  virtual sf::FloatRect getBoundingRect() const override;
-  virtual void updateCurrent(sf::Time dt, CommandQueue &commands) override;
-  virtual void drawCurrent(sf::RenderTarget &target,
-                           sf::RenderStates states) const override;
+  virtual sf::FloatRect
+  getBoundingRect() const override;
+  virtual void updateCurrent(
+    sf::Time dt,
+    CommandQueue& commands) override;
+  virtual void
+  drawCurrent(sf::RenderTarget& target,
+              sf::RenderStates states)
+    const override;
 
 private:
   bool mIsOpen;

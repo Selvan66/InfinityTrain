@@ -12,7 +12,10 @@ struct Context;
 
 class Player {
 public:
-  typedef std::variant<sf::Mouse::Button, sf::Keyboard::Key> Output;
+  typedef std::variant<
+    sf::Mouse::Button,
+    sf::Keyboard::Key>
+    Output;
 
   enum Action {
     MoveLeft,
@@ -26,18 +29,25 @@ public:
   };
 
 public:
-  explicit Player(Context &context);
+  explicit Player(Context& context);
   void loadPlayerInput();
-  void handleEvent(const sf::Event &event, CommandQueue &commands);
-  void handleRealtimeInput(CommandQueue &commands);
+  void
+  handleEvent(const sf::Event& event,
+              CommandQueue& commands);
+  void handleRealtimeInput(
+    CommandQueue& commands);
 
 private:
   void initializeActions();
-  static bool isOutputPressed(Output key);
-  static bool isRealtimeAction(Action action);
+  static bool
+  isOutputPressed(Output key);
+  static bool
+  isRealtimeAction(Action action);
 
 private:
-  Context &mContext;
-  std::unordered_map<Output, Action> mKeyBinding;
-  std::unordered_map<Action, Command> mActionBinding;
+  Context& mContext;
+  std::unordered_map<Output, Action>
+    mKeyBinding;
+  std::unordered_map<Action, Command>
+    mActionBinding;
 };

@@ -5,13 +5,16 @@
 
 #include "Utils/ResourceIdentifiers.h"
 
-class SoundPlayer : public sf::NonCopyable {
+class SoundPlayer
+  : public sf::NonCopyable {
 public:
   SoundPlayer();
   void play(SoundsID sound);
-  void play(SoundsID sound, sf::Vector2f position);
+  void play(SoundsID sound,
+            sf::Vector2f position);
   void removeStoppedSounds();
-  void setListenerPosition(sf::Vector2f position);
+  void setListenerPosition(
+    sf::Vector2f position);
   void setVolume(float volume);
 
 private:

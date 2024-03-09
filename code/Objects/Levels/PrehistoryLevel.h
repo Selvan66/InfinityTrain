@@ -6,9 +6,11 @@
 
 class PrehistoryLevel : public Level {
 public:
-  explicit PrehistoryLevel(LvlContext &lvlContext);
+  explicit PrehistoryLevel(
+    LvlContext& lvlContext);
 
-  virtual void update(sf::Time dt) override;
+  virtual void
+  update(sf::Time dt) override;
   virtual LevelID::ID nextLevel() const;
 
 private:
@@ -18,5 +20,5 @@ private:
   void buildScene();
 
 private:
-  Door *mDoor;
+  Door* mDoor;
 };

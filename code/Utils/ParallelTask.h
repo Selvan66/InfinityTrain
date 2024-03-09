@@ -6,7 +6,8 @@
 
 class ParallelTask {
 public:
-  explicit ParallelTask(std::function<bool()> func);
+  explicit ParallelTask(
+    std::function<bool()> func);
   ~ParallelTask();
   bool isFinished() const;
 

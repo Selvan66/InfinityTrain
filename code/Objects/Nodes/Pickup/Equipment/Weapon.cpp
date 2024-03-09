@@ -4,7 +4,9 @@
 #include "Objects/Nodes/PlayerNode.h"
 #include "Utils/Utility.h"
 
-static const std::array<WeaponParam, Weapon::WeaponCount> weapons = {{
+static const std::array<
+  WeaponParam, Weapon::WeaponCount>
+  weapons = {{
     {"Knife",
      INF,
      10,
@@ -25,7 +27,8 @@ static const std::array<WeaponParam, Weapon::WeaponCount> weapons = {{
      {64.f, 64.f}},
     {"Bow",
      10,
-     Projectile::getDamage(Projectile::Arrow),
+     Projectile::getDamage(
+       Projectile::Arrow),
      sf::seconds(0.5f),
      TexturesID::Weapons,
      sf::IntRect(0, 0, 192, 64),
@@ -34,44 +37,71 @@ static const std::array<WeaponParam, Weapon::WeaponCount> weapons = {{
      {64.f, 64.f}},
     {"Bazooka",
      5,
-     Projectile::getDamage(Projectile::Rocket),
+     Projectile::getDamage(
+       Projectile::Rocket),
      sf::seconds(0.5f),
      TexturesID::Bazooka,
      sf::IntRect(0, 0, 32, 32),
      1,
      Projectile::Rocket,
      {64.f, 64.f}},
-}};
+  }};
 
-Weapon::Weapon(Context &context, Type type)
-    : Weapon(context, type, weapons[type].ammos) {}
+Weapon::Weapon(Context& context,
+               Type type)
+  : Weapon(context, type,
+           weapons[type].ammos) {}
 
-Weapon::Weapon(Context &context, Type type, int ammos)
-    : Pickup(context), mAttackCommand(), mUse(false), mAttacking(false),
-      mType(type), mElapsed(weapons[type].duration + sf::seconds(1)),
-      mAnimation(context.textures.get(weapons[type].animation),
-                 weapons[type].animationRect) {
+Weapon::Weapon(Context& context,
+               Type type, int ammos)
+  : Pickup(context), mAttackCommand(),
+    mUse(false), mAttacking(false),
+    mType(type),
+    mElapsed(weapons[type].duration +
+             sf::seconds(1)),
+    mAnimation(
+      context.textures.get(
+        weapons[type].animation),
+      weapons[type].animationRect) {
   mAnimation.setFrameSize({32, 32});
-  mAnimation.setNumFrames(weapons[type].frameNum);
-  mAnimation.setDuration(weapons[type].duration);
+  mAnimation.setNumFrames(
+    weapons[type].frameNum);
+  mAnimation.setDuration(
+    weapons[type].duration);
   mAnimation.pause();
 
-  if (weapons[type].projectile == Projectile::None) {
-    mAttackCommand.category = Category::Enemy;
-    mAttackCommand.action = derivedAction<Enemy>([&](Enemy &enemy, sf::Time) {
-      if (Utility::collision(*this, enemy))
-        enemy.damageFromPos(weapons[mType].damage,
-                            SceneNode::getWorldPosition());
-    });
+  if (weapons[type].projectile ==
+      Projectile::None) {
+    mAttackCommand.category =
+      Category::Enemy;
+    mAttackCommand.action =
+      derivedAction<Enemy>(
+        [&](Enemy& enemy, sf::Time) {
+          if (Utility::collision(*this,
+                                 enemy))
+            enemy.damageFromPos(
+              weapons[mType].damage,
+              SceneNode::
+                getWorldPosition());
+        });
   } else {
-    mAttackCommand.category = Category::Battlefield;
-    mAttackCommand.action = [&](SceneNode &node, sf::Time) {
-      auto projectile = std::make_unique<Projectile>(
-          Pickup::getContext(), weapons[mType].projectile,
+    mAttackCommand.category =
+      Category::Battlefield;
+    mAttackCommand
+      .action = [&](SceneNode& node,
+                    sf::Time) {
+      auto projectile =
+        std::make_unique<Projectile>(
+          Pickup::getContext(),
+          weapons[mType].projectile,
           Category::AlliedProjectile);
-      projectile->setPosition(SceneNode::getWorldPosition());
-      projectile->setDirection(Utility::getMousePos(context.window));
-      node.attachChild(std::move(projectile));
+      projectile->setPosition(
+        SceneNode::getWorldPosition());
+      projectile->setDirection(
+        Utility::getMousePos(
+          context.window));
+      node.attachChild(
+        std::move(projectile));
     };
   }
 
@@ -80,42 +110,62 @@ Weapon::Weapon(Context &context, Type type, int ammos)
 
 void Weapon::use() { mUse = true; }
 
-sf::Vector2f Weapon::getSize() const { return weapons[mType].size; }
-
-unsigned int Weapon::getCategory() const {
-  return Pickup::getCategory() | Category::Weapon;
+sf::Vector2f Weapon::getSize() const {
+  return weapons[mType].size;
 }
 
-std::string Weapon::getDescription() const {
+unsigned int
+Weapon::getCategory() const {
+  return Pickup::getCategory() |
+         Category::Weapon;
+}
+
+std::string
+Weapon::getDescription() const {
   std::stringstream ss;
   ss << weapons[mType].name << '\n';
-  ss << "Damage: " << weapons[mType].damage << '\n';
+  ss << "Damage: "
+     << weapons[mType].damage << '\n';
   ss << "Ammos: "
-     << (Entity::getHitpoints() == INF ? "INF"
-                                       : std::to_string(Entity::getHitpoints()))
+     << (Entity::getHitpoints() == INF
+           ? "INF"
+           : std::to_string(
+               Entity::getHitpoints()))
      << '\n';
-  ss << "Duration: " << weapons[mType].duration.asSeconds() << "s";
+  ss << "Duration: "
+     << weapons[mType]
+          .duration.asSeconds()
+     << "s";
   return ss.str();
 }
 
-std::unordered_map<Stats::Type, int> Weapon::getStats() const {
-  return {{Stats::Attack, weapons[mType].damage}};
+std::unordered_map<Stats::Type, int>
+Weapon::getStats() const {
+  return {{Stats::Attack,
+           weapons[mType].damage}};
 }
 
-std::unique_ptr<Pickup> Weapon::create() const {
+std::unique_ptr<Pickup>
+Weapon::create() const {
   return std::unique_ptr<Pickup>(
-      new Weapon(Pickup::getContext(), mType, Entity::getHitpoints()));
+    new Weapon(Pickup::getContext(),
+               mType,
+               Entity::getHitpoints()));
 }
 
-sf::FloatRect Weapon::getBoundingRect() const {
-  return SceneNode::getWorldTransform().transformRect(
+sf::FloatRect
+Weapon::getBoundingRect() const {
+  return SceneNode::getWorldTransform()
+    .transformRect(
       mAnimation.getGlobalBounds());
 }
 
-void Weapon::updateCurrent(sf::Time dt, CommandQueue &commands) {
+void Weapon::updateCurrent(
+  sf::Time dt, CommandQueue& commands) {
   Pickup::updateCurrent(dt, commands);
   mElapsed += dt;
-  if (mElapsed >= weapons[mType].duration) {
+  if (mElapsed >=
+      weapons[mType].duration) {
     if (mUse) {
       mAttacking = true;
       mElapsed = sf::Time::Zero;
@@ -124,7 +174,10 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue &commands) {
   }
   mUse = false;
 
-  if (mAttacking && (mElapsed >= (weapons[mType].duration / 3.f))) {
+  if (mAttacking &&
+      (mElapsed >=
+       (weapons[mType].duration /
+        3.f))) {
     mAttacking = false;
     commands.push(mAttackCommand);
     if (Entity::getHitpoints() != INF)
@@ -139,7 +192,8 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue &commands) {
   }
 }
 
-void Weapon::drawCurrent(sf::RenderTarget &target,
-                         sf::RenderStates states) const {
+void Weapon::drawCurrent(
+  sf::RenderTarget& target,
+  sf::RenderStates states) const {
   target.draw(mAnimation, states);
 }

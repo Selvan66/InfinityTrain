@@ -7,34 +7,54 @@
 
 struct PlayerInfo;
 
-class Equipment : public sf::Drawable,
-                  public sf::Transformable,
-                  public sf::NonCopyable {
+class Equipment
+  : public sf::Drawable,
+    public sf::Transformable,
+    public sf::NonCopyable {
 public:
-  enum Slot { LeftHand, Head, Chest, Boots, RightHand, SlotCount, None };
+  enum Slot {
+    LeftHand,
+    Head,
+    Chest,
+    Boots,
+    RightHand,
+    SlotCount,
+    None
+  };
 
 public:
-  Equipment(Context &context, PlayerInfo &playerInfo);
-  bool canBeEquipped(const std::unique_ptr<Pickup> &item) const;
-  void equip(std::unique_ptr<Pickup> item);
+  Equipment(Context& context,
+            PlayerInfo& playerInfo);
+  bool canBeEquipped(
+    const std::unique_ptr<Pickup>& item)
+    const;
+  void
+  equip(std::unique_ptr<Pickup> item);
   void unequip(Slot slot);
-  std::unique_ptr<Pickup> &getItem(Slot slot);
+  std::unique_ptr<Pickup>&
+  getItem(Slot slot);
   bool isItem(Slot slot) const;
 
-  void handleEvent(const sf::Event &event);
+  void
+  handleEvent(const sf::Event& event);
   void update();
-  void setPosition(sf::Vector2f position);
+  void
+  setPosition(sf::Vector2f position);
 
 protected:
-  virtual void draw(sf::RenderTarget &target,
-                    sf::RenderStates states) const override;
+  virtual void
+  draw(sf::RenderTarget& target,
+       sf::RenderStates states)
+    const override;
 
 private:
-  Slot getItemSlot(const std::unique_ptr<Pickup> &item) const;
+  Slot getItemSlot(
+    const std::unique_ptr<Pickup>& item)
+    const;
 
 private:
-  Context &mContext;
-  PlayerInfo &mPlayerInfo;
+  Context& mContext;
+  PlayerInfo& mPlayerInfo;
   sf::Sprite mPlayerSprite;
   std::array<Pocket, SlotCount> mSlots;
 };

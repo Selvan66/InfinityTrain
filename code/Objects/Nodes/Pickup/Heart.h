@@ -5,7 +5,7 @@
 
 class Heart : public Pickup {
 public:
-  Heart(Context &context, int value);
+  Heart(Context& context, int value);
 
 private:
   int mValue;
