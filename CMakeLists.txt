@@ -4,6 +4,8 @@ project(InfinityTrain)
 # Compiler
 if (MSVC)
     add_compile_options(/bigobj)
+else()
+    add_compile_options(-Wall -Wextra -Werror)
 endif()
 
 # Cmake
