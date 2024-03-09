@@ -1,6 +1,4 @@
 /** @file Command.cpp */
 #include "Objects/Command.h"
 
-Command::Command()
-  : action(), category(Category::None) {
-}
+Command::Command() : action(), category(Category::None) {}

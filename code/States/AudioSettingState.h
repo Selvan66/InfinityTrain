@@ -5,8 +5,7 @@
 
 class AudioSettingState : public State {
 public:
-  AudioSettingState(StateStack& stack,
-                    Context& context);
+  AudioSettingState(StateStack& stack, Context& context);
 
 private:
   void applyGuiFunctions();

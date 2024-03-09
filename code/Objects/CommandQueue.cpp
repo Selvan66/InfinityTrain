@@ -1,10 +1,7 @@
 /** @file CommandQueue.cpp */
 #include "Objects/CommandQueue.h"
 
-void CommandQueue::push(
-  const Command& command) {
-  mQueue.push(command);
-}
+void CommandQueue::push(const Command& command) { mQueue.push(command); }
 
 Command CommandQueue::pop() {
   Command command = mQueue.front();
@@ -12,6 +9,4 @@ Command CommandQueue::pop() {
   return command;
 }
 
-bool CommandQueue::isEmpty() const {
-  return mQueue.empty();
-}
+bool CommandQueue::isEmpty() const { return mQueue.empty(); }

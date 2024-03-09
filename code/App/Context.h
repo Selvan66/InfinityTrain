@@ -7,8 +7,7 @@
 #include "Effects/SoundPlayer.h"
 #include "Player/Player.h"
 
-struct Context
-  : public sf::NonCopyable {
+struct Context : public sf::NonCopyable {
   Context();
   void applyGraphicSettings();
   void applyAudioSettings();

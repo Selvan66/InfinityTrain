@@ -6,22 +6,15 @@
 
 #include "App/Statistics.h"
 
-Statistics::Statistics()
-  : mStatistics() {
-  load();
-}
+Statistics::Statistics() : mStatistics() { load(); }
 
 Statistics::~Statistics() { save(); }
 
-void Statistics::increase(
-  StatsID id, Statistics::data value) {
+void Statistics::increase(StatsID id, Statistics::data value) {
   mStatistics[id] += value;
 }
 
-Statistics::data
-Statistics::get(StatsID id) const {
-  return mStatistics[id];
-}
+Statistics::data Statistics::get(StatsID id) const { return mStatistics[id]; }
 
 void Statistics::save() const {
   std::ofstream o("statistics.json");
@@ -30,8 +23,7 @@ void Statistics::save() const {
   if (o.is_open())
     o << json;
   else
-    std::cerr << "Cannot save statistic"
-              << std::endl;
+    std::cerr << "Cannot save statistic" << std::endl;
 }
 
 void Statistics::load() {
@@ -41,8 +33,6 @@ void Statistics::load() {
     i >> json;
     if (json.contains("Statistic"))
       mStatistics =
-        json.at("Statistic")
-          .get<std::array<
-            data, StatisticsCount>>();
+        json.at("Statistic").get<std::array<data, StatisticsCount>>();
   }
 }

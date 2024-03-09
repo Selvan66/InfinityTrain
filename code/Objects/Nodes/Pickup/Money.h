@@ -5,8 +5,7 @@
 
 class Money : public Pickup {
 public:
-  Money(Context& context,
-        unsigned int value);
+  Money(Context& context, unsigned int value);
 
 private:
   unsigned int mValue;

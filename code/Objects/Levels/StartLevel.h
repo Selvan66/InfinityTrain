@@ -6,13 +6,10 @@
 
 class StartLevel : public Level {
 public:
-  explicit StartLevel(
-    LvlContext& lvlContext);
+  explicit StartLevel(LvlContext& lvlContext);
 
-  virtual void
-  update(sf::Time dt) override;
-  virtual LevelID::ID
-  nextLevel() const override;
+  virtual void update(sf::Time dt) override;
+  virtual LevelID::ID nextLevel() const override;
 
 private:
   void buildBackground();

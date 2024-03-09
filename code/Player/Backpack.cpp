@@ -5,89 +5,64 @@
 #include "Player/Backpack.h"
 
 #define V1_POCKET Pocket(context)
-#define V4_POCKET                      \
-  V1_POCKET, V1_POCKET, V1_POCKET,     \
-    V1_POCKET
-#define V20_POCKET                     \
-  V4_POCKET, V4_POCKET, V4_POCKET,     \
-    V4_POCKET, V4_POCKET
+#define V4_POCKET V1_POCKET, V1_POCKET, V1_POCKET, V1_POCKET
+#define V20_POCKET V4_POCKET, V4_POCKET, V4_POCKET, V4_POCKET, V4_POCKET
 
 Backpack::Backpack(Context& context)
-  : mBackpack{V20_POCKET}, mDropQueue(),
-    mUseQueue() {
+  : mBackpack{V20_POCKET}, mDropQueue(), mUseQueue() {
   for (size_t i = 0; i < mSize; ++i)
-    mBackpack[i].setLeftClickCallback(
-      [this, i]() {
-        this->giveItemToUse(i);
-      });
+    mBackpack[i].setLeftClickCallback([this, i]() { this->giveItemToUse(i); });
 
   for (size_t i = 0; i < mSize; ++i)
     mBackpack[i].setRightClickCallback(
-      [this, i]() {
-        this->giveItemToDrop(i);
-      });
+      [this, i]() { this->giveItemToDrop(i); });
 
   for (size_t i = 0; i < 4; ++i)
     for (size_t j = 0; j < 5; ++j)
-      mBackpack[i * 5 + j].setPosition(
-        (j * 40.f), (i * 40.f));
+      mBackpack[i * 5 + j].setPosition((j * 40.f), (i * 40.f));
 }
 
-void Backpack::addItemToBackpack(
-  std::unique_ptr<Pickup> item) {
+void Backpack::addItemToBackpack(std::unique_ptr<Pickup> item) {
   size_t index = getFirstFreeIndex();
 
-  if (index == std::numeric_limits<
-                 size_t>::max()) {
+  if (index == std::numeric_limits<size_t>::max()) {
     giveItemToDrop(0);
     index = 0;
   }
 
-  mBackpack[index].addItem(
-    std::move(item));
+  mBackpack[index].addItem(std::move(item));
 }
 
-void Backpack::giveItemToDrop(
-  size_t index) {
+void Backpack::giveItemToDrop(size_t index) {
   if (!mBackpack[index].isItem())
     return;
-  mDropQueue.push(
-    mBackpack[index].dropItem());
+  mDropQueue.push(mBackpack[index].dropItem());
 }
 
-void Backpack::giveItemToUse(
-  size_t index) {
+void Backpack::giveItemToUse(size_t index) {
   if (!mBackpack[index].isItem())
     return;
-  mUseQueue.push(
-    mBackpack[index].dropItem());
+  mUseQueue.push(mBackpack[index].dropItem());
 }
 
-void Backpack::drop(sf::Vector2f pos,
-                    SceneNode& node) {
+void Backpack::drop(sf::Vector2f pos, SceneNode& node) {
   while (!mDropQueue.empty()) {
-    mDropQueue.front()->setPosition(
-      pos);
-    node.attachChild(
-      std::move(mDropQueue.front()));
+    mDropQueue.front()->setPosition(pos);
+    node.attachChild(std::move(mDropQueue.front()));
     mDropQueue.pop();
   }
 }
 
-void Backpack::action(
-  PlayerNode& player) {
+void Backpack::action(PlayerNode& player) {
   while (!mUseQueue.empty()) {
-    auto pickup =
-      std::move(mUseQueue.front());
+    auto pickup = std::move(mUseQueue.front());
     if (!pickup->action(player))
-      addItemToBackpack(
-        std::move(pickup));
+      addItemToBackpack(std::move(pickup));
     mUseQueue.pop();
   }
 }
 
-void Backpack::handleEvent(
-  const sf::Event& event) {
+void Backpack::handleEvent(const sf::Event& event) {
   for (auto& pocket : mBackpack)
     pocket.handleEvent(event);
 }
@@ -97,26 +72,20 @@ void Backpack::update() {
     pocket.update();
 }
 
-void Backpack::setPosition(
-  sf::Vector2f position) {
+void Backpack::setPosition(sf::Vector2f position) {
   for (auto& pocket : mBackpack)
     pocket.move(position);
 }
 
-void Backpack::draw(
-  sf::RenderTarget& target,
-  sf::RenderStates states) const {
-  states.transform *=
-    sf::Transformable::getTransform();
+void Backpack::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+  states.transform *= sf::Transformable::getTransform();
   for (auto& pocket : mBackpack)
     target.draw(pocket, states);
 }
 
-size_t
-Backpack::getFirstFreeIndex() const {
+size_t Backpack::getFirstFreeIndex() const {
   for (size_t i = 0; i < mSize; ++i)
     if (!mBackpack[i].isItem())
       return i;
-  return std::numeric_limits<
-    size_t>::max();
+  return std::numeric_limits<size_t>::max();
 }

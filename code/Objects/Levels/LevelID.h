@@ -2,11 +2,5 @@
 #pragma once
 
 namespace LevelID {
-enum ID {
-  StartLevel,
-  FirstLevel,
-  Prehistory,
-  LevelCount,
-  None
-};
-}
+enum ID { StartLevel, FirstLevel, Prehistory, LevelCount, None };
+} // namespace LevelID

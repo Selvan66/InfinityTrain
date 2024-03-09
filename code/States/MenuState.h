@@ -5,8 +5,7 @@
 
 class MenuState : public State {
 public:
-  MenuState(StateStack& stack,
-            Context& context);
+  MenuState(StateStack& stack, Context& context);
   virtual void draw() override;
 
 private:

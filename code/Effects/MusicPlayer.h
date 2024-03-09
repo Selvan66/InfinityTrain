@@ -6,15 +6,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 
-class MusicPlayer
-  : public sf::NonCopyable {
+class MusicPlayer : public sf::NonCopyable {
 public:
-  enum MusicsID {
-    Menu,
-    Game,
-    MusicsCount,
-    None
-  };
+  enum MusicsID { Menu, Game, MusicsCount, None };
 
 public:
   MusicPlayer();
@@ -27,7 +21,6 @@ public:
 private:
   sf::Music mMusic;
   MusicsID mPlayedMusic;
-  std::array<std::string, MusicsCount>
-    mFilenames;
+  std::array<std::string, MusicsCount> mFilenames;
   float mVolume;
 };

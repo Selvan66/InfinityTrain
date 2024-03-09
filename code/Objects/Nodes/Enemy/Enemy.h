@@ -9,23 +9,15 @@ class Enemy : public Entity {
 public:
   Enemy(Context& context);
 
-  virtual sf::FloatRect
-  getBoundingRect() const override;
-  virtual unsigned int
-  getCategory() const override;
-  virtual bool
-  damage(int points) override;
-  virtual bool
-  isMarkedForRemoval() const override;
+  virtual sf::FloatRect getBoundingRect() const override;
+  virtual unsigned int getCategory() const override;
+  virtual bool damage(int points) override;
+  virtual bool isMarkedForRemoval() const override;
 
 protected:
-  virtual void updateCurrent(
-    sf::Time dt,
-    CommandQueue& commands) override;
-  virtual void
-  drawCurrent(sf::RenderTarget& target,
-              sf::RenderStates states)
-    const override;
+  virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
+  virtual void drawCurrent(sf::RenderTarget& target,
+                           sf::RenderStates states) const override;
 
 private:
   Context& mContext;

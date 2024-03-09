@@ -8,14 +8,11 @@
 class TextNode : public SceneNode {
 public:
   explicit TextNode(Context& context);
-  void
-  setString(const std::string& text);
+  void setString(const std::string& text);
 
 protected:
-  virtual void
-  drawCurrent(sf::RenderTarget& target,
-              sf::RenderStates states)
-    const override;
+  virtual void drawCurrent(sf::RenderTarget& target,
+                           sf::RenderStates states) const override;
 
 private:
   Text mText;

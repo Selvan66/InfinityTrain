@@ -7,11 +7,9 @@
 
 class LoadingState : public State {
 public:
-  LoadingState(StateStack& stack,
-               Context& context);
+  LoadingState(StateStack& stack, Context& context);
   virtual void draw() override;
-  virtual bool
-  update(sf::Time dt) override;
+  virtual bool update(sf::Time dt) override;
 
 private:
   void loadGameTextures();

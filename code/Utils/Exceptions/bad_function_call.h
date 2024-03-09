@@ -4,15 +4,10 @@
 
 namespace Except {
 
-class bad_function_call
-  : public base_exception {
+class bad_function_call : public base_exception {
 public:
-  bad_function_call()
-    : base_exception(name()) {}
-  virtual const char*
-  name() const override {
-    return "Bad Function Call";
-  }
+  bad_function_call() : base_exception(name()) {}
+  virtual const char* name() const override { return "Bad Function Call"; }
 };
 
 } // namespace Except

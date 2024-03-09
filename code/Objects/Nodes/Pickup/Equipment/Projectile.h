@@ -15,26 +15,18 @@ public:
   };
 
 public:
-  Projectile(Context& context,
-             Type type,
-             Category::Type category);
+  Projectile(Context& context, Type type, Category::Type category);
   void setDirection(sf::Vector2f pos);
 
   static int getDamage(Type type);
 
-  virtual unsigned int
-  getCategory() const override;
-  virtual sf::FloatRect
-  getBoundingRect() const override;
+  virtual unsigned int getCategory() const override;
+  virtual sf::FloatRect getBoundingRect() const override;
 
 private:
-  virtual void updateCurrent(
-    sf::Time dt,
-    CommandQueue& commands) override;
-  virtual void
-  drawCurrent(sf::RenderTarget& target,
-              sf::RenderStates states)
-    const override;
+  virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
+  virtual void drawCurrent(sf::RenderTarget& target,
+                           sf::RenderStates states) const override;
 
 private:
   Type mType;

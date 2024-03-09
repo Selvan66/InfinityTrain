@@ -19,4 +19,4 @@ enum Type {
   EnemyProjectile = 1 << 11,
 };
 
-}
+} // namespace Category

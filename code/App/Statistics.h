@@ -18,13 +18,11 @@ public:
 public:
   Statistics();
   ~Statistics();
-  void increase(StatsID id,
-                data value = 1);
+  void increase(StatsID id, data value = 1);
   data get(StatsID id) const;
   void save() const;
   void load();
 
 private:
-  std::array<data, StatisticsCount>
-    mStatistics;
+  std::array<data, StatisticsCount> mStatistics;
 };

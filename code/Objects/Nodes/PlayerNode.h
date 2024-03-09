@@ -21,31 +21,21 @@ public:
   };
 
 public:
-  PlayerNode(Context& context,
-             PlayerInfo& playerInfo);
+  PlayerNode(Context& context, PlayerInfo& playerInfo);
 
   void makeAction(Action action);
-  void pickup(
-    std::unique_ptr<Pickup> pickup);
+  void pickup(std::unique_ptr<Pickup> pickup);
   bool pay(int price);
-  bool updateStat(Stats::Type stat,
-                  int value);
+  bool updateStat(Stats::Type stat, int value);
 
-  virtual sf::FloatRect
-  getBoundingRect() const override;
-  virtual bool
-  damage(int points) override;
+  virtual sf::FloatRect getBoundingRect() const override;
+  virtual bool damage(int points) override;
 
 protected:
-  virtual unsigned int
-  getCategory() const override;
-  virtual void
-  drawCurrent(sf::RenderTarget& target,
-              sf::RenderStates states)
-    const override;
-  virtual void updateCurrent(
-    sf::Time dt,
-    CommandQueue& commands) override;
+  virtual unsigned int getCategory() const override;
+  virtual void drawCurrent(sf::RenderTarget& target,
+                           sf::RenderStates states) const override;
+  virtual void updateCurrent(sf::Time dt, CommandQueue& commands) override;
 
 private:
   void fire();

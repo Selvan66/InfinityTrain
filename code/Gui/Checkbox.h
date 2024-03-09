@@ -9,12 +9,9 @@ public:
   bool isSelected() const;
 
 protected:
-  virtual void
-  draw(sf::RenderTarget& target,
-       sf::RenderStates states)
-    const override;
-  virtual sf::FloatRect
-  getGlobalBounds() const override;
+  virtual void draw(sf::RenderTarget& target,
+                    sf::RenderStates states) const override;
+  virtual sf::FloatRect getGlobalBounds() const override;
 
 private:
   sf::Sprite mCheck;

@@ -3,14 +3,10 @@
 
 #include "States/State.h"
 
-class GraphicsSettingState
-  : public State {
+class GraphicsSettingState : public State {
 public:
-  GraphicsSettingState(
-    StateStack& stack,
-    Context& context);
-  virtual bool
-  update(sf::Time dt) override;
+  GraphicsSettingState(StateStack& stack, Context& context);
+  virtual bool update(sf::Time dt) override;
 
 private:
   void applyGuiFunctions();

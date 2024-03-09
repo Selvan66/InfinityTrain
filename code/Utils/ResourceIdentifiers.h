@@ -32,24 +32,15 @@ enum class TexturesID {
   Rocket,
 };
 
-typedef ResourceHolder<sf::Texture,
-                       TexturesID>
-  TextureHolder;
+typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;
 
 enum class FontsID { PixelFont };
 
-typedef ResourceHolder<sf::Font,
-                       FontsID>
-  FontHolder;
+typedef ResourceHolder<sf::Font, FontsID> FontHolder;
 
-enum class SoundsID {
-  ButtonHover,
-  ButtonClick
-};
+enum class SoundsID { ButtonHover, ButtonClick };
 
-typedef ResourceHolder<sf::SoundBuffer,
-                       SoundsID>
-  SoundBufferHolder;
+typedef ResourceHolder<sf::SoundBuffer, SoundsID> SoundBufferHolder;
 
 enum class GuiFileID {
   MenuOptions,
@@ -64,6 +55,4 @@ enum class GuiFileID {
   Map,
 };
 
-typedef ResourceHolder<ParserGui,
-                       GuiFileID>
-  GuiFileHolder;
+typedef ResourceHolder<ParserGui, GuiFileID> GuiFileHolder;
