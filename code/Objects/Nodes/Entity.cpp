@@ -1,6 +1,8 @@
 /** @file Entity.cpp */
-#include "Objects/Nodes/Entity.h"
 #include <cmath>
+
+#include "Objects/Nodes/Entity.h"
+#include "Utils/Utility.h"
 
 Entity::Entity() : Entity(1) {}
 

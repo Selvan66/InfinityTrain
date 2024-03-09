@@ -2,6 +2,7 @@
 #include "Objects/Nodes/Pickup/Pickup.h"
 #include "Objects/Nodes/PlayerNode.h"
 #include "Objects/Nodes/TextNode.h"
+#include "Utils/Utility.h"
 
 Pickup::Pickup(Context &context)
     : Interactable(), mContext(context), mSprite(), mPickedUp(false),

@@ -1,6 +1,7 @@
 /** @file Special.cpp */
 #include "Objects/Nodes/Pickup/Equipment/Special.h"
 #include "Objects/Nodes/PlayerNode.h"
+#include "Utils/Utility.h"
 
 static std::array<SpecialParam, Special::SpecialCount> specials = {{
     {"Portal Gun",

@@ -1,7 +1,6 @@
 /** @file Enemy.cpp */
-#pragma once
-
 #include "Objects/Nodes/Enemy/Enemy.h"
+#include "Utils/Utility.h"
 
 Enemy::Enemy(Context &context)
     : Entity(100), mContext(context),

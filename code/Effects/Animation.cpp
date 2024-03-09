@@ -3,20 +3,20 @@
 #include "Utils/Utility.h"
 
 Animation::Animation()
-    : mSprite(), mFrameSize(), mNumFrames(), mCurrentFrame(0),
+    : mSprite(), mRect(), mFrameSize(), mNumFrames(), mCurrentFrame(0),
       mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero), mRepeat(false),
-      mReverse(false), mPaused(false), mRect() {}
+      mReverse(false), mPaused(false) {}
 
 Animation::Animation(const sf::Texture &texture)
-    : mSprite(texture), mFrameSize(), mNumFrames(), mCurrentFrame(0),
-      mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero), mRepeat(false),
-      mReverse(false), mPaused(false),
-      mRect(0, 0, texture.getSize().x, texture.getSize().y) {}
+    : mSprite(texture), mRect(0, 0, texture.getSize().x, texture.getSize().y),
+      mFrameSize(), mNumFrames(), mCurrentFrame(0), mDuration(sf::Time::Zero),
+      mElapsedTime(sf::Time::Zero), mRepeat(false), mReverse(false),
+      mPaused(false) {}
 
 Animation::Animation(const sf::Texture &texture, const sf::IntRect &rect)
-    : mSprite(texture, rect), mFrameSize(), mNumFrames(), mCurrentFrame(0),
-      mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero), mRepeat(false),
-      mReverse(false), mPaused(false), mRect(rect) {}
+    : mSprite(texture, rect), mRect(rect), mFrameSize(), mNumFrames(),
+      mCurrentFrame(0), mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero),
+      mRepeat(false), mReverse(false), mPaused(false) {}
 
 void Animation::setTexture(const sf::Texture &texture) {
   mSprite.setTexture(texture);

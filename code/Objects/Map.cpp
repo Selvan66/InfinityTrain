@@ -4,6 +4,7 @@
 #include "Objects/Levels/FirstLevel.h"
 #include "Objects/Levels/PrehistoryLevel.h"
 #include "Objects/Levels/StartLevel.h"
+#include "Utils/Utility.h"
 
 Map::Map(Context &context)
     : mLvlContext{context, PlayerInfo(context), 0}, mLevel(nullptr),

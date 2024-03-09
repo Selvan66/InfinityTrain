@@ -3,6 +3,7 @@
 
 #include "App/Context.h"
 #include "Objects/Nodes/Pickup/Equipment/Projectile.h"
+#include "Utils/Utility.h"
 
 static const std::array<ProjectileParam, Projectile::ProjectileCount>
     projectiles = {{
@@ -44,16 +45,15 @@ Projectile::Projectile(Context &context, Type type, Category::Type category)
     mFindCommand.category = Category::None;
   }
 
-  mAttackCommand.action =
-      derivedAction<Entity>([&](Entity &entity, sf::Time dt) {
-        if (Utility::collision(*this, entity)) {
-          entity.damageFromPos(projectiles[mType].damage,
-                               SceneNode::getWorldPosition());
-          this->destroy();
-        }
-      });
+  mAttackCommand.action = derivedAction<Entity>([&](Entity &entity, sf::Time) {
+    if (Utility::collision(*this, entity)) {
+      entity.damageFromPos(projectiles[mType].damage,
+                           SceneNode::getWorldPosition());
+      this->destroy();
+    }
+  });
 
-  mFindCommand.action = derivedAction<Entity>([&](Entity &entity, sf::Time dt) {
+  mFindCommand.action = derivedAction<Entity>([&](Entity &entity, sf::Time) {
     float distance = Utility::length(entity.getWorldPosition() -
                                      SceneNode::getWorldPosition());
     if (distance < mClosedEnemy) {
@@ -67,7 +67,7 @@ void Projectile::setDirection(sf::Vector2f pos) {
   mTargetDirection = Utility::unitVector(pos - SceneNode::getWorldPosition());
 }
 
-const int Projectile::getDamage(Type type) { return projectiles[type].damage; }
+int Projectile::getDamage(Type type) { return projectiles[type].damage; }
 
 unsigned int Projectile::getCategory() const { return mCategoryType; }
 

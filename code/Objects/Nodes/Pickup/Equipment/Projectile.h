@@ -18,7 +18,7 @@ public:
   Projectile(Context &context, Type type, Category::Type category);
   void setDirection(sf::Vector2f pos);
 
-  static const int getDamage(Type type);
+  static int getDamage(Type type);
 
   virtual unsigned int getCategory() const override;
   virtual sf::FloatRect getBoundingRect() const override;

@@ -86,7 +86,7 @@ bool SceneNode::isMarkedForRemoval() const { return isDestroyed(); }
 
 bool SceneNode::isDestroyed() const { return false; }
 
-void SceneNode::updateCurrent(sf::Time dt, CommandQueue &commands) {}
+void SceneNode::updateCurrent(sf::Time, CommandQueue &) {}
 
 void SceneNode::drawCurrent(sf::RenderTarget &target,
                             sf::RenderStates states) const {
@@ -113,7 +113,7 @@ void SceneNode::drawChildren(sf::RenderTarget &target,
 }
 
 void SceneNode::drawBoundingRect(sf::RenderTarget &target,
-                                 sf::RenderStates states) const {
+                                 sf::RenderStates) const {
   sf::FloatRect rect = getBoundingRect();
   sf::RectangleShape shape;
   shape.setPosition(sf::Vector2f(rect.left, rect.top));

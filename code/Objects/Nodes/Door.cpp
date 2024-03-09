@@ -1,5 +1,6 @@
 /** @file Door.cpp */
 #include "Objects/Nodes/Door.h"
+#include "Utils/Utility.h"
 
 Door::Door(Context &context)
     : Interactable(), mIsOpen(false), mInteract(false), mBackground({152, 82}),

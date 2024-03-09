@@ -2,6 +2,7 @@
 #include "Objects/Nodes/PlayerNode.h"
 #include "Objects/Levels/Level.h"
 #include "Objects/Nodes/Interactable.h"
+#include "Utils/Utility.h"
 
 PlayerNode::PlayerNode(Context &context, PlayerInfo &playerInfo)
     : Entity(playerInfo.stats.getState(Stats::Lives)), mContext(context),

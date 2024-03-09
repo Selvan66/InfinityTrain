@@ -1,6 +1,7 @@
 /** @file Interactable.cpp */
 #include "Objects/Nodes/Interactable.h"
 #include "Objects/Nodes/PlayerNode.h"
+#include "Utils/Utility.h"
 
 Interactable::Interactable() : Entity(), mDistance(50), mIsInteractable(false) {
   mCommand.category = Category::Player;

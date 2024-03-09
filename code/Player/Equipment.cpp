@@ -4,6 +4,7 @@
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Player/PlayerInfo.h"
 #include "Utils/Exceptions/bad_argument.h"
+#include "Utils/Utility.h"
 
 #define V1_POCKET Pocket(context)
 #define V5_POCKET V1_POCKET, V1_POCKET, V1_POCKET, V1_POCKET, V1_POCKET

@@ -2,6 +2,7 @@
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Objects/Nodes/Enemy/Enemy.h"
 #include "Objects/Nodes/PlayerNode.h"
+#include "Utils/Utility.h"
 
 static const std::array<WeaponParam, Weapon::WeaponCount> weapons = {{
     {"Knife",
@@ -57,12 +58,11 @@ Weapon::Weapon(Context &context, Type type, int ammos)
 
   if (weapons[type].projectile == Projectile::None) {
     mAttackCommand.category = Category::Enemy;
-    mAttackCommand.action =
-        derivedAction<Enemy>([&](Enemy &enemy, sf::Time dt) {
-          if (Utility::collision(*this, enemy))
-            enemy.damageFromPos(weapons[mType].damage,
-                                SceneNode::getWorldPosition());
-        });
+    mAttackCommand.action = derivedAction<Enemy>([&](Enemy &enemy, sf::Time) {
+      if (Utility::collision(*this, enemy))
+        enemy.damageFromPos(weapons[mType].damage,
+                            SceneNode::getWorldPosition());
+    });
   } else {
     mAttackCommand.category = Category::Battlefield;
     mAttackCommand.action = [&](SceneNode &node, sf::Time) {

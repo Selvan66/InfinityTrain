@@ -7,8 +7,9 @@
 #include <set>
 #include <vector>
 
+#include "SFML/Graphics.hpp"
+
 #include "Objects/CommandQueue.h"
-#include "Utils/Utility.h"
 
 class SceneNode : public sf::Transformable,
                   public sf::Drawable,
