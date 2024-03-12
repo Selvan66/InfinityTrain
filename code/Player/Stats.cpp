@@ -107,6 +107,7 @@ void Stats::setStatWithRange(Type stat, int value) {
     mStats[stat] = std::max(25, value); // stat >= 25
     break;
   default:
+    // Do nothing
     break;
   }
 }

@@ -1,6 +1,5 @@
 /** @file PlayerNode.cpp */
 #include "Objects/Nodes/PlayerNode.h"
-#include "Objects/Levels/Level.h"
 #include "Objects/Nodes/Interactable.h"
 #include "Utils/Utility.h"
 
@@ -179,7 +178,7 @@ void PlayerNode::updateEquipment() {
       mPlayerInfo.equipment.getItem(Equipment::LeftHand)
         ->setHitpoints(mWeapon->getHitpoints());
     } else {
-      SceneNode::detachChild(*mWeapon);
+      mWeapon->destroy();
       mWeapon = nullptr;
     }
   } else {

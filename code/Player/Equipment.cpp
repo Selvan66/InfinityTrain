@@ -1,7 +1,5 @@
 /** @file Equipment.cpp */
 #include "Player/Equipment.h"
-#include "Objects/Nodes/Pickup/Equipment/Armor.h"
-#include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Player/PlayerInfo.h"
 #include "Utils/Exceptions/bad_argument.h"
 #include "Utils/Utility.h"
@@ -54,7 +52,7 @@ void Equipment::equip(std::unique_ptr<Pickup> item) {
 void Equipment::unequip(Slot slot) {
   if (isItem(slot)) {
     mPlayerInfo.stats.restoreStats(getItem(slot)->getStats());
-    mPlayerInfo.backpack.addItemToBackpack(std::move(mSlots[slot].dropItem()));
+    mPlayerInfo.backpack.addItemToBackpack(mSlots[slot].dropItem());
   }
 }
 

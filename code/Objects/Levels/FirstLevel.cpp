@@ -52,8 +52,8 @@ void FirstLevel::buildFloor() {
 }
 
 void FirstLevel::buildBattlefield() {
-  auto& context = Level::getLvlContext().context;
-  auto* battlefieldLayer = Level::getLayer(Level::Battlefield);
+  // auto& context = Level::getLvlContext().context;
+  // auto* battlefieldLayer = Level::getLayer(Level::Battlefield);
   Level::setPlayerPos({900.f, 540.f});
 }
 

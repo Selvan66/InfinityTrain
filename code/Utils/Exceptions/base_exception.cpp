@@ -1,16 +1,14 @@
-#pragma warning(disable : 4996)
-
-#include <cassert>
 #include <cstring>
+#include <stdexcept>
 
 #include "Utils/Exceptions/base_exception.h"
 
 namespace Except {
 
-base_exception::base_exception() : mMessageSize(0), mMessage() { add(name()); }
+base_exception::base_exception() : mMessage(), mMessageSize(0) { add(name()); }
 
 base_exception::base_exception(const char* message)
-  : mMessageSize(0), mMessage() {
+  : mMessage(), mMessageSize(0) {
   add(message);
 }
 

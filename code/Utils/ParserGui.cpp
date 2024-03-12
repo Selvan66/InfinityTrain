@@ -69,7 +69,7 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context) {
     ret->insert(std::make_pair(id, std::move(component)));
   }
 
-  return move(ret);
+  return ret;
 }
 
 bool ParserGui::isVector(const std::string& word) const {
@@ -98,16 +98,15 @@ bool ParserGui::isComponent(const std::string& word) const {
 ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word,
                                                 Context& context) const {
   if (word == "[TextButton]")
-    return std::move(std::unique_ptr<TextButton>(new TextButton(context)));
+    return std::unique_ptr<TextButton>(new TextButton(context));
   else if (word == "[CheckBox]")
-    return std::move(std::unique_ptr<Checkbox>(new Checkbox(context)));
+    return std::unique_ptr<Checkbox>(new Checkbox(context));
   else if (word == "[TextureButton]")
-    return std::move(
-      std::unique_ptr<TextureButton>(new TextureButton(context)));
+    return std::unique_ptr<TextureButton>(new TextureButton(context));
   else if (word == "[Text]")
-    return std::move(std::unique_ptr<Text>(new Text(context)));
+    return std::unique_ptr<Text>(new Text(context));
   else if (word == "[TextSlider]")
-    return std::move(std::unique_ptr<TextSlider>(new TextSlider(context)));
+    return std::unique_ptr<TextSlider>(new TextSlider(context));
 
   throw Except::bad_argument()
     .add("Parser Gui : getComponent()")
@@ -133,7 +132,7 @@ sf::Vector2f ParserGui::parsePosition(const std::string& value) {
   expr.register_symbol_table(mConstants);
   exprtk::parser<float> parser;
 
-  for (int i = 0; i < equtaions.size(); ++i) {
+  for (size_t i = 0; i < equtaions.size(); ++i) {
     if (!parser.compile(equtaions[i], expr))
       throw Except::bad_function_call()
         .add("Parser Gui : "

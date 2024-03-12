@@ -60,4 +60,4 @@ void Button::update() {
     changeTexture(Normal);
 }
 
-void Button::changeTexture(Type buttonType) {}
+void Button::changeTexture(Type) {}

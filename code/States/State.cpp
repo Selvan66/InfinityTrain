@@ -15,7 +15,7 @@ void State::draw() {
   }
 }
 
-bool State::update(sf::Time dt) {
+bool State::update(sf::Time) {
   if (mIsGuiLoad)
     for (auto& component : *mGui)
       component.second->update();

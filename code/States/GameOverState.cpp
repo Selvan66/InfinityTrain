@@ -3,7 +3,7 @@
 #include "Gui/TextButton.h"
 
 GameOverState::GameOverState(StateStack& stack, Context& context)
-  : State(stack, context), mBackgroundShape(), mElapsedTime(sf::Time::Zero) {
+  : State(stack, context), mElapsedTime(sf::Time::Zero), mBackgroundShape() {
   mBackgroundShape.setFillColor(sf::Color(0, 0, 0, 150));
   mBackgroundShape.setSize(context.window.getView().getSize());
 

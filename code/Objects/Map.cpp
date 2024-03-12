@@ -7,7 +7,7 @@
 #include "Utils/Utility.h"
 
 Map::Map(Context& context)
-  : mLvlContext{context, PlayerInfo(context), 0}, mLevel(nullptr),
+  : mLevel(nullptr), mLvlContext{context, PlayerInfo(context), 0}, mFactories(),
     mStartTime(context.statistics.get(Statistics::TimePlay)), mGui() {
   registerLevels();
   mLevel = mFactories[LevelID::StartLevel]();

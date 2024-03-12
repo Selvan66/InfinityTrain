@@ -38,7 +38,7 @@ std::string TextSlider::getCurrentText() const {
 
 void TextSlider::setCurrentText(const std::string& text) {
   assert(mTextIndex != -1);
-  for (int i = 0; i < mTextArray.size(); ++i) {
+  for (size_t i = 0; i < mTextArray.size(); ++i) {
     if (mTextArray[i].getString() == text) {
       mTextIndex = i;
       return;
@@ -71,7 +71,7 @@ void TextSlider::setPosition(const sf::Vector2f& pos) {
 }
 
 void TextSlider::setNextText() {
-  if (mTextIndex < (mTextArray.size() - 1))
+  if (static_cast<size_t>(mTextIndex) < (mTextArray.size() - 1))
     ++mTextIndex;
 }
 

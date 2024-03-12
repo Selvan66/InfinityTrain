@@ -25,5 +25,5 @@ private:
 };
 
 template <typename T> void Map::registerLevel(LevelID::ID id) {
-  mFactories[id] = [this] { return Level::Ptr(new T(mLvlContext)); };
+  mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
 }
