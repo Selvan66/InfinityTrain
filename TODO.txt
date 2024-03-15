@@ -1,0 +1,315 @@
+[22/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Objects/Levels/Level.cpp.obj
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Levels/Level.cpp:110:43: warning: lambda capture 'this' is not used [-Wunused-lambda-capture]
+  110 |   command.action = derivedAction<Entity>([this](Entity& e, sf::Time) {
+      |                                           ^~~~
+1 warning generated.
+[24/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Objects/Levels/PrehistoryLevel.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Levels/PrehistoryLevel.cpp:2:
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/PrehistoryLevel.h:12:23: warning: 'nextLevel' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   12 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:22:23: note: overridden virtual function is here
+   22 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+1 warning generated.
+[26/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Objects/Map.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:5:
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/PrehistoryLevel.h:12:23: warning: 'nextLevel' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   12 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:22:23: note: overridden virtual function is here
+   22 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'Level' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<Level>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:9:6: note: in instantiation of member function 'std::unique_ptr<Level>::~unique_ptr' requested here
+    9 | Map::Map(Context& context)
+      |      ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'PrehistoryLevel' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<PrehistoryLevel>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:28:36: note: in instantiation of member function 'std::unique_ptr<PrehistoryLevel>::~unique_ptr' requested here
+   28 |   mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
+      |                                    ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:71:3: note: in instantiation of function template specialization 'Map::registerLevel<PrehistoryLevel>' requested here
+   71 |   registerLevel<PrehistoryLevel>(LevelID::Prehistory);
+      |   ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'StartLevel' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<StartLevel>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:28:36: note: in instantiation of member function 'std::unique_ptr<StartLevel>::~unique_ptr' requested here
+   28 |   mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
+      |                                    ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:72:3: note: in instantiation of function template specialization 'Map::registerLevel<StartLevel>' requested here
+   72 |   registerLevel<StartLevel>(LevelID::StartLevel);
+      |   ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'FirstLevel' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<FirstLevel>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:28:36: note: in instantiation of member function 'std::unique_ptr<FirstLevel>::~unique_ptr' requested here
+   28 |   mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
+      |                                    ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:73:3: note: in instantiation of function template specialization 'Map::registerLevel<FirstLevel>' requested here
+   73 |   registerLevel<FirstLevel>(LevelID::FirstLevel);
+      |   ^
+5 warnings generated.
+[43/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Player/Pocket.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Player/Pocket.cpp:2:
+C:/Users/rafik/Desktop/InfinityTrain/code\Player/Pocket.h:28:12: warning: private field 'mContext' is not used [-Wunused-private-field]
+   28 |   Context& mContext;
+      |            ^
+1 warning generated.
+[44/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Player/Equipment.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Player/Equipment.cpp:2:
+C:/Users/rafik/Desktop/InfinityTrain/code\Player/Equipment.h:36:12: warning: private field 'mContext' is not used [-Wunused-private-field]
+   36 |   Context& mContext;
+      |            ^
+1 warning generated.
+[49/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/States/GameState.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/States/GameState.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\States/GameState.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'Level' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<Level>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:7:7: note: in instantiation of member function 'std::unique_ptr<Level>::~unique_ptr' requested here
+    7 | class Map {
+      |       ^
+1 warning generated.
+[59/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Utils/Exceptions/base_exception.cpp.obj
+C:/Users/rafik/Desktop/InfinityTrain/code/Utils/Exceptions/base_exception.cpp:33:3: warning: 'strcat' is deprecated: This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   33 |   strcat(mMessage, message);
+      |   ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\string.h:91:5: note: 'strcat' has been explicitly marked deprecated here
+   91 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1(
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\corecrt.h:835:5: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1'
+  835 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX(_ReturnType, _ReturnPolicy, _DeclSpec, _FuncName, _FuncName##_s, _DstType, _SalAttributeDst, _DstType, _Dst, _TType1, _TArg1)
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\corecrt.h:1894:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX'
+ 1894 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\vcruntime.h:355:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  355 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\vcruntime.h:345:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  345 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+1 warning generated.
+[60/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/States/StateStack.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/States/StateStack.cpp:4:
+C:/Users/rafik/Desktop/InfinityTrain/code\States/StateStack.h:38:12: warning: private field 'mContext' is not used [-Wunused-private-field]
+   38 |   Context& mContext;
+      |            ^
+1 warning generated.
+[64/64] Linking CXX executable InfinityTrain.exe
+
+################################################################################
+################################################################################
+################################################################################
+
+[22/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Objects/Levels/Level.cpp.obj
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Levels/Level.cpp:110:43: warning: lambda capture 'this' is not used [-Wunused-lambda-capture]
+  110 |   command.action = derivedAction<Entity>([this](Entity& e, sf::Time) {
+      |                                           ^~~~
+1 warning generated.
+[23/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Objects/Levels/PrehistoryLevel.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Levels/PrehistoryLevel.cpp:2:
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/PrehistoryLevel.h:12:23: warning: 'nextLevel' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   12 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:22:23: note: overridden virtual function is here
+   22 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+1 warning generated.
+[24/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Objects/Map.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:5:
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/PrehistoryLevel.h:12:23: warning: 'nextLevel' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   12 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:22:23: note: overridden virtual function is here
+   22 |   virtual LevelID::ID nextLevel() const;
+      |                       ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'Level' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<Level>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:9:6: note: in instantiation of member function 'std::unique_ptr<Level>::~unique_ptr' requested here
+    9 | Map::Map(Context& context)
+      |      ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'PrehistoryLevel' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<PrehistoryLevel>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:28:36: note: in instantiation of member function 'std::unique_ptr<PrehistoryLevel>::~unique_ptr' requested here
+   28 |   mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
+      |                                    ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:71:3: note: in instantiation of function template specialization 'Map::registerLevel<PrehistoryLevel>' requested here
+   71 |   registerLevel<PrehistoryLevel>(LevelID::Prehistory);
+      |   ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'StartLevel' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<StartLevel>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:28:36: note: in instantiation of member function 'std::unique_ptr<StartLevel>::~unique_ptr' requested here
+   28 |   mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
+      |                                    ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:72:3: note: in instantiation of function template specialization 'Map::registerLevel<StartLevel>' requested here
+   72 |   registerLevel<StartLevel>(LevelID::StartLevel);
+      |   ^
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'FirstLevel' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<FirstLevel>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:28:36: note: in instantiation of member function 'std::unique_ptr<FirstLevel>::~unique_ptr' requested here
+   28 |   mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
+      |                                    ^
+C:/Users/rafik/Desktop/InfinityTrain/code/Objects/Map.cpp:73:3: note: in instantiation of function template specialization 'Map::registerLevel<FirstLevel>' requested here
+   73 |   registerLevel<FirstLevel>(LevelID::FirstLevel);
+      |   ^
+5 warnings generated.
+[42/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Player/Equipment.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Player/Equipment.cpp:2:
+C:/Users/rafik/Desktop/InfinityTrain/code\Player/Equipment.h:36:12: warning: private field 'mContext' is not used [-Wunused-private-field]
+   36 |   Context& mContext;
+      |            ^
+1 warning generated.
+[45/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Player/Pocket.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/Player/Pocket.cpp:2:
+C:/Users/rafik/Desktop/InfinityTrain/code\Player/Pocket.h:28:12: warning: private field 'mContext' is not used [-Wunused-private-field]
+   28 |   Context& mContext;
+      |            ^
+1 warning generated.
+[50/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/States/GameState.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/States/GameState.cpp:2:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\States/GameState.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/Level.h:5:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Levels/LvlContext.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Context.h:4:
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code\App/Settings.h:6:
+In file included from C:/Users/rafik/.conan2/p/nlohmbfd470c3b3103/p/include\nlohmann/json.hpp:54:
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3139:9: warning: delete called on non-final 'Level' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+ 3139 |         delete _Ptr;
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\memory:3249:13: note: in instantiation of member function 'std::default_delete<Level>::operator()' requested here
+ 3249 |             _Mypair._Get_first()(_Mypair._Myval2);
+      |             ^
+C:/Users/rafik/Desktop/InfinityTrain/code\Objects/Map.h:7:7: note: in instantiation of member function 'std::unique_ptr<Level>::~unique_ptr' requested here
+    7 | class Map {
+      |       ^
+1 warning generated.
+[53/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/Utils/Exceptions/base_exception.cpp.obj
+C:/Users/rafik/Desktop/InfinityTrain/code/Utils/Exceptions/base_exception.cpp:33:3: warning: 'strcat' is deprecated: This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   33 |   strcat(mMessage, message);
+      |   ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\string.h:91:5: note: 'strcat' has been explicitly marked deprecated here
+   91 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1(
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\corecrt.h:835:5: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1'
+  835 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX(_ReturnType, _ReturnPolicy, _DeclSpec, _FuncName, _FuncName##_s, _DstType, _SalAttributeDst, _DstType, _Dst, _TType1, _TArg1)
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\corecrt.h:1894:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX'
+ 1894 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\vcruntime.h:355:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  355 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include\vcruntime.h:345:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  345 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+1 warning generated.
+[59/64] Building CXX object CMakeFiles/InfinityTrain.dir/code/States/StateStack.cpp.obj
+In file included from C:/Users/rafik/Desktop/InfinityTrain/code/States/StateStack.cpp:4:
+C:/Users/rafik/Desktop/InfinityTrain/code\States/StateStack.h:38:12: warning: private field 'mContext' is not used [-Wunused-private-field]
+   38 |   Context& mContext;
+      |            ^
+1 warning generated.
+[64/64] Linking CXX executable InfinityTrain.exe
+
+
