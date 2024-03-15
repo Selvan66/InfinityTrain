@@ -3,9 +3,34 @@ project(InfinityTrain)
 
 # Compiler
 if (MSVC)
-    add_compile_options(/bigobj)
+  add_compile_options(
+    /bigobj 
+    /Wall 
+    /sdl 
+    /guard:cf 
+    /guard:ehcont 
+    /CETCOMPAT 
+    /fsanitize=address 
+    /analyze
+  )
 else()
-    add_compile_options(-Wall -Wextra)
+  add_compile_options(
+    -Wall 
+    -Wextra 
+    -Wfloat-equal 
+    -Wundef 
+    -Wshadow 
+    -Wpointer-arith 
+    -Wcast-align 
+    -Wstrict-prototypes
+    -Wstrict-overflow=5
+    -Wwrite-strings
+    -Waggregate-return
+    -Wcast-qual
+    -Wswitch-default
+    -Wconversion
+    -Wunreachable-code
+  )
 endif()
 
 # Cmake
