@@ -52,6 +52,11 @@ sf::Vector2f getMousePos(sf::RenderWindow& window) {
   return window.mapPixelToCoords(sf::Mouse::getPosition(window));
 }
 
+bool areEqual(float lhs, float rhs) {
+  return std::fabs(lhs - rhs) <= std::numeric_limits<float>::epsilon() *
+                                   std::fmax(std::fabs(lhs), std::fabs(rhs));
+}
+
 std::string toString(Player::Output key) {
   sf::Keyboard::Key* keyboard = std::get_if<sf::Keyboard::Key>(&key);
   sf::Mouse::Button* mouse = std::get_if<sf::Mouse::Button>(&key);

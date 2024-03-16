@@ -53,6 +53,9 @@ void Pocket::changeTexture(Button::Type buttonType) {
   case Pressed:
     mBackground.setFillColor(sf::Color(255, 255, 255, 100));
     break;
+  default:
+    // Do nothing
+    break;
   }
 }
 

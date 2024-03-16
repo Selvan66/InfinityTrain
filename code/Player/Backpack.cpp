@@ -19,7 +19,8 @@ Backpack::Backpack(Context& context)
 
   for (size_t i = 0; i < 4; ++i)
     for (size_t j = 0; j < 5; ++j)
-      mBackpack[i * 5 + j].setPosition((j * 40.f), (i * 40.f));
+      mBackpack[i * 5 + j].setPosition(static_cast<float>(j * 40),
+                                       static_cast<float>(i * 40));
 }
 
 void Backpack::addItemToBackpack(std::unique_ptr<Pickup> item) {

@@ -61,6 +61,9 @@ void PlayerNode::makeAction(Action action) {
   case Specials:
     special();
     break;
+  default:
+    // Do nothing
+    break;
   }
 }
 
@@ -93,19 +96,20 @@ sf::FloatRect PlayerNode::getBoundingRect() const {
 
 bool PlayerNode::damage(int points) {
   float damage = static_cast<float>(points);
+  float fpoints = static_cast<float>(points);
   mDamageDuration = sf::Time::Zero;
   auto& eq = mPlayerInfo.equipment;
   if (eq.isItem(Equipment::Head)) {
     eq.getItem(Equipment::Head)->damage(static_cast<int>(points * 0.35));
-    damage -= points * 0.35f;
+    damage -= fpoints * 0.35f;
   }
   if (eq.isItem(Equipment::Chest)) {
     eq.getItem(Equipment::Chest)->damage(static_cast<int>(points * 0.45));
-    damage -= points * 0.45f;
+    damage -= fpoints * 0.45f;
   }
   if (eq.isItem(Equipment::Boots)) {
     eq.getItem(Equipment::Boots)->damage(static_cast<int>(points * 0.2));
-    damage -= points * 0.2f;
+    damage -= fpoints * 0.2f;
   }
   return Entity::damage(static_cast<int>(damage));
 }

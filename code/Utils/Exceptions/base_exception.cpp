@@ -30,7 +30,7 @@ void base_exception::insertMassage(const char* message) {
     throw std::out_of_range("Base Exception: RESIZE MESSAGE "
                             "SIZE YOU GREEDY MAN");
 
-  strcat(mMessage, message);
+  strcat_s(mMessage, message);
 }
 
 } // namespace Except

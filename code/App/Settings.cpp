@@ -2,8 +2,6 @@
 #include <fstream>
 #include <iostream>
 
-#include "SFML/Window.hpp"
-
 #include "App/Settings.h"
 
 Settings::Settings() : mSettings() { load(); }
@@ -23,7 +21,8 @@ void Settings::load() {
   if (i.is_open()) {
     i >> mSettings;
   } else {
-    mSettings["Graphics"]["Resolution"] = std::pair<int, int>(1366, 768);
+    mSettings["Graphics"]["Resolution"] =
+      std::pair<unsigned int, unsigned int>(1366, 768);
     mSettings["Graphics"]["Fullscreen"] = false;
 
     mSettings["Control"]["Up"] = "W";

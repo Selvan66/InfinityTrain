@@ -31,6 +31,9 @@ void TextButton::changeTexture(Button::Type buttonType) {
   case Pressed:
     color = sf::Color(255, 0, 0);
     break;
+  default:
+    // Do nothing
+    break;
   }
   mText.setFillColor(color);
 }

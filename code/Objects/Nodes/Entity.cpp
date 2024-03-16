@@ -29,10 +29,9 @@ int Entity::getHitpoints() const { return mHitpoints; }
 
 void Entity::destroy() { mHitpoints = 0; }
 
-bool Entity::heal(int points) {
-  assert(points > 0);
+bool Entity::heal(unsigned int points) {
   int old_hitpoints = mHitpoints;
-  mHitpoints = std::min(mHitpoints + points, 100);
+  mHitpoints = std::min(mHitpoints + static_cast<int>(points), 100);
   return old_hitpoints != mHitpoints;
 }
 
@@ -58,7 +57,7 @@ void Entity::updateCurrent(sf::Time dt, CommandQueue&) {
     mVelocity = sf::Vector2f(0, 0);
 
   auto velocity = mVelocity;
-  if (velocity.x != 0 && velocity.y != 0)
+  if (!Utility::areEqual(velocity.x, 0.0) && Utility::areEqual(velocity.y, 0.0))
     velocity /= (float)std::sqrt(2.0);
 
   sf::Transformable::move(velocity * dt.asSeconds());

@@ -15,7 +15,7 @@ public:
   sf::Vector2f getVelocity() const;
   int getHitpoints() const;
   void destroy();
-  bool heal(int points);
+  bool heal(unsigned int points);
   bool damageFromPos(int points, sf::Vector2f pos);
 
   virtual bool damage(int points);

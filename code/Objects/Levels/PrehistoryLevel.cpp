@@ -3,7 +3,6 @@
 #include "Objects/Nodes/Enemy/Enemy.h"
 #include "Objects/Nodes/Pickup/Buyable.h"
 #include "Objects/Nodes/Pickup/Equipment/Armor.h"
-#include "Objects/Nodes/Pickup/Equipment/Projectile.h"
 #include "Objects/Nodes/Pickup/Equipment/Special.h"
 #include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Objects/Nodes/Pickup/Heart.h"

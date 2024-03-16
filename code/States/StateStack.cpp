@@ -55,6 +55,9 @@ void StateStack::applyPendingChanges() {
     case Clear:
       mStack.clear();
       break;
+    default:
+      // Do nothing
+      break;
     }
   }
   mPendingList.clear();

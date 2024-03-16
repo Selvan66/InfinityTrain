@@ -46,7 +46,7 @@ void FirstLevel::buildFloor() {
 
   for (int i = 0; i < 10; i++) {
     std::unique_ptr<Money> test(new Money(context, 20));
-    test->setPosition({(30.f * i) + 500.f, 500.f});
+    test->setPosition({(30.f * static_cast<float>(i)) + 500.f, 500.f});
     floorLayer->attachChild(std::move(test));
   }
 }

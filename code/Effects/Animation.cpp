@@ -8,7 +8,8 @@ Animation::Animation()
     mReverse(false), mPaused(false) {}
 
 Animation::Animation(const sf::Texture& texture)
-  : mSprite(texture), mRect(0, 0, texture.getSize().x, texture.getSize().y),
+  : mSprite(texture), mRect(0, 0, static_cast<int>(texture.getSize().x),
+                            static_cast<int>(texture.getSize().y)),
     mFrameSize(), mNumFrames(), mCurrentFrame(0), mDuration(sf::Time::Zero),
     mElapsedTime(sf::Time::Zero), mRepeat(false), mReverse(false),
     mPaused(false) {}
@@ -20,7 +21,8 @@ Animation::Animation(const sf::Texture& texture, const sf::IntRect& rect)
 
 void Animation::setTexture(const sf::Texture& texture) {
   mSprite.setTexture(texture);
-  mRect = sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y);
+  mRect = sf::IntRect(0, 0, static_cast<int>(texture.getSize().x),
+                      static_cast<int>(texture.getSize().y));
 }
 
 void Animation::setTexture(const sf::Texture& texture,

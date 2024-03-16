@@ -12,10 +12,10 @@ Equipment::Equipment(Context& context, PlayerInfo& playerInfo)
     mPlayerSprite(context.textures.get(TexturesID::Player),
                   sf::IntRect(0, 0, 80, 61)),
     mSlots{V5_POCKET} {
-  for (int i = 0; i < SlotCount; ++i)
+  for (size_t i = 0; i < SlotCount; ++i)
     mSlots[i].setLeftClickCallback([]() {});
 
-  for (int i = 0; i < SlotCount; ++i)
+  for (size_t i = 0; i < SlotCount; ++i)
     mSlots[i].setRightClickCallback(
       [this, i]() { this->unequip(static_cast<Slot>(i)); });
 

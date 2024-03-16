@@ -9,7 +9,7 @@ public:
   explicit PrehistoryLevel(LvlContext& lvlContext);
 
   virtual void update(sf::Time dt) override;
-  virtual LevelID::ID nextLevel() const;
+  virtual LevelID::ID nextLevel() const override;
 
 private:
   void buildBackground();

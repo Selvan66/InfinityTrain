@@ -21,8 +21,8 @@ bool Level::isPlayerAlive() const {
 }
 
 void Level::update(sf::Time dt) {
-  mLvlContext.context.statistics.increase(Statistics::TimePlay,
-                                          dt.asMilliseconds());
+  mLvlContext.context.statistics.increase(
+    Statistics::TimePlay, static_cast<unsigned long long>(dt.asMilliseconds()));
 
   mSceneGraph.removeObjects();
   mSceneGraph.update(dt, mCommands);
@@ -54,7 +54,7 @@ void Level::setPlayerPos(sf::Vector2f pos) {
 }
 
 void Level::buildScene() {
-  for (int i = 0; i < LayerCount; ++i) {
+  for (size_t i = 0; i < LayerCount; ++i) {
     Category::Type category = Category::None;
 
     switch (static_cast<Layer>(i)) {
@@ -107,7 +107,7 @@ void Level::updatePlayer(PlayerNode* player) {
 void Level::destoryEntitiesOutsideLevel() {
   Command command;
   command.category = Category::AlliedProjectile | Category::EnemyProjectile;
-  command.action = derivedAction<Entity>([this](Entity& e, sf::Time) {
+  command.action = derivedAction<Entity>([](Entity& e, sf::Time) {
     if (!getLevelBounds().intersects(e.getBoundingRect())) {
       e.destroy();
     }

@@ -8,7 +8,7 @@ Money::Money(Context& context, unsigned int value)
   command.category = Category::Player;
   command.action =
     derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
-      if (player.updateStat(Stats::Money, mValue))
+      if (player.updateStat(Stats::Money, static_cast<int>(mValue)))
         this->destroy();
     });
 

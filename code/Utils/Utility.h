@@ -20,6 +20,7 @@ sf::Vector2f unitVector(sf::Vector2f vector);
 float distance(const SceneNode& lhs, const SceneNode& rhs);
 bool collision(const SceneNode& lhs, const SceneNode& rhs);
 std::string timeToString(unsigned long long time);
+bool areEqual(float lhs, float rhs);
 
 sf::Vector2f getMousePos(sf::RenderWindow& window);
 

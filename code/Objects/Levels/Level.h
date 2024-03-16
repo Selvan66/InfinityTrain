@@ -14,6 +14,7 @@ protected:
 
 public:
   explicit Level(LvlContext& lvlContext);
+  virtual ~Level() = default;
   CommandQueue& getCommandQueue();
   void draw();
   bool isPlayerAlive() const;

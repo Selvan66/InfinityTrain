@@ -13,7 +13,8 @@ Context::Context()
 
 void Context::applyGraphicSettings() {
   std::pair<int, int> window_size =
-    settings.get<std::pair<int, int>>("Graphics", "Resolution");
+    settings.get<std::pair<unsigned int, unsigned int>>("Graphics",
+                                                        "Resolution");
   bool fullscreen = settings.get<bool>("Graphics", "Fullscreen");
   if (fullscreen) {
     window.create(sf::VideoMode(1920, 1080), "Infinity Train",
@@ -23,10 +24,11 @@ void Context::applyGraphicSettings() {
                   sf::Style::Close);
     window.setSize(sf::Vector2u(window_size.first, window_size.second));
   }
-  int screen_width = sf::VideoMode::getDesktopMode().width;
-  int screen_height = sf::VideoMode::getDesktopMode().height;
-  window.setPosition({screen_width / 2 - window_size.first / 2,
-                      screen_height / 2 - window_size.second / 2});
+  unsigned int screen_width = sf::VideoMode::getDesktopMode().width;
+  unsigned int screen_height = sf::VideoMode::getDesktopMode().height;
+  window.setPosition(
+    {static_cast<int>(screen_width / 2 - window_size.first / 2),
+     static_cast<int>(screen_height / 2 - window_size.second / 2)});
   window.setKeyRepeatEnabled(false);
   window.setVerticalSyncEnabled(true);
   auto icon = textures.get(TexturesID::Icon).copyToImage();

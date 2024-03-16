@@ -33,14 +33,14 @@ void TextSlider::addText(const std::string& text) {
 
 std::string TextSlider::getCurrentText() const {
   assert(mTextIndex != -1);
-  return mTextArray[mTextIndex].getString();
+  return mTextArray[static_cast<size_t>(mTextIndex)].getString();
 }
 
 void TextSlider::setCurrentText(const std::string& text) {
   assert(mTextIndex != -1);
   for (size_t i = 0; i < mTextArray.size(); ++i) {
     if (mTextArray[i].getString() == text) {
-      mTextIndex = i;
+      mTextIndex = static_cast<int>(i);
       return;
     }
   }
@@ -85,6 +85,6 @@ void TextSlider::draw(sf::RenderTarget& target, sf::RenderStates states) const {
   if (mTextIndex != -1) {
     target.draw(mLeft);
     target.draw(mRight);
-    target.draw(mTextArray[mTextIndex], states);
+    target.draw(mTextArray[static_cast<size_t>(mTextIndex)], states);
   }
 }

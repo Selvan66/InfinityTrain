@@ -2,7 +2,8 @@
 #include "Objects/Nodes/Pickup/Heart.h"
 #include "Objects/Nodes/PlayerNode.h"
 
-Heart::Heart(Context& context, int value) : Pickup(context), mValue(value) {
+Heart::Heart(Context& context, unsigned int value)
+  : Pickup(context), mValue(value) {
   Command command;
   command.category = Category::Player;
   command.action =
