@@ -154,7 +154,8 @@ void PlayerNode::updateAnimation(sf::Time dt) {
     mAnimation.setColor(sf::Color::White);
 
   sf::Vector2f velocity = Entity::getVelocity();
-  if (velocity.x == 0.f && velocity.y == 0.f) {
+  if (Utility::areEqual(velocity.x, 0.f) &&
+      Utility::areEqual(velocity.y, 0.f)) {
     mAnimation.restart();
     mAnimation.update(dt);
     mAnimation.pause();

@@ -4,6 +4,8 @@
 #include "Effects/Animation.h"
 #include "Objects/Nodes/Interactable.h"
 
+struct Context;
+
 class Door : public Interactable {
 public:
   explicit Door(Context& context);

@@ -27,7 +27,7 @@ private:
 
 private:
   struct PendingChange {
-    PendingChange(Action action, StatesID stateID = StatesID::None);
+    PendingChange(Action act, StatesID id = StatesID::None);
     Action action;
     StatesID stateID;
   };

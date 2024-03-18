@@ -1,5 +1,5 @@
+#include <algorithm>
 #include <cstring>
-#include <stdexcept>
 
 #include "Utils/Exceptions/base_exception.h"
 
@@ -24,13 +24,12 @@ const char* base_exception::name() const { return "Base Exception"; }
 const char* base_exception::what() const noexcept { return mMessage; }
 
 void base_exception::insertMassage(const char* message) {
-  mMessageSize += strlen(message);
+  size_t availableSize = MESSAGE_SIZE - mMessageSize;
+  size_t clampMessageSize =
+    std::clamp<size_t>(strlen(message), 0, availableSize);
+  mMessageSize += clampMessageSize;
 
-  if (mMessageSize >= MESSAGE_SIZE)
-    throw std::out_of_range("Base Exception: RESIZE MESSAGE "
-                            "SIZE YOU GREEDY MAN");
-
-  strcat_s(mMessage, message);
+  std::strncat(mMessage, message, clampMessageSize);
 }
 
 } // namespace Except

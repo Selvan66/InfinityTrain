@@ -155,7 +155,7 @@ void ParserGui::setProperties(ComponentPtr& component,
     Utility::safeCasting<Text>(component.get())->setString(value);
   else if (propertie == "charSize")
     Utility::safeCasting<Text>(component.get())
-      ->setCharacterSize(std::stoul(value));
+      ->setCharacterSize(static_cast<unsigned int>(std::stoul(value)));
   else if (propertie == "texts")
     for (auto& text : splitVector(value))
       Utility::safeCasting<TextSlider>(component.get())->addText(text);

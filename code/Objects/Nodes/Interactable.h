@@ -2,7 +2,6 @@
 #pragma once
 
 #include "Objects/Nodes/Entity.h"
-#include "Objects/Nodes/TextNode.h"
 
 class Interactable : public Entity {
 public:

@@ -1,8 +1,6 @@
 /** @file SceneNode.h */
 #pragma once
 
-#include <algorithm>
-#include <cassert>
 #include <memory>
 #include <set>
 #include <vector>
@@ -20,6 +18,8 @@ public:
 
 public:
   explicit SceneNode(Category::Type category = Category::None);
+  virtual ~SceneNode() = default;
+
   void attachChild(Ptr child);
   Ptr detachChild(const SceneNode& node);
   size_t getChildrenSize() const;

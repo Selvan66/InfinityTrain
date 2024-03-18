@@ -60,13 +60,13 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands) {
 
   Command command;
   command.category = Category::Player;
-  command.action =
-    derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time dt) {
-      mDuration += dt;
-      if (mDuration >= sf::seconds(0.5f)) {
+  command.action = derivedAction<PlayerNode>(
+    [&duration = mDuration, this](PlayerNode& player, sf::Time dt) {
+      duration += dt;
+      if (duration >= sf::seconds(0.5f)) {
         if (Utility::collision(*this, player)) {
           player.damageFromPos(25, SceneNode::getWorldPosition());
-          mDuration = sf::Time::Zero;
+          duration = sf::Time::Zero;
         }
       }
     });
