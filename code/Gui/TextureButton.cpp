@@ -30,6 +30,9 @@ void TextureButton::changeTexture(Button::Type buttonType) {
   case Pressed:
     mButton = mPressedButton;
     break;
+  default:
+    // Do nothing
+    break;
   }
   Utility::centerOrigin(mButton);
 }

@@ -12,7 +12,7 @@ Context::Context()
 }
 
 void Context::applyGraphicSettings() {
-  std::pair<int, int> window_size =
+  std::pair<unsigned int, unsigned int> window_size =
     settings.get<std::pair<unsigned int, unsigned int>>("Graphics",
                                                         "Resolution");
   bool fullscreen = settings.get<bool>("Graphics", "Fullscreen");
@@ -26,9 +26,10 @@ void Context::applyGraphicSettings() {
   }
   unsigned int screen_width = sf::VideoMode::getDesktopMode().width;
   unsigned int screen_height = sf::VideoMode::getDesktopMode().height;
-  window.setPosition(
-    {static_cast<int>(screen_width / 2 - window_size.first / 2),
-     static_cast<int>(screen_height / 2 - window_size.second / 2)});
+  window.setPosition({static_cast<int>(screen_width) / 2 -
+                        static_cast<int>(window_size.first) / 2,
+                      static_cast<int>(screen_height) / 2 -
+                        static_cast<int>(window_size.second) / 2});
   window.setKeyRepeatEnabled(false);
   window.setVerticalSyncEnabled(true);
   auto icon = textures.get(TexturesID::Icon).copyToImage();
