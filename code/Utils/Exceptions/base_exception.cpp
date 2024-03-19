@@ -24,13 +24,15 @@ const char* base_exception::name() const { return "Base Exception"; }
 const char* base_exception::what() const noexcept { return mMessage; }
 
 void base_exception::insertMassage(const char* message) {
-  mMessageSize += strlen(message);
-
-  if (mMessageSize >= MESSAGE_SIZE)
-    throw std::out_of_range("Base Exception: RESIZE MESSAGE "
-                            "SIZE YOU GREEDY MAN");
-
-  strcat_s(mMessage, message);
+  size_t availableSize = MESSAGE_SIZE - mMessageSize;
+  size_t clampMessageSize =
+    std::clamp<size_t>(strlen(message), 0, availableSize);
+  mMessageSize += clampMessageSize;
+#if defined(_WIN32)
+  strncat_s(mMessage, message, clampMessageSize);
+#else  // defined(_WIN32)
+  std::strncat(mMessage, message, clampMessageSize);
+#endif // defined(_WIN32)
 }
 
 } // namespace Except
