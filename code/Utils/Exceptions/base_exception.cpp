@@ -28,6 +28,7 @@ void base_exception::insertMassage(const char* message) {
   size_t clampMessageSize =
     std::clamp<size_t>(strlen(message), 0, availableSize);
   mMessageSize += clampMessageSize;
+
 #if defined(_WIN32)
   strncat_s(mMessage, message, clampMessageSize);
 #else  // defined(_WIN32)
