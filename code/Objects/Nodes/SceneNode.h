@@ -23,6 +23,7 @@ public:
   void attachChild(Ptr child);
   Ptr detachChild(const SceneNode& node);
   size_t getChildrenSize() const;
+  bool isChildAttach(const SceneNode& ptr);
   void update(sf::Time dt, CommandQueue& commands);
   sf::Transform getWorldTransform() const;
   sf::Vector2f getWorldPosition() const;

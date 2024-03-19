@@ -11,7 +11,7 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
     mSpecial(nullptr), mDamageDuration(sf::seconds(0.3f)) {
   mFireCommand.category = Category::Battlefield;
   mFireCommand.action = [&](SceneNode&, sf::Time) {
-    if (mWeapon != nullptr)
+    if (SceneNode::isChildAttach(*mWeapon))
       mWeapon->use();
   };
 
@@ -24,7 +24,7 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 
   mSpecialCommand.category = Category::Battlefield;
   mSpecialCommand.action = [&](SceneNode&, sf::Time) {
-    if (mSpecial != nullptr)
+    if (SceneNode::isChildAttach(*mSpecial))
       mSpecial->use();
   };
 
@@ -178,7 +178,7 @@ void PlayerNode::updateAnimation(sf::Time dt) {
 }
 
 void PlayerNode::updateEquipment() {
-  if (mWeapon != nullptr) {
+  if (SceneNode::isChildAttach(*mWeapon)) {
     if (mPlayerInfo.equipment.isItem(Equipment::LeftHand)) {
       mPlayerInfo.equipment.getItem(Equipment::LeftHand)
         ->setHitpoints(mWeapon->getHitpoints());
@@ -199,7 +199,7 @@ void PlayerNode::updateEquipment() {
     }
   }
 
-  if (mSpecial != nullptr) {
+  if (SceneNode::isChildAttach(*mSpecial)) {
     if (mPlayerInfo.equipment.isItem(Equipment::RightHand)) {
       mPlayerInfo.equipment.getItem(Equipment::RightHand)
         ->setHitpoints(mSpecial->getHitpoints());
@@ -241,7 +241,7 @@ void PlayerNode::updateStats() {
 }
 
 void PlayerNode::updateWeapon() {
-  if (mWeapon != nullptr) {
+  if (SceneNode::isChildAttach(*mWeapon)) {
     sf::Vector2f vec =
       Utility::getMousePos(mContext.window) - SceneNode::getWorldPosition();
     mWeapon->setPosition(

@@ -25,6 +25,12 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode& node) {
 
 size_t SceneNode::getChildrenSize() const { return mChildren.size(); }
 
+bool SceneNode::isChildAttach(const SceneNode& node) {
+  return std::find_if(mChildren.begin(), mChildren.end(), [&](Ptr& p) {
+           return p.get() == &node;
+         }) != mChildren.end();
+}
+
 void SceneNode::update(sf::Time dt, CommandQueue& commands) {
   updateCurrent(dt, commands);
   updateChildren(dt, commands);
