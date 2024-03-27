@@ -8,10 +8,11 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
     mPlayerInfo(playerInfo), mFireCommand(), mIsFire(false), mInteractCommand(),
     mIsInteract(false), mSpecialCommand(), mIsSpecial(false),
     mAnimation(context.textures.get(TexturesID::Player)), mWeapon(nullptr),
-    mSpecial(nullptr), mDamageDuration(sf::seconds(0.3f)) {
+    mSpecial(nullptr), mDamageDuration(sf::seconds(0.3f)),
+    mIsWeaponEquip(false), mIsSpecialEquip(false) {
   mFireCommand.category = Category::Battlefield;
   mFireCommand.action = [&](SceneNode&, sf::Time) {
-    if (SceneNode::isChildAttach(*mWeapon))
+    if (mWeapon != nullptr)
       mWeapon->use();
   };
 
@@ -24,7 +25,7 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 
   mSpecialCommand.category = Category::Battlefield;
   mSpecialCommand.action = [&](SceneNode&, sf::Time) {
-    if (SceneNode::isChildAttach(*mSpecial))
+    if (mSpecial != nullptr)
       mSpecial->use();
   };
 
@@ -134,7 +135,8 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands) {
   }
 
   updateAnimation(dt);
-  updateEquipment();
+  updateEquipedWeapon();
+  updateEquipedSpecial();
   updateStats();
   updateWeapon();
   Entity::updateCurrent(dt, commands);
@@ -177,45 +179,71 @@ void PlayerNode::updateAnimation(sf::Time dt) {
   mAnimation.update(dt);
 }
 
-void PlayerNode::updateEquipment() {
-  if (SceneNode::isChildAttach(*mWeapon)) {
-    if (mPlayerInfo.equipment.isItem(Equipment::LeftHand)) {
-      mPlayerInfo.equipment.getItem(Equipment::LeftHand)
-        ->setHitpoints(mWeapon->getHitpoints());
-    } else {
-      mWeapon->destroy();
-      mWeapon = nullptr;
-    }
-  } else {
-    if (mPlayerInfo.equipment.isItem(Equipment::LeftHand)) {
-      auto weapon_ptr =
-        mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
-      mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
-      mWeapon->setDistance(0.f);
-      sf::Vector2f size = {mWeapon->getSize().x / 32.f,
-                           mWeapon->getSize().y / 32.f};
-      mWeapon->setScale(size);
-      SceneNode::attachChild(std::move(weapon_ptr));
-    }
+void PlayerNode::updateEquipedWeapon() {
+  bool leftHandEq = mPlayerInfo.equipment.isItem(Equipment::LeftHand);
+  bool weaponOnScreen =
+    mWeapon != nullptr ? SceneNode::isChildAttach(*mWeapon) : false;
+
+  // Delete
+  if (mIsWeaponEquip && !weaponOnScreen && leftHandEq) {
+    mPlayerInfo.equipment.getItem(Equipment::LeftHand)->setHitpoints(0);
+    mIsWeaponEquip = false;
+    mWeapon = nullptr;
+    return;
   }
 
-  if (SceneNode::isChildAttach(*mSpecial)) {
-    if (mPlayerInfo.equipment.isItem(Equipment::RightHand)) {
-      mPlayerInfo.equipment.getItem(Equipment::RightHand)
-        ->setHitpoints(mSpecial->getHitpoints());
-    } else {
-      mSpecial = nullptr;
-    }
-  } else {
-    if (mPlayerInfo.equipment.isItem(Equipment::RightHand)) {
-      // Drop unique_ptr
-      auto special_ptr =
-        mPlayerInfo.equipment.getItem(Equipment::RightHand)->create();
-      mSpecial = dynamic_cast<Special*>(special_ptr.get());
-      mSpecial->setDistance(0.f);
-      mSpecial->setPosition(-40.f, -40.f);
-      SceneNode::attachChild(std::move(special_ptr));
-    }
+  // Update
+  if (weaponOnScreen && leftHandEq && mIsWeaponEquip) {
+    mPlayerInfo.equipment.getItem(Equipment::LeftHand)
+      ->setHitpoints(mWeapon->getHitpoints());
+    return;
+  }
+
+  // Create
+  if (!mIsWeaponEquip && leftHandEq && !weaponOnScreen) {
+    auto weapon_ptr =
+      mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
+    mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
+    mWeapon->setDistance(0.f);
+    sf::Vector2f size = {mWeapon->getSize().x / 32.f,
+                         mWeapon->getSize().y / 32.f};
+    mWeapon->setScale(size);
+    SceneNode::attachChild(std::move(weapon_ptr));
+    mIsWeaponEquip = true;
+    return;
+  }
+}
+
+void PlayerNode::updateEquipedSpecial() {
+  bool rightHandEq = mPlayerInfo.equipment.isItem(Equipment::RightHand);
+  bool specialOnScreen =
+    mSpecial != nullptr ? SceneNode::isChildAttach(*mSpecial) : false;
+
+  // Delete
+  if (mIsSpecialEquip && !specialOnScreen && rightHandEq) {
+    mPlayerInfo.equipment.getItem(Equipment::RightHand)->setHitpoints(0);
+    mIsSpecialEquip = false;
+    mSpecial = nullptr;
+    return;
+  }
+
+  // Update
+  if (mIsSpecialEquip && specialOnScreen && rightHandEq) {
+    mPlayerInfo.equipment.getItem(Equipment::RightHand)
+      ->setHitpoints(mSpecial->getHitpoints());
+    return;
+  }
+
+  // Create
+  if (!mIsSpecialEquip && specialOnScreen && rightHandEq) {
+    auto special_ptr =
+      mPlayerInfo.equipment.getItem(Equipment::RightHand)->create();
+    mSpecial = dynamic_cast<Special*>(special_ptr.get());
+    mSpecial->setDistance(0.f);
+    mSpecial->setPosition(-40.f, -40.f);
+    SceneNode::attachChild(std::move(special_ptr));
+    mIsSpecialEquip = true;
+    return;
   }
 }
 
@@ -241,7 +269,7 @@ void PlayerNode::updateStats() {
 }
 
 void PlayerNode::updateWeapon() {
-  if (SceneNode::isChildAttach(*mWeapon)) {
+  if (mWeapon != nullptr) {
     sf::Vector2f vec =
       Utility::getMousePos(mContext.window) - SceneNode::getWorldPosition();
     mWeapon->setPosition(

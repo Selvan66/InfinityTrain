@@ -42,7 +42,8 @@ private:
   void interact();
   void special();
   void updateAnimation(sf::Time dt);
-  void updateEquipment();
+  void updateEquipedWeapon();
+  void updateEquipedSpecial();
   void updateStats();
   void updateWeapon();
 
@@ -59,4 +60,6 @@ private:
   Weapon* mWeapon;
   Special* mSpecial;
   sf::Time mDamageDuration;
+  bool mIsWeaponEquip;
+  bool mIsSpecialEquip;
 };
