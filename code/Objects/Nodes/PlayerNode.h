@@ -45,7 +45,7 @@ private:
   void updateEquipedWeapon();
   void updateEquipedSpecial();
   void updateStats();
-  void updateWeapon();
+  void updateWeaponPosition();
 
 private:
   Context& mContext;

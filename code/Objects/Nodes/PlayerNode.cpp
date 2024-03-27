@@ -138,7 +138,7 @@ void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands) {
   updateEquipedWeapon();
   updateEquipedSpecial();
   updateStats();
-  updateWeapon();
+  updateWeaponPosition();
   Entity::updateCurrent(dt, commands);
 }
 
@@ -184,7 +184,15 @@ void PlayerNode::updateEquipedWeapon() {
   bool weaponOnScreen =
     mWeapon != nullptr ? SceneNode::isChildAttach(*mWeapon) : false;
 
-  // Delete
+  // Delete on screen
+  if (mIsWeaponEquip && weaponOnScreen && !leftHandEq) {
+    mWeapon->destroy();
+    mIsWeaponEquip = false;
+    mWeapon = nullptr;
+    return;
+  }
+
+  // Delete in hand
   if (mIsWeaponEquip && !weaponOnScreen && leftHandEq) {
     mPlayerInfo.equipment.getItem(Equipment::LeftHand)->setHitpoints(0);
     mIsWeaponEquip = false;
@@ -219,7 +227,15 @@ void PlayerNode::updateEquipedSpecial() {
   bool specialOnScreen =
     mSpecial != nullptr ? SceneNode::isChildAttach(*mSpecial) : false;
 
-  // Delete
+  // Delete on screen
+  if (mIsSpecialEquip && specialOnScreen && !rightHandEq) {
+    mSpecial->destroy();
+    mIsSpecialEquip = false;
+    mSpecial = nullptr;
+    return;
+  }
+
+  // Delete on hand
   if (mIsSpecialEquip && !specialOnScreen && rightHandEq) {
     mPlayerInfo.equipment.getItem(Equipment::RightHand)->setHitpoints(0);
     mIsSpecialEquip = false;
@@ -268,7 +284,7 @@ void PlayerNode::updateStats() {
     stats.setStat(Stats::Ammo, 0);
 }
 
-void PlayerNode::updateWeapon() {
+void PlayerNode::updateWeaponPosition() {
   if (mWeapon != nullptr) {
     sf::Vector2f vec =
       Utility::getMousePos(mContext.window) - SceneNode::getWorldPosition();
