@@ -251,7 +251,7 @@ void PlayerNode::updateEquipedSpecial() {
   }
 
   // Create
-  if (!mIsSpecialEquip && specialOnScreen && rightHandEq) {
+  if (!mIsSpecialEquip && !specialOnScreen && rightHandEq) {
     auto special_ptr =
       mPlayerInfo.equipment.getItem(Equipment::RightHand)->create();
     mSpecial = dynamic_cast<Special*>(special_ptr.get());
