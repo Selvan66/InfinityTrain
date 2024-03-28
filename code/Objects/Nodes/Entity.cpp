@@ -57,7 +57,8 @@ void Entity::updateCurrent(sf::Time dt, CommandQueue&) {
     mVelocity = sf::Vector2f(0, 0);
 
   auto velocity = mVelocity;
-  if (!Utility::areEqual(velocity.x, 0.0) && Utility::areEqual(velocity.y, 0.0))
+  if (!Utility::areEqual(velocity.x, 0.0) &&
+      !Utility::areEqual(velocity.y, 0.0))
     velocity /= (float)std::sqrt(2.0);
 
   sf::Transformable::move(velocity * dt.asSeconds());
