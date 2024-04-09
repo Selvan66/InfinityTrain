@@ -7,6 +7,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "spdlog/spdlog.h"
+
 template <typename Resource, typename Identifier> class ResourceHolder {
 public:
   void load(Identifier id, const std::string& filename);
@@ -31,6 +33,7 @@ void ResourceHolder<Resource, Identifier>::load(Identifier id,
     throw std::runtime_error("ResourceHolder::load - Failed "
                              "to load " +
                              filename);
+  spdlog::info("ResourceHolder::load | loaded - {}", filename);
   insertResource(id, std::move(resource));
 }
 
@@ -44,6 +47,7 @@ void ResourceHolder<Resource, Identifier>::load(Identifier id,
     throw std::runtime_error("ResourceHolder::load - Failed "
                              "to load " +
                              filename);
+  spdlog::info("ResourceHolder::load (with Parameter) | loaded - {}", filename);
   insertResource(id, std::move(resource));
 }
 
