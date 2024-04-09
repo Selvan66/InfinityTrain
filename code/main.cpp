@@ -2,18 +2,14 @@
 #include <exception>
 #include <iostream>
 
-#include "spdlog/sinks/basic_file_sink.h"
-#include "spdlog/spdlog.h"
-
 #include "App/Application.h"
+#include "Utils/Utility.h"
 
 int main() {
   try {
-    spdlog::info("TEST");
-    std::shared_ptr<spdlog::logger> logger =
-      spdlog::basic_logger_mt("basic_logger", "logs/basic-log.txt");
+    Utility::setupLogger();
+
     Application app;
-    logger->info("TEST");
     app.run();
   } catch (std::exception& e) {
     std::cerr << e.what() << std::endl;

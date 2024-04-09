@@ -1,14 +1,13 @@
 /** @file Utility.h */
 #pragma once
 
-#include <cmath>
-
 #include "Objects/Nodes/SceneNode.h"
 #include "Player/Player.h"
 
 #define INF 0x0FFFFFFF
 
 namespace Utility {
+void setupLogger();
 
 void centerOrigin(sf::Sprite& sprite);
 void centerOrigin(sf::Text& text);

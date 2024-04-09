@@ -1,8 +1,17 @@
 /** @file Utility.cpp */
-#include <sstream>
+#include "spdlog/sinks/rotating_file_sink.h"
+#include "spdlog/spdlog.h"
 
 #include "Utils/Utility.h"
 namespace Utility {
+
+void setupLogger() {
+  // Create a file rotating logger with 5 MB size max and 3 rotated files
+  std::shared_ptr<spdlog::logger> logger = spdlog::rotating_logger_st(
+    "default_logger", "logs/logs.log", 1024 * 1024 * 5, 3, true);
+  spdlog::set_default_logger(logger);
+  spdlog::set_pattern("[pid:%P|thread:%t] [%H:%M:%S.%e] [%l] %v");
+}
 
 void centerOrigin(sf::Sprite& sprite) {
   sf::FloatRect bounds = sprite.getLocalBounds();
