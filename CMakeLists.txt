@@ -59,11 +59,13 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 # Packages
 set(SFML_STATIC_LIBRARIES TRUE)
 find_package(SFML 2.5 COMPONENTS graphics windows audio system REQUIRED)
-find_package(Ogg)
-find_package(nlohmann_json)
-find_package(exprtk)
-target_link_libraries(${PROJECT_NAME} sfml::sfml Ogg::ogg nlohmann_json::nlohmann_json exprtk::exprtk)
-target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCLUDE_DIR} ${exprtk_INCLUDE_DIR} ${nlohmann_json_INCLUDE_DIR} ${Ogg_INCLUDE_DIR})
+find_package(Ogg REQUIRED)
+find_package(nlohmann_json REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(exprtk REQUIRED)
+target_link_libraries(${PROJECT_NAME} sfml::sfml Ogg::ogg nlohmann_json::nlohmann_json spdlog::spdlog exprtk::exprtk)
+target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCLUDE_DIR} ${exprtk_INCLUDE_DIR} ${nlohmann_json_INCLUDE_DIR} ${spdlog_INCLUDE_DIR} ${Ogg_INCLUDE_DIR})
+
 
 # Doxygen
 option(BUILD_DOC "Build documentation" ON)

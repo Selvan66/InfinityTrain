@@ -13,3 +13,4 @@ class ConanBuild(ConanFile):
         self.requires("sfml/2.5.1")
         self.requires("nlohmann_json/3.10.5")
         self.requires("exprtk/0.0.1")
+        self.requires("spdlog/1.13.0")
