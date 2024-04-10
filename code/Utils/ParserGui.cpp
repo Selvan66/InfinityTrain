@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 
+#include "spdlog/spdlog.h"
+
 #include "App/Context.h"
 #include "Gui/Checkbox.h"
 #include "Gui/Text.h"
@@ -18,8 +20,10 @@ ParserGui::ParserGui() : mFile(), mConstants() {}
 bool ParserGui::loadFromFile(const std::string& filename) {
   std::fstream file(filename, std::ios_base::in);
   std::stringstream ss;
-  if (!file.is_open())
+  if (!file.is_open()) {
+    spdlog::warn("ParserGui::loadFromFile | Cannot load file: {}", filename);
     return false;
+  }
 
   mFile.clear();
   ss << file.rdbuf();
@@ -30,6 +34,7 @@ bool ParserGui::loadFromFile(const std::string& filename) {
 }
 
 void ParserGui::addConst(const std::string& name, float value) {
+  spdlog::trace("ParserGui::addConst | name: {}, value: {}", name, value);
   mConstants.add_constant(name, value);
 }
 
@@ -97,17 +102,24 @@ bool ParserGui::isComponent(const std::string& word) const {
 
 ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word,
                                                 Context& context) const {
-  if (word == "[TextButton]")
+  if (word == "[TextButton]") {
+    spdlog::trace("ParserGui::getComponent | Create TextButton");
     return std::unique_ptr<TextButton>(new TextButton(context));
-  else if (word == "[CheckBox]")
+  } else if (word == "[CheckBox]") {
+    spdlog::trace("ParserGui::getComponent | Create CheckBox");
     return std::unique_ptr<Checkbox>(new Checkbox(context));
-  else if (word == "[TextureButton]")
+  } else if (word == "[TextureButton]") {
+    spdlog::trace("ParserGui::getComponent | Create TextureButton");
     return std::unique_ptr<TextureButton>(new TextureButton(context));
-  else if (word == "[Text]")
+  } else if (word == "[Text]") {
+    spdlog::trace("ParserGui::getComponent | Create Text");
     return std::unique_ptr<Text>(new Text(context));
-  else if (word == "[TextSlider]")
+  } else if (word == "[TextSlider]") {
+    spdlog::trace("ParserGui::getComponent | Create TextSlider");
     return std::unique_ptr<TextSlider>(new TextSlider(context));
+  }
 
+  spdlog::error("ParserGui::getComponent | No such component - {}", word);
   throw Except::bad_argument()
     .add("Parser Gui : getComponent()")
     .add("no such component found");
@@ -120,26 +132,33 @@ bool ParserGui::isId(const std::string& word) const {
 }
 
 sf::Vector2f ParserGui::parsePosition(const std::string& value) {
-  if (!isVector(value))
+  if (!isVector(value)) {
+    spdlog::error("ParserGui::parsePosition | String isn't a vector - {}",
+                  value);
     throw Except::bad_argument()
       .add("Parser Gui : parserPosition()")
       .add("value is not a vector");
+  }
 
   auto equtaions = splitVector(value);
 
-  float ret[2];
+  std::vector<float> ret;
   exprtk::expression<float> expr;
   expr.register_symbol_table(mConstants);
   exprtk::parser<float> parser;
 
   for (size_t i = 0; i < equtaions.size(); ++i) {
-    if (!parser.compile(equtaions[i], expr))
+    if (!parser.compile(equtaions[i], expr)) {
+      spdlog::error("ParserGui::parsePosition | exprtk cannot compile");
       throw Except::bad_function_call()
         .add("Parser Gui : "
              "parserPosition()")
         .add("exprtk cannot compile");
-    ret[i] = expr.value();
+    }
+    ret.push_back(expr.value());
   }
+
+  assert(ret.size() >= 2);
 
   return sf::Vector2f(ret[0], ret[1]);
 }
@@ -147,20 +166,26 @@ sf::Vector2f ParserGui::parsePosition(const std::string& value) {
 void ParserGui::setProperties(ComponentPtr& component,
                               const std::string& propertie,
                               const std::string& value) {
-  if (propertie == "pos")
+  spdlog::trace("ParserGui::setProperties | propertie - {}, value - {}",
+                propertie, value);
+
+  if (propertie == "pos") {
     component->setPosition(parsePosition(value));
-  else if (propertie == "text")
+  } else if (propertie == "text") {
     Utility::safeCasting<TextButton>(component.get())->setText(value);
-  else if (propertie == "string")
+  } else if (propertie == "string") {
     Utility::safeCasting<Text>(component.get())->setString(value);
-  else if (propertie == "charSize")
+  } else if (propertie == "charSize") {
     Utility::safeCasting<Text>(component.get())
       ->setCharacterSize(static_cast<unsigned int>(std::stoul(value)));
-  else if (propertie == "texts")
+  } else if (propertie == "texts") {
     for (auto& text : splitVector(value))
       Utility::safeCasting<TextSlider>(component.get())->addText(text);
-  else
+  } else {
+    spdlog::error("ParserGui::setProperties | Cannot set properties - {}:{}",
+                  propertie, value);
     throw Except::bad_argument()
       .add("Parser Gui : setProperties()")
       .add("no such property");
+  }
 }
