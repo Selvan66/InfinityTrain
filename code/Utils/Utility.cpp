@@ -10,6 +10,7 @@ void setupLogger() {
   std::shared_ptr<spdlog::logger> logger = spdlog::rotating_logger_st(
     "default_logger", "logs/logs.log", 1024 * 1024 * 5, 3, true);
   spdlog::set_default_logger(logger);
+  spdlog::set_level(spdlog::level::info);
   spdlog::set_pattern("[pid:%P|thread:%t] [%H:%M:%S.%e] [%l] %v");
 }
 
