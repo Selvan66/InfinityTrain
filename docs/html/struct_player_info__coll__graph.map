@@ -1,9 +1,0 @@
-<map id="PlayerInfo" name="PlayerInfo">
-<area shape="rect" id="node1" title=" " alt="" coords="127,171,206,197"/>
-<area shape="rect" id="node2" href="$class_backpack.html" title=" " alt="" coords="35,81,115,108"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,99,32"/>
-<area shape="rect" id="node6" href="$class_equipment.html" title=" " alt="" coords="217,81,301,108"/>
-<area shape="rect" id="node7" href="$class_stats.html" title=" " alt="" coords="139,81,192,108"/>
-<area shape="rect" id="node4" title=" " alt="" coords="265,5,386,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="123,5,240,32"/>
-</map>
