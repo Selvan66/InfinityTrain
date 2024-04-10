@@ -66,17 +66,19 @@ target_link_libraries(${PROJECT_NAME} sfml::sfml Ogg::ogg nlohmann_json::nlohman
 target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCLUDE_DIR} ${exprtk_INCLUDE_DIR} ${nlohmann_json_INCLUDE_DIR} ${Ogg_INCLUDE_DIR})
 
 # Doxygen
-option(BUILD_DOC "Build documentation" ON)
-find_package(Doxygen REQUIRED dot)
-if (DOXYGEN_FOUND)
-    set(README ${CMAKE_SOURCE_DIR}/README.md)
-    set(DOXYGEN_OUTPUT_DIRECTORY ${DOCS_DIR})
-    set(DOXYGEN_USE_MDFILE_AS_MAINPAGE ${README})
-    
-    doxygen_add_docs(
-        doxygen
-        ${CODE_DIR} ${README}
-        COMMENT "Generate docs")
-else(DOXYGEN_FOUND)
-    message("Doxygen not found, need to be installed to generate the doxygen")
-endif(DOXYGEN_FOUND)
+if (BUILD_DOXYGEN)
+  option(BUILD_DOC "Build documentation" ON)
+  find_package(Doxygen REQUIRED dot)
+  if (DOXYGEN_FOUND)
+      set(README ${CMAKE_SOURCE_DIR}/README.md)
+      set(DOXYGEN_OUTPUT_DIRECTORY ${DOCS_DIR})
+      set(DOXYGEN_USE_MDFILE_AS_MAINPAGE ${README})
+      
+      doxygen_add_docs(
+          doxygen
+          ${CODE_DIR} ${README}
+          COMMENT "Generate docs")
+  else(DOXYGEN_FOUND)
+      message("Doxygen not found, need to be installed to generate the doxygen")
+  endif(DOXYGEN_FOUND)
+endif(BUILD_DOXYGEN)
