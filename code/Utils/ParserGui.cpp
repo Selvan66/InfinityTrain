@@ -30,6 +30,10 @@ bool ParserGui::loadFromFile(const std::string& filename) {
   mFile = ss.str();
 
   file.close();
+
+  spdlog::trace("ParserGui::loadFromFile | {} - load file successful",
+                filename);
+
   return true;
 }
 
@@ -47,10 +51,12 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context) {
     ss >> word;
     if (isComponent(word)) {
       if (component.get() != nullptr) {
-        if (id == "")
+        if (id == "") {
+          spdlog::error("ParserGui::parse | {} - no such component", word);
           throw Except::bad_argument()
             .add("Parser Gui")
             .add("No id in component");
+        }
         ret->insert(std::make_pair(id, std::move(component)));
         id = "";
       }
@@ -67,12 +73,16 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context) {
   }
 
   if (component.get() != nullptr) {
-    if (id == "")
+    if (id == "") {
+      spdlog::error("ParserGui::parse | {} - no such id in components", id);
       throw Except::bad_argument()
         .add("Parser Gui : parse()")
         .add("No id in component");
+    }
     ret->insert(std::make_pair(id, std::move(component)));
   }
+
+  spdlog::trace("ParserGui::parse | File successful parse");
 
   return ret;
 }
