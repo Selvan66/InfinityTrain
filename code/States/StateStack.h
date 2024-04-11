@@ -22,7 +22,7 @@ public:
   template <typename T> void registerState(StatesID stateID);
 
 private:
-  State::Ptr createState(StatesID stateID);
+  State::Ptr getState(StatesID stateID);
   void applyPendingChanges();
 
 private:
@@ -40,5 +40,7 @@ private:
 };
 
 template <typename T> void StateStack::registerState(StatesID stateID) {
+  spdlog::trace("StateStack::registerState | Register new state - {}",
+                static_cast<int>(stateID));
   mFactories[stateID] = [this] { return State::Ptr(new T(*this, mContext)); };
 }

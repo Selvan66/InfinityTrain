@@ -1,6 +1,8 @@
 /** @file State.h */
 #pragma once
 
+#include "spdlog/spdlog.h"
+
 #include "App/Context.h"
 #include "States/StatesID.h"
 #include "Utils/Exceptions/bad_function_call.h"
@@ -36,10 +38,13 @@ private:
 };
 
 template <typename T> T& State::getGuiComponent(const std::string& id) {
-  if (!mIsGuiLoad)
+  if (!mIsGuiLoad) {
+    spdlog::error("State::getGuiComponent | Gui not loaded in {}",
+                  typeid(*this).name());
     throw Except::bad_function_call()
       .add(typeid(*this).name())
       .add("ERROR: use getGuiComponent "
            "before loadGuiParser");
+  }
   return *(Utility::safeCasting<T>(mGui->at(id).get()));
 }
