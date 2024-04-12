@@ -35,6 +35,7 @@ void MenuOptionsState::applyGuiFunctions() {
 
   State::getGuiComponent<TextButton>("AboutButton").setCallback([]() {
     spdlog::trace("MenuOptionsState::applyGuiFunctions | AboutButton clicked");
+    // TODO: cretae AboutState
   });
 
   State::getGuiComponent<TextButton>("QuitButton").setCallback([this]() {

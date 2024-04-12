@@ -1,14 +1,14 @@
 /** @file ControlSettingState.cpp */
-#include "States/ControlSettingState.h"
+#include "spdlog/spdlog.h"
+
 #include "Gui/TextButton.h"
+#include "States/ControlSettingState.h"
 
 ControlSettingState::ControlSettingState(StateStack& stack, Context& context)
   : State(stack, context),
     mActionBinding(
       context.settings.get<std::unordered_map<std::string, std::string>>(
-        "Control")) // It's stupid
-                    // but works
-    ,
+        "Control")),
     mActionToChange(""), mChange(false), mChangeBackground(),
     mChangeText("PRESS ANY KEY", context.fonts.get(FontsID::PixelFont), 90) {
   const sf::Vector2f& window_size = context.window.getView().getSize();
@@ -24,6 +24,9 @@ ControlSettingState::ControlSettingState(StateStack& stack, Context& context)
   State::loadGuiParser(GuiFileID::ControlSetting);
   applyGuiFunctions();
   updateTextOnButton();
+
+  spdlog::info(
+    "ControlSettingState::ControlSettingState | ControlSetting State created");
 }
 
 void ControlSettingState::draw() {
@@ -66,47 +69,65 @@ bool ControlSettingState::handleEvent(const sf::Event& event) {
 
 void ControlSettingState::applyGuiFunctions() {
   State::getGuiComponent<TextButton>("PlayerMoveUp").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | PlayerMoveUp clicked");
     mActionToChange = "Up";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerMoveDown").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | PlayerMoveDown clicked");
     mActionToChange = "Down";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerMoveLeft").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | PlayerMoveLeft clicked");
     mActionToChange = "Left";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerMoveRight").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | PlayerMoveRight clicked");
     mActionToChange = "Right";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerFire").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | PlayerFire clicked");
     mActionToChange = "Fire";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerInteract").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | PlayerInteract clicked");
     mActionToChange = "Interact";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerSpecial").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | PlayerSpecial clicked");
     mActionToChange = "Special";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::SettingState);
   });
 
   auto& context = State::getContext();
   State::getGuiComponent<TextButton>("ApplySaveButton").setCallback([&]() {
+    spdlog::trace(
+      "ControlSettingState::applyGuiFunctions | ApplySaveButton clicked");
     context.settings.set<std::unordered_map<std::string, std::string>>(
       mActionBinding, "Control");
     context.applyContolSettings();
@@ -134,8 +155,18 @@ void ControlSettingState::changeActionBinding(std::string key) {
   auto found =
     std::find_if(mActionBinding.begin(), mActionBinding.end(),
                  [&key](const auto& pair) { return pair.second == key; });
-  if (found != mActionBinding.end())
+  if (found != mActionBinding.end()) {
+    spdlog::info(
+      "ControlSettingState::changeActionBinding | {} is used for {}. "
+      "Replace {} to Unknown",
+      found->second, found->first, found->second);
     found->second = Utility::toString(sf::Keyboard::Unknown);
+  }
+
+  spdlog::info(
+    "ControlSettingState::changeActionBinding | Replace {} for {} to {}",
+    mActionBinding[mActionToChange], mActionToChange, key);
+
   mActionBinding[mActionToChange] = key;
   mChange = false;
   updateTextOnButton();

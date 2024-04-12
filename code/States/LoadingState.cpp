@@ -1,4 +1,6 @@
 /** @file LoadingState.cpp */
+#include "spdlog/spdlog.h"
+
 #include "States/LoadingState.h"
 
 bool LoadingState::loaded = false;
@@ -21,6 +23,8 @@ LoadingState::LoadingState(StateStack& stack, Context& context)
   mLoading.setNumFrames(30);
   mLoading.setRepeating(true);
   mLoading.setPosition({1650, 850});
+
+  spdlog::info("LoadingState::LoadingState | LoadingState created");
 }
 
 void LoadingState::draw() {
@@ -35,6 +39,7 @@ bool LoadingState::update(sf::Time dt) {
     loaded = true;
     requestStackPop();
     requestStackPush(StatesID::GameState);
+    spdlog::info("LoadingState::update | LoadingState finished");
   }
 
   return true;

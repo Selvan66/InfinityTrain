@@ -1,8 +1,10 @@
 /** @file GraphicsSettingState.cpp */
-#include "States/GraphicsSettingState.h"
+#include "spdlog/spdlog.h"
+
 #include "Gui/Checkbox.h"
 #include "Gui/TextButton.h"
 #include "Gui/TextSlider.h"
+#include "States/GraphicsSettingState.h"
 
 GraphicsSettingState::GraphicsSettingState(StateStack& stack, Context& context)
   : State(stack, context),
@@ -11,6 +13,9 @@ GraphicsSettingState::GraphicsSettingState(StateStack& stack, Context& context)
     mSaveFullscreen(context.settings.get<bool>("Graphics", "Fullscreen")) {
   State::loadGuiParser(GuiFileID::GraphicsSetting);
   applyGuiFunctions();
+
+  spdlog::info("GraphicsSettingState::GraphicsSettingState | GraphicsSetting "
+               "State created");
 }
 
 bool GraphicsSettingState::update(sf::Time dt) {
@@ -34,6 +39,8 @@ void GraphicsSettingState::applyGuiFunctions() {
     .setSelection(mSaveFullscreen);
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([&]() {
+    spdlog::trace(
+      "GraphicsSettingState::applyGuiFunctions | BackButton clicked");
     context.settings.set<std::pair<int, int>>(mSaveResolution, "Graphics",
                                               "Resolution");
     context.settings.set<bool>(mSaveFullscreen, "Graphics", "Fullscreen");
@@ -43,6 +50,8 @@ void GraphicsSettingState::applyGuiFunctions() {
   });
 
   State::getGuiComponent<TextButton>("ApplyButton").setCallback([&]() {
+    spdlog::trace(
+      "GraphicsSettingState::applyGuiFunctions | ApplyButton clicked");
     std::string applyResolution =
       State::getGuiComponent<TextSlider>("ResolutionSlider").getCurrentText();
     std::string width = applyResolution.substr(0, applyResolution.find('x'));
@@ -58,6 +67,8 @@ void GraphicsSettingState::applyGuiFunctions() {
   });
 
   State::getGuiComponent<TextButton>("ApplySaveButton").setCallback([&]() {
+    spdlog::trace(
+      "GraphicsSettingState::applyGuiFunctions | ApplySaveButton clicked");
     std::string applyResolution =
       State::getGuiComponent<TextSlider>("ResolutionSlider").getCurrentText();
     std::string width = applyResolution.substr(0, applyResolution.find('x'));
