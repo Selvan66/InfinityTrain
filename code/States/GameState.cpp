@@ -1,10 +1,13 @@
 /** @file GameState.cpp */
+#include "spdlog/spdlog.h"
+
 #include "States/GameState.h"
 
 GameState::GameState(StateStack& stack, Context& context)
   : State(stack, context), mMap(context) {
   context.musics.play(MusicPlayer::Game);
   context.statistics.increase(Statistics::StartedGames);
+  spdlog::info("GameState::GameState | Game State created");
 }
 
 void GameState::draw() { mMap.draw(); }

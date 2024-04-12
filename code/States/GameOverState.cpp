@@ -1,6 +1,7 @@
 /** @file GameOverState.cpp */
+#include "spdlog/spdlog.h"
+
 #include "States/GameOverState.h"
-#include "Gui/TextButton.h"
 
 GameOverState::GameOverState(StateStack& stack, Context& context)
   : State(stack, context), mElapsedTime(sf::Time::Zero), mBackgroundShape() {
@@ -8,6 +9,7 @@ GameOverState::GameOverState(StateStack& stack, Context& context)
   mBackgroundShape.setSize(context.window.getView().getSize());
 
   State::loadGuiParser(GuiFileID::GameOver);
+  spdlog::info("GameOverState::GameOverState | GameOver State created");
 }
 
 void GameOverState::draw() {

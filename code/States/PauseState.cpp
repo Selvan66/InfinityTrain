@@ -1,6 +1,8 @@
 /** @file PauseState.cpp */
-#include "States/PauseState.h"
+#include "spdlog/spdlog.h"
+
 #include "Gui/TextButton.h"
+#include "States/PauseState.h"
 
 PauseState::PauseState(StateStack& stack, Context& context)
   : State(stack, context), mBackgroundShape() {
@@ -10,6 +12,8 @@ PauseState::PauseState(StateStack& stack, Context& context)
   State::loadGuiParser(GuiFileID::Pause);
   applyGuiFunctions();
   context.musics.setPaused(true);
+
+  spdlog::info("PauseState::PauseState | Pause State created");
 }
 
 PauseState::~PauseState() { State::getContext().musics.setPaused(false); }
@@ -38,10 +42,12 @@ bool PauseState::handleEvent(const sf::Event& event) {
 
 void PauseState::applyGuiFunctions() {
   State::getGuiComponent<TextButton>("BackButton").setCallback([this]() {
+    spdlog::trace("PauseState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
   });
 
   State::getGuiComponent<TextButton>("QuitButton").setCallback([this]() {
+    spdlog::trace("PauseState::applyGuiFunctions | QuitButton clicked");
     this->requestStackClear();
     this->requestStackPush(StatesID::MenuState);
   });

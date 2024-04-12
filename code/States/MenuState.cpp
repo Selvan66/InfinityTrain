@@ -1,4 +1,6 @@
 /** @file MenuState.cpp */
+#include "spdlog/spdlog.h"
+
 #include "States/MenuState.h"
 
 MenuState::MenuState(StateStack& stack, Context& context)
@@ -18,6 +20,8 @@ MenuState::MenuState(StateStack& stack, Context& context)
   context.musics.play(MusicPlayer::Menu);
 
   requestStackPush(StatesID::MenuOptionsState);
+
+  spdlog::info("MenuState::MenuState | Menu State created");
 }
 
 void MenuState::draw() {

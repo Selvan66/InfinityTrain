@@ -1,12 +1,15 @@
 /** @file StatisticsState.cpp */
-#include "States/StatisticsState.h"
+#include "spdlog/spdlog.h"
+
 #include "Gui/Text.h"
 #include "Gui/TextButton.h"
+#include "States/StatisticsState.h"
 
 StatisticsState::StatisticsState(StateStack& stack, Context& context)
   : State(stack, context) {
   State::loadGuiParser(GuiFileID::Statistics);
   applyGuiFunctions();
+  spdlog::info("StatisticsState::StatisticsState | Statistics State created");
 }
 
 void StatisticsState::applyGuiFunctions() {
@@ -26,6 +29,7 @@ void StatisticsState::applyGuiFunctions() {
       std::to_string(context.statistics.get(Statistics::FinishedGames)));
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([&]() {
+    spdlog::trace("StatisticsState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::MenuOptionsState);
   });
