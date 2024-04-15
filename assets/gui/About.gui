@@ -1,0 +1,10 @@
+[Text]
+id ExampleText
+string SELVAN
+pos {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2}
+charSize 65
+
+[TextButton]
+id BackButton
+text BACK
+pos {WINDOW_WIDTH / 2, (WINDOW_HEIGHT / 2) + (TEXT_HEIGHT * 3)}

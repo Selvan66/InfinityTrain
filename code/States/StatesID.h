@@ -14,4 +14,5 @@ enum class StatesID {
   GameState,
   PauseState,
   GameOverState,
+  AboutState,
 };

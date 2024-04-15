@@ -53,6 +53,7 @@ enum class GuiFileID {
   ControlSetting,
   Stats,
   Map,
+  About,
 };
 
 typedef ResourceHolder<ParserGui, GuiFileID> GuiFileHolder;

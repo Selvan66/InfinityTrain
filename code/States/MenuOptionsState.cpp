@@ -33,9 +33,10 @@ void MenuOptionsState::applyGuiFunctions() {
     this->requestStackPush(StatesID::SettingState);
   });
 
-  State::getGuiComponent<TextButton>("AboutButton").setCallback([]() {
+  State::getGuiComponent<TextButton>("AboutButton").setCallback([this]() {
     spdlog::trace("MenuOptionsState::applyGuiFunctions | AboutButton clicked");
-    // TODO: cretae AboutState
+    this->requestStackPop();
+    this->requestStackPush(StatesID::AboutState);
   });
 
   State::getGuiComponent<TextButton>("QuitButton").setCallback([this]() {

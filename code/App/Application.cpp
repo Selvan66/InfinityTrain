@@ -1,5 +1,6 @@
 /** @file Application.cpp */
 #include "App/Application.h"
+#include "States/AboutState.h"
 #include "States/AudioSettingState.h"
 #include "States/ControlSettingState.h"
 #include "States/GameOverState.h"
@@ -86,6 +87,7 @@ void Application::registerStates() {
   mStateStack.registerState<PauseState>(StatesID::PauseState);
   mStateStack.registerState<GameOverState>(StatesID::GameOverState);
   mStateStack.registerState<LoadingState>(StatesID::LoadingState);
+  mStateStack.registerState<AboutState>(StatesID::AboutState);
 }
 
 void Application::loadMenuTextures() {
@@ -107,6 +109,7 @@ void Application::loadMenuGuiFiles() {
   mContext.gui.load(GuiFileID::Setting, "gui/Setting.gui");
   mContext.gui.load(GuiFileID::Statistics, "gui/Statistics.gui");
   mContext.gui.load(GuiFileID::ControlSetting, "gui/ControlSetting.gui");
+  mContext.gui.load(GuiFileID::About, "gui/About.gui");
 }
 
 void Application::updateStatistics(sf::Time dt) {

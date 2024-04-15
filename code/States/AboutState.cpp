@@ -1,16 +1,21 @@
 /** @file AboutState.cpp */
 #include "spdlog/spdlog.h"
 
+#include "Gui/TextButton.h"
 #include "States/AboutState.h"
 
 AboutState::AboutState(StateStack& stack, Context& context)
   : State(stack, context) {
-  // State::loadGuiParser(GuiFileID::); // TOO
+  State::loadGuiParser(GuiFileID::About);
   applyGuiFunctions();
 
   spdlog::info("AboutState::AboutState | About State created");
 }
 
 void AboutState::applyGuiFunctions() {
-  // TODO
+  State::getGuiComponent<TextButton>("BackButton").setCallback([this]() {
+    spdlog::trace("AboutState::applyGuiFunctions | BackButton clicked");
+    this->requestStackPop();
+    this->requestStackPush(StatesID::MenuOptionsState);
+  });
 }
