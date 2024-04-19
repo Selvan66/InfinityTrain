@@ -1,4 +1,6 @@
 /** @file Pocket.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Player/Pocket.h"
 #include "Utils/Utility.h"
 
@@ -11,10 +13,16 @@ Pocket::Pocket(Context& context)
   Utility::centerOrigin(mBackground);
 }
 
-void Pocket::addItem(std::unique_ptr<Pickup> item) { mItem = std::move(item); }
+void Pocket::addItem(std::unique_ptr<Pickup> item) {
+  spdlog::trace("Pocket::addItem | {} - {}", item.get(),
+                item->getDescription());
+  mItem = std::move(item);
+}
 
 std::unique_ptr<Pickup> Pocket::dropItem() {
   std::unique_ptr<Pickup> item = std::move(mItem);
+  spdlog::trace("Pocket::dropItem | {} - {}", item.get(),
+                item->getDescription());
   mItem = nullptr;
   mPopupLabel.setText("");
   return item;

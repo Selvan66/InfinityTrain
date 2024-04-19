@@ -1,6 +1,8 @@
 /** @file Stats.cpp */
-#include "Player/Stats.h"
+#include "spdlog/spdlog.h"
+
 #include "Gui/Text.h"
+#include "Player/Stats.h"
 #include "Utils/Utility.h"
 
 Stats::Stats(Context& context) : mStats() {
@@ -14,6 +16,8 @@ Stats::Stats(Context& context) : mStats() {
 int Stats::getState(Type stat) const { return mStats[stat]; }
 
 bool Stats::setStat(Type stat, int value) {
+  spdlog::trace("Stats::setStat | Set stat {} from {} to {}",
+                static_cast<int>(stat), mStats[stat], value);
   auto oldStat = mStats[stat];
   setStatWithRange(stat, value);
   updateStatsText();
@@ -21,9 +25,10 @@ bool Stats::setStat(Type stat, int value) {
 }
 
 bool Stats::updateStat(Type stat, int value) {
+  spdlog::trace("Stats::updateStat | Update stat {} - {} + {}",
+                static_cast<int>(stat), mStats[stat], value);
   auto oldStat = mStats[stat];
   setStat(stat, mStats[stat] + value);
-  updateStatsText();
   return oldStat != mStats[stat];
 }
 
