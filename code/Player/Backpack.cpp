@@ -1,6 +1,8 @@
 /** @file Backpack.cpp */
 #include <limits>
 
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/PlayerNode.h"
 #include "Player/Backpack.h"
 
@@ -11,11 +13,18 @@
 Backpack::Backpack(Context& context)
   : mBackpack{V20_POCKET}, mDropQueue(), mUseQueue() {
   for (size_t i = 0; i < mSize; ++i)
-    mBackpack[i].setLeftClickCallback([this, i]() { this->giveItemToUse(i); });
+    mBackpack[i].setLeftClickCallback([this, i]() {
+      spdlog::trace("Backpack::Backpack | Left click on backpack slot nr {}",
+                    i);
+      this->giveItemToUse(i);
+    });
 
   for (size_t i = 0; i < mSize; ++i)
-    mBackpack[i].setRightClickCallback(
-      [this, i]() { this->giveItemToDrop(i); });
+    mBackpack[i].setRightClickCallback([this, i]() {
+      spdlog::trace("Backpack::Backpack | Right click on backpack slot nr {}",
+                    i);
+      this->giveItemToDrop(i);
+    });
 
   for (size_t i = 0; i < 4; ++i)
     for (size_t j = 0; j < 5; ++j)
@@ -31,18 +40,28 @@ void Backpack::addItemToBackpack(std::unique_ptr<Pickup> item) {
     index = 0;
   }
 
+  spdlog::trace("Backpack::addItemToBackpack | To slot {} add item {}", index,
+                item->getDescription());
+
   mBackpack[index].addItem(std::move(item));
 }
 
 void Backpack::giveItemToDrop(size_t index) {
-  if (!mBackpack[index].isItem())
+  if (!mBackpack[index].isItem()) {
+    spdlog::warn("Backpack::giveItemToDrop | Cannot empty slot {} without item",
+                 index);
     return;
+  }
+  spdlog::trace("Backpack::giveItemToDrop | Drop slot {}", index);
   mDropQueue.push(mBackpack[index].dropItem());
 }
 
 void Backpack::giveItemToUse(size_t index) {
-  if (!mBackpack[index].isItem())
+  if (!mBackpack[index].isItem()) {
+    spdlog::warn("Backpack::giveItemToUse | Cannot use empty slot {}", index);
     return;
+  }
+  spdlog::trace("Backpack::giveItemToUse | Use slot {}", index);
   mUseQueue.push(mBackpack[index].dropItem());
 }
 
@@ -57,8 +76,11 @@ void Backpack::drop(sf::Vector2f pos, SceneNode& node) {
 void Backpack::action(PlayerNode& player) {
   while (!mUseQueue.empty()) {
     auto pickup = std::move(mUseQueue.front());
-    if (!pickup->action(player))
+    if (!pickup->action(player)) {
+      spdlog::trace("Backpack::action | Cannot use item {}",
+                    pickup->getDescription());
       addItemToBackpack(std::move(pickup));
+    }
     mUseQueue.pop();
   }
 }
