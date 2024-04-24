@@ -1,4 +1,6 @@
 /** @file Equipment.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Player/Equipment.h"
 #include "Player/PlayerInfo.h"
 #include "Utils/Exceptions/bad_argument.h"
@@ -16,15 +18,19 @@ Equipment::Equipment(Context& context, PlayerInfo& playerInfo)
     mSlots[i].setLeftClickCallback([]() {});
 
   for (size_t i = 0; i < SlotCount; ++i)
-    mSlots[i].setRightClickCallback(
-      [this, i]() { this->unequip(static_cast<Slot>(i)); });
+    mSlots[i].setRightClickCallback([this, i]() {
+      spdlog::trace("Equipment::Equipment | Right right click callback");
+      this->unequip(static_cast<Slot>(i));
+    });
 
+  // Arrange slot in Equipment
   mSlots[Head].setPosition(0.f, -64.f);
   mSlots[Boots].setPosition(0.f, 64.f);
   mSlots[RightHand].setPosition(64.f, 0.f);
   mSlots[LeftHand].setPosition(-64.f, 0.f);
 
   Utility::centerOrigin(mPlayerSprite);
+  // Creat player icon on Equipment
   mPlayerSprite.setScale({2.f, 2.f});
   sf::Color playerColor = mPlayerSprite.getColor();
   playerColor.a = 128;
@@ -39,20 +45,23 @@ bool Equipment::canBeEquipped(const std::unique_ptr<Pickup>& item) const {
 }
 
 void Equipment::equip(std::unique_ptr<Pickup> item) {
-  if (!canBeEquipped(item))
-    throw Except::bad_argument()
-      .add("Equipment : equip()")
-      .add("Item cannot be equipped");
-
+  if (!canBeEquipped(item)) {
+    spdlog::warn("Equipment::equip | (Delete item) Cannot equip item - {}",
+                 item->getDescription());
+    return;
+  }
   Slot slot = getItemSlot(item);
   mPlayerInfo.stats.updateStat(item->getStats());
   mSlots[slot].addItem(std::move(item));
+  spdlog::trace("Equipment::equip | Equip item - {}", item->getDescription());
 }
 
 void Equipment::unequip(Slot slot) {
   if (isItem(slot)) {
     mPlayerInfo.stats.restoreStats(getItem(slot)->getStats());
     mPlayerInfo.backpack.addItemToBackpack(mSlots[slot].dropItem());
+    spdlog::trace("Equipment::unequip | Unequip item on slot - {}",
+                  static_cast<int>(slot));
   }
 }
 
