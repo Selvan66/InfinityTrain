@@ -16,7 +16,7 @@ public:
 
 public:
   explicit Stats(Context& context);
-  int getState(Type stat) const;
+  int getStat(Type stat) const;
   bool setStat(Type stat, int value);
   bool updateStat(Type stat, int value);
   bool updateStat(const std::unordered_map<Type, int>& stats);

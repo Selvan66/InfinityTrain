@@ -13,9 +13,12 @@ Stats::Stats(Context& context) : mStats() {
   setDefaultStats();
 }
 
-int Stats::getState(Type stat) const { return mStats[stat]; }
+int Stats::getStat(Type stat) const { return mStats[stat]; }
 
 bool Stats::setStat(Type stat, int value) {
+  if (getStat(stat) == value)
+    return false;
+
   spdlog::trace("Stats::setStat | Set stat {} from {} to {}",
                 static_cast<int>(stat), mStats[stat], value);
   auto oldStat = mStats[stat];
