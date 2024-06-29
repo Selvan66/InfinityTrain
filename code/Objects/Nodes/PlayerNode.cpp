@@ -1,10 +1,12 @@
 /** @file PlayerNode.cpp */
-#include "Objects/Nodes/PlayerNode.h"
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/Interactable.h"
+#include "Objects/Nodes/PlayerNode.h"
 #include "Utils/Utility.h"
 
 PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
-  : Entity(playerInfo.stats.getState(Stats::Lives)), mContext(context),
+  : Entity(playerInfo.stats.getStat(Stats::Lives)), mContext(context),
     mPlayerInfo(playerInfo), mFireCommand(), mIsFire(false), mInteractCommand(),
     mIsInteract(false), mSpecialCommand(), mIsSpecial(false),
     mAnimation(context.textures.get(TexturesID::Player)), mWeapon(nullptr),
@@ -39,19 +41,19 @@ void PlayerNode::makeAction(Action action) {
   switch (action) {
   case MoveUp:
     Entity::accelerate(
-      {0.f, static_cast<float>(-mPlayerInfo.stats.getState(Stats::Speed))});
+      {0.f, static_cast<float>(-mPlayerInfo.stats.getStat(Stats::Speed))});
     break;
   case MoveDown:
     Entity::accelerate(
-      {0.f, static_cast<float>(mPlayerInfo.stats.getState(Stats::Speed))});
+      {0.f, static_cast<float>(mPlayerInfo.stats.getStat(Stats::Speed))});
     break;
   case MoveLeft:
     Entity::accelerate(
-      {static_cast<float>(-mPlayerInfo.stats.getState(Stats::Speed)), 0.f});
+      {static_cast<float>(-mPlayerInfo.stats.getStat(Stats::Speed)), 0.f});
     break;
   case MoveRight:
     Entity::accelerate(
-      {static_cast<float>(mPlayerInfo.stats.getState(Stats::Speed)), 0.f});
+      {static_cast<float>(mPlayerInfo.stats.getStat(Stats::Speed)), 0.f});
     break;
   case Fire:
     fire();
@@ -76,7 +78,7 @@ void PlayerNode::pickup(std::unique_ptr<Pickup> pickup) {
 }
 
 bool PlayerNode::pay(int price) {
-  if (mPlayerInfo.stats.getState(Stats::Money) >= price) {
+  if (mPlayerInfo.stats.getStat(Stats::Money) >= price) {
     mPlayerInfo.stats.updateStat(Stats::Money, -price);
     return true;
   }
@@ -122,14 +124,17 @@ void PlayerNode::drawCurrent(sf::RenderTarget& target,
 
 void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands) {
   if (mIsFire) {
+    spdlog::trace("PlayerNode::updateCurrent | Fire Command");
     commands.push(mFireCommand);
     mIsFire = false;
   }
   if (mIsInteract) {
+    spdlog::trace("PlayerNode::updateCurrent | Interact Command");
     commands.push(mInteractCommand);
     mIsInteract = false;
   }
   if (mIsSpecial) {
+    spdlog::trace("PlayerNode::updateCurrent | Special Command");
     commands.push(mSpecialCommand);
     mIsSpecial = false;
   }
@@ -276,6 +281,7 @@ void PlayerNode::updateStats() {
     armor += eq.getItem(Equipment::Chest)->getHitpoints();
   if (eq.isItem(Equipment::Boots))
     armor += eq.getItem(Equipment::Boots)->getHitpoints();
+
   stats.setStat(Stats::Armor, armor);
 
   if (eq.isItem(Equipment::LeftHand))

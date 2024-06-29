@@ -1,4 +1,6 @@
 /** @file SceneNode.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/SceneNode.h"
 #include "Utils/Utility.h"
 
@@ -6,10 +8,13 @@ SceneNode::SceneNode(Category::Type category)
   : mChildren(), mParent(nullptr), mDefaultCategory(category) {}
 
 void SceneNode::attachChild(Ptr child) {
+  spdlog::trace("SceneNode::attachChild | Attach {} to {}",
+                static_cast<int>(child->getCategory()),
+                static_cast<int>(getCategory()));
+
   child->mParent = this;
   mChildren.push_back(std::move(child));
 }
-
 SceneNode::Ptr SceneNode::detachChild(const SceneNode& node) {
   auto found = std::find_if(mChildren.begin(), mChildren.end(),
                             [&](Ptr& p) { return p.get() == &node; });
@@ -20,6 +25,11 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode& node) {
   Ptr result = std::move(*found);
   result->mParent = nullptr;
   mChildren.erase(found);
+
+  spdlog::trace("SceneNode::detachChild | Detach {} from {}",
+                static_cast<int>(result->getCategory()),
+                static_cast<int>(getCategory()));
+
   return result;
 }
 
@@ -50,8 +60,12 @@ sf::Vector2f SceneNode::getWorldPosition() const {
 }
 
 void SceneNode::onCommand(const Command& command, sf::Time dt) {
-  if (command.category & getCategory())
+  if (command.category & getCategory()) {
+    spdlog::trace("SceneNode::onCommand | Command use on category {}\n\t{}",
+                  static_cast<int>(this->getCategory()),
+                  command.action.target_type().name());
     command.action(*this, dt);
+  }
 
   for (auto& child : mChildren)
     child->onCommand(command, dt);
