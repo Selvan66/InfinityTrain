@@ -6,18 +6,13 @@
 class Interactable : public Entity {
 public:
   Interactable();
-  bool IsInteract() const;
   void setDistance(float distance);
+  float getDistance() const;
 
   virtual void interact() = 0;
 
   virtual unsigned int getCategory() const override;
 
-protected:
-  virtual void updateCurrent(sf::Time, CommandQueue& commands) override;
-
 private:
   float mDistance;
-  bool mIsInteractable;
-  Command mCommand;
 };

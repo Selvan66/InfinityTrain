@@ -18,8 +18,8 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
 
   mInteractCommand.category = Category::Interactable;
   mInteractCommand.action =
-    derivedAction<Interactable>([](Interactable& interactable, sf::Time) {
-      if (interactable.IsInteract())
+    derivedAction<Interactable>([&](Interactable& interactable, sf::Time) {
+      if (Utility::distance(*this, interactable) < interactable.getDistance())
         interactable.interact();
     });
 
