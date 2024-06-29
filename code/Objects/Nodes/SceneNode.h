@@ -7,6 +7,7 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Objects/Category.h"
 #include "Objects/CommandQueue.h"
 
 class SceneNode : public sf::Transformable,

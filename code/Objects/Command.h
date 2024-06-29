@@ -6,8 +6,6 @@
 
 #include <SFML/System.hpp>
 
-#include "Objects/Category.h"
-
 class SceneNode;
 
 struct Command {
