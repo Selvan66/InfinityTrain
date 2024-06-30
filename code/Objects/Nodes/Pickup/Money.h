@@ -7,6 +7,8 @@ class Money : public Pickup {
 public:
   Money(Context& context, unsigned int value);
 
+  virtual std::string getName() const override;
+
 private:
   unsigned int mValue;
 };

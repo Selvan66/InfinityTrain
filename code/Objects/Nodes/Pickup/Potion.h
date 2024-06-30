@@ -9,6 +9,7 @@ class Potion : public Pickup {
 public:
   Potion(Context& context, unsigned int value);
 
+  virtual std::string getName() const override { return "Potion"; }
   virtual std::string getDescription() const override;
   virtual bool action(PlayerNode& player) override;
 

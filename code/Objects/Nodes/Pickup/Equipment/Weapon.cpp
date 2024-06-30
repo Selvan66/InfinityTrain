@@ -85,9 +85,11 @@ unsigned int Weapon::getCategory() const {
   return Pickup::getCategory() | Category::Weapon;
 }
 
+std::string Weapon::getName() const { return weapons[mType].name; }
+
 std::string Weapon::getDescription() const {
   std::stringstream ss;
-  ss << weapons[mType].name << '\n';
+  ss << getName() << '\n';
   ss << "Damage: " << weapons[mType].damage << '\n';
   ss << "Ammos: "
      << (Entity::getHitpoints() == INF ? "INF"

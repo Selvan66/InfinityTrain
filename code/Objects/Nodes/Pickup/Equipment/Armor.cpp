@@ -42,9 +42,11 @@ unsigned int Armor::getCategory() const {
   return Pickup::getCategory() | armors[mType].type;
 }
 
+std::string Armor::getName() const { return armors[mType].name; }
+
 std::string Armor::getDescription() const {
   std::stringstream ss;
-  ss << armors[mType].name << '\n';
+  ss << getName() << '\n';
   ss << "Durability: " << Entity::getHitpoints();
 
   for (auto& stat : getStats())

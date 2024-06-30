@@ -16,3 +16,5 @@ Money::Money(Context& context, unsigned int value)
   Pickup::setCommand(command);
   Pickup::setLabel(std::to_string(value) + "$");
 }
+
+std::string Money::getName() const { return "Money"; }

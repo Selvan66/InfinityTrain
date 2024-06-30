@@ -14,7 +14,8 @@ Pickup::Pickup(Context& context)
     });
 }
 
-std::string Pickup::getDescription() const { return ""; }
+std::string Pickup::getName() const { return ""; }
+std::string Pickup::getDescription() const { return getName(); }
 
 std::unordered_map<Stats::Type, int> Pickup::getStats() const { return {{}}; }
 

@@ -17,6 +17,7 @@ public:
   void use();
 
   virtual unsigned int getCategory() const override;
+  virtual std::string getName() const override;
   virtual std::string getDescription() const override;
   virtual std::unordered_map<Stats::Type, int> getStats() const override;
 

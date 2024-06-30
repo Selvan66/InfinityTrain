@@ -39,9 +39,11 @@ unsigned int Special::getCategory() const {
   return Pickup::getCategory() | Category::Special;
 }
 
+std::string Special::getName() const { return specials[mType].name; }
+
 std::string Special::getDescription() const {
   std::stringstream ss;
-  ss << specials[mType].name << '\n';
+  ss << getName() << '\n';
   ss << "Ammos: "
      << (Entity::getHitpoints() == INF ? "INF"
                                        : std::to_string(Entity::getHitpoints()))
