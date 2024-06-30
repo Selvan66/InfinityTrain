@@ -29,7 +29,7 @@ void StatisticsState::applyGuiFunctions() {
       std::to_string(context.statistics.get(Statistics::FinishedGames)));
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([&]() {
-    spdlog::trace("StatisticsState::applyGuiFunctions | BackButton clicked");
+    spdlog::debug("StatisticsState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::MenuOptionsState);
   });

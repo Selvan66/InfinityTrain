@@ -31,14 +31,14 @@ bool ParserGui::loadFromFile(const std::string& filename) {
 
   file.close();
 
-  spdlog::trace("ParserGui::loadFromFile | {} - load file successful",
+  spdlog::debug("ParserGui::loadFromFile | {} - load file successful",
                 filename);
 
   return true;
 }
 
 void ParserGui::addConst(const std::string& name, float value) {
-  spdlog::trace("ParserGui::addConst | name: {}, value: {}", name, value);
+  spdlog::debug("ParserGui::addConst | name: {}, value: {}", name, value);
   mConstants.add_constant(name, value);
 }
 
@@ -82,7 +82,7 @@ ParserGui::GuiParsePtr ParserGui::parse(Context& context) {
     ret->insert(std::make_pair(id, std::move(component)));
   }
 
-  spdlog::trace("ParserGui::parse | File successful parse");
+  spdlog::debug("ParserGui::parse | File successful parse");
 
   return ret;
 }
@@ -113,19 +113,19 @@ bool ParserGui::isComponent(const std::string& word) const {
 ParserGui::ComponentPtr ParserGui::getComponent(const std::string& word,
                                                 Context& context) const {
   if (word == "[TextButton]") {
-    spdlog::trace("ParserGui::getComponent | Create TextButton");
+    spdlog::debug("ParserGui::getComponent | Create TextButton");
     return std::unique_ptr<TextButton>(new TextButton(context));
   } else if (word == "[CheckBox]") {
-    spdlog::trace("ParserGui::getComponent | Create CheckBox");
+    spdlog::debug("ParserGui::getComponent | Create CheckBox");
     return std::unique_ptr<Checkbox>(new Checkbox(context));
   } else if (word == "[TextureButton]") {
-    spdlog::trace("ParserGui::getComponent | Create TextureButton");
+    spdlog::debug("ParserGui::getComponent | Create TextureButton");
     return std::unique_ptr<TextureButton>(new TextureButton(context));
   } else if (word == "[Text]") {
-    spdlog::trace("ParserGui::getComponent | Create Text");
+    spdlog::debug("ParserGui::getComponent | Create Text");
     return std::unique_ptr<Text>(new Text(context));
   } else if (word == "[TextSlider]") {
-    spdlog::trace("ParserGui::getComponent | Create TextSlider");
+    spdlog::debug("ParserGui::getComponent | Create TextSlider");
     return std::unique_ptr<TextSlider>(new TextSlider(context));
   }
 
@@ -176,7 +176,7 @@ sf::Vector2f ParserGui::parsePosition(const std::string& value) {
 void ParserGui::setProperties(ComponentPtr& component,
                               const std::string& propertie,
                               const std::string& value) {
-  spdlog::trace("ParserGui::setProperties | propertie - {}, value - {}",
+  spdlog::debug("ParserGui::setProperties | propertie - {}, value - {}",
                 propertie, value);
 
   if (propertie == "pos") {

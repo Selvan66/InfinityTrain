@@ -19,7 +19,7 @@ Equipment::Equipment(Context& context, PlayerInfo& playerInfo)
 
   for (size_t i = 0; i < SlotCount; ++i)
     mSlots[i].setRightClickCallback([this, i]() {
-      spdlog::trace("Equipment::Equipment | Right right click callback");
+      spdlog::debug("Equipment::Equipment | Right right click callback");
       this->unequip(static_cast<Slot>(i));
     });
 
@@ -53,14 +53,14 @@ void Equipment::equip(std::unique_ptr<Pickup> item) {
   Slot slot = getItemSlot(item);
   mPlayerInfo.stats.updateStat(item->getStats());
   mSlots[slot].addItem(std::move(item));
-  spdlog::trace("Equipment::equip | Equip item - {}", item->getDescription());
+  spdlog::debug("Equipment::equip | Equip item - {}", item->getDescription());
 }
 
 void Equipment::unequip(Slot slot) {
   if (isItem(slot)) {
     mPlayerInfo.stats.restoreStats(getItem(slot)->getStats());
     mPlayerInfo.backpack.addItemToBackpack(mSlots[slot].dropItem());
-    spdlog::trace("Equipment::unequip | Unequip item on slot - {}",
+    spdlog::debug("Equipment::unequip | Unequip item on slot - {}",
                   static_cast<int>(slot));
   }
 }

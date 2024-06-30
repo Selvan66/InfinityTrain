@@ -69,56 +69,56 @@ bool ControlSettingState::handleEvent(const sf::Event& event) {
 
 void ControlSettingState::applyGuiFunctions() {
   State::getGuiComponent<TextButton>("PlayerMoveUp").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | PlayerMoveUp clicked");
     mActionToChange = "Up";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerMoveDown").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | PlayerMoveDown clicked");
     mActionToChange = "Down";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerMoveLeft").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | PlayerMoveLeft clicked");
     mActionToChange = "Left";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerMoveRight").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | PlayerMoveRight clicked");
     mActionToChange = "Right";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerFire").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | PlayerFire clicked");
     mActionToChange = "Fire";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerInteract").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | PlayerInteract clicked");
     mActionToChange = "Interact";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("PlayerSpecial").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | PlayerSpecial clicked");
     mActionToChange = "Special";
     mChange = true;
   });
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::SettingState);
@@ -126,7 +126,7 @@ void ControlSettingState::applyGuiFunctions() {
 
   auto& context = State::getContext();
   State::getGuiComponent<TextButton>("ApplySaveButton").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "ControlSettingState::applyGuiFunctions | ApplySaveButton clicked");
     context.settings.set<std::unordered_map<std::string, std::string>>(
       mActionBinding, "Control");

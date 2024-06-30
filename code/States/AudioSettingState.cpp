@@ -25,7 +25,7 @@ void AudioSettingState::applyGuiFunctions() {
     .setCurrentText(std::to_string(static_cast<int>(mSaveSound)));
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([&]() {
-    spdlog::trace("AudioSettingState::applyGuiFunctions | BackButton clicked");
+    spdlog::debug("AudioSettingState::applyGuiFunctions | BackButton clicked");
     context.settings.set(mSaveMusic, "Audio", "Music Volume");
     context.settings.set(mSaveSound, "Audio", "Sounds Volume");
     context.applyAudioSettings();
@@ -35,7 +35,7 @@ void AudioSettingState::applyGuiFunctions() {
   });
 
   State::getGuiComponent<TextButton>("ApplyButton").setCallback([&]() {
-    spdlog::trace("AudioSettingState::applyGuiFunctions | ApplyButton clicked");
+    spdlog::debug("AudioSettingState::applyGuiFunctions | ApplyButton clicked");
     float applyMusic = std::stof(
       State::getGuiComponent<TextSlider>("MusicSlider").getCurrentText());
     float applySound = std::stof(
@@ -47,7 +47,7 @@ void AudioSettingState::applyGuiFunctions() {
   });
 
   State::getGuiComponent<TextButton>("ApplySaveButton").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "AudioSettingState::applyGuiFunctions | ApplySaveButton clicked");
     mSaveMusic = std::stof(
       State::getGuiComponent<TextSlider>("MusicSlider").getCurrentText());

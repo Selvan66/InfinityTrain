@@ -13,25 +13,25 @@ SettingState::SettingState(StateStack& stack, Context& context)
 
 void SettingState::applyGuiFunctions() {
   State::getGuiComponent<TextButton>("GraphicsButton").setCallback([this]() {
-    spdlog::trace("SettingState::applyGuiFunctions | GraphicsButton clicked");
+    spdlog::debug("SettingState::applyGuiFunctions | GraphicsButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::GraphicsSettingState);
   });
 
   State::getGuiComponent<TextButton>("ControlButton").setCallback([this]() {
-    spdlog::trace("SettingState::applyGuiFunctions | ControlButton clicked");
+    spdlog::debug("SettingState::applyGuiFunctions | ControlButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::ControlSettingState);
   });
 
   State::getGuiComponent<TextButton>("AudioButton").setCallback([this]() {
-    spdlog::trace("SettingState::applyGuiFunctions | AudioButton clicked");
+    spdlog::debug("SettingState::applyGuiFunctions | AudioButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::AudioSettingState);
   });
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([this]() {
-    spdlog::trace("SettingState::applyGuiFunctions | BackButton clicked");
+    spdlog::debug("SettingState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::MenuOptionsState);
   });

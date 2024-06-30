@@ -14,14 +14,14 @@ Backpack::Backpack(Context& context)
   : mBackpack{V20_POCKET}, mDropQueue(), mUseQueue() {
   for (size_t i = 0; i < mSize; ++i)
     mBackpack[i].setLeftClickCallback([this, i]() {
-      spdlog::trace("Backpack::Backpack | Left click on backpack slot nr {}",
+      spdlog::debug("Backpack::Backpack | Left click on backpack slot nr {}",
                     i);
       this->giveItemToUse(i);
     });
 
   for (size_t i = 0; i < mSize; ++i)
     mBackpack[i].setRightClickCallback([this, i]() {
-      spdlog::trace("Backpack::Backpack | Right click on backpack slot nr {}",
+      spdlog::debug("Backpack::Backpack | Right click on backpack slot nr {}",
                     i);
       this->giveItemToDrop(i);
     });
@@ -40,7 +40,7 @@ void Backpack::addItemToBackpack(std::unique_ptr<Pickup> item) {
     index = 0;
   }
 
-  spdlog::trace("Backpack::addItemToBackpack | To slot {} add item {}", index,
+  spdlog::debug("Backpack::addItemToBackpack | To slot {} add item {}", index,
                 item->getDescription());
 
   mBackpack[index].addItem(std::move(item));
@@ -52,7 +52,7 @@ void Backpack::giveItemToDrop(size_t index) {
                  index);
     return;
   }
-  spdlog::trace("Backpack::giveItemToDrop | Drop slot {}", index);
+  spdlog::debug("Backpack::giveItemToDrop | Drop slot {}", index);
   mDropQueue.push(mBackpack[index].dropItem());
 }
 
@@ -61,7 +61,7 @@ void Backpack::giveItemToUse(size_t index) {
     spdlog::warn("Backpack::giveItemToUse | Cannot use empty slot {}", index);
     return;
   }
-  spdlog::trace("Backpack::giveItemToUse | Use slot {}", index);
+  spdlog::debug("Backpack::giveItemToUse | Use slot {}", index);
   mUseQueue.push(mBackpack[index].dropItem());
 }
 
@@ -77,7 +77,7 @@ void Backpack::action(PlayerNode& player) {
   while (!mUseQueue.empty()) {
     auto pickup = std::move(mUseQueue.front());
     if (!pickup->action(player)) {
-      spdlog::trace("Backpack::action | Cannot use item {}",
+      spdlog::debug("Backpack::action | Cannot use item {}",
                     pickup->getDescription());
       addItemToBackpack(std::move(pickup));
     }

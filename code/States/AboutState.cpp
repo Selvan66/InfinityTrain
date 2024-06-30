@@ -14,7 +14,7 @@ AboutState::AboutState(StateStack& stack, Context& context)
 
 void AboutState::applyGuiFunctions() {
   State::getGuiComponent<TextButton>("BackButton").setCallback([this]() {
-    spdlog::trace("AboutState::applyGuiFunctions | BackButton clicked");
+    spdlog::debug("AboutState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::MenuOptionsState);
   });

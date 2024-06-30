@@ -14,13 +14,13 @@ Pocket::Pocket(Context& context)
 }
 
 void Pocket::addItem(std::unique_ptr<Pickup> item) {
-  spdlog::trace("Pocket::addItem | {}", item->getDescription());
+  spdlog::debug("Pocket::addItem | {}", item->getName());
   mItem = std::move(item);
 }
 
 std::unique_ptr<Pickup> Pocket::dropItem() {
   std::unique_ptr<Pickup> item = std::move(mItem);
-  spdlog::trace("Pocket::dropItem | {}", item->getDescription());
+  spdlog::debug("Pocket::dropItem | {}", item->getName());
   mItem = nullptr;
   mPopupLabel.setText("");
   return item;

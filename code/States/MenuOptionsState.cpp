@@ -14,33 +14,33 @@ MenuOptionsState::MenuOptionsState(StateStack& stack, Context& context)
 
 void MenuOptionsState::applyGuiFunctions() {
   State::getGuiComponent<TextButton>("PlayButton").setCallback([this]() {
-    spdlog::trace("MenuOptionsState::applyGuiFunctions | PlayButton clicked");
+    spdlog::debug("MenuOptionsState::applyGuiFunctions | PlayButton clicked");
     this->requestStackClear();
     this->requestStackPush(StatesID::LoadingState);
   });
 
   State::getGuiComponent<TextButton>("StatisticsButton").setCallback([this]() {
-    spdlog::trace(
+    spdlog::debug(
       "MenuOptionsState::applyGuiFunctions | StatisticsButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::StatisticsState);
   });
 
   State::getGuiComponent<TextButton>("SettingsButton").setCallback([this]() {
-    spdlog::trace(
+    spdlog::debug(
       "MenuOptionsState::applyGuiFunctions | SettingsButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::SettingState);
   });
 
   State::getGuiComponent<TextButton>("AboutButton").setCallback([this]() {
-    spdlog::trace("MenuOptionsState::applyGuiFunctions | AboutButton clicked");
+    spdlog::debug("MenuOptionsState::applyGuiFunctions | AboutButton clicked");
     this->requestStackPop();
     this->requestStackPush(StatesID::AboutState);
   });
 
   State::getGuiComponent<TextButton>("QuitButton").setCallback([this]() {
-    spdlog::trace("MenuOptionsState::applyGuiFunctions | QuitButton clicked");
+    spdlog::debug("MenuOptionsState::applyGuiFunctions | QuitButton clicked");
     this->requestStackClear();
   });
 }

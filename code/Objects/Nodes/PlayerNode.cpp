@@ -124,17 +124,17 @@ void PlayerNode::drawCurrent(sf::RenderTarget& target,
 
 void PlayerNode::updateCurrent(sf::Time dt, CommandQueue& commands) {
   if (mIsFire) {
-    spdlog::trace("PlayerNode::updateCurrent | Fire Command");
+    spdlog::debug("PlayerNode::updateCurrent | Fire Command");
     commands.push(mFireCommand);
     mIsFire = false;
   }
   if (mIsInteract) {
-    spdlog::trace("PlayerNode::updateCurrent | Interact Command");
+    spdlog::debug("PlayerNode::updateCurrent | Interact Command");
     commands.push(mInteractCommand);
     mIsInteract = false;
   }
   if (mIsSpecial) {
-    spdlog::trace("PlayerNode::updateCurrent | Special Command");
+    spdlog::debug("PlayerNode::updateCurrent | Special Command");
     commands.push(mSpecialCommand);
     mIsSpecial = false;
   }

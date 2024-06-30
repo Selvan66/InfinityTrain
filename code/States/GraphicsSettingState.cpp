@@ -39,7 +39,7 @@ void GraphicsSettingState::applyGuiFunctions() {
     .setSelection(mSaveFullscreen);
 
   State::getGuiComponent<TextButton>("BackButton").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "GraphicsSettingState::applyGuiFunctions | BackButton clicked");
     context.settings.set<std::pair<int, int>>(mSaveResolution, "Graphics",
                                               "Resolution");
@@ -50,7 +50,7 @@ void GraphicsSettingState::applyGuiFunctions() {
   });
 
   State::getGuiComponent<TextButton>("ApplyButton").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "GraphicsSettingState::applyGuiFunctions | ApplyButton clicked");
     std::string applyResolution =
       State::getGuiComponent<TextSlider>("ResolutionSlider").getCurrentText();
@@ -67,7 +67,7 @@ void GraphicsSettingState::applyGuiFunctions() {
   });
 
   State::getGuiComponent<TextButton>("ApplySaveButton").setCallback([&]() {
-    spdlog::trace(
+    spdlog::debug(
       "GraphicsSettingState::applyGuiFunctions | ApplySaveButton clicked");
     std::string applyResolution =
       State::getGuiComponent<TextSlider>("ResolutionSlider").getCurrentText();

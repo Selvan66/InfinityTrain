@@ -26,18 +26,18 @@ void StateStack::handleEvent(const sf::Event& event) {
 }
 
 void StateStack::pushState(StatesID stateID) {
-  spdlog::trace("StateStack::pushState | State push - {}",
+  spdlog::debug("StateStack::pushState | State push - {}",
                 static_cast<int>(stateID));
   mPendingList.push_back(PendingChange(Push, stateID));
 }
 
 void StateStack::popState() {
-  spdlog::trace("StateStack::popState | State pop");
+  spdlog::debug("StateStack::popState | State pop");
   mPendingList.push_back(PendingChange(Pop));
 }
 
 void StateStack::clearState() {
-  spdlog::trace("StateStack::clearState | State clear");
+  spdlog::debug("StateStack::clearState | State clear");
   mPendingList.push_back(PendingChange(Clear));
 }
 

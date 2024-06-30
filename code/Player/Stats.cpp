@@ -19,7 +19,7 @@ bool Stats::setStat(Type stat, int value) {
   if (getStat(stat) == value)
     return false;
 
-  spdlog::trace("Stats::setStat | Set stat {} from {} to {}",
+  spdlog::debug("Stats::setStat | Set stat {} from {} to {}",
                 static_cast<int>(stat), mStats[stat], value);
   auto oldStat = mStats[stat];
   setStatWithRange(stat, value);
@@ -28,7 +28,7 @@ bool Stats::setStat(Type stat, int value) {
 }
 
 bool Stats::updateStat(Type stat, int value) {
-  spdlog::trace("Stats::updateStat | Update stat {} - {} + {}",
+  spdlog::debug("Stats::updateStat | Update stat {} - {} + {}",
                 static_cast<int>(stat), mStats[stat], value);
   auto oldStat = mStats[stat];
   setStat(stat, mStats[stat] + value);

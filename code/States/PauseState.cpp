@@ -42,12 +42,12 @@ bool PauseState::handleEvent(const sf::Event& event) {
 
 void PauseState::applyGuiFunctions() {
   State::getGuiComponent<TextButton>("BackButton").setCallback([this]() {
-    spdlog::trace("PauseState::applyGuiFunctions | BackButton clicked");
+    spdlog::debug("PauseState::applyGuiFunctions | BackButton clicked");
     this->requestStackPop();
   });
 
   State::getGuiComponent<TextButton>("QuitButton").setCallback([this]() {
-    spdlog::trace("PauseState::applyGuiFunctions | QuitButton clicked");
+    spdlog::debug("PauseState::applyGuiFunctions | QuitButton clicked");
     this->requestStackClear();
     this->requestStackPush(StatesID::MenuState);
   });
