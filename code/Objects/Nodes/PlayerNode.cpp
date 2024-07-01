@@ -14,21 +14,30 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
     mIsWeaponEquip(false), mIsSpecialEquip(false) {
   mFireCommand.category = Category::Battlefield;
   mFireCommand.action = [&](SceneNode&, sf::Time) {
-    if (mWeapon != nullptr)
+    if (mWeapon != nullptr) {
+      spdlog::trace("PlayerNode::PlayerNode | Use weapon {}",
+                    mWeapon->getName());
       mWeapon->use();
+    }
   };
 
   mInteractCommand.category = Category::Interactable;
   mInteractCommand.action =
     derivedAction<Interactable>([&](Interactable& interactable, sf::Time) {
-      if (Utility::distance(*this, interactable) < interactable.getDistance())
+      if (Utility::distance(*this, interactable) < interactable.getDistance()) {
+        spdlog::trace("PlayerNode::PlayerNode | Interact with category {}",
+                      static_cast<int>(interactable.getCategory()));
         interactable.interact();
+      }
     });
 
   mSpecialCommand.category = Category::Battlefield;
   mSpecialCommand.action = [&](SceneNode&, sf::Time) {
-    if (mSpecial != nullptr)
+    if (mSpecial != nullptr) {
+      spdlog::trace("PlayerNode::PlayerNode | Use special {}",
+                    mSpecial->getName());
       mSpecial->use();
+    }
   };
 
   mAnimation.setFrameSize({80, 61});
@@ -71,10 +80,15 @@ void PlayerNode::makeAction(Action action) {
 }
 
 void PlayerNode::pickup(std::unique_ptr<Pickup> pickup) {
-  if (mPlayerInfo.equipment.canBeEquipped(pickup))
+  if (mPlayerInfo.equipment.canBeEquipped(pickup)) {
+    spdlog::debug("PlayerNode::pickup | Move item {} to equipment",
+                  pickup->getName());
     mPlayerInfo.equipment.equip(std::move(pickup));
-  else
+  } else {
+    spdlog::debug("PlayerNode::pickup | Move item {} to backpack",
+                  pickup->getName());
     mPlayerInfo.backpack.addItemToBackpack(std::move(pickup));
+  }
 }
 
 bool PlayerNode::pay(int price) {
@@ -114,7 +128,11 @@ bool PlayerNode::damage(int points) {
     eq.getItem(Equipment::Boots)->damage(static_cast<int>(points * 0.2));
     damage -= fpoints * 0.2f;
   }
-  return Entity::damage(static_cast<int>(damage));
+
+  int idamage = static_cast<int>(damage);
+  spdlog::debug("PlayerNode::damage | Get {} hitpoints", idamage);
+
+  return Entity::damage(idamage);
 }
 
 void PlayerNode::drawCurrent(sf::RenderTarget& target,
@@ -191,6 +209,7 @@ void PlayerNode::updateEquipedWeapon() {
 
   // Delete on screen
   if (mIsWeaponEquip && weaponOnScreen && !leftHandEq) {
+    spdlog::debug("PlayerNode::updateEquipedWeapon | Delete on screen");
     mWeapon->destroy();
     mIsWeaponEquip = false;
     mWeapon = nullptr;
@@ -199,7 +218,8 @@ void PlayerNode::updateEquipedWeapon() {
 
   // Delete in hand
   if (mIsWeaponEquip && !weaponOnScreen && leftHandEq) {
-    mPlayerInfo.equipment.getItem(Equipment::LeftHand)->setHitpoints(0);
+    spdlog::debug("PlayerNode::updateEquipedWeapon | Delete in hand");
+    mPlayerInfo.equipment.getItem(Equipment::LeftHand)->destroy();
     mIsWeaponEquip = false;
     mWeapon = nullptr;
     return;
@@ -207,6 +227,7 @@ void PlayerNode::updateEquipedWeapon() {
 
   // Update
   if (weaponOnScreen && leftHandEq && mIsWeaponEquip) {
+    spdlog::trace("PlayerNode::updateEquipedWeapon | Update");
     mPlayerInfo.equipment.getItem(Equipment::LeftHand)
       ->setHitpoints(mWeapon->getHitpoints());
     return;
@@ -214,6 +235,7 @@ void PlayerNode::updateEquipedWeapon() {
 
   // Create
   if (!mIsWeaponEquip && leftHandEq && !weaponOnScreen) {
+    spdlog::debug("PlayerNode::updateEquipedWeapon | Create");
     auto weapon_ptr =
       mPlayerInfo.equipment.getItem(Equipment::LeftHand)->create();
     mWeapon = dynamic_cast<Weapon*>(weapon_ptr.get());
@@ -234,6 +256,7 @@ void PlayerNode::updateEquipedSpecial() {
 
   // Delete on screen
   if (mIsSpecialEquip && specialOnScreen && !rightHandEq) {
+    spdlog::debug("PlayerNode::updateEquipedSpecial | Delete on screen");
     mSpecial->destroy();
     mIsSpecialEquip = false;
     mSpecial = nullptr;
@@ -242,6 +265,7 @@ void PlayerNode::updateEquipedSpecial() {
 
   // Delete on hand
   if (mIsSpecialEquip && !specialOnScreen && rightHandEq) {
+    spdlog::debug("PlayerNode::updateEquipedSpecial | Delete on hand");
     mPlayerInfo.equipment.getItem(Equipment::RightHand)->setHitpoints(0);
     mIsSpecialEquip = false;
     mSpecial = nullptr;
@@ -250,6 +274,7 @@ void PlayerNode::updateEquipedSpecial() {
 
   // Update
   if (mIsSpecialEquip && specialOnScreen && rightHandEq) {
+    spdlog::trace("PlayerNode::updateEquipedSpecial | Update");
     mPlayerInfo.equipment.getItem(Equipment::RightHand)
       ->setHitpoints(mSpecial->getHitpoints());
     return;
