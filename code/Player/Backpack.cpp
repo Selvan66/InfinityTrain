@@ -41,7 +41,7 @@ void Backpack::addItemToBackpack(std::unique_ptr<Pickup> item) {
   }
 
   spdlog::debug("Backpack::addItemToBackpack | To slot {} add item {}", index,
-                item->getDescription());
+                item->getName());
 
   mBackpack[index].addItem(std::move(item));
 }

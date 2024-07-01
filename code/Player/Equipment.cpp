@@ -39,21 +39,22 @@ Equipment::Equipment(Context& context, PlayerInfo& playerInfo)
 
 bool Equipment::canBeEquipped(const std::unique_ptr<Pickup>& item) const {
   Slot slot = getItemSlot(item);
-  if (slot == None || isItem(slot))
-    return false;
-  return true;
+  bool is_something_equipped = slot == None || isItem(slot);
+  spdlog::debug("Equipment::canBeEquipped | Item {} can be equipped? {}",
+                item->getName(), !is_something_equipped);
+  return !is_something_equipped;
 }
 
 void Equipment::equip(std::unique_ptr<Pickup> item) {
   if (!canBeEquipped(item)) {
     spdlog::warn("Equipment::equip | (Delete item) Cannot equip item - {}",
-                 item->getDescription());
+                 item->getName());
     return;
   }
+  spdlog::debug("Equipment::equip | Equip item - {}", item->getName());
   Slot slot = getItemSlot(item);
   mPlayerInfo.stats.updateStat(item->getStats());
   mSlots[slot].addItem(std::move(item));
-  spdlog::debug("Equipment::equip | Equip item - {}", item->getDescription());
 }
 
 void Equipment::unequip(Slot slot) {
