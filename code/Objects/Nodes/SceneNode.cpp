@@ -93,6 +93,10 @@ void SceneNode::removeObjects() {
   auto wreckfieldBegin =
     std::remove_if(mChildren.begin(), mChildren.end(),
                    std::mem_fn(&SceneNode::isMarkedForRemoval));
+  auto num_of_objects = std::distance(wreckfieldBegin, mChildren.end());
+  if (num_of_objects != 0)
+    spdlog::debug("SceneNode::removeObjects | Removing {} objects",
+                  num_of_objects);
   mChildren.erase(wreckfieldBegin, mChildren.end());
   std::for_each(mChildren.begin(), mChildren.end(),
                 std::mem_fn(&SceneNode::removeObjects));
