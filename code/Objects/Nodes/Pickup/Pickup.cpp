@@ -1,4 +1,6 @@
 /** @file Pickup.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/Pickup/Pickup.h"
 #include "Objects/Nodes/PlayerNode.h"
 #include "Objects/Nodes/TextNode.h"
@@ -9,6 +11,7 @@ Pickup::Pickup(Context& context)
   mCommand.category = Category::Player;
   mCommand.action =
     derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
+      spdlog::debug("Pickup::Pickup | Picked {}", this->getName());
       player.pickup(create());
       this->destroy();
     });
