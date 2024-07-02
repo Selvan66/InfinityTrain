@@ -24,7 +24,7 @@ void Entity::accelerate(float vx, float vy) {
 }
 
 void Entity::setHitpoints(int hitpoints) {
-  spdlog::debug("Entity::setHitpoints | Category {} set hp to {}",
+  spdlog::trace("Entity::setHitpoints | Category {} set hp to {}",
                 static_cast<int>(getCategory()), hitpoints);
   mHitpoints = hitpoints;
 }
