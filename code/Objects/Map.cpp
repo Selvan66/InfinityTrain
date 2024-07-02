@@ -1,9 +1,11 @@
 /** @file Map.cpp */
-#include "Objects/Map.h"
+#include "spdlog/spdlog.h"
+
 #include "Gui/Text.h"
 #include "Objects/Levels/FirstLevel.h"
 #include "Objects/Levels/PrehistoryLevel.h"
 #include "Objects/Levels/StartLevel.h"
+#include "Objects/Map.h"
 #include "Utils/Utility.h"
 
 Map::Map(Context& context)
@@ -40,7 +42,9 @@ void Map::update(sf::Time dt) {
         (context.statistics.get(Statistics::TimePlay) - mStartTime) / 1000));
 
   mLevel->update(dt);
+
   if (mLevel->nextLevel() != LevelID::None) {
+    spdlog::info("Map::update | Level {} finish", mLvlContext.numLevel);
     mLvlContext.numLevel++;
     Utility::safeCasting<Text>(mGui->at("level").get())
       ->setString("Level: " + std::to_string(mLvlContext.numLevel));

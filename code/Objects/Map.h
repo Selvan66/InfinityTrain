@@ -2,6 +2,8 @@
 #pragma once
 #include <functional>
 
+#include "spdlog/spdlog.h"
+
 #include "Objects/Levels/Level.h"
 
 class Map {
@@ -25,5 +27,6 @@ private:
 };
 
 template <typename T> void Map::registerLevel(LevelID::ID id) {
+  spdlog::info("Map::registerLevel | Register level {}", static_cast<int>(id));
   mFactories[id] = [this] { return std::make_unique<T>(mLvlContext); };
 }
