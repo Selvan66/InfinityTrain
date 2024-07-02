@@ -1,4 +1,6 @@
 /** @file Buyable.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/Pickup/Buyable.h"
 #include "Objects/Nodes/PlayerNode.h"
 
@@ -9,6 +11,7 @@ Buyable::Buyable(Context& context, int price, std::unique_ptr<Pickup> pickup)
   command.action =
     derivedAction<PlayerNode>([this](PlayerNode& player, sf::Time) {
       if (player.pay(mPrice)) {
+        spdlog::debug("Buyable::Buyable | Command | Value {}", mPrice);
         player.pickup(mPickup->create());
         this->destroy();
       }
