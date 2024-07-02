@@ -13,9 +13,8 @@ Potion::Potion(Context& context, unsigned int value)
 std::string Potion::getDescription() const { return mDescription; }
 
 bool Potion::action(PlayerNode& player) {
-  if (player.heal(mValue))
-    return true;
-  return false;
+  spdlog::debug("Potion::action | Heal player by {}", mValue);
+  return player.heal(mValue);
 }
 
 std::unique_ptr<Pickup> Potion::create() const {

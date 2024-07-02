@@ -1,6 +1,8 @@
 /** @file Door.cpp */
-#include "Objects/Nodes/Door.h"
+#include "spdlog/spdlog.h"
+
 #include "App/Context.h"
+#include "Objects/Nodes/Door.h"
 #include "Utils/Utility.h"
 
 Door::Door(Context& context)
@@ -17,6 +19,7 @@ Door::Door(Context& context)
 
 void Door::open() {
   if (!mIsOpen) {
+    spdlog::debug("Door::open");
     mIsOpen = true;
     mAnimation.setReversed(false);
     mAnimation.restart();
@@ -25,6 +28,7 @@ void Door::open() {
 
 void Door::close() {
   if (mIsOpen) {
+    spdlog::debug("Door::close");
     mIsOpen = false;
     mAnimation.setReversed(true);
     mAnimation.restart();

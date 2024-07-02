@@ -23,6 +23,7 @@ std::string Pickup::getDescription() const { return getName(); }
 std::unordered_map<Stats::Type, int> Pickup::getStats() const { return {{}}; }
 
 bool Pickup::action(PlayerNode& player) {
+  spdlog::debug("Pickup::action");
   player.pickup(create());
   return true;
 }
@@ -63,6 +64,7 @@ void Pickup::updateCurrent(sf::Time dt, CommandQueue& commands) {
   Interactable::updateCurrent(dt, commands);
 
   if (mPickedUp) {
+    spdlog::trace("Pickup::updateCurrent | Add pickup command");
     commands.push(mCommand);
     mPickedUp = false;
   }
