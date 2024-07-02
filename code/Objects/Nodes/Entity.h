@@ -16,7 +16,7 @@ public:
   int getHitpoints() const;
   void destroy();
   bool heal(unsigned int points);
-  bool damageFromPos(int points, sf::Vector2f pos);
+  bool damageWithKnockback(int points, sf::Vector2f pos);
 
   virtual bool damage(int points);
   virtual void remove();

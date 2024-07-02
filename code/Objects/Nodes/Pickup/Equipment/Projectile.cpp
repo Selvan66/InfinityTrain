@@ -47,8 +47,8 @@ Projectile::Projectile(Context& context, Type type, Category::Type category)
 
   mAttackCommand.action = derivedAction<Entity>([&](Entity& entity, sf::Time) {
     if (Utility::collision(*this, entity)) {
-      entity.damageFromPos(projectiles[mType].damage,
-                           SceneNode::getWorldPosition());
+      entity.damageWithKnockback(projectiles[mType].damage,
+                                 SceneNode::getWorldPosition());
       this->destroy();
     }
   });

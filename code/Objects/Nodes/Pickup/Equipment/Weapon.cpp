@@ -59,8 +59,8 @@ Weapon::Weapon(Context& context, Type type, int ammos)
     mAttackCommand.category = Category::Enemy;
     mAttackCommand.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time) {
       if (Utility::collision(*this, enemy))
-        enemy.damageFromPos(weapons[mType].damage,
-                            SceneNode::getWorldPosition());
+        enemy.damageWithKnockback(weapons[mType].damage,
+                                  SceneNode::getWorldPosition());
     });
   } else {
     mAttackCommand.category = Category::Battlefield;

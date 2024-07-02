@@ -65,7 +65,7 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands) {
       duration += dt;
       if (duration >= sf::seconds(0.5f)) {
         if (Utility::collision(*this, player)) {
-          player.damageFromPos(25, SceneNode::getWorldPosition());
+          player.damageWithKnockback(25, SceneNode::getWorldPosition());
           duration = sf::Time::Zero;
         }
       }
