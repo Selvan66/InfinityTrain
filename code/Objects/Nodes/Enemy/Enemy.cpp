@@ -4,10 +4,15 @@
 
 Enemy::Enemy(Context& context)
   : Entity(100), mContext(context),
-    mSprite(context.textures.get(TexturesID::Player), {0, 0, 80, 61}),
-    mPlayer(nullptr), mDuration(sf::Time::Zero), mText(nullptr),
+    mAnimation(context.textures.get(TexturesID::Dog)), mPlayer(nullptr),
+    mDuration(sf::Time::Zero), mText(nullptr),
     mDamageDuration(sf::seconds(0.3f)) {
-  Utility::centerOrigin(mSprite);
+
+  mAnimation.setFrameSize({64, 64});
+  mAnimation.setNumFrames(4);
+  mAnimation.setDuration(sf::seconds(0.5f));
+  mAnimation.setRepeating(true);
+
   std::unique_ptr<TextNode> text(new TextNode(context));
   text->setString(std::to_string(Entity::getHitpoints()) + "HP");
   text->setPosition(0.f, -40.f);
@@ -17,7 +22,7 @@ Enemy::Enemy(Context& context)
 
 sf::FloatRect Enemy::getBoundingRect() const {
   return SceneNode::getWorldTransform().transformRect(
-    mSprite.getGlobalBounds());
+    mAnimation.getGlobalBounds());
 }
 
 unsigned int Enemy::getCategory() const { return Category::Enemy; }
@@ -36,11 +41,13 @@ bool Enemy::isMarkedForRemoval() const {
 void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands) {
   mDamageDuration += dt;
   if (mDamageDuration < sf::seconds(0.3f))
-    mSprite.setColor(sf::Color::Red);
+    mAnimation.setColor(sf::Color::Red);
   else
-    mSprite.setColor(sf::Color::White);
+    mAnimation.setColor(sf::Color::White);
 
   Entity::updateCurrent(dt, commands);
+  mAnimation.update(dt);
+
   if (mPlayer == nullptr) {
     Command command;
     command.category = Category::Player;
@@ -77,5 +84,5 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands) {
 
 void Enemy::drawCurrent(sf::RenderTarget& target,
                         sf::RenderStates states) const {
-  target.draw(mSprite, states);
+  target.draw(mAnimation, states);
 }

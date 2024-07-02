@@ -61,7 +61,7 @@ bool Animation::isFinished() const { return mCurrentFrame >= mNumFrames; }
 
 sf::FloatRect Animation::getGlobalBounds() const {
   return sf::Transformable::getTransform().transformRect(
-    mSprite.getGlobalBounds());
+    mSprite.getTransform().transformRect(Utility::pixelLocalBounds(mSprite)));
 }
 
 void Animation::update(sf::Time dt) {
@@ -71,20 +71,24 @@ void Animation::update(sf::Time dt) {
   sf::Time timePerFrame = mDuration / static_cast<float>(mNumFrames);
   mElapsedTime += dt;
 
+  bool isTextureChanged = false;
   sf::IntRect textureRect = mSprite.getTextureRect();
 
   if (mCurrentFrame == 0) {
+    isTextureChanged = true;
     textureRect = firstFrame();
     incrementCurrentFrame();
   }
 
   while ((mElapsedTime >= timePerFrame) &&
          ((mCurrentFrame < mNumFrames) || mRepeat)) {
+    isTextureChanged = true;
     mElapsedTime -= timePerFrame;
     textureRect = nextFrame(textureRect);
     incrementCurrentFrame();
   }
-  mSprite.setTextureRect(textureRect);
+  if (isTextureChanged)
+    mSprite.setTextureRect(textureRect);
 }
 
 void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const {

@@ -20,6 +20,7 @@ float distance(const SceneNode& lhs, const SceneNode& rhs);
 bool collision(const SceneNode& lhs, const SceneNode& rhs);
 std::string timeToString(unsigned long long time);
 bool areEqual(float lhs, float rhs);
+sf::FloatRect pixelLocalBounds(const sf::Sprite& sprite);
 
 sf::Vector2f getMousePos(sf::RenderWindow& window);
 

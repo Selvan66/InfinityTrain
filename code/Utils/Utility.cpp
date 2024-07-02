@@ -71,6 +71,57 @@ bool areEqual(float lhs, float rhs) {
                                    std::fmax(std::fabs(lhs), std::fabs(rhs));
 }
 
+sf::FloatRect pixelLocalBounds(const sf::Sprite& sprite) {
+  const sf::Image image = sprite.getTexture()->copyToImage();
+  const sf::IntRect textureRect = sprite.getTextureRect();
+  const int width = textureRect.width;
+  const int height = textureRect.height;
+
+  sf::FloatRect result = {0, 0, static_cast<float>(width),
+                          static_cast<float>(height)};
+  bool is_top = false;
+  bool is_left = false;
+  bool is_width = false;
+  bool is_height = false;
+
+  for (int i = 0; i < width; ++i)
+    for (int j = 0; j < height; ++j) {
+      const sf::Color pixel =
+        image.getPixel(static_cast<unsigned int>(textureRect.left + i),
+                       static_cast<unsigned int>(j + textureRect.top));
+      if (pixel.a == 0)
+        continue;
+
+      float fi = static_cast<float>(i);
+      float fj = static_cast<float>(j);
+      if (!is_top || fj < result.top) {
+        is_top = true;
+        result.top = fj;
+      }
+
+      if (!is_left || fi < result.left) {
+        is_left = true;
+        result.left = fi;
+      }
+
+      if (!is_width || fi > result.width) {
+        is_width = true;
+        result.width = fi;
+      }
+
+      if (!is_height || fj > result.height) {
+        is_height = true;
+        result.height = fj;
+      }
+    }
+  if (!(is_top && is_left && is_width && is_height))
+    spdlog::warn(
+      "Utility::pixelLocalBounds | Cannot find all bounds. State {} {} {} {}",
+      is_top, is_left, is_width, is_height);
+
+  return result;
+}
+
 std::string toString(Player::Output key) {
   sf::Keyboard::Key* keyboard = std::get_if<sf::Keyboard::Key>(&key);
   sf::Mouse::Button* mouse = std::get_if<sf::Mouse::Button>(&key);

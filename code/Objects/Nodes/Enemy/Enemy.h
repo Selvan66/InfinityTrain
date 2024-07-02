@@ -1,6 +1,7 @@
 /** @file Enemy.h */
 #pragma once
 
+#include "Effects/Animation.h"
 #include "Objects/Nodes/Entity.h"
 #include "Objects/Nodes/PlayerNode.h"
 #include "Objects/Nodes/TextNode.h"
@@ -21,7 +22,7 @@ protected:
 
 private:
   Context& mContext;
-  sf::Sprite mSprite;
+  Animation mAnimation;
   PlayerNode* mPlayer;
   sf::Time mDuration;
   TextNode* mText;
