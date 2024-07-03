@@ -1,4 +1,6 @@
 /** @file Enemy.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/Enemy/Enemy.h"
 #include "Utils/Utility.h"
 
@@ -23,6 +25,7 @@ sf::FloatRect Enemy::getBoundingRect() const {
 unsigned int Enemy::getCategory() const { return Category::Enemy; }
 
 bool Enemy::damage(int points) {
+  spdlog::trace("Enemy::damage | Hit - {}", points);
   mDamageDuration = sf::Time::Zero;
   return Entity::damage(points);
 }
@@ -44,8 +47,11 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands) {
   if (mPlayer == nullptr) {
     Command command;
     command.category = Category::Player;
-    command.action = derivedAction<PlayerNode>(
-      [&](PlayerNode& player, sf::Time) { mPlayer = &player; });
+    command.action =
+      derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
+        spdlog::trace("Enemy::updateCurrent | Find player command");
+        mPlayer = &player;
+      });
     commands.push(command);
   } else {
     sf::Vector2f direction =
@@ -65,6 +71,7 @@ void Enemy::updateCurrent(sf::Time dt, CommandQueue& commands) {
       duration += dt;
       if (duration >= sf::seconds(0.5f)) {
         if (Utility::collision(*this, player)) {
+          spdlog::trace("Enemy::updateCurrent | Hit player command");
           player.damageWithKnockback(25, SceneNode::getWorldPosition());
           duration = sf::Time::Zero;
         }
