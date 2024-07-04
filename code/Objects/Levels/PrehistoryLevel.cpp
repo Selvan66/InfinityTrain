@@ -1,4 +1,6 @@
 /** @file PrehistoryLevel.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Levels/PrehistoryLevel.h"
 #include "Objects/Nodes/Enemy/Enemy.h"
 #include "Objects/Nodes/Pickup/Buyable.h"
@@ -17,13 +19,17 @@ PrehistoryLevel::PrehistoryLevel(LvlContext& lvlContext) : Level(lvlContext) {
 void PrehistoryLevel::update(sf::Time dt) {
   Level::update(dt);
 
-  if (Level::isFinished())
+  if (Level::isFinished()) {
+    spdlog::debug("PrehistoryLevel::update | isFinished");
     mDoor->open();
+  }
 }
 
 LevelID::ID PrehistoryLevel::nextLevel() const {
-  if (mDoor->isInteract())
+  if (mDoor->isInteract()) {
+    spdlog::debug("PrehistoryLevel::nextLevel | FirstLevel");
     return LevelID::FirstLevel;
+  }
   return LevelID::None;
 }
 
