@@ -31,6 +31,7 @@ enum class TexturesID {
   Bazooka,
   Rocket,
   Dog,
+  Finn,
 };
 
 typedef ResourceHolder<sf::Texture, TexturesID> TextureHolder;

@@ -74,4 +74,5 @@ void LoadingState::loadGameTextures() {
   context.textures.load(TexturesID::Bazooka, "image/bazooka.png");
   context.textures.load(TexturesID::Rocket, "image/missile.png");
   context.textures.load(TexturesID::Dog, "image/dog.png");
+  context.textures.load(TexturesID::Finn, "image/FinnSprite.png");
 }

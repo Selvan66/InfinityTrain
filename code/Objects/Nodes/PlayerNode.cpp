@@ -9,8 +9,9 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
   : Entity(playerInfo.stats.getStat(Stats::Lives)), mContext(context),
     mPlayerInfo(playerInfo), mFireCommand(), mIsFire(false), mInteractCommand(),
     mIsInteract(false), mSpecialCommand(), mIsSpecial(false),
-    mAnimation(context.textures.get(TexturesID::Player)), mWeapon(nullptr),
-    mSpecial(nullptr), mDamageDuration(sf::seconds(0.3f)),
+    mAnimation(context.textures.get(TexturesID::Finn),
+               sf::IntRect(9 * 32, 0, 6 * 32, 32)),
+    mWeapon(nullptr), mSpecial(nullptr), mDamageDuration(sf::seconds(0.3f)),
     mIsWeaponEquip(false), mIsSpecialEquip(false) {
   mFireCommand.category = Category::Battlefield;
   mFireCommand.action = [&](SceneNode&, sf::Time) {
@@ -40,10 +41,11 @@ PlayerNode::PlayerNode(Context& context, PlayerInfo& playerInfo)
     }
   };
 
-  mAnimation.setFrameSize({80, 61});
-  mAnimation.setNumFrames(9);
-  mAnimation.setDuration(sf::seconds(0.7f));
+  mAnimation.setFrameSize({32, 32});
+  mAnimation.setNumFrames(6);
+  mAnimation.setDuration(sf::seconds(0.4f));
   mAnimation.setRepeating(true);
+  mAnimation.setScale({2.5f, 2.5f});
 }
 
 void PlayerNode::makeAction(Action action) {
