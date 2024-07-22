@@ -1,4 +1,6 @@
 /** @file Animation.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Effects/Animation.h"
 #include "Utils/Utility.h"
 
@@ -112,15 +114,19 @@ sf::IntRect Animation::nextFrame(sf::IntRect rect) const {
   sf::Vector2i bounds = {mRect.left + mRect.width, mRect.top + mRect.height};
   if (mReverse) {
     rect.left -= mFrameSize.x;
-    if (rect.left - mFrameSize.x < mRect.left) {
+    if (rect.left < mRect.left) {
       rect.left = bounds.x - mFrameSize.x;
       rect.top -= mFrameSize.y;
+      if (rect.top < 0)
+        rect.top = bounds.y - mFrameSize.y;
     }
   } else {
     rect.left += mFrameSize.x;
-    if (rect.left + mFrameSize.x > bounds.x) {
+    if (rect.left >= bounds.x) {
       rect.left = mRect.left;
       rect.top += mFrameSize.y;
+      if (rect.top >= bounds.y)
+        rect.top = mRect.top;
     }
   }
 
