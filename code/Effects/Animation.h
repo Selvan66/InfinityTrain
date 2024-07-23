@@ -36,6 +36,7 @@ private:
 private:
   sf::Sprite mSprite;
   sf::IntRect mRect;
+  sf::FloatRect mLocalPixelBounds;
   sf::Vector2i mFrameSize;
   std::size_t mNumFrames;
   std::size_t mCurrentFrame;

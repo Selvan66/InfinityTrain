@@ -3,31 +3,35 @@
 #include "Utils/Utility.h"
 
 Animation::Animation()
-  : mSprite(), mRect(), mFrameSize(), mNumFrames(), mCurrentFrame(0),
-    mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero), mRepeat(false),
-    mReverse(false), mPaused(false) {}
+  : mSprite(), mRect(), mLocalPixelBounds(), mFrameSize(), mNumFrames(),
+    mCurrentFrame(0), mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero),
+    mRepeat(false), mReverse(false), mPaused(false) {}
 
 Animation::Animation(const sf::Texture& texture)
   : mSprite(texture), mRect(0, 0, static_cast<int>(texture.getSize().x),
                             static_cast<int>(texture.getSize().y)),
-    mFrameSize(), mNumFrames(), mCurrentFrame(0), mDuration(sf::Time::Zero),
-    mElapsedTime(sf::Time::Zero), mRepeat(false), mReverse(false),
-    mPaused(false) {}
+    mLocalPixelBounds(), mFrameSize(), mNumFrames(), mCurrentFrame(0),
+    mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero), mRepeat(false),
+    mReverse(false), mPaused(false) {}
 
 Animation::Animation(const sf::Texture& texture, const sf::IntRect& rect)
-  : mSprite(texture, rect), mRect(rect), mFrameSize(), mNumFrames(),
-    mCurrentFrame(0), mDuration(sf::Time::Zero), mElapsedTime(sf::Time::Zero),
-    mRepeat(false), mReverse(false), mPaused(false) {}
+  : mSprite(texture, rect), mRect(rect), mLocalPixelBounds(), mFrameSize(),
+    mNumFrames(), mCurrentFrame(0), mDuration(sf::Time::Zero),
+    mElapsedTime(sf::Time::Zero), mRepeat(false), mReverse(false),
+    mPaused(false) {}
 
 void Animation::setTexture(const sf::Texture& texture) {
   mSprite.setTexture(texture);
   mRect = sf::IntRect(0, 0, static_cast<int>(texture.getSize().x),
                       static_cast<int>(texture.getSize().y));
+  mLocalPixelBounds = Utility::pixelLocalBounds(mSprite);
 }
 
 void Animation::setTexture(const sf::Texture& texture,
                            const sf::IntRect& rect) {
   mSprite.setTexture(texture);
+  mSprite.setTextureRect(rect);
+  mLocalPixelBounds = Utility::pixelLocalBounds(mSprite);
   mRect = rect;
 }
 
@@ -35,6 +39,7 @@ void Animation::setFrameSize(sf::Vector2i frameSize) {
   mFrameSize = frameSize;
   mSprite.setTextureRect(
     sf::IntRect(mRect.left, mRect.top, mFrameSize.x, mFrameSize.y));
+  mLocalPixelBounds = Utility::pixelLocalBounds(mSprite);
   Utility::centerOrigin(mSprite);
 }
 
@@ -61,7 +66,7 @@ bool Animation::isFinished() const { return mCurrentFrame >= mNumFrames; }
 
 sf::FloatRect Animation::getGlobalBounds() const {
   return sf::Transformable::getTransform().transformRect(
-    mSprite.getTransform().transformRect(Utility::pixelLocalBounds(mSprite)));
+    mSprite.getTransform().transformRect(mLocalPixelBounds));
 }
 
 void Animation::update(sf::Time dt) {
@@ -87,8 +92,10 @@ void Animation::update(sf::Time dt) {
     textureRect = nextFrame(textureRect);
     incrementCurrentFrame();
   }
-  if (isTextureChanged)
+  if (isTextureChanged) {
     mSprite.setTextureRect(textureRect);
+    mLocalPixelBounds = Utility::pixelLocalBounds(mSprite);
+  }
 }
 
 void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
