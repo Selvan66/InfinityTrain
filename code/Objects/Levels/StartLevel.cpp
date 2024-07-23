@@ -12,7 +12,6 @@ void StartLevel::update(sf::Time dt) {
   Level::update(dt);
 
   if (Level::isFinished()) {
-    spdlog::debug("StartLevel::update | isFinished");
     mDoor->open();
   }
 }

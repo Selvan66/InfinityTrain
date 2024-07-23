@@ -20,7 +20,6 @@ void PrehistoryLevel::update(sf::Time dt) {
   Level::update(dt);
 
   if (Level::isFinished()) {
-    spdlog::debug("PrehistoryLevel::update | isFinished");
     mDoor->open();
   }
 }

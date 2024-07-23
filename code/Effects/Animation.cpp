@@ -1,6 +1,4 @@
 /** @file Animation.cpp */
-#include "spdlog/spdlog.h"
-
 #include "Effects/Animation.h"
 #include "Utils/Utility.h"
 
