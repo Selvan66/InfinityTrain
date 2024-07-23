@@ -29,6 +29,7 @@ void TextSlider::addText(const std::string& text) {
   mMaxTextWidth = width > mMaxTextWidth ? width : mMaxTextWidth;
   mTextArray.push_back(newText);
   mTextIndex = 0;
+  spdlog::debug("TextSlider::addText | Text: {}", text);
 }
 
 std::string TextSlider::getCurrentText() const {
@@ -45,9 +46,7 @@ void TextSlider::setCurrentText(const std::string& text) {
     }
   }
 
-  throw Except::bad_argument()
-    .add("Text Slider")
-    .add("Not found text in mTextArray");
+  spdlog::warn("TextSlider::setCurrentText | mTextIndex == -1");
 }
 
 void TextSlider::handleEvent(const sf::Event& event) {

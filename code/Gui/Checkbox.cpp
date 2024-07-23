@@ -1,4 +1,6 @@
 /** @file Checkbox.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Gui/Checkbox.h"
 #include "Utils/Utility.h"
 
@@ -6,7 +8,10 @@ Checkbox::Checkbox(Context& context)
   : Button(context),
     mCheck(context.textures.get(TexturesID::Gui), sf::IntRect(181, 0, 50, 50)),
     mBox(sf::Vector2f(60, 60)), mIsSelected(false) {
-  Button::setCallback([this]() { this->mIsSelected = !this->mIsSelected; });
+  Button::setCallback([this]() {
+    spdlog::debug("Checkbox::Checkbox | Callback select");
+    this->mIsSelected = !this->mIsSelected;
+  });
 
   Utility::centerOrigin(mCheck);
 

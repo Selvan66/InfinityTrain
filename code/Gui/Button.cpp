@@ -1,4 +1,6 @@
 /** @file Button.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Gui/Button.h"
 
 Button::Button(Context& context)
@@ -41,11 +43,15 @@ void Button::handleEvent(const sf::Event& event) {
   }
   if (event.type == sf::Event::MouseButtonReleased) {
     if (mIsPressed && mIsSelected &&
-        event.mouseButton.button == sf::Mouse::Right)
+        event.mouseButton.button == sf::Mouse::Right) {
+      spdlog::debug("Button::handleEvent | Right click");
       mRightClickCallback();
+    }
     if (mIsPressed && mIsSelected &&
-        event.mouseButton.button == sf::Mouse::Left)
+        event.mouseButton.button == sf::Mouse::Left) {
+      spdlog::debug("Button::handleEvent | Left click");
       mLeftClickCallback();
+    }
 
     mIsPressed = false;
   }
