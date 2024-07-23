@@ -1,4 +1,6 @@
 /** @file Context.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Context.h"
 
 Context::Context()
@@ -34,6 +36,7 @@ void Context::applyGraphicSettings() {
   window.setVerticalSyncEnabled(true);
   auto icon = textures.get(TexturesID::Icon).copyToImage();
   window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+  spdlog::info("Context::applyGraphicSettings");
 }
 
 void Context::applyAudioSettings() {
@@ -41,6 +44,10 @@ void Context::applyAudioSettings() {
   sounds.setVolume(sound_volume);
   float music_volume = settings.get<float>("Audio", "Music Volume");
   musics.setVolume(music_volume);
+  spdlog::info("Context::applyAudioSettings");
 }
 
-void Context::applyContolSettings() { player.loadPlayerInput(); }
+void Context::applyContolSettings() {
+  player.loadPlayerInput();
+  spdlog::info("Context::applyContolSettings");
+}

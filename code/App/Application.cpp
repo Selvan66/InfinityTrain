@@ -1,4 +1,7 @@
 /** @file Application.cpp */
+
+#include "spdlog/spdlog.h"
+
 #include "App/Application.h"
 #include "States/AboutState.h"
 #include "States/AudioSettingState.h"
@@ -21,6 +24,7 @@ Application::Application()
     ,
     mStatisticsNumFrames(0) //< Only for debug
 {
+  spdlog::info("Application::Application | Application start");
   loadMenuTextures();
   loadFonts();
   loadMenuGuiFiles();
@@ -60,7 +64,8 @@ void Application::processInput() {
   while (mContext.window.pollEvent(event)) {
     mStateStack.handleEvent(event);
     if (event.type == sf::Event::Closed)
-      mContext.window.close();
+      spdlog::info("Application::processInput | Windows closed");
+    mContext.window.close();
   }
 }
 

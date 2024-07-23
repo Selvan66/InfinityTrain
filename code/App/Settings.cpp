@@ -1,6 +1,7 @@
 /** @file Settings.cpp */
 #include <fstream>
-#include <iostream>
+
+#include "spdlog/spdlog.h"
 
 #include "App/Settings.h"
 
@@ -10,17 +11,20 @@ Settings::~Settings() { save(); }
 
 void Settings::save() {
   std::ofstream o("settings.json");
-  if (o.is_open())
-    o << mSettings;
-  else
-    std::cerr << "Cannot save settings" << std::endl;
+  if (!o.is_open()) {
+    spdlog::warn("Settings::save | Cannot save settings");
+    return;
+  }
+
+  o << mSettings;
+  spdlog::info("Settings::save | Settings saved");
 }
 
 void Settings::load() {
   std::ifstream i("settings.json");
-  if (i.is_open()) {
-    i >> mSettings;
-  } else {
+
+  if (!i.is_open()) {
+    spdlog::warn("Settings::load | Cannot load settings (using default)");
     mSettings["Graphics"]["Resolution"] =
       std::pair<unsigned int, unsigned int>(1366, 768);
     mSettings["Graphics"]["Fullscreen"] = false;
@@ -35,5 +39,9 @@ void Settings::load() {
 
     mSettings["Audio"]["Music Volume"] = 100.0f;
     mSettings["Audio"]["Sounds Volume"] = 100.0f;
+    return;
   }
+
+  i >> mSettings;
+  spdlog::info("Settings::load | Settings loaded");
 }
