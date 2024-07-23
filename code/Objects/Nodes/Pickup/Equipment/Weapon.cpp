@@ -1,6 +1,8 @@
 /** @file Weapon.cpp */
-#include "Objects/Nodes/Pickup/Equipment/Weapon.h"
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/Enemy/Enemy.h"
+#include "Objects/Nodes/Pickup/Equipment/Weapon.h"
 #include "Utils/Utility.h"
 
 static const std::array<WeaponParam, Weapon::WeaponCount> weapons = {{
@@ -58,13 +60,17 @@ Weapon::Weapon(Context& context, Type type, int ammos)
   if (weapons[type].projectile == Projectile::None) {
     mAttackCommand.category = Category::Enemy;
     mAttackCommand.action = derivedAction<Enemy>([&](Enemy& enemy, sf::Time) {
-      if (Utility::collision(*this, enemy))
+      if (Utility::collision(*this, enemy)) {
+        spdlog::trace(
+          "Weapon::Weapon | Hit with none projectile command attack");
         enemy.damageWithKnockback(weapons[mType].damage,
                                   SceneNode::getWorldPosition());
+      }
     });
   } else {
     mAttackCommand.category = Category::Battlefield;
     mAttackCommand.action = [&](SceneNode& node, sf::Time) {
+      spdlog::trace("Weapon::Weapon | Projectile command attack");
       auto projectile = std::make_unique<Projectile>(
         Pickup::getContext(), weapons[mType].projectile,
         Category::AlliedProjectile);
@@ -77,7 +83,10 @@ Weapon::Weapon(Context& context, Type type, int ammos)
   Entity::setHitpoints(ammos);
 }
 
-void Weapon::use() { mUse = true; }
+void Weapon::use() {
+  spdlog::trace("Weapon::use");
+  mUse = true;
+}
 
 sf::Vector2f Weapon::getSize() const { return weapons[mType].size; }
 
@@ -126,6 +135,7 @@ void Weapon::updateCurrent(sf::Time dt, CommandQueue& commands) {
   mUse = false;
 
   if (mAttacking && (mElapsed >= (weapons[mType].duration / 3.f))) {
+    spdlog::trace("Weapon::updateCurrent | Attacking");
     mAttacking = false;
     commands.push(mAttackCommand);
     if (Entity::getHitpoints() != INF)

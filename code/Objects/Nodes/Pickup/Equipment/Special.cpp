@@ -1,4 +1,6 @@
 /** @file Special.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Nodes/Pickup/Equipment/Special.h"
 #include "Objects/Nodes/PlayerNode.h"
 #include "Utils/Utility.h"
@@ -17,6 +19,7 @@ void initSpecialsActions(Context& context) {
   specials[Special::PortalGun].action.category = Category::Player;
   specials[Special::PortalGun].action.action =
     derivedAction<PlayerNode>([&](PlayerNode& player, sf::Time) {
+      spdlog::trace("Special.cpp - initSpecialsActions | PortalGun Command");
       player.setPosition(Utility::getMousePos(context.window));
     });
 }
@@ -33,7 +36,10 @@ Special::Special(Context& context, Type type, int ammos)
   Entity::setHitpoints(ammos);
 }
 
-void Special::use() { mUse = true; }
+void Special::use() {
+  spdlog::trace("Special::use");
+  mUse = true;
+}
 
 unsigned int Special::getCategory() const {
   return Pickup::getCategory() | Category::Special;
@@ -69,6 +75,7 @@ void Special::updateCurrent(sf::Time dt, CommandQueue& commands) {
   mElapsed += dt;
   if (mElapsed >= specials[mType].duration) {
     if (mUse) {
+      spdlog::trace("Special::updateCurrent | Using special {}", getName());
       mElapsed = sf::Time::Zero;
       commands.push(specials[mType].action);
       if (Entity::getHitpoints() != INF)

@@ -1,4 +1,6 @@
 /** @file StartLevel.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Levels/StartLevel.h"
 #include "Objects/Nodes/SpriteNode.h"
 
@@ -9,13 +11,17 @@ StartLevel::StartLevel(LvlContext& lvlContext) : Level(lvlContext) {
 void StartLevel::update(sf::Time dt) {
   Level::update(dt);
 
-  if (Level::isFinished())
+  if (Level::isFinished()) {
+    spdlog::debug("StartLevel::update | isFinished");
     mDoor->open();
+  }
 }
 
 LevelID::ID StartLevel::nextLevel() const {
-  if (mDoor->isInteract())
+  if (mDoor->isInteract()) {
+    spdlog::debug("StartLevel::nextLevel | FirstLevel");
     return LevelID::FirstLevel;
+  }
   return LevelID::None;
 }
 

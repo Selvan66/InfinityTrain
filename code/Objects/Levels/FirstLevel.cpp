@@ -1,4 +1,6 @@
 /** @file FirstLevel.cpp */
+#include "spdlog/spdlog.h"
+
 #include "Objects/Levels/FirstLevel.h"
 #include "Objects/Nodes/Pickup/Money.h"
 #include "Objects/Nodes/SpriteNode.h"
@@ -10,13 +12,17 @@ FirstLevel::FirstLevel(LvlContext& lvlContext) : Level(lvlContext) {
 void FirstLevel::update(sf::Time dt) {
   Level::update(dt);
 
-  if (Level::isFinished())
+  if (Level::isFinished()) {
+    spdlog::debug("FirstLevel::update | isFinished");
     mDoor->open();
+  }
 }
 
 LevelID::ID FirstLevel::nextLevel() const {
-  if (mDoor->isInteract())
+  if (mDoor->isInteract()) {
+    spdlog::debug("FirstLevel::nextLevel | Prehistory");
     return LevelID::Prehistory;
+  }
   return LevelID::None;
 }
 

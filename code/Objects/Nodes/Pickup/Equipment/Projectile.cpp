@@ -1,6 +1,8 @@
 /** @file Projectile.cpp **/
 #include <array>
 
+#include "spdlog/spdlog.h"
+
 #include "App/Context.h"
 #include "Objects/Nodes/Pickup/Equipment/Projectile.h"
 #include "Utils/Utility.h"
@@ -47,6 +49,7 @@ Projectile::Projectile(Context& context, Type type, Category::Type category)
 
   mAttackCommand.action = derivedAction<Entity>([&](Entity& entity, sf::Time) {
     if (Utility::collision(*this, entity)) {
+      spdlog::trace("Projectile::Projectile | Hit with projectile");
       entity.damageWithKnockback(projectiles[mType].damage,
                                  SceneNode::getWorldPosition());
       this->destroy();
@@ -54,6 +57,7 @@ Projectile::Projectile(Context& context, Type type, Category::Type category)
   });
 
   mFindCommand.action = derivedAction<Entity>([&](Entity& entity, sf::Time) {
+    spdlog::trace("Projectile::Projectile | Find Command");
     float distance = Utility::length(entity.getWorldPosition() -
                                      SceneNode::getWorldPosition());
     if (distance < mClosedEnemy) {
