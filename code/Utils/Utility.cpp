@@ -77,8 +77,7 @@ sf::FloatRect pixelLocalBounds(const sf::Sprite& sprite) {
   const int width = textureRect.width;
   const int height = textureRect.height;
 
-  sf::FloatRect result = {0, 0, static_cast<float>(width),
-                          static_cast<float>(height)};
+  sf::FloatRect result = {0, 0, 0, 0};
   bool is_top = false;
   bool is_left = false;
   bool is_width = false;
@@ -88,8 +87,8 @@ sf::FloatRect pixelLocalBounds(const sf::Sprite& sprite) {
     for (int j = 0; j < height; ++j) {
       const sf::Color pixel =
         image.getPixel(static_cast<unsigned int>(textureRect.left + i),
-                       static_cast<unsigned int>(j + textureRect.top));
-      if (pixel.a == 0)
+                       static_cast<unsigned int>(textureRect.top + j));
+      if (pixel.a < 50)
         continue;
 
       float fi = static_cast<float>(i);
@@ -104,14 +103,14 @@ sf::FloatRect pixelLocalBounds(const sf::Sprite& sprite) {
         result.left = fi;
       }
 
-      if (!is_width || fi > result.width) {
+      if (is_left && (!is_width || (fi - result.left) > result.width)) {
         is_width = true;
-        result.width = fi;
+        result.width = fi - result.left;
       }
 
-      if (!is_height || fj > result.height) {
+      if (is_top && (!is_height || (fj - result.top) > result.height)) {
         is_height = true;
-        result.height = fj;
+        result.height = fj - result.top;
       }
     }
   if (!(is_top && is_left && is_width && is_height))
