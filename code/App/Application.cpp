@@ -63,9 +63,10 @@ void Application::processInput() {
   sf::Event event;
   while (mContext.window.pollEvent(event)) {
     mStateStack.handleEvent(event);
-    if (event.type == sf::Event::Closed)
+    if (event.type == sf::Event::Closed) {
       spdlog::info("Application::processInput | Windows closed");
-    mContext.window.close();
+      mContext.window.close();
+    }
   }
 }
 
